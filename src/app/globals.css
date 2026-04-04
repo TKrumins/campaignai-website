@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Primary Brand Colors */
+  --color-regal-navy: #0D1B3E;
+  --color-liberty-crimson: #FF3366;
+  --color-freedom-blue: #4D9FFF;
+  --color-beacon-white: #E8F4F8;
+
+  /* Secondary Tones — Progress Gradient */
+  --color-victory-rose: #FF6B8F;
+  --color-horizon-azure: #7AB8FF;
+  --color-dawn-frost: #F5FAFC;
+
+  /* Neutral Grays — Foundation Series */
+  --color-granite: #2C2C2C;
+  --color-slate: #666666;
+  --color-silver-mist: #B8B8B8;
+
+  /* Accent Colors — Impact Collection */
+  --color-pioneer-gold: #FFB800;
+  --color-verdant: #00D084;
+  --color-alert-amber: #FF9500;
+  --color-critical-scarlet: #E62E2E;
+
+  /* Fonts */
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Gradient utilities — Patriot Gradient */
+/* 45% red / 10% white / 45% blue diagonal */
+@utility patriot-gradient {
+  background: linear-gradient(135deg, #FF3366 0%, #FF3366 40%, #E8F4F8 47%, #E8F4F8 53%, #4D9FFF 60%, #0D1B3E 100%);
+}
+
+/* No-white variant — text on light backgrounds */
+@utility patriot-gradient-text {
+  background: linear-gradient(135deg, #FF3366 0%, #FF3366 40%, #E8F4F8 47%, #E8F4F8 53%, #4D9FFF 60%, #0D1B3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-granite);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Button hover effects */
+@utility btn-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Card hover effects */
+@utility card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Scroll-triggered fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Gentle flag waving animation */
+@keyframes flagWave {
+  0% {
+    transform: scale(1.1) translate(0%, 0%);
+  }
+  25% {
+    transform: scale(1.18) translate(-2.4%, 1.2%);
+  }
+  50% {
+    transform: scale(1.1) translate(1.6%, -1%);
+  }
+  75% {
+    transform: scale(1.18) translate(-1.6%, 1%);
+  }
+  100% {
+    transform: scale(1.1) translate(0%, 0%);
+  }
+}
+
+.animate-flag-wave {
+  animation: flagWave 12s ease-in-out infinite;
+}
