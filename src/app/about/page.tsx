@@ -16,10 +16,10 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <OriginStory />
       <IntersectionSection />
       <FoundersSection />
       <Advisors />
+      <OriginStory />
       <MissionSection />
     </>
   );

@@ -61,7 +61,7 @@ export function IntersectionGraphic() {
             <ScrollReveal key={label} delay={i * 150}>
               <div className={`flex flex-col items-center gap-3 rounded-2xl border ${borderColor} ${bgTint} backdrop-blur-sm px-6 sm:px-8 py-6 sm:py-8`}>
                 <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${color}`} />
-                <span className={`font-heading font-bold text-sm sm:text-base text-beacon-white`}>
+                <span className={`font-heading font-bold text-sm sm:text-base ${textColor}`}>
                   {label}
                 </span>
               </div>
@@ -86,10 +86,10 @@ export function IntersectionGraphic() {
                 <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-regal-navy" />
               </div>
             </div>
-            <p className="font-heading font-extrabold text-lg sm:text-xl text-beacon-white">
+            <p className="font-heading font-extrabold text-lg sm:text-xl text-regal-navy">
               Principles we can all agree on
             </p>
-            <p className="text-beacon-white/60 text-sm mt-1 text-center max-w-[360px]">
+            <p className="text-slate text-sm mt-1 text-center max-w-[360px]">
               When your team disagrees on politics but agrees on principles,
               the product earns trust from everyone.
             </p>
