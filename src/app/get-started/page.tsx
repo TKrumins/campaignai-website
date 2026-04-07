@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GetStartedHero } from "@/components/sections/get-started/GetStartedHero";
-import { GetStartedCostSavings } from "@/components/sections/get-started/GetStartedCostSavings";
+import { ComparisonSection } from "@/components/sections/get-started/ComparisonSection";
 import { GetStartedForm } from "@/components/sections/get-started/GetStartedForm";
 import { GetStartedReminder } from "@/components/sections/get-started/GetStartedReminder";
 
@@ -14,8 +14,8 @@ export default function GetStartedPage() {
   return (
     <>
       <GetStartedHero />
-      <GetStartedCostSavings />
       <GetStartedForm />
+      <ComparisonSection />
       <GetStartedReminder />
     </>
   );

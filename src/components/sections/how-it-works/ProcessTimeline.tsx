@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 
@@ -37,16 +38,25 @@ const steps = [
 
 function StepNumberCircle({ number }: { number: string }) {
   return (
-    <div className="w-14 h-14 rounded-full patriot-gradient text-white font-heading font-bold text-lg flex items-center justify-center z-10 relative shadow-md">
-      {number}
+    <div className="w-[60px] h-[60px] rounded-full patriot-gradient p-[3px] z-10 relative shadow-md">
+      <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
+        <span className="text-white font-heading font-bold text-lg">{number}</span>
+      </div>
     </div>
   );
 }
 
-function ImagePlaceholder() {
+function StepImage({ number }: { number: string }) {
+  const stepNum = parseInt(number, 10);
   return (
-    <div className="bg-dawn-frost rounded-xl aspect-[4/3] flex items-center justify-center border border-gray-200">
-      <span className="text-silver-mist text-sm">Image placeholder</span>
+    <div className="w-[280px] h-[280px] mx-auto rounded-full overflow-hidden shadow-lg ring-1 ring-gray-200">
+      <Image
+        src={`/Step-by-Step Guides/Step ${stepNum}.png`}
+        alt={`Step ${stepNum} illustration`}
+        width={280}
+        height={280}
+        className="w-full h-full object-cover"
+      />
     </div>
   );
 }
@@ -56,8 +66,8 @@ export function ProcessTimeline() {
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5 md:whitespace-nowrap">
               From conversation to campaign ad.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
@@ -80,9 +90,9 @@ export function ProcessTimeline() {
 
             return (
               <ScrollReveal key={number} delay={i * 80}>
-                <div className="relative mb-16 last:mb-0">
+                <div className="relative mb-28 last:mb-0">
                   {/* Desktop: alternating layout */}
-                  <div className="hidden md:grid md:grid-cols-[1fr_80px_1fr] items-start">
+                  <div className="hidden md:grid md:grid-cols-[1fr_80px_1fr] items-center gap-y-6">
                     {/* Left column */}
                     <div className={textOnLeft ? "pr-10" : "pr-10 order-1"}>
                       {textOnLeft ? (
@@ -100,7 +110,7 @@ export function ProcessTimeline() {
                           )}
                         </div>
                       ) : (
-                        <ImagePlaceholder />
+                        <StepImage number={number} />
                       )}
                     </div>
 
@@ -112,7 +122,7 @@ export function ProcessTimeline() {
                     {/* Right column */}
                     <div className={textOnLeft ? "pl-10 order-3" : "pl-10 order-3"}>
                       {textOnLeft ? (
-                        <ImagePlaceholder />
+                        <StepImage number={number} />
                       ) : (
                         <div>
                           <h3 className="font-heading font-bold text-2xl text-regal-navy mb-2">
@@ -134,8 +144,10 @@ export function ProcessTimeline() {
                   {/* Mobile: vertical stack */}
                   <div className="md:hidden flex gap-4">
                     <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full patriot-gradient text-white font-heading font-bold text-sm flex items-center justify-center shrink-0">
-                        {number}
+                      <div className="w-10 h-10 rounded-full patriot-gradient p-[2px] shrink-0">
+                        <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
+                          <span className="text-white font-heading font-bold text-sm">{number}</span>
+                        </div>
                       </div>
                       {i < steps.length - 1 && (
                         <div className="w-px flex-1 bg-freedom-blue/20 mt-2" />
@@ -151,8 +163,8 @@ export function ProcessTimeline() {
                           {note}
                         </p>
                       )}
-                      <div className="mt-4">
-                        <ImagePlaceholder />
+                      <div className="mt-6">
+                        <StepImage number={number} />
                       </div>
                     </div>
                   </div>
@@ -165,7 +177,7 @@ export function ProcessTimeline() {
         <ScrollReveal>
           <div className="text-center mt-12">
             <Button variant="crimson" href="/get-started">
-              Tell your story &rarr;
+              Create your video &rarr;
             </Button>
           </div>
         </ScrollReveal>

@@ -8,11 +8,11 @@ import {
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const trustItems = [
-  { icon: ShieldCheck, label: "Mandatory AI Disclosure", color: "text-liberty-crimson" },
-  { icon: Scale, label: "FEC & State Compliance Aware", color: "text-freedom-blue" },
-  { icon: Users, label: "Nonpartisan by Design", color: "text-liberty-crimson" },
-  { icon: Lock, label: "Privacy-First Architecture", color: "text-freedom-blue" },
-  { icon: UserCheck, label: "Human-in-the-Loop", color: "text-liberty-crimson" },
+  { icon: ShieldCheck, label: "Mandatory AI Disclosure" },
+  { icon: Scale, label: "FEC & State Compliance Aware" },
+  { icon: Users, label: "Nonpartisan by Design" },
+  { icon: Lock, label: "Privacy-First Architecture" },
+  { icon: UserCheck, label: "Human-in-the-Loop" },
 ];
 
 export function TrustBarSection() {
@@ -21,12 +21,12 @@ export function TrustBarSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-8">
         <ScrollReveal>
           <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-            {trustItems.map(({ icon: Icon, label, color }) => (
+            {trustItems.map(({ icon: Icon, label }) => (
               <div
                 key={label}
                 className="flex items-center gap-2 text-beacon-white"
               >
-                <Icon className={`w-5 h-5 ${color}`} />
+                <span className="patriot-icon"><Icon className="w-5 h-5" /></span>
                 <span className="text-sm font-medium">
                   {label}
                 </span>

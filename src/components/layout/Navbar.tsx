@@ -32,12 +32,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navBg = isTransparent ? "bg-transparent" : "bg-regal-navy border-b-2 border-b-freedom-blue";
-  const useLightText = !isTransparent || hasDarkHero;
-
-  const logoSrc = useLightText
-    ? "/Logos/logo-dark-background.svg"
-    : "/Logos/logo-light-background.svg";
+  const navBg = isTransparent && hasDarkHero ? "bg-transparent" : "bg-regal-navy border-b-2 border-b-freedom-blue";
+  const useLightText = true;
 
   function getLinkClasses(href: string) {
     const isActive = pathname === href;
@@ -68,7 +64,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-24">
           <Link href="/" className="flex items-center">
             <Image
-              src={logoSrc}
+              src="/Logos/logo-dark-background.svg"
               alt="CampaignAI"
               width={160}
               height={36}
@@ -104,7 +100,7 @@ export function Navbar() {
               className="btn-hover inline-flex items-center rounded-full patriot-gradient p-[3px] shadow-md"
             >
               <span className="inline-flex items-center px-6 py-2.5 rounded-full bg-dawn-frost text-regal-navy text-sm font-semibold">
-                Tell your story <span className="ml-1 text-regal-navy">&rarr;</span>
+                Join the waitlist <span className="ml-1 text-regal-navy">&rarr;</span>
               </span>
             </Link>
           </div>
@@ -116,7 +112,7 @@ export function Navbar() {
               className="btn-hover inline-flex items-center rounded-full patriot-gradient p-[3px] shadow-md"
             >
               <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-dawn-frost text-regal-navy text-xs font-semibold">
-                Tell your story <span className="ml-1">&rarr;</span>
+                Join the waitlist <span className="ml-1">&rarr;</span>
               </span>
             </Link>
             <button

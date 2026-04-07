@@ -21,7 +21,7 @@ export function WaitlistFormSection() {
   }, []);
 
   return (
-    <section id="waitlist-form" className="py-20 md:py-20 bg-white">
+    <section id="waitlist-form" className="py-20 md:py-20 bg-regal-navy">
       <div className="max-w-[800px] mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <div className="rounded-2xl p-[6px] patriot-gradient shadow-lg">

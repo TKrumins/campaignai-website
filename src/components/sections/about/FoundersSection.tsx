@@ -33,19 +33,24 @@ export function FoundersSection() {
   return (
     <section className="py-20 md:py-28 bg-dawn-frost">
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-regal-navy tracking-[-1px] mb-12">
+            The Founding Team
+          </h2>
+        </ScrollReveal>
         <div className="space-y-16">
           {founders.map(({ photo, name, title, tag, tagline, bio, quote }, i) => (
             <ScrollReveal key={name} delay={i * 100}>
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 {/* Photo */}
                 <div className="shrink-0 mx-auto md:mx-0 relative">
-                  <div className="w-[180px] h-[180px] rounded-full overflow-hidden shadow-lg bg-white">
+                  <div className="w-[180px] h-[180px] rounded-full overflow-hidden">
                     <Image
                       src={photo}
                       alt={name}
                       width={180}
                       height={180}
-                      className="w-full h-full object-cover rounded-full"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   {tag && (

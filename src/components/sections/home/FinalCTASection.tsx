@@ -5,7 +5,7 @@ import { WaitlistForm } from "@/components/forms/WaitlistForm";
 
 export function FinalCTASection() {
   return (
-    <section className="py-20 md:py-28 patriot-gradient relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-regal-navy relative overflow-hidden">
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <div className="text-center mb-8">
@@ -15,22 +15,6 @@ export function FinalCTASection() {
             <p className="text-white/95 text-xl font-medium leading-relaxed max-w-[600px] mx-auto">
               Join the waitlist. Be among the first campaigns to produce
               professional video with built-in compliance.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Cost savings pill */}
-        <ScrollReveal delay={100}>
-          <div className="bg-white rounded-2xl px-9 py-6 text-center mb-6">
-            <p className="font-heading font-bold text-2xl text-regal-navy">
-              Agencies charge $10,000+ per ad.
-            </p>
-            <p className="text-granite mt-1">
-              Skip the consultant. Make an ad for a 10th the cost.
-            </p>
-            <p className="text-slate text-sm mt-1">
-              Volume pricing available for organizations and multi-campaign
-              programs.
             </p>
           </div>
         </ScrollReveal>

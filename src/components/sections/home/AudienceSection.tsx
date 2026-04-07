@@ -68,20 +68,22 @@ export function AudienceSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {candidateTiers.map(({ title, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
-              <div className="card-hover bg-white rounded-xl border-l-4 border-l-freedom-blue shadow-sm p-7 h-full flex flex-col">
-                <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
-                  {title}
-                </h4>
-                <p className="text-granite text-sm leading-relaxed flex-1">
-                  {description}
-                </p>
-                <Button
-                  variant="blue-outline"
-                  href="/get-started"
-                  className="mt-5 text-xs px-4 py-2"
-                >
-                  Learn more &rarr;
-                </Button>
+              <div className="card-hover rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
+                <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
+                  <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
+                    {title}
+                  </h4>
+                  <p className="text-granite text-sm leading-relaxed flex-1">
+                    {description}
+                  </p>
+                  <Button
+                    variant="navy"
+                    href="/get-started"
+                    className="mt-5 text-xs px-4 py-2"
+                  >
+                    Learn more &rarr;
+                  </Button>
+                </div>
               </div>
             </ScrollReveal>
           ))}
@@ -96,20 +98,22 @@ export function AudienceSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {teamTiers.map(({ title, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
-              <div className="card-hover bg-white rounded-xl border-l-4 border-l-liberty-crimson shadow-sm p-7 h-full flex flex-col">
-                <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
-                  {title}
-                </h4>
-                <p className="text-granite text-sm leading-relaxed flex-1">
-                  {description}
-                </p>
-                <Button
-                  variant="blue-outline"
-                  href="/get-started"
-                  className="mt-5 text-xs px-4 py-2"
-                >
-                  Learn more &rarr;
-                </Button>
+              <div className="card-hover rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
+                <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
+                  <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
+                    {title}
+                  </h4>
+                  <p className="text-granite text-sm leading-relaxed flex-1">
+                    {description}
+                  </p>
+                  <Button
+                    variant="navy"
+                    href="/get-started"
+                    className="mt-5 text-xs px-4 py-2"
+                  >
+                    Learn more &rarr;
+                  </Button>
+                </div>
               </div>
             </ScrollReveal>
           ))}

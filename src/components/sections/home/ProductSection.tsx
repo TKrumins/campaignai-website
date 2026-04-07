@@ -1,33 +1,30 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { Megaphone, HandCoins, FileText, Vote } from "lucide-react";
 
 const videoTypes = [
   {
     title: "Announcement Videos",
-    borderColor: "border-t-freedom-blue",
-    titleColor: "text-freedom-blue",
+    icon: Megaphone,
     description:
       "Your campaign's first impression with voters. Who you are, what you stand for, and why now.",
   },
   {
     title: "Fundraising Appeals",
-    borderColor: "border-t-liberty-crimson",
-    titleColor: "text-liberty-crimson",
+    icon: HandCoins,
     description:
       "Authentic asks built around urgency, personal connection, and a clear call to give.",
   },
   {
     title: "Policy Explainers",
-    borderColor: "border-t-freedom-blue",
-    titleColor: "text-freedom-blue",
+    icon: FileText,
     description:
       "Complex positions in 60 seconds. Clear narration, data visuals, and shareable formatting.",
   },
   {
     title: "Get Out The Vote (GOTV)",
-    borderColor: "border-t-liberty-crimson",
-    titleColor: "text-liberty-crimson",
+    icon: Vote,
     description:
       "High-energy calls to action for the closing stretch. Built to convert enthusiasm into turnout.",
   },
@@ -53,43 +50,36 @@ export function ProductSection() {
 
         {/* 2x2 card grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          {videoTypes.map(({ title, borderColor, titleColor, description }, i) => (
+          {videoTypes.map(({ title, icon: Icon, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
-              <div
-                className={`card-hover bg-white rounded-2xl border-t-4 ${borderColor} shadow-md p-8 h-full`}
-              >
-                <h3 className={`font-heading font-bold text-2xl ${titleColor} mb-3`}>
-                  {title}
-                </h3>
-                <p className="text-granite leading-relaxed">
-                  {description}
-                </p>
+              <div className="card-hover rounded-2xl overflow-hidden shadow-md h-full">
+                <div className="h-1 patriot-gradient" />
+                <div className="bg-white p-8">
+                  <div className="w-12 h-12 rounded-xl bg-regal-navy/5 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-regal-navy" />
+                  </div>
+                  <h3 className="font-heading font-bold text-2xl text-regal-navy mb-3">
+                    {title}
+                  </h3>
+                  <p className="text-granite leading-relaxed">
+                    {description}
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
 
-        {/* Cost savings callout */}
         <ScrollReveal>
           <div className="text-center mt-10">
-            <p className="font-heading font-bold text-2xl md:text-[28px] text-regal-navy">
-              Agencies and consultants charge $10,000+ per ad.
-              <br />
-              <span className="text-liberty-crimson">
-                Make one for a 10th the cost.
-              </span>
-            </p>
-            <p className="mt-3 text-granite max-w-2xl mx-auto">
-              Running your own campaign? Skip the agency contract and produce
-              professional video directly. Working with a consultant? Give them a
-              tool that delivers more ads, more effectively, for every dollar in
-              your budget.
-            </p>
-            <div className="mt-4">
-              <Button variant="blue-outline" href="#waitlist-form">
+            <a
+              href="#waitlist-form"
+              className="btn-hover inline-flex items-center justify-center rounded-full patriot-gradient p-[2px] text-sm font-semibold"
+            >
+              <span className="px-6 py-3 rounded-full bg-white text-regal-navy">
                 Join the waitlist &rarr;
-              </Button>
-            </div>
+              </span>
+            </a>
           </div>
         </ScrollReveal>
       </div>

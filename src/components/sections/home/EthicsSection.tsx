@@ -1,27 +1,32 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { ShieldCheck, Eye, Lock, Copyright } from "lucide-react";
 
 const columns = [
   {
     title: "Automatic Compliance",
+    icon: ShieldCheck,
     description:
-      "Every video is tagged with the correct disclosure labels for your state. All AI-generated content is clearly marked to stay ahead of regulations and public sentiment. We track the rules across all 50 states and update as regulations change, so you don't have to.",
+      "Every video includes the correct disclosure labels for your state. We track the rules across all 50 states and update as regulations change.",
   },
   {
     title: "Active Regulatory Monitoring",
+    icon: Eye,
     description:
-      "Our regulations team tracks AI disclosure legislation, FEC guidance, and state-level campaign technology rules in real time. When new rules pass, we update our systems before your next video. You focus on your campaign. We focus on keeping you compliant.",
+      "We track AI disclosure legislation, FEC guidance, and state-level rules in real time. When new rules pass, we update before your next video.",
   },
   {
     title: "Your Data Stays Yours",
+    icon: Lock,
     description:
-      "We don't sell campaign data, voter data, or usage data. Your strategy, your content, and your information are your property. No data is sent to language models for their training. We offer opt-in data collection only to improve our services and speed up video production for your campaign. We will never monetize what belongs to you.",
+      "We don\u2019t sell your data. No campaign data is sent to language models for training. Opt-in collection only. Your strategy stays yours.",
   },
   {
     title: "You Own Your Content",
+    icon: Copyright,
     description:
-      "Every video you produce with CampaignAI belongs to you. Full rights, no licensing restrictions. CampaignAI does not add a company watermark. Your content is yours to use however you choose. Our process ensures that the videos you produce are legally yours, because you make every creative decision along the way.",
+      "Every video belongs to you. Full rights, no licensing restrictions, no watermarks. You make every creative decision along the way.",
   },
 ];
 
@@ -36,28 +41,25 @@ export function EthicsSection() {
               We do the work. So you don&apos;t have to.
             </h2>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px]">
-              The regulatory landscape around campaign technology is complex and
-              changing fast. New AI bills are being introduced nearly every week.
-              The rules you need to follow in Michigan or Vermont aren&apos;t the
-              same rules you need in Texas or Oregon.
+              AI rules for campaigns are different in every state and changing
+              fast. Keeping up with all of that shouldn&apos;t be your job.
+              It&apos;s ours.
             </p>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px] mt-4">
-              Keeping up with all of that shouldn&apos;t be your job. It&apos;s ours.
-            </p>
-            <p className="text-granite text-lg leading-[1.7] max-w-[760px] mt-4">
-              CampaignAI monitors compliance requirements across the FEC, all 50
-              states, and the major social media platforms. We build the right
-              safeguards into every video before it reaches you. The content you
-              produce stays ahead of the curve, not behind it.
+              We monitor compliance across the FEC, all 50 states, and major
+              platforms. Every video ships with the right safeguards built in.
             </p>
           </div>
         </ScrollReveal>
 
         {/* Four columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {columns.map(({ title, description }, i) => (
+          {columns.map(({ title, icon: Icon, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
               <div className="h-full">
+                <div className="w-10 h-10 rounded-lg patriot-gradient-soft flex items-center justify-center mb-3 patriot-icon">
+                  <Icon className="w-5 h-5" />
+                </div>
                 <h3 className="font-heading font-bold text-lg text-regal-navy mb-2">
                   {title}
                 </h3>

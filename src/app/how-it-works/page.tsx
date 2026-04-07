@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { HIWHero } from "@/components/sections/how-it-works/HIWHero";
 import { ProcessTimeline } from "@/components/sections/how-it-works/ProcessTimeline";
-import { BuildingCampaign } from "@/components/sections/how-it-works/BuildingCampaign";
+import { GrowthSection } from "@/components/sections/home/GrowthSection";
 import { ComplianceBridge } from "@/components/sections/how-it-works/ComplianceBridge";
 import { ComingSoon } from "@/components/sections/how-it-works/ComingSoon";
 import { HIWFAQ } from "@/components/sections/how-it-works/HIWFAQ";
-import { HIWCTA } from "@/components/sections/how-it-works/HIWCTA";
+import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
 
 export const metadata: Metadata = {
   title: "How It Works - CampaignAI",
@@ -18,11 +18,11 @@ export default function HowItWorksPage() {
     <>
       <HIWHero />
       <ProcessTimeline />
-      <BuildingCampaign />
+      <GrowthSection />
       <ComplianceBridge />
       <ComingSoon />
       <HIWFAQ />
-      <HIWCTA />
+      <FinalCTASection />
     </>
   );
 }

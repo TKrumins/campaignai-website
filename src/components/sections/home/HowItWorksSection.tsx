@@ -60,8 +60,10 @@ export function HowItWorksSection() {
             <ScrollReveal key={number} delay={i * 100}>
               <div className="flex gap-6 mb-10 last:mb-0">
                 <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full patriot-gradient text-white font-heading font-bold text-sm flex items-center justify-center shrink-0">
-                    {number}
+                  <div className="w-12 h-12 rounded-full patriot-gradient p-[3px] shrink-0 opacity-80">
+                    <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
+                      <span className="font-heading font-bold text-sm text-white">{number}</span>
+                    </div>
                   </div>
                   {i < steps.length - 1 && (
                     <div className="w-[2px] flex-1 patriot-gradient opacity-30 mt-2" />

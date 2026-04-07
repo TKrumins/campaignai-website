@@ -17,7 +17,7 @@ export function GetStartedReminder() {
       <div className="max-w-[600px] mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <h3 className="font-heading font-bold text-xl text-regal-navy mb-4 text-center">
-            Every video includes:
+            Every CampaignAI video includes:
           </h3>
           <ul className="space-y-3">
             {includes.map((item) => (

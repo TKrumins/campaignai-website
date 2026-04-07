@@ -65,11 +65,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <head>
-        {/* Preload hero background for homepage LCP */}
-        <link rel="preload" href="/hero-bg.png" as="image" />
-      </head>
+      <head />
       <body className="min-h-screen flex flex-col antialiased">
+        {/* Global SVG gradient for icons */}
+        <svg className="absolute w-0 h-0" aria-hidden="true">
+          <defs>
+            <linearGradient id="patriot-icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FF3366" />
+              <stop offset="50%" stopColor="#E8F4F8" />
+              <stop offset="100%" stopColor="#4D9FFF" />
+            </linearGradient>
+          </defs>
+        </svg>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-regal-navy focus:text-beacon-white focus:rounded-lg focus:text-sm focus:font-semibold"

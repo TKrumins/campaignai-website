@@ -49,3 +49,5 @@ assets/jermaine-johnson-photos/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

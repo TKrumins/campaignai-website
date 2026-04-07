@@ -42,7 +42,7 @@ export function HeroEmailCapture() {
       />
       <button
         type="submit"
-        className="btn-hover bg-freedom-blue px-6 py-3 rounded-full text-white text-sm font-semibold whitespace-nowrap"
+        className="btn-hover bg-liberty-crimson px-6 py-3 rounded-full text-white text-sm font-semibold whitespace-nowrap"
       >
         Get early access &rarr;
       </button>

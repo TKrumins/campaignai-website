@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AboutHero } from "@/components/sections/about/AboutHero";
 import { OriginStory } from "@/components/sections/about/OriginStory";
+import { IntersectionSection } from "@/components/sections/about/IntersectionSection";
 import { FoundersSection } from "@/components/sections/about/FoundersSection";
 import { Advisors } from "@/components/sections/about/Advisors";
 import { MissionSection } from "@/components/sections/about/MissionSection";
@@ -16,6 +17,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <OriginStory />
+      <IntersectionSection />
       <FoundersSection />
       <Advisors />
       <MissionSection />
