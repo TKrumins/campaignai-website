@@ -24,7 +24,7 @@ export function HeroSection() {
           Campaign-ready video production
         </span>
 
-        <h1 className="font-heading font-extrabold text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
+        <h1 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
           <span className="md:whitespace-nowrap">Every campaign has a story.</span>
           <br />
           Tell yours today.
@@ -32,7 +32,8 @@ export function HeroSection() {
 
         <p className="text-beacon-white/90 text-lg md:text-2xl font-medium leading-relaxed max-w-[780px] mx-auto mb-8">
           Professional video, strategic messaging, and compliance support for
-          local, underfunded, and mission-driven campaigns.
+          local and underfunded candidates and mission-driven campaigns.
+          <br />
           <br />
           <span className="paintbrush-underline">No agency budget required.</span>
         </p>
