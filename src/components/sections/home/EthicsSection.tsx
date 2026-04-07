@@ -57,8 +57,8 @@ export function EthicsSection() {
           {columns.map(({ title, icon: Icon, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
               <div className="h-full">
-                <div className="w-10 h-10 rounded-lg patriot-gradient-soft flex items-center justify-center mb-3 patriot-icon">
-                  <Icon className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg patriot-gradient-soft flex items-center justify-center mb-3">
+                  <Icon className="w-5 h-5 text-regal-navy" />
                 </div>
                 <h3 className="font-heading font-bold text-lg text-regal-navy mb-2">
                   {title}

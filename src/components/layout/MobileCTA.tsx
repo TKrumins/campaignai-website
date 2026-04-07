@@ -27,9 +27,11 @@ export function MobileCTA() {
     <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-regal-navy/90 backdrop-blur-sm p-3 shadow-lg">
       <Link
         href="/get-started"
-        className="btn-hover block w-full text-center px-5 py-3 rounded-full patriot-gradient text-white text-sm font-semibold"
+        className="btn-hover block w-full rounded-full patriot-gradient p-[2px]"
       >
-        Tell your story &rarr;
+        <span className="block w-full text-center px-5 py-3 rounded-full bg-white text-regal-navy text-sm font-semibold">
+          Tell your story &rarr;
+        </span>
       </Link>
     </div>
   );

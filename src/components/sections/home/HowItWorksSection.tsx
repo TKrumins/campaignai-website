@@ -58,7 +58,7 @@ export function HowItWorksSection() {
         <div className="max-w-2xl mx-auto">
           {steps.map(({ number, title, description }, i) => (
             <ScrollReveal key={number} delay={i * 100}>
-              <div className="flex gap-6 mb-10 last:mb-0">
+              <div className={`flex gap-6 mb-10 last:mb-0 ${i > 0 ? "mt-10" : ""}`}>
                 <div className="flex flex-col items-center">
                   <div className="w-12 h-12 rounded-full patriot-gradient p-[3px] shrink-0 opacity-80">
                     <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">

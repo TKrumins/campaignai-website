@@ -105,6 +105,30 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Bounce-in animation for attention cards */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.01);
+  }
+  70% {
+    transform: translateY(4px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-bounce-in {
+  opacity: 0;
+  animation: bounceIn 0.7s ease forwards;
+}
+
 /* Scroll-triggered fade in animation */
 @keyframes fadeInUp {
   from {

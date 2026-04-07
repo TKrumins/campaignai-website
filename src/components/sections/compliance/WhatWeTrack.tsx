@@ -1,18 +1,25 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { Map, Landmark, Monitor } from "lucide-react";
 
 const cards = [
   {
     title: "50-State Tracking",
-    body: "We monitor AI disclosure legislation, campaign advertising rules, and political communication regulations across all 50 states plus D.C. and territories. When rules change in your state, your next video reflects that change automatically. Our team reviews pending bills, newly signed laws, attorney general guidance, and enforcement actions on an ongoing basis.",
+    icon: Map,
+    top: "We monitor AI disclosure legislation, campaign advertising rules, and political communication regulations across all 50 states, D.C., and territories.",
+    bottom: "Our team reviews pending bills, newly signed laws, attorney general guidance, and enforcement actions. When rules change, your next video reflects it automatically.",
   },
   {
     title: "Federal Compliance",
-    body: "We track FEC advisories, proposed rulemaking, and federal guidance on AI in political advertising. As the federal regulatory framework takes shape, CampaignAI stays ahead of it. We monitor congressional hearings, agency comment periods, and published enforcement guidance so that our platform reflects federal expectations before they become enforcement priorities.",
+    icon: Landmark,
+    top: "We track FEC advisories, proposed rulemaking, and federal guidance on AI in political advertising as the regulatory framework takes shape.",
+    bottom: "We monitor congressional hearings, agency comment periods, and enforcement guidance so our platform reflects federal expectations before they become priorities.",
   },
   {
-    title: "Built-In Disclosure",
-    body: "Every video produced through CampaignAI includes the correct disclosure labels for your jurisdiction. You don't have to research the requirements, format the labels, or worry about whether you got it right. That work is already done before your video reaches you. When requirements change, we update the labels. You don't have to think about it.",
+    title: "Digital Platforms",
+    icon: Monitor,
+    top: "Social media platforms are rolling out their own AI content policies, from Meta\u2019s labeling requirements to YouTube\u2019s disclosure mandates and TikTok\u2019s synthetic media rules.",
+    bottom: "We track platform-specific policies so every video you produce meets the requirements of the channels where it runs, without extra work on your end.",
   },
 ];
 
@@ -24,19 +31,23 @@ export function WhatWeTrack() {
           <div className="mb-12">
             <SectionLabel text="What We Monitor" color="verdant" />
             <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy tracking-[-1px] mt-3">
-              Active monitoring across every level of government.
+              Automated AND Crowdsourced Regulatory Tracking
             </h2>
           </div>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cards.map(({ title, body }, i) => (
+          {cards.map(({ title, icon: Icon, top, bottom }, i) => (
             <ScrollReveal key={title} delay={i * 100}>
               <div className="bg-white rounded-xl border-t-4 border-t-verdant shadow-sm p-7 h-full">
+                <div className="w-11 h-11 rounded-lg bg-verdant/10 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-verdant" />
+                </div>
                 <h3 className="font-heading font-bold text-xl text-regal-navy mb-3">
                   {title}
                 </h3>
-                <p className="text-granite text-sm leading-relaxed">{body}</p>
+                <p className="text-granite text-sm leading-relaxed mb-3">{top}</p>
+                <p className="text-granite text-sm leading-relaxed">{bottom}</p>
               </div>
             </ScrollReveal>
           ))}

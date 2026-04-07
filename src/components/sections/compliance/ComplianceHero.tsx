@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { SubstackCapture } from "@/components/forms/SubstackCapture";
 
 export function ComplianceHero() {
   return (
@@ -16,9 +17,12 @@ export function ComplianceHero() {
           it wrong fall on you. CampaignAI exists to make sure you never have to
           worry about that.
         </p>
-        <Button variant="crimson" href="/get-started">
-          Tell your story &rarr;
-        </Button>
+        <div className="max-w-lg mx-auto mb-8">
+          <SubstackCapture variant="dark" buttonText="Subscribe" placeholder="you@campaign.com" />
+        </div>
+        <p className="text-beacon-white/50 text-xs">
+          Subscribe for compliance updates, product news, and campaign insights.
+        </p>
       </div>
     </section>
   );

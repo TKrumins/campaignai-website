@@ -20,12 +20,12 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-20">
-        <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
+        <span className="hidden sm:inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           Campaign-ready video production
         </span>
 
         <h1 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
-          <span className="md:whitespace-nowrap">Every campaign has a story.</span>
+          <span className="md:whitespace-nowrap">Every campaign<span className="sm:hidden"><br /></span> has a story.</span>
           <br />
           Tell yours today.
         </h1>
