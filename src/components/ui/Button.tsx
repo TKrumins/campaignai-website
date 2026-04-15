@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
 
-type ButtonVariant = "patriot" | "crimson" | "blue" | "blue-outline" | "navy";
+type ButtonVariant = "patriot" | "crimson" | "blue" | "blue-outline" | "navy" | "navy-outline" | "verdant" | "verdant-outline";
 
 interface ButtonProps {
   variant: ButtonVariant;
@@ -25,6 +25,12 @@ const variantStyles: Record<ButtonVariant, string> = {
     "bg-transparent border-2 border-freedom-blue text-freedom-blue font-semibold hover:bg-freedom-blue hover:text-white",
   navy:
     "bg-regal-navy text-white font-semibold",
+  "navy-outline":
+    "bg-transparent border-2 border-regal-navy/30 text-regal-navy font-semibold hover:bg-regal-navy hover:text-white",
+  verdant:
+    "bg-verdant text-white font-semibold hover:bg-verdant/90",
+  "verdant-outline":
+    "bg-transparent border-2 border-verdant text-regal-navy font-semibold hover:bg-verdant hover:text-white",
 };
 
 export function Button({

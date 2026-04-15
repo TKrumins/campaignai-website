@@ -82,10 +82,10 @@ export function EthicsSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="blue-outline" href="/compliance">
+            <Button variant="verdant-outline" href="/compliance">
               Read our full ethics commitment &rarr;
             </Button>
-            <Button variant="blue-outline" href="/compliance">
+            <Button variant="verdant-outline" href="/compliance">
               Learn how we track regulations across all 50 states &rarr;
             </Button>
           </div>

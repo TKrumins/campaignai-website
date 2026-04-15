@@ -41,9 +41,9 @@ export function ProductSection() {
               Professional campaign video. Delivered in 48 hours.
             </h2>
             <p className="text-granite text-lg leading-[1.7]">
-              Turn your story into content that works. Produce campaign-ready
-              videos that share your voice, your vision, and your goals. Built
-              with compliance in mind. Polished by human editors. Shaped by YOU.
+              With each video, your voice gets sharper, your brand gets
+              clearer, and your voters understand you better. Story by story.
+              Chapter by chapter. With you at the center.
             </p>
           </div>
         </ScrollReveal>
@@ -69,19 +69,6 @@ export function ProductSection() {
             </ScrollReveal>
           ))}
         </div>
-
-        <ScrollReveal>
-          <div className="text-center mt-10">
-            <a
-              href="#waitlist-form"
-              className="btn-hover inline-flex items-center justify-center rounded-full patriot-gradient p-[2px] text-sm font-semibold"
-            >
-              <span className="px-6 py-3 rounded-full bg-white text-regal-navy">
-                Join the waitlist &rarr;
-              </span>
-            </a>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );

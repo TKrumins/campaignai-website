@@ -11,7 +11,7 @@ const founders = [
     partyColor: "bg-purple-600",
     tagline: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
     bio: "Tom is a social impact entrepreneur, movement-builder, and founding advisory board member of the South Carolina Forward Party. He has spent his career building and scaling nonprofits, darkhorse candidate campaigns, and advocacy movements. He serves as CEO, leading the company\u2019s strategy and vision with a product that truly grows alongside our customers.\n\nTom spends his days asking the hard questions so you don\u2019t have to. He builds in public and in community, showing that there are better ways to harness these technologies.",
-    quote: "[Tom quote to be added]",
+
   },
   {
     photo: "/Profile Pictures/Jermaine-Johnson.png",
@@ -21,7 +21,7 @@ const founders = [
     partyColor: "bg-blue-600",
     tagline: "Deacon. Educator. A true grassroots leader.",
     bio: "Jermaine grew up surrounded by poverty, gun violence, and homelessness. But soon, he used basketball to earn a scholarship to the College of Charleston and play professionally overseas. He returned to South Carolina to earn a doctorate in organizational leadership, found a nonprofit for his local community, and defeat a 22-year incumbent to serve his local district.\n\nJermaine is now running for governor. He knows what it\u2019s like to run a campaign without the resources your opponents take for granted. He brings to CampaignAI the voice of someone who has found his way to victory time and again.",
-    quote: "[Jermaine quote to be added]",
+
   },
   {
     photo: "/Profile Pictures/Brandon-Guffey.png",
@@ -31,7 +31,7 @@ const founders = [
     partyColor: "bg-red-600",
     tagline: "Child safety advocate. Business owner. Father on a mission.",
     bio: "Brandon built a career as an entrepreneur and small business owner before entering politics. After a personal loss, Brandon channeled his energy into legislative action, passing Gavin\u2019s Law in his first session as a freshman legislator. He has since testified before the U.S. Senate Judiciary Committee and become a nationally recognized voice on children\u2019s online safety.\n\nBrandon is a true thought leader who recognizes the power of technology, both good and bad. He brings a clear vision for how technology can be built effectively and with some care.",
-    quote: "[Brandon quote to be added]",
+
   },
 ];
 
@@ -45,7 +45,7 @@ export function FoundersSection() {
           </h2>
         </ScrollReveal>
         <div className="space-y-16">
-          {founders.map(({ photo, name, title, tag, party, partyColor, tagline, bio, quote }, i) => (
+          {founders.map(({ photo, name, title, tag, party, partyColor, tagline, bio }, i) => (
             <ScrollReveal key={name} delay={i * 100}>
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 {/* Photo */}
@@ -84,10 +84,7 @@ export function FoundersSection() {
                   <p className="text-granite font-semibold mb-4">
                     {tagline}
                   </p>
-                  <p className="text-granite leading-relaxed mb-4 whitespace-pre-line">{bio}</p>
-                  <p className="text-slate text-sm font-medium">
-                    &ldquo;{quote}&rdquo;
-                  </p>
+                  <p className="text-granite leading-relaxed whitespace-pre-line">{bio}</p>
                 </div>
               </div>
             </ScrollReveal>

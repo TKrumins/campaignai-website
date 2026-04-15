@@ -29,8 +29,10 @@ export function FinalCTASection() {
 
         {/* Waitlist form */}
         <ScrollReveal delay={200}>
-          <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-            <WaitlistForm />
+          <div className="rounded-2xl p-[3px] patriot-gradient shadow-lg">
+            <div className="bg-white rounded-[14px] p-6 md:p-8">
+              <WaitlistForm />
+            </div>
           </div>
         </ScrollReveal>
 

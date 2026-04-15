@@ -126,7 +126,7 @@ export function TrustSection() {
 
         <ScrollReveal>
           <div className="text-center mt-10">
-            <Button variant="blue" href="/about">
+            <Button variant="navy-outline" href="/about">
               Meet the full team &rarr;
             </Button>
           </div>

@@ -1,11 +1,12 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { DollarSign, Video, UserX, Lock } from "lucide-react";
 
 const stats = [
-  { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle" },
-  { value: "$10,000+", label: "Average cost of a professionally produced campaign ad" },
-  { value: "95%", label: "Of candidates who can't afford professional video production" },
-  { value: "85%", label: "Believe campaign costs limit good people from running for office" },
+  { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle", icon: DollarSign, color: "text-liberty-crimson" },
+  { value: "$10,000+", label: "Starting cost for a professionally produced campaign ad", icon: Video, color: "text-freedom-blue" },
+  { value: "95%", label: "Of local candidates who can't afford professional video ads", icon: UserX, color: "text-liberty-crimson" },
+  { value: "85%", label: "Believe campaign costs limit good people from running for office", icon: Lock, color: "text-freedom-blue" },
 ];
 
 export function ProblemSection() {
@@ -15,23 +16,23 @@ export function ProblemSection() {
         <ScrollReveal>
           <div className="text-center mb-14">
             <SectionLabel text="The Problem" />
-            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-6">
-              Democracy shouldn&apos;t have a paywall.
+            <h2 className="font-heading font-extrabold text-5xl md:text-6xl text-regal-navy tracking-[-1.5px] mt-3 mb-6">
+              Democracy Has a Paywall.
             </h2>
             <p className="text-granite text-lg leading-relaxed max-w-[700px] mx-auto">
-              Agencies and consultants charge tens of thousands of dollars for a
-              single campaign ad. That locks out the vast majority of candidates
-              before they ever reach a voter.
+              Traditional campaign ads can cost tens of thousands of dollars.
+              Shouldn&apos;t you get more out of your campaign budget?
             </p>
           </div>
         </ScrollReveal>
 
         {/* Stats grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14">
-          {stats.map(({ value, label }, i) => (
+          {stats.map(({ value, label, icon: Icon, color }, i) => (
             <ScrollReveal key={value} delay={i * 80}>
-              <div className="text-center">
-                <p className="font-heading font-extrabold text-3xl md:text-4xl text-liberty-crimson mb-2">
+              <div className="text-center flex flex-col items-center">
+                <Icon className={`w-8 h-8 ${color} mb-3`} strokeWidth={1.75} />
+                <p className={`font-heading font-extrabold text-3xl md:text-4xl ${color} drop-shadow-[0_2px_4px_rgba(13,27,62,0.15)] mb-2`}>
                   {value}
                 </p>
                 <p className="text-slate text-sm leading-snug">

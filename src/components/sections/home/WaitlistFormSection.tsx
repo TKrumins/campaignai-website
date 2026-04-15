@@ -28,8 +28,7 @@ export function WaitlistFormSection() {
             <div className="bg-white rounded-xl p-6 md:p-8">
               <div className="text-center mb-8">
                 <h2 className="font-heading font-bold text-3xl md:text-4xl text-regal-navy mb-3">
-                  Join the waitlist. We&apos;ll build your pricing before you
-                  produce your first video.
+                  Join the waitlist.
                 </h2>
                 <p className="text-granite">
                   We&apos;re onboarding campaigns in the order they join. Once

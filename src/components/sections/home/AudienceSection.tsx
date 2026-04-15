@@ -76,13 +76,6 @@ export function AudienceSection() {
                   <p className="text-granite text-sm leading-relaxed flex-1">
                     {description}
                   </p>
-                  <Button
-                    variant="navy"
-                    href="/get-started"
-                    className="mt-5 text-xs px-4 py-2"
-                  >
-                    Learn more &rarr;
-                  </Button>
                 </div>
               </div>
             </ScrollReveal>
@@ -106,13 +99,6 @@ export function AudienceSection() {
                   <p className="text-granite text-sm leading-relaxed flex-1">
                     {description}
                   </p>
-                  <Button
-                    variant="navy"
-                    href="/get-started"
-                    className="mt-5 text-xs px-4 py-2"
-                  >
-                    Learn more &rarr;
-                  </Button>
                 </div>
               </div>
             </ScrollReveal>
@@ -133,6 +119,18 @@ export function AudienceSection() {
                 {tag}
               </span>
             ))}
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <div className="text-center mt-14">
+            <Button
+              variant="crimson"
+              href="/get-started"
+              className="px-8 py-3 text-base"
+            >
+              Tell your story &rarr;
+            </Button>
           </div>
         </ScrollReveal>
       </div>

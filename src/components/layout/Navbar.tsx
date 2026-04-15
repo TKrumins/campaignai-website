@@ -6,13 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
-const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_URL || "https://campaignai.substack.com";
-
-const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance"];
+const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community"];
 
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
+  { href: "/community", label: "Community" },
 ];
 
 export function Navbar() {
@@ -84,18 +83,6 @@ export function Navbar() {
                 {label}
               </Link>
             ))}
-            <a
-              href={substackUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${
-                useLightText
-                  ? "text-beacon-white/70 hover:text-beacon-white"
-                  : "text-regal-navy/70 hover:text-regal-navy"
-              }`}
-            >
-              Substack
-            </a>
             <Link
               href="/get-started"
               className="btn-hover inline-flex items-center rounded-full patriot-gradient p-[3px] shadow-md"
@@ -141,14 +128,6 @@ export function Navbar() {
                 {label}
               </Link>
             ))}
-            <a
-              href={substackUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-beacon-white/70 hover:text-beacon-white transition-colors text-sm font-semibold uppercase tracking-[0.5px]"
-            >
-              Substack
-            </a>
           </div>
         </div>
       )}

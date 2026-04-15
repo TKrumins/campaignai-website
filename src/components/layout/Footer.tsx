@@ -24,18 +24,7 @@ export function Footer() {
             {/* Social icons */}
             <div className="flex items-center gap-4 mt-4">
               <a
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (Twitter)"
-                className="text-beacon-white/40 hover:text-beacon-white transition-colors"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/campaignai-us"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -46,18 +35,18 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://campaignai-us.bsky.social"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
+                aria-label="Bluesky"
                 className="text-beacon-white/40 hover:text-beacon-white transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                  <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.627 3.6 3.476 6.158 3.226-4.476.752-8.428 2.559-4.466 8.207 4.614 5.226 6.673-1.487 7.684-4.381.092-.262.166-.479.166-.479s.074.217.166.479c1.011 2.894 3.07 9.607 7.684 4.381 3.962-5.648.01-7.455-4.466-8.207 2.558.25 5.373-.599 6.158-3.226.246-.828.624-5.789.624-6.479 0-.688-.139-1.86-.902-2.203-.659-.299-1.664-.621-4.3 1.24C12.046 4.747 9.087 8.686 12 10.8z" />
                 </svg>
               </a>
               <a
-                href={substackUrl}
+                href="https://campaignai.substack.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Substack"
@@ -71,7 +60,7 @@ export function Footer() {
           </div>
 
           {/* Column 2: Site */}
-          <div>
+          <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Site
             </h3>
@@ -93,61 +82,45 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href={substackUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/community"
                   className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
                 >
-                  Substack
-                </a>
+                  Community
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Legal */}
-          <div>
+          <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Legal
             </h3>
             <ul className="space-y-2">
               <li>
                 <span className="text-beacon-white/40 text-sm">
-                  Privacy Policy
+                  Privacy Policy (Coming soon)
                 </span>
               </li>
               <li>
                 <span className="text-beacon-white/40 text-sm">
-                  Terms of Service
+                  Terms of Service (Coming soon)
                 </span>
               </li>
             </ul>
-            <div className="mt-6 space-y-1">
-              <a
-                href="mailto:info@campaignai.com"
-                className="block text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
-              >
-                info@campaignai.com
-              </a>
-              <a
-                href="mailto:hello@campaignai.com"
-                className="block text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
-              >
-                hello@campaignai.com
-              </a>
-              <a
-                href="mailto:press@campaignai.com"
-                className="block text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
-              >
-                press@campaignai.com
-              </a>
-            </div>
+            <a
+              href="mailto:info@campaignai.com"
+              className="block text-beacon-white/60 hover:text-beacon-white transition-colors text-sm mt-4"
+            >
+              info@campaignai.com
+            </a>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="mt-10 pt-8 border-t border-white/10 text-center text-beacon-white/40 text-sm">
-          &copy; {new Date().getFullYear()} CampaignAI, Inc. &middot; The
+          &copy; {new Date().getFullYear()} CampaignAI, Inc. All Rights Reserved. &middot; The
           CampaignAI team is based in South Carolina. &middot; Multi-partisan by
           design.
         </div>

@@ -20,22 +20,18 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-20">
-        <span className="hidden sm:inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
-          Campaign-ready video production
-        </span>
-
         <h1 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
           <span className="md:whitespace-nowrap">Every campaign<span className="sm:hidden"><br /></span> has a story.</span>
           <br />
           Tell yours today.
         </h1>
 
-        <p className="text-beacon-white/90 text-lg md:text-2xl font-medium leading-relaxed max-w-[780px] mx-auto mb-8">
+        <p className="text-beacon-white/90 text-lg md:text-2xl font-medium leading-relaxed max-w-[780px] mx-auto mb-12">
           Professional video, strategic messaging, and compliance support for
           local and underfunded candidates and mission-driven campaigns.
           <br />
           <br />
-          <span className="paintbrush-underline">No agency budget required.</span>
+          <span className="paintbrush-underline">&ldquo;2026 Primaries Special&rdquo; through June 30.</span>
         </p>
 
         <HeroEmailCapture />
