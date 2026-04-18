@@ -13,19 +13,7 @@ export function HeroEmailCapture() {
       form.scrollIntoView({ behavior: "smooth" });
 
       setTimeout(() => {
-        const emailInput = document.getElementById("waitlist-email") as HTMLInputElement | null;
-        if (emailInput) {
-          const nativeSetter = Object.getOwnPropertyDescriptor(
-            window.HTMLInputElement.prototype,
-            "value"
-          )?.set;
-          if (nativeSetter) {
-            nativeSetter.call(emailInput, email);
-            emailInput.dispatchEvent(new Event("input", { bubbles: true }));
-          }
-        }
-        const nameInput = document.getElementById("waitlist-name") as HTMLInputElement | null;
-        nameInput?.focus();
+        window.dispatchEvent(new CustomEvent("prefill-waitlist-email", { detail: email }));
       }, 800);
     }
   }

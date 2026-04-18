@@ -3,7 +3,7 @@ import { HIWHero } from "@/components/sections/how-it-works/HIWHero";
 import { ProcessTimeline } from "@/components/sections/how-it-works/ProcessTimeline";
 import { GrowthSection } from "@/components/sections/home/GrowthSection";
 import { ComplianceBridge } from "@/components/sections/how-it-works/ComplianceBridge";
-import { ComingSoon } from "@/components/sections/how-it-works/ComingSoon";
+
 import { HIWFAQ } from "@/components/sections/how-it-works/HIWFAQ";
 import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
 
@@ -20,7 +20,6 @@ export default function HowItWorksPage() {
       <ProcessTimeline />
       <GrowthSection />
       <ComplianceBridge />
-      <ComingSoon />
       <HIWFAQ />
       <FinalCTASection />
     </>

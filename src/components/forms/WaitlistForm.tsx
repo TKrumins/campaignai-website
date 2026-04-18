@@ -20,8 +20,10 @@ const ROLES = [
   "Candidate",
   "Campaign Staff",
   "Consultant",
-  "Party/PAC",
+  "Party",
+  "PAC",
   "Nonprofit/Advocacy",
+  "Grassroots Movement",
   "Other",
 ];
 
@@ -120,16 +122,30 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
 
       <div className={variant === "compact" ? "grid grid-cols-1 sm:grid-cols-2 gap-4" : "grid grid-cols-1 sm:grid-cols-2 gap-4"}>
         <div>
-          <label htmlFor="waitlist-name" className={labelBase}>
-            Name *
+          <label htmlFor="waitlist-first-name" className={labelBase}>
+            First Name *
           </label>
           <input
             ref={nameRef}
-            id="waitlist-name"
-            name="name"
+            id="waitlist-first-name"
+            name="first_name"
             type="text"
             required
-            placeholder="Your name"
+            placeholder="First name"
+            className={inputBase}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="waitlist-last-name" className={labelBase}>
+            Last Name *
+          </label>
+          <input
+            id="waitlist-last-name"
+            name="last_name"
+            type="text"
+            required
+            placeholder="Last name"
             className={inputBase}
           />
         </div>

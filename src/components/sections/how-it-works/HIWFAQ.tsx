@@ -6,12 +6,12 @@ const faqs = [
   {
     question: "How much does a video cost?",
     answer:
-      "We work with every campaign individually to find a price point that matches your scale, your type of race, and your budget. A statewide race producing a full season of content has different needs and resources than a first-time school board candidate producing a single announcement video. We believe both deserve professional tools, and we price accordingly. Our commitment is to lower the barrier to professional campaign video for every campaign that needs it. Join the waitlist and our team will work with you to build pricing before you produce your first video.",
+      "We work with every campaign individually to find a price point that matches your scale, your type of race, and your budget. A statewide race producing a full season of content has different needs and resources than a first-time school board candidate producing a single announcement video. We believe both deserve professional tools, and we price accordingly. Join the waitlist and our team will work with you to build pricing before you produce your first video.",
   },
   {
     question: "How long does it take to get my video?",
     answer:
-      "We offer a 48-hour turnaround time to ensure our human editors can meet demand and guarantee quality. This process will speed up over the coming 2-3 months.",
+      "We offer a 48-hour turnaround time to ensure our human editors can meet demand and guarantee quality.",
   },
   {
     question: "Do I need any production experience?",
@@ -31,7 +31,7 @@ const faqs = [
   {
     question: "Can I use the video on any platform?",
     answer:
-      "Yes. Every video is delivered in multiple formats (15-, 30-, or 60-seconds, 1080p, vertical/square/landscape) optimized for social media (Facebook, Instagram, X, TikTok, YouTube), email campaigns, your website, and digital ad platforms.",
+      "Our videos are optimized for social media, email campaigns, your website, and digital ad platforms. You can select the social media platform you prefer, and we will deliver that sizing.",
   },
   {
     question: "Do I own the video?",

@@ -8,16 +8,12 @@ export function WaitlistFormSection() {
   const [prefillEmail, setPrefillEmail] = useState<string | undefined>();
 
   useEffect(() => {
-    function handleInput(e: Event) {
-      const target = e.target as HTMLInputElement;
-      if (target.id === "waitlist-email") {
-        setPrefillEmail(target.value);
-      }
+    function handlePrefill(e: CustomEvent<string>) {
+      setPrefillEmail(e.detail);
     }
 
-    const form = document.getElementById("waitlist-form");
-    form?.addEventListener("input", handleInput);
-    return () => form?.removeEventListener("input", handleInput);
+    window.addEventListener("prefill-waitlist-email", handlePrefill as EventListener);
+    return () => window.removeEventListener("prefill-waitlist-email", handlePrefill as EventListener);
   }, []);
 
   return (
