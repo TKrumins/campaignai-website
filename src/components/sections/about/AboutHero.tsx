@@ -7,7 +7,7 @@ export function AboutHero() {
         <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           About
         </span>
-        <h1 className="font-heading font-extrabold text-[48px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
+        <h1 className="font-heading font-extrabold text-[32px] sm:text-[48px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
           Built by people who&apos;ve been in the arena.
         </h1>
         <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">

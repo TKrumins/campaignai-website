@@ -207,7 +207,7 @@ function MobileFlywheel() {
   const p = "m";
   return (
     <svg
-      viewBox="0 0 800 800"
+      viewBox="240 0 320 790"
       className="w-full lg:hidden"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -389,8 +389,10 @@ export function StorytellingSection() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <div className="flex items-center justify-center">
+          <div className="hidden lg:flex items-center justify-center">
             <DesktopFlywheel />
+          </div>
+          <div className="lg:hidden -mx-4 sm:mx-0">
             <MobileFlywheel />
           </div>
         </ScrollReveal>

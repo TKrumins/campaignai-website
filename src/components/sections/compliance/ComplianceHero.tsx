@@ -8,7 +8,7 @@ export function ComplianceHero() {
         <span className="inline-block text-verdant text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           Compliance &amp; Regulations
         </span>
-        <h1 className="font-heading font-extrabold text-[48px] md:text-[64px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
+        <h1 className="font-heading font-extrabold text-[32px] sm:text-[48px] md:text-[64px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
           We do the work. So you don&apos;t have to.
         </h1>
         <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">

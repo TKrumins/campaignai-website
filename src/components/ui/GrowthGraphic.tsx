@@ -52,13 +52,13 @@ export function GrowthGraphic() {
   return (
     <div className="w-full max-w-[900px] mx-auto">
       {/* Rising bars */}
-      <div className="flex items-end justify-center gap-3 sm:gap-5 md:gap-8 mb-8">
+      <div className="flex items-end justify-center gap-2 sm:gap-5 md:gap-8 mb-8 overflow-x-auto">
         {milestones.map(({ video, layers, height, opacity }, i) => (
           <ScrollReveal key={video} delay={i * 120}>
             <div className="flex flex-col items-center">
               {/* Bar */}
               <div
-                className={`w-16 sm:w-20 md:w-28 ${height} rounded-t-xl overflow-hidden relative shadow-lg transition-all duration-500`}
+                className={`w-12 sm:w-20 md:w-28 ${height} rounded-t-xl overflow-hidden relative shadow-lg transition-all duration-500`}
               >
                 {/* Gradient fill */}
                 <div className={`absolute inset-0 bg-regal-navy ${opacity}`} />

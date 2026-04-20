@@ -26,7 +26,7 @@ export function ComplianceBridge() {
           </div>
 
           <div className="pl-6 md:pl-8">
-            <Button variant="blue-outline" href="/compliance">
+            <Button variant="verdant-outline" href="/compliance">
               See how we track regulations across all 50 states &rarr;
             </Button>
           </div>

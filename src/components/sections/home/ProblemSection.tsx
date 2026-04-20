@@ -16,7 +16,7 @@ export function ProblemSection() {
         <ScrollReveal>
           <div className="text-center mb-14">
             <SectionLabel text="The Problem" />
-            <h2 className="font-heading font-extrabold text-5xl md:text-6xl text-regal-navy tracking-[-1.5px] mt-3 mb-6">
+            <h2 className="font-heading font-extrabold text-3xl sm:text-5xl md:text-6xl text-regal-navy tracking-[-1.5px] mt-3 mb-6">
               Democracy Has a Paywall.
             </h2>
             <p className="text-granite text-lg leading-relaxed max-w-[700px] mx-auto">

@@ -36,11 +36,6 @@ export function FinalCTASection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={250}>
-          <p className="text-white/70 text-sm text-center mt-6">
-            We&apos;ll never share your information.
-          </p>
-        </ScrollReveal>
       </div>
     </section>
   );

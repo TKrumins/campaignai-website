@@ -41,7 +41,7 @@ export function ComparisonSection() {
         <ScrollReveal delay={100}>
           <div className="bg-white rounded-2xl shadow-md overflow-hidden">
             {/* Header */}
-            <div className="grid grid-cols-[1fr_90px_90px_90px] sm:grid-cols-[1fr_120px_120px_120px] border-b border-gray-100">
+            <div className="grid grid-cols-[1fr_70px_70px_70px] sm:grid-cols-[1fr_120px_120px_120px] border-b border-gray-100">
               <div className="p-4 sm:p-5" />
               <div className="p-4 sm:p-5 text-center bg-regal-navy rounded-tl-none">
                 <p className="font-heading font-bold text-xs sm:text-sm text-beacon-white leading-tight">
@@ -64,7 +64,7 @@ export function ComparisonSection() {
             {rows.map(({ feature, campaignai, agency, diy }, i) => (
               <div
                 key={feature}
-                className={`grid grid-cols-[1fr_90px_90px_90px] sm:grid-cols-[1fr_120px_120px_120px] ${
+                className={`grid grid-cols-[1fr_70px_70px_70px] sm:grid-cols-[1fr_120px_120px_120px] ${
                   i < rows.length - 1 ? "border-b border-gray-50" : ""
                 }`}
               >
@@ -84,7 +84,7 @@ export function ComparisonSection() {
             ))}
 
             {/* Cost row */}
-            <div className="grid grid-cols-[1fr_90px_90px_90px] sm:grid-cols-[1fr_120px_120px_120px] border-t-2 border-gray-100 bg-dawn-frost/50">
+            <div className="grid grid-cols-[1fr_70px_70px_70px] sm:grid-cols-[1fr_120px_120px_120px] border-t-2 border-gray-100 bg-dawn-frost/50">
               <div className="p-4 sm:p-5 flex items-center">
                 <span className="text-sm font-bold text-regal-navy">Typical cost per video</span>
               </div>

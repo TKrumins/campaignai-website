@@ -49,7 +49,7 @@ function StepNumberCircle({ number }: { number: string }) {
 function StepImage({ number }: { number: string }) {
   const stepNum = parseInt(number, 10);
   return (
-    <div className="w-[280px] h-[280px] mx-auto rounded-full overflow-hidden shadow-lg ring-1 ring-gray-200">
+    <div className="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] mx-auto rounded-full overflow-hidden shadow-lg ring-1 ring-gray-200">
       <Image
         src={`/Step-by-step guides/Step ${stepNum}.png`}
         alt={`Step ${stepNum} illustration`}
