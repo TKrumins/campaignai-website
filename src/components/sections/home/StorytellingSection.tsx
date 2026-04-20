@@ -1,368 +1,294 @@
+"use client";
+
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
-function FlywheelMarkers({ prefix }: { prefix: string }) {
-  return (
-    <defs>
-      <marker id={`${prefix}Navy`} markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
-        <path d="M 0 0 L 8 4 L 0 8 Z" fill="#0D1B3E" />
-      </marker>
-      <marker id={`${prefix}Blue`} markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
-        <path d="M 0 0 L 8 4 L 0 8 Z" fill="#4D9FFF" />
-      </marker>
-      <marker id={`${prefix}Crimson`} markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
-        <path d="M 0 0 L 8 4 L 0 8 Z" fill="#FF3366" />
-      </marker>
-    </defs>
-  );
+const channels = [
+  { label: "Social Media", desc: "Facebook \u00b7 TikTok \u00b7 Instagram\nX/Twitter \u00b7 LinkedIn \u00b7 BlueSky", angle: 0 },
+  { label: "Campaign Website", desc: "Build trust with visitors\nright on your homepage", angle: 60 },
+  { label: "Email &\nNewsletters", desc: "Update supporters with\nengaging content", angle: 120 },
+  { label: "Volunteer\nNetworks", desc: "Send through group chats\nor text campaigns", angle: 180 },
+  { label: "Donation\nPages", desc: "Embed video to convert\nmore donors", angle: 240 },
+  { label: "In-Person\nEvents", desc: "Share at town halls,\nrallies, and fundraisers", angle: 300 },
+];
+
+// Each spoke gets two dots (one blue, one red) with staggered delays
+const pulsePairs = [
+  { blue: 0, red: 1.4 },
+  { blue: 2.6, red: 0.5 },
+  { blue: 1.1, red: 3.3 },
+  { blue: 3.8, red: 2.0 },
+  { blue: 1.8, red: 4.2 },
+  { blue: 4.5, red: 0.9 },
+];
+
+function makeNodes(cx: number, cy: number, spokeLen: number) {
+  return channels.map(({ label, desc, angle }, i) => {
+    const rad = (angle - 90) * (Math.PI / 180);
+    const nx = cx + spokeLen * Math.cos(rad);
+    const ny = cy + spokeLen * Math.sin(rad);
+    return { label, desc, nx, ny, angle, idx: i };
+  });
 }
 
-function PulsingDot({ path, color, duration, delay }: { path: string; color: string; duration: number; delay: number }) {
+function HubAndSpoke() {
+  const cx = 450;
+  const cy = 450;
+  const nodes = makeNodes(cx, cy, 290);
+  const mNodes = makeNodes(300, 300, 185);
+  const rectW = 190;
+  const rectH = 90;
+  const mRectW = 160;
+  const mRectH = 76;
+
   return (
     <>
-      <circle r="4" fill={color} opacity="0.8">
-        <animateMotion dur={`${duration}s`} repeatCount="indefinite" begin={`${delay}s`}>
-          <mpath href={`#${path}`} />
-        </animateMotion>
-        <animate attributeName="opacity" values="0.3;0.9;0.3" dur="1.5s" repeatCount="indefinite" />
-      </circle>
-      <circle r="7" fill={color} opacity="0">
-        <animateMotion dur={`${duration}s`} repeatCount="indefinite" begin={`${delay}s`}>
-          <mpath href={`#${path}`} />
-        </animateMotion>
-        <animate attributeName="opacity" values="0;0.3;0" dur="1.5s" repeatCount="indefinite" />
-      </circle>
+    <svg viewBox="60 60 780 780" className="w-full max-w-[900px] mx-auto hidden md:block" xmlns="http://www.w3.org/2000/svg">
+      {/* Spoke path definitions for animateMotion */}
+      {nodes.map(({ label, nx, ny, idx }) => (
+        <path
+          key={`path-${idx}`}
+          id={`spoke-${idx}`}
+          d={`M ${cx} ${cy} L ${nx} ${ny}`}
+          fill="none"
+          stroke="none"
+        />
+      ))}
+
+      {/* Spoke lines */}
+      {nodes.map(({ label, nx, ny }) => (
+        <line
+          key={label}
+          x1={cx}
+          y1={cy}
+          x2={nx}
+          y2={ny}
+          stroke="#0D1B3E"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          opacity="0.15"
+        />
+      ))}
+
+      {/* Pulsing energy dots — two per spoke (blue + red) */}
+      {nodes.map(({ idx }) => (
+        <g key={`pulse-${idx}`}>
+          {/* Blue dot */}
+          <circle r="6" fill="#4D9FFF" opacity="0">
+            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`}>
+              <mpath href={`#spoke-${idx}`} />
+            </animateMotion>
+            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`} />
+          </circle>
+          <circle r="12" fill="#4D9FFF" opacity="0">
+            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`}>
+              <mpath href={`#spoke-${idx}`} />
+            </animateMotion>
+            <animate attributeName="opacity" values="0;0.25;0.25;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`} />
+          </circle>
+          {/* Red dot */}
+          <circle r="6" fill="#FF3366" opacity="0">
+            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`}>
+              <mpath href={`#spoke-${idx}`} />
+            </animateMotion>
+            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`} />
+          </circle>
+          <circle r="12" fill="#FF3366" opacity="0">
+            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`}>
+              <mpath href={`#spoke-${idx}`} />
+            </animateMotion>
+            <animate attributeName="opacity" values="0;0.25;0.25;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`} />
+          </circle>
+        </g>
+      ))}
+
+      {/* Outer nodes — rounded rectangles with navy borders */}
+      {nodes.map(({ label, desc, nx, ny }) => {
+        const labelLines = label.split("\n");
+        const descLines = desc.split("\n");
+        const labelBlockH = labelLines.length * 15;
+        const totalH = labelBlockH + 4 + descLines.length * 12;
+        const startY = ny - totalH / 2;
+
+        return (
+          <g key={label}>
+            <rect
+              x={nx - rectW / 2}
+              y={ny - rectH / 2}
+              width={rectW}
+              height={rectH}
+              rx="14"
+              fill="white"
+              stroke="#0D1B3E"
+              strokeWidth="2"
+            />
+            {/* Title */}
+            {labelLines.map((line, j) => (
+              <text
+                key={`t-${j}`}
+                x={nx}
+                y={startY + j * 15 + 8}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="#0D1B3E"
+                fontSize="13"
+                fontWeight="700"
+              >
+                {line}
+              </text>
+            ))}
+            {/* Description */}
+            {descLines.map((line, j) => (
+              <text
+                key={`d-${j}`}
+                x={nx}
+                y={startY + labelBlockH + 6 + j * 12 + 6}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="#0D1B3E"
+                fontSize="9.5"
+                fontWeight="400"
+                opacity="0.7"
+              >
+                {line}
+              </text>
+            ))}
+          </g>
+        );
+      })}
+
+      {/* Center hub */}
+      <circle cx={cx} cy={cy} r="72" fill="#0D1B3E" />
+      <circle cx={cx} cy={cy} r="72" fill="none" stroke="#4D9FFF" strokeWidth="2" opacity="0.3" />
+
+      {/* Play button triangle */}
+      <polygon
+        points={`${cx - 22},${cy - 30} ${cx - 22},${cy + 30} ${cx + 28},${cy}`}
+        fill="white"
+        opacity="0.9"
+      />
+
+      {/* Label */}
+      <text x={cx} y={cy + 58} textAnchor="middle" fill="white" fontSize="10" fontWeight="600" opacity="0.7">
+        Your Video
+      </text>
+    </svg>
+
+    {/* Mobile version — compact layout, larger text */}
+    <svg viewBox="30 30 540 540" className="w-full md:hidden" xmlns="http://www.w3.org/2000/svg">
+      {/* Spoke path definitions */}
+      {mNodes.map(({ nx, ny, idx }) => (
+        <path
+          key={`mpath-${idx}`}
+          id={`mspoke-${idx}`}
+          d={`M 300 300 L ${nx} ${ny}`}
+          fill="none"
+          stroke="none"
+        />
+      ))}
+
+      {/* Spoke lines */}
+      {mNodes.map(({ label, nx, ny }) => (
+        <line
+          key={`ml-${label}`}
+          x1={300}
+          y1={300}
+          x2={nx}
+          y2={ny}
+          stroke="#0D1B3E"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          opacity="0.15"
+        />
+      ))}
+
+      {/* Pulsing dots */}
+      {mNodes.map(({ idx }) => (
+        <g key={`mpulse-${idx}`}>
+          <circle r="6" fill="#4D9FFF" opacity="0">
+            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`}>
+              <mpath href={`#mspoke-${idx}`} />
+            </animateMotion>
+            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`} />
+          </circle>
+          <circle r="6" fill="#FF3366" opacity="0">
+            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`}>
+              <mpath href={`#mspoke-${idx}`} />
+            </animateMotion>
+            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`} />
+          </circle>
+        </g>
+      ))}
+
+      {/* Outer nodes */}
+      {mNodes.map(({ label, desc, nx, ny }) => {
+        const labelLines = label.split("\n");
+        const descLines = desc.split("\n");
+        const labelBlockH = labelLines.length * 15;
+        const totalH = labelBlockH + 4 + descLines.length * 12;
+        const startY = ny - totalH / 2;
+
+        return (
+          <g key={`m-${label}`}>
+            <rect
+              x={nx - mRectW / 2}
+              y={ny - mRectH / 2}
+              width={mRectW}
+              height={mRectH}
+              rx="12"
+              fill="white"
+              stroke="#0D1B3E"
+              strokeWidth="2"
+            />
+            {labelLines.map((line, j) => (
+              <text
+                key={`mt-${j}`}
+                x={nx}
+                y={startY + j * 15 + 8}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="#0D1B3E"
+                fontSize="13"
+                fontWeight="700"
+              >
+                {line}
+              </text>
+            ))}
+            {descLines.map((line, j) => (
+              <text
+                key={`md-${j}`}
+                x={nx}
+                y={startY + labelBlockH + 6 + j * 12 + 6}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="#0D1B3E"
+                fontSize="10"
+                fontWeight="400"
+                opacity="0.7"
+              >
+                {line}
+              </text>
+            ))}
+          </g>
+        );
+      })}
+
+      {/* Center hub */}
+      <circle cx={300} cy={300} r="52" fill="#0D1B3E" />
+      <circle cx={300} cy={300} r="52" fill="none" stroke="#4D9FFF" strokeWidth="2" opacity="0.3" />
+
+      {/* Play button */}
+      <polygon
+        points="284,278 284,322 316,300"
+        fill="white"
+        opacity="0.9"
+      />
+
+      <text x={300} y={342} textAnchor="middle" fill="white" fontSize="9" fontWeight="600" opacity="0.7">
+        Your Video
+      </text>
+    </svg>
     </>
-  );
-}
-
-function DesktopFlywheel() {
-  const p = "d";
-  return (
-    <svg
-      viewBox="0 0 1100 380"
-      className="w-full hidden lg:block"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <FlywheelMarkers prefix={p} />
-
-      {/* ============================== */}
-      {/* LEFT: Launch + Build Phase */}
-      {/* ============================== */}
-
-      <rect x="120" y="60" width="160" height="42" rx="21" fill="#0D1B3E" />
-      <text x="200" y="87" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">
-        Launch
-      </text>
-
-      <line x1="200" y1="102" x2="200" y2="122" stroke="#0D1B3E" strokeWidth="2" markerEnd={`url(#${p}Navy)`} />
-
-      <rect x="100" y="128" width="200" height="30" rx="7" fill="white" stroke="#4D9FFF" strokeWidth="1.5" />
-      <text x="200" y="148" textAnchor="middle" fill="#0D1B3E" fontSize="11" fontWeight="600">
-        Fundraising Appeal
-      </text>
-
-      <rect x="100" y="168" width="200" height="30" rx="7" fill="white" stroke="#4D9FFF" strokeWidth="1.5" />
-      <text x="200" y="188" textAnchor="middle" fill="#0D1B3E" fontSize="11" fontWeight="600">
-        Policy Explainer
-      </text>
-
-      <rect x="100" y="208" width="200" height="30" rx="7" fill="white" stroke="#4D9FFF" strokeWidth="1.5" />
-      <text x="200" y="228" textAnchor="middle" fill="#0D1B3E" fontSize="11" fontWeight="600">
-        Community Spotlight
-      </text>
-
-      <text x="70" y="188" textAnchor="middle" fill="#4D9FFF" fontSize="9" fontWeight="600" transform="rotate(-90 70 188)">
-        Messaging builds
-      </text>
-      <line x1="86" y1="132" x2="86" y2="234" stroke="#4D9FFF" strokeWidth="1" opacity="0.25" />
-
-      <line x1="300" y1="190" x2="340" y2="190" stroke="#0D1B3E" strokeWidth="2" />
-      <text x="375" y="184" textAnchor="middle" dominantBaseline="middle" fill="#FF3366" fontSize="9" fontWeight="700">
-        FLYWHEEL
-      </text>
-      <text x="375" y="198" textAnchor="middle" dominantBaseline="middle" fill="#FF3366" fontSize="9" fontWeight="700">
-        ACTIVATES
-      </text>
-      <line x1="410" y1="190" x2="420" y2="190" stroke="#0D1B3E" strokeWidth="2" markerEnd={`url(#${p}Navy)`} />
-
-      {/* ============================== */}
-      {/* CENTER: Flywheel */}
-      {/* ============================== */}
-
-      <circle cx="550" cy="190" r="118" fill="none" stroke="#0D1B3E" strokeWidth="1" opacity="0.04" />
-      <circle cx="550" cy="190" r="108" fill="none" stroke="#0D1B3E" strokeWidth="1.5" opacity="0.06" />
-
-      {/* Flywheel arcs with IDs for animation */}
-      <path id="d-arc1"
-        d="M 574 118 A 96 96 0 0 1 622 166"
-        fill="none" stroke="#4D9FFF" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Blue)`}
-      />
-      <path id="d-arc2"
-        d="M 622 214 A 96 96 0 0 1 574 262"
-        fill="none" stroke="#FF3366" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Crimson)`}
-      />
-      <path id="d-arc3"
-        d="M 526 262 A 96 96 0 0 1 478 214"
-        fill="none" stroke="#4D9FFF" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Blue)`}
-      />
-      <path id="d-arc4"
-        d="M 478 166 A 96 96 0 0 1 526 118"
-        fill="none" stroke="#FF3366" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Crimson)`}
-      />
-
-      {/* Pulsing dots on flywheel arcs */}
-      <PulsingDot path="d-arc1" color="#4D9FFF" duration={2} delay={0} />
-      <PulsingDot path="d-arc2" color="#FF3366" duration={2} delay={0.5} />
-      <PulsingDot path="d-arc3" color="#4D9FFF" duration={2} delay={1} />
-      <PulsingDot path="d-arc4" color="#FF3366" duration={2} delay={1.5} />
-
-      {/* Center label */}
-      <text x="550" y="185" textAnchor="middle" fill="#0D1B3E" fontSize="14" fontWeight="800">
-        Storytelling
-      </text>
-      <text x="550" y="203" textAnchor="middle" fill="#0D1B3E" fontSize="14" fontWeight="800">
-        Flywheel
-      </text>
-
-      <circle cx="550" cy="94" r="34" fill="#0D1B3E" />
-      <text x="550" y="98" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Create
-      </text>
-
-      <circle cx="646" cy="190" r="34" fill="#0D1B3E" />
-      <text x="646" y="194" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Share
-      </text>
-
-      <circle cx="550" cy="286" r="34" fill="#0D1B3E" />
-      <text x="550" y="290" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Engage
-      </text>
-
-      <circle cx="454" cy="190" r="34" fill="#0D1B3E" />
-      <text x="454" y="194" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Learn
-      </text>
-
-      {/* ============================== */}
-      {/* RIGHT: Mobilize */}
-      {/* ============================== */}
-
-      {/* Outbound dashed — navy */}
-      <path
-        d="M 630 140 C 690 110 740 98 800 98"
-        fill="none" stroke="#0D1B3E" strokeWidth="2.5" strokeLinecap="round"
-        strokeDasharray="8 4"
-        markerEnd={`url(#${p}Navy)`}
-      />
-
-      <circle cx="670" cy="120" r="2.5" fill="#0D1B3E" opacity="0.3" />
-      <circle cx="715" cy="108" r="3" fill="#0D1B3E" opacity="0.2" />
-      <circle cx="760" cy="100" r="3.5" fill="#0D1B3E" opacity="0.15" />
-
-      <rect x="800" y="60" width="120" height="38" rx="19" fill="#FF3366" />
-      <text x="860" y="84" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">
-        Mobilize
-      </text>
-
-      <line x1="860" y1="98" x2="860" y2="126" stroke="#FF3366" strokeWidth="2" strokeLinecap="round" markerEnd={`url(#${p}Crimson)`} />
-
-      <rect x="803" y="130" width="115" height="28" rx="6" fill="white" stroke="#FF3366" strokeWidth="1.5" />
-      <text x="860" y="149" textAnchor="middle" fill="#0D1B3E" fontSize="9" fontWeight="600">
-        Updates
-      </text>
-
-      <rect x="803" y="168" width="115" height="28" rx="6" fill="white" stroke="#FF3366" strokeWidth="1.5" />
-      <text x="860" y="187" textAnchor="middle" fill="#0D1B3E" fontSize="9" fontWeight="600">
-        Thank-You Videos
-      </text>
-
-      <rect x="803" y="206" width="115" height="28" rx="6" fill="white" stroke="#FF3366" strokeWidth="1.5" />
-      <text x="860" y="225" textAnchor="middle" fill="#0D1B3E" fontSize="9" fontWeight="600">
-        Issue Responses
-      </text>
-
-      <text x="940" y="182" textAnchor="middle" fill="#FF3366" fontSize="9" fontWeight="600" transform="rotate(90 940 182)">
-        Ongoing messaging
-      </text>
-      <line x1="928" y1="134" x2="928" y2="230" stroke="#FF3366" strokeWidth="1" opacity="0.25" />
-
-      {/* Return dashed — navy */}
-      <path
-        d="M 840 234 C 800 280 700 290 622 260"
-        fill="none" stroke="#0D1B3E" strokeWidth="2" strokeLinecap="round"
-        strokeDasharray="6 4"
-        markerEnd={`url(#${p}Navy)`}
-      />
-    </svg>
-  );
-}
-
-function MobileFlywheel() {
-  const p = "m";
-  return (
-    <svg
-      viewBox="240 0 320 790"
-      className="w-full lg:hidden"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <FlywheelMarkers prefix={p} />
-
-      {/* ============================== */}
-      {/* TOP: Launch */}
-      {/* ============================== */}
-      <rect x="320" y="8" width="160" height="42" rx="21" fill="#0D1B3E" />
-      <text x="400" y="35" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">
-        Launch
-      </text>
-
-      <line x1="400" y1="50" x2="400" y2="78" stroke="#0D1B3E" strokeWidth="2" markerEnd={`url(#${p}Navy)`} />
-
-      <rect x="300" y="82" width="200" height="30" rx="7" fill="white" stroke="#4D9FFF" strokeWidth="1.5" />
-      <text x="400" y="102" textAnchor="middle" fill="#0D1B3E" fontSize="11" fontWeight="600">
-        Fundraising Appeal
-      </text>
-
-      <rect x="300" y="126" width="200" height="30" rx="7" fill="white" stroke="#4D9FFF" strokeWidth="1.5" />
-      <text x="400" y="146" textAnchor="middle" fill="#0D1B3E" fontSize="11" fontWeight="600">
-        Policy Explainer
-      </text>
-
-      <rect x="300" y="170" width="200" height="30" rx="7" fill="white" stroke="#4D9FFF" strokeWidth="1.5" />
-      <text x="400" y="190" textAnchor="middle" fill="#0D1B3E" fontSize="11" fontWeight="600">
-        Community Spotlight
-      </text>
-
-      <text x="262" y="142" textAnchor="middle" fill="#4D9FFF" fontSize="9" fontWeight="600" transform="rotate(-90 262 142)">
-        Messaging builds
-      </text>
-      <line x1="280" y1="86" x2="280" y2="196" stroke="#4D9FFF" strokeWidth="1" opacity="0.25" />
-
-      <line x1="400" y1="200" x2="400" y2="220" stroke="#0D1B3E" strokeWidth="2" />
-      <text x="400" y="233" textAnchor="middle" dominantBaseline="middle" fill="#FF3366" fontSize="9" fontWeight="700">
-        FLYWHEEL ACTIVATES
-      </text>
-      <line x1="400" y1="242" x2="400" y2="268" stroke="#0D1B3E" strokeWidth="2" markerEnd={`url(#${p}Navy)`} />
-
-      {/* ============================== */}
-      {/* CENTER: Flywheel */}
-      {/* ============================== */}
-
-      <circle cx="400" cy="400" r="120" fill="none" stroke="#0D1B3E" strokeWidth="1" opacity="0.04" />
-      <circle cx="400" cy="400" r="108" fill="none" stroke="#0D1B3E" strokeWidth="1.5" opacity="0.06" />
-
-      {/* Flywheel arcs with IDs for animation */}
-      <path id="m-arc1"
-        d="M 424 318 A 100 100 0 0 1 482 376"
-        fill="none" stroke="#4D9FFF" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Blue)`}
-      />
-      <path id="m-arc2"
-        d="M 482 424 A 100 100 0 0 1 424 482"
-        fill="none" stroke="#FF3366" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Crimson)`}
-      />
-      <path id="m-arc3"
-        d="M 376 482 A 100 100 0 0 1 318 424"
-        fill="none" stroke="#4D9FFF" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Blue)`}
-      />
-      <path id="m-arc4"
-        d="M 318 376 A 100 100 0 0 1 376 318"
-        fill="none" stroke="#FF3366" strokeWidth="2.5" strokeLinecap="round"
-        markerEnd={`url(#${p}Crimson)`}
-      />
-
-      {/* Pulsing dots on flywheel arcs */}
-      <PulsingDot path="m-arc1" color="#4D9FFF" duration={2} delay={0} />
-      <PulsingDot path="m-arc2" color="#FF3366" duration={2} delay={0.5} />
-      <PulsingDot path="m-arc3" color="#4D9FFF" duration={2} delay={1} />
-      <PulsingDot path="m-arc4" color="#FF3366" duration={2} delay={1.5} />
-
-      {/* Center label */}
-      <text x="400" y="395" textAnchor="middle" fill="#0D1B3E" fontSize="14" fontWeight="800">
-        Storytelling
-      </text>
-      <text x="400" y="413" textAnchor="middle" fill="#0D1B3E" fontSize="14" fontWeight="800">
-        Flywheel
-      </text>
-
-      <circle cx="400" cy="294" r="34" fill="#0D1B3E" />
-      <text x="400" y="298" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Create
-      </text>
-
-      <circle cx="506" cy="400" r="34" fill="#0D1B3E" />
-      <text x="506" y="404" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Share
-      </text>
-
-      <circle cx="400" cy="506" r="34" fill="#0D1B3E" />
-      <text x="400" y="510" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Engage
-      </text>
-
-      <circle cx="294" cy="400" r="34" fill="#0D1B3E" />
-      <text x="294" y="404" textAnchor="middle" fill="white" fontSize="11" fontWeight="700">
-        Learn
-      </text>
-
-      {/* ============================== */}
-      {/* BOTTOM: Mobilize */}
-      {/* ============================== */}
-
-      {/* Outbound dashed — navy */}
-      <path
-        d="M 465 465 C 510 510 505 565 470 601"
-        fill="none" stroke="#0D1B3E" strokeWidth="2.5" strokeLinecap="round"
-        strokeDasharray="8 4"
-        markerEnd={`url(#${p}Navy)`}
-      />
-
-      <circle cx="480" cy="490" r="2.5" fill="#0D1B3E" opacity="0.3" />
-      <circle cx="492" cy="525" r="3" fill="#0D1B3E" opacity="0.2" />
-      <circle cx="486" cy="560" r="3.5" fill="#0D1B3E" opacity="0.15" />
-
-      <rect x="330" y="580" width="140" height="42" rx="21" fill="#FF3366" />
-      <text x="400" y="606" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">
-        Mobilize
-      </text>
-
-      <line x1="400" y1="622" x2="400" y2="648" stroke="#FF3366" strokeWidth="2" strokeLinecap="round" markerEnd={`url(#${p}Crimson)`} />
-
-      <rect x="343" y="660" width="115" height="28" rx="6" fill="white" stroke="#FF3366" strokeWidth="1.5" />
-      <text x="400" y="679" textAnchor="middle" fill="#0D1B3E" fontSize="9" fontWeight="600">
-        Updates
-      </text>
-
-      <rect x="343" y="698" width="115" height="28" rx="6" fill="white" stroke="#FF3366" strokeWidth="1.5" />
-      <text x="400" y="717" textAnchor="middle" fill="#0D1B3E" fontSize="9" fontWeight="600">
-        Thank-You Videos
-      </text>
-
-      <rect x="343" y="736" width="115" height="28" rx="6" fill="white" stroke="#FF3366" strokeWidth="1.5" />
-      <text x="400" y="755" textAnchor="middle" fill="#0D1B3E" fontSize="9" fontWeight="600">
-        Issue Responses
-      </text>
-
-      <text x="321" y="718" textAnchor="middle" fill="#FF3366" fontSize="9" fontWeight="600" transform="rotate(-90 321 718)">
-        Ongoing messaging
-      </text>
-      <line x1="333" y1="664" x2="333" y2="760" stroke="#FF3366" strokeWidth="1" opacity="0.25" />
-
-      {/* Return dashed — navy */}
-      <path
-        d="M 330 601 C 295 565 290 510 335 465"
-        fill="none" stroke="#0D1B3E" strokeWidth="2" strokeLinecap="round"
-        strokeDasharray="6 4"
-        markerEnd={`url(#${p}Navy)`}
-      />
-    </svg>
   );
 }
 
@@ -371,30 +297,24 @@ export function StorytellingSection() {
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="text-center max-w-[760px] mx-auto mb-14">
-            <SectionLabel text="Why It Matters" />
+          <div className="text-center max-w-[760px] mx-auto mb-12">
+            <SectionLabel text="Take Your Message Everywhere" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-              Every campaign is a story being told in real time.
+              Share your video far and wide.
             </h2>
-            <p className="text-granite text-xl font-semibold leading-relaxed mb-4">
-              Your announcement introduces you to the world.
-              <br />
-              Your fundraising appeal shows what&apos;s at stake.
-              <br />
-              Your policy explainers offer a plan.
-              <br />
-              Your GOTV spot rallies the people.
+            <p className="text-granite text-lg leading-relaxed mb-6">
+              Videos are your most powerful tool on a campaign. Once produced,
+              it&apos;s ready to work hard wherever your audience spends their
+              time.
+            </p>
+            <p className="font-heading font-bold text-xl text-regal-navy">
+              Post it. Share it. Run it. Repeat.
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <div className="hidden lg:flex items-center justify-center">
-            <DesktopFlywheel />
-          </div>
-          <div className="lg:hidden -mx-4 sm:mx-0">
-            <MobileFlywheel />
-          </div>
+          <HubAndSpoke />
         </ScrollReveal>
       </div>
     </section>

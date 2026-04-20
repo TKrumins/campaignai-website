@@ -54,7 +54,7 @@ export function AudienceSection() {
           <div className="text-center max-w-3xl mx-auto mb-14">
             <SectionLabel text="Who We Serve" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-              Every campaign matters. Tell your story today.
+              Tactical content for campaigns of all shapes and sizes.
             </h2>
           </div>
         </ScrollReveal>

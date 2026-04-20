@@ -31,7 +31,7 @@ export function HeroSection() {
           local and underfunded candidates and mission-driven campaigns.
           <br />
           <br />
-          <span className="paintbrush-underline">&ldquo;2026 Primaries Special&rdquo; through June 30.</span>
+          <span className="paintbrush-underline">&ldquo;Primaries Special&rdquo; through June 30</span>
         </p>
 
         <HeroEmailCapture />
