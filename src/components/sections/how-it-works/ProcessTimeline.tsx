@@ -51,7 +51,7 @@ function StepImage({ number }: { number: string }) {
   return (
     <div className="w-[280px] h-[280px] mx-auto rounded-full overflow-hidden shadow-lg ring-1 ring-gray-200">
       <Image
-        src={`/Step-by-Step Guides/Step ${stepNum}.png`}
+        src={`/Step-by-step guides/Step ${stepNum}.png`}
         alt={`Step ${stepNum} illustration`}
         width={280}
         height={280}
