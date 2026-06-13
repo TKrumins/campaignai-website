@@ -8,6 +8,7 @@ import { HowItWorksSection } from "@/components/sections/home/HowItWorksSection"
 import { AudienceSection } from "@/components/sections/home/AudienceSection";
 import { TrustSection } from "@/components/sections/home/TrustSection";
 import { EthicsSection } from "@/components/sections/home/EthicsSection";
+import { PricingSection } from "@/components/sections/home/PricingSection";
 import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
 
 export default function HomePage() {
@@ -23,6 +24,7 @@ export default function HomePage() {
       <AudienceSection />
       <TrustSection />
       <EthicsSection />
+      <PricingSection />
       <FinalCTASection />
     </>
   );

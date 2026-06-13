@@ -44,6 +44,9 @@ export function ProblemSection() {
         </div>
 
         <ScrollReveal>
+          <p className="text-center text-lg font-semibold max-w-[700px] mx-auto mb-6">
+            We make professional video for $1,999. Candidates pay $599. Agencies charge $10,000+.
+          </p>
           <p className="text-granite text-center text-lg font-semibold max-w-[600px] mx-auto">
             Your story matters.
             <br />
