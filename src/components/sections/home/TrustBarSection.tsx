@@ -20,6 +20,9 @@ export function TrustBarSection() {
     <section className="bg-regal-navy border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-8">
         <ScrollReveal>
+          <p className="text-center text-beacon-white font-semibold text-base mb-5">
+            We do the hard ethical work, so you can focus on the work only you can do.
+          </p>
           <div className="flex flex-wrap justify-center gap-6 md:gap-10">
             {trustItems.map(({ icon: Icon, label }) => (
               <div

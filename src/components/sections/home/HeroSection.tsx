@@ -21,16 +21,18 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-20">
         <h1 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
-          <span className="md:whitespace-nowrap">Every campaign<span className="sm:hidden"><br /></span> has a story.</span>
+          Every campaign has a story.
           <br />
-          Tell yours today.
+          Yours deserves to be told right.
         </h1>
 
-        <p className="text-beacon-white/90 text-lg md:text-2xl font-medium leading-relaxed max-w-[780px] mx-auto mb-12">
-          Professional video, strategic messaging, and compliance support for
-          local and underfunded candidates and mission-driven campaigns.
-          <br />
-          <br />
+        <p className="text-beacon-white/90 text-lg md:text-xl leading-relaxed max-w-[600px] mx-auto mb-6">
+          Professional video, strategic messaging, and built-in
+          compliance&nbsp;&mdash; finally built for local and underfunded
+          campaigns, not retrofitted for them.
+        </p>
+
+        <p className="text-beacon-white/90 text-lg font-medium mb-10">
           <span className="paintbrush-underline">&ldquo;America 250 Special&rdquo;</span>
           <br />
           Buy two videos, your first is just $250. Through the end of 2026.

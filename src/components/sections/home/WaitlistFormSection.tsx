@@ -27,9 +27,8 @@ export function WaitlistFormSection() {
                   Join the waitlist.
                 </h2>
                 <p className="text-granite">
-                  We&apos;re onboarding campaigns in the order they join. Once
-                  you&apos;re on the list, our team works with you to find a price
-                  point that matches your race, your scale, and your budget.
+                  We onboard campaigns in the order they join. The sooner
+                  you&apos;re on the list, the sooner your story gets told.
                 </p>
               </div>
               <WaitlistForm prefillEmail={prefillEmail} />
