@@ -37,9 +37,8 @@ export function TrustBarSection() {
             ))}
           </div>
           <p className="text-center text-beacon-white/60 text-sm mt-4 max-w-2xl mx-auto">
-            Founded by a multi-partisan team: A Republican state legislator, a
-            Democratic gubernatorial candidate, and an Independent campaign
-            operative.
+            Built by a Republican, a Democrat, and an Independent. Advised
+            by Andrew Yang.
           </p>
         </ScrollReveal>
       </div>

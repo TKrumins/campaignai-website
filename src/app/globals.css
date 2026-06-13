@@ -168,3 +168,30 @@ h1, h2, h3, h4, h5, h6 {
 .animate-flag-wave {
   animation: flagWave 12s ease-in-out infinite;
 }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-bounce-in,
+  .animate-flag-wave {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Tri-color ribbon divider */
+.ribbon-divider {
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #FF3366 0%, #FF3366 33%,
+    #E8F4F8 33%, #E8F4F8 66%,
+    #4D9FFF 66%, #4D9FFF 100%
+  );
+  border-radius: 3px;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q150 0 300 4 T600 4 T900 4 T1200 4' stroke='black' stroke-width='8' fill='none'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q150 0 300 4 T600 4 T900 4 T1200 4' stroke='black' stroke-width='8' fill='none'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+}

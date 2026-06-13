@@ -9,7 +9,9 @@ import { AudienceSection } from "@/components/sections/home/AudienceSection";
 import { TrustSection } from "@/components/sections/home/TrustSection";
 import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { PricingSection } from "@/components/sections/home/PricingSection";
+import { FAQSection } from "@/components/sections/home/FAQSection";
 import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
+import { RibbonDivider } from "@/components/ui/RibbonDivider";
 
 export default function HomePage() {
   return (
@@ -18,13 +20,17 @@ export default function HomePage() {
       <TrustBarSection />
       <ProductSection />
       <WaitlistFormSection />
+      <RibbonDivider className="py-0 bg-white" />
       <ProblemSection />
+      <RibbonDivider className="py-0 bg-white" />
       <HowItWorksSection />
       <StorytellingSection />
       <AudienceSection />
+      <RibbonDivider className="py-0 bg-white" />
       <TrustSection />
       <EthicsSection />
       <PricingSection />
+      <FAQSection />
       <FinalCTASection />
     </>
   );

@@ -15,6 +15,12 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
     const el = ref.current;
     if (!el) return;
 
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      el.classList.remove("opacity-0");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,7 +32,7 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
     observer.observe(el);

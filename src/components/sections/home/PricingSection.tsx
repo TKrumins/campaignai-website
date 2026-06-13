@@ -1,6 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { ShieldCheck, Scale, UserCheck } from "lucide-react";
 
 export function PricingSection() {
   return (
@@ -83,12 +84,26 @@ export function PricingSection() {
 
         {/* Included features line */}
         <ScrollReveal delay={360}>
-          <p className="text-slate text-sm text-center max-w-[600px] mx-auto leading-relaxed">
+          <p className="text-slate text-sm text-center max-w-[600px] mx-auto leading-relaxed mb-6">
             Every video includes guided production, human editorial review,
             state-specific disclosure labels, multiple formats, and your
             creative control from first frame to final cut. You own everything
             you make.
           </p>
+          <div className="flex flex-wrap justify-center gap-5 text-slate text-xs">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-verdant" />
+              AI Disclosure Built In
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Scale className="w-4 h-4 text-freedom-blue" />
+              FEC Compliant
+            </span>
+            <span className="flex items-center gap-1.5">
+              <UserCheck className="w-4 h-4 text-liberty-crimson" />
+              Human-in-the-Loop
+            </span>
+          </div>
         </ScrollReveal>
       </div>
     </section>

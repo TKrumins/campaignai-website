@@ -30,7 +30,7 @@ export function MobileCTA() {
         className="btn-hover block w-full rounded-full patriot-gradient p-[2px]"
       >
         <span className="block w-full text-center px-5 py-3 rounded-full bg-white text-regal-navy text-sm font-semibold">
-          Tell your story &rarr;
+          Join the waitlist &rarr;
         </span>
       </Link>
     </div>
