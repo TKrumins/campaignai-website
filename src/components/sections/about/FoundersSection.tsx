@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const founders = [
   {
-    photo: "/Profile Pictures/Tom-Krumins.png",
+    photo: "/profile-pictures/Tom-Krumins.png",
     name: "Tom Krumins",
     title: "SC Forward Party Advisory Board.",
     tag: "CEO",
@@ -14,7 +14,7 @@ const founders = [
 
   },
   {
-    photo: "/Profile Pictures/Jermaine-Johnson.png",
+    photo: "/profile-pictures/Jermaine-Johnson.png",
     name: "Jermaine Johnson",
     title: "SC State Representative. Gubernatorial Candidate.",
     party: "Democrat",
@@ -24,7 +24,7 @@ const founders = [
 
   },
   {
-    photo: "/Profile Pictures/Brandon-Guffey.png",
+    photo: "/profile-pictures/Brandon-Guffey.png",
     name: "Brandon Guffey",
     title: "SC State Representative",
     party: "Republican",

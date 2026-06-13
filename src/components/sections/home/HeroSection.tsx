@@ -31,7 +31,9 @@ export function HeroSection() {
           local and underfunded candidates and mission-driven campaigns.
           <br />
           <br />
-          <span className="paintbrush-underline">&ldquo;Primaries Special&rdquo; through June 30</span>
+          <span className="paintbrush-underline">&ldquo;America 250 Special&rdquo;</span>
+          <br />
+          Buy two videos, your first is just $250. Through the end of 2026.
         </p>
 
         <HeroEmailCapture />

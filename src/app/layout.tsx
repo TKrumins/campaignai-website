@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "Create professional campaign videos at a fraction of the cost. CampaignAI helps political campaigns and organizations tell their stories with AI-powered video production.",
   icons: {
-    icon: "/Logos/favicon-dark-background.svg",
+    icon: "/logos/favicon-dark-background.svg",
   },
   openGraph: {
     type: "website",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     images: ["/hero-bg.png"],
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://campaignai.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://campaignai.us"
   ),
 };
 
