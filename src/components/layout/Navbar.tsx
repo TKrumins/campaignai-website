@@ -11,7 +11,7 @@ const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/communit
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
   { href: "/about", label: "About" },
-  { href: "/community", label: "Community" },
+  { href: "https://campaignai.substack.com/", label: "Community", external: true },
 ];
 
 export function Navbar() {
@@ -74,15 +74,27 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(href)}`}
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ href, label, external }) =>
+              external ? (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(href)}`}
+                >
+                  {label}
+                </a>
+              ) : (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(href)}`}
+                >
+                  {label}
+                </Link>
+              )
+            )}
             <Link
               href="/get-started"
               className="btn-hover inline-flex items-center rounded-full patriot-gradient p-[3px] shadow-md"
@@ -118,16 +130,29 @@ export function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-regal-navy border-t border-white/10">
           <div className="px-4 py-4 flex flex-col gap-4">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(href)}`}
-                onClick={() => setMobileOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ href, label, external }) =>
+              external ? (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(href)}`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {label}
+                </a>
+              ) : (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(href)}`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {label}
+                </Link>
+              )
+            )}
           </div>
         </div>
       )}

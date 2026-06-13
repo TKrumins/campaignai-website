@@ -104,12 +104,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/community"
+                <a
+                  href="https://campaignai.substack.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
                 >
                   Community
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

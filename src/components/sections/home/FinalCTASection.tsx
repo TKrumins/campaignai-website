@@ -1,11 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
 
 export function FinalCTASection() {
+  const [prefillEmail, setPrefillEmail] = useState<string | undefined>();
+
+  useEffect(() => {
+    function handlePrefill(e: CustomEvent<string>) {
+      setPrefillEmail(e.detail);
+    }
+
+    window.addEventListener("prefill-waitlist-email", handlePrefill as EventListener);
+    return () => window.removeEventListener("prefill-waitlist-email", handlePrefill as EventListener);
+  }, []);
+
   return (
-    <section className="py-20 md:py-28 bg-regal-navy relative overflow-hidden">
+    <section id="waitlist-form" className="py-20 md:py-28 bg-regal-navy relative overflow-hidden">
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <div className="text-center mb-8">
@@ -31,7 +43,7 @@ export function FinalCTASection() {
         <ScrollReveal delay={200}>
           <div className="rounded-2xl p-[3px] patriot-gradient shadow-lg">
             <div className="bg-white rounded-[14px] p-6 md:p-8">
-              <WaitlistForm />
+              <WaitlistForm prefillEmail={prefillEmail} />
             </div>
           </div>
         </ScrollReveal>

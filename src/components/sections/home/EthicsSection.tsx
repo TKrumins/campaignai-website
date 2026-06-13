@@ -85,7 +85,7 @@ export function EthicsSection() {
             <Button variant="verdant-outline" href="/compliance">
               Read our full ethics commitment &rarr;
             </Button>
-            <Button variant="verdant-outline" href="/compliance">
+            <Button variant="verdant-outline" href="/regulations">
               Learn how we track regulations across all 50 states &rarr;
             </Button>
           </div>

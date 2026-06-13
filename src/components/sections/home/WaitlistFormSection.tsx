@@ -1,39 +1,58 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { WaitlistForm } from "@/components/forms/WaitlistForm";
 
 export function WaitlistFormSection() {
-  const [prefillEmail, setPrefillEmail] = useState<string | undefined>();
+  const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    function handlePrefill(e: CustomEvent<string>) {
-      setPrefillEmail(e.detail);
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const form = document.getElementById("waitlist-form");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth" });
+
+      setTimeout(() => {
+        window.dispatchEvent(
+          new CustomEvent("prefill-waitlist-email", { detail: email })
+        );
+      }, 800);
     }
-
-    window.addEventListener("prefill-waitlist-email", handlePrefill as EventListener);
-    return () => window.removeEventListener("prefill-waitlist-email", handlePrefill as EventListener);
-  }, []);
+  }
 
   return (
-    <section id="waitlist-form" className="py-20 md:py-20 bg-regal-navy">
-      <div className="max-w-[800px] mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-20 bg-regal-navy">
+      <div className="max-w-[520px] mx-auto px-4 sm:px-6">
         <ScrollReveal>
-          <div className="rounded-2xl p-[6px] patriot-gradient shadow-lg">
-            <div className="bg-white rounded-xl p-6 md:p-8">
-              <div className="text-center mb-8">
-                <h2 className="font-heading font-bold text-3xl md:text-4xl text-regal-navy mb-3">
-                  Join the waitlist.
-                </h2>
-                <p className="text-granite">
-                  We onboard campaigns in the order they join. The sooner
-                  you&apos;re on the list, the sooner your story gets told.
-                </p>
-              </div>
-              <WaitlistForm prefillEmail={prefillEmail} />
-            </div>
+          <div className="text-center mb-6">
+            <h2 className="font-heading font-bold text-2xl md:text-3xl text-beacon-white mb-3">
+              Join the waitlist.
+            </h2>
+            <p className="text-beacon-white/80 text-base">
+              We onboard campaigns in the order they join. The sooner
+              you&apos;re on the list, the sooner your story gets told.
+            </p>
           </div>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-3"
+          >
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@campaign.com"
+              required
+              className="flex-1 px-5 py-3 rounded-full text-granite text-sm bg-white focus:outline-none focus:ring-2 focus:ring-freedom-blue"
+            />
+            <button
+              type="submit"
+              className="btn-hover bg-liberty-crimson px-6 py-3 rounded-full text-white text-sm font-semibold whitespace-nowrap"
+            >
+              Get early access &rarr;
+            </button>
+          </form>
         </ScrollReveal>
       </div>
     </section>
