@@ -52,6 +52,10 @@ export function ProblemSection() {
             <br />
             You shouldn&apos;t have to pay a premium just to tell it.
           </p>
+          {/* P5 (approved) */}
+          <p className="text-granite text-center text-lg max-w-[600px] mx-auto mt-6">
+            None of this is your fault. The tools were priced for someone else. That&apos;s the part we fixed.
+          </p>
         </ScrollReveal>
       </div>
     </section>

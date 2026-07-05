@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { PartyPill } from "@/components/ui/PartyPill";
 
 const founders = [
   {
@@ -10,7 +11,6 @@ const founders = [
     title: "SC Forward Party Advisory Board.",
     description: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
     party: "Forward",
-    partyColor: "bg-purple-600",
   },
   {
     photo: "/assets/profile-pictures/Jermaine-Johnson.png",
@@ -18,7 +18,6 @@ const founders = [
     title: "SC State Representative. Gubernatorial Candidate.",
     description: "Deacon. Educator. A true grassroots leader.",
     party: "Democrat",
-    partyColor: "bg-blue-600",
   },
   {
     photo: "/assets/profile-pictures/Brandon-Guffey.png",
@@ -26,7 +25,6 @@ const founders = [
     title: "SC State Representative",
     description: "Child safety advocate. Business owner. Father on a mission.",
     party: "Republican",
-    partyColor: "bg-red-600",
   },
 ];
 
@@ -64,7 +62,7 @@ export function TrustSection() {
           </h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {founders.map(({ photo, name, title, description, party, partyColor }, i) => (
+          {founders.map(({ photo, name, title, description, party }, i) => (
             <ScrollReveal key={name} delay={i * 100}>
               <div className="text-center">
                 <div className="relative w-[180px] h-[180px] mx-auto mb-4">
@@ -77,9 +75,10 @@ export function TrustSection() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 ${partyColor} text-white text-xs font-semibold px-3 py-0.5 rounded-full shadow-sm`}>
-                    {party}
-                  </span>
+                  <PartyPill
+                    party={party}
+                    className="absolute bottom-1 left-1/2 -translate-x-1/2"
+                  />
                 </div>
                 <h3 className="font-heading font-bold text-lg text-black">
                   {name}

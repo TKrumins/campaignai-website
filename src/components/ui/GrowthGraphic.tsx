@@ -40,12 +40,18 @@ const milestones = [
   },
 ];
 
+// Tri-color progression (C.2): Bridge Violet is the midpoint between the
+// red and blue families
 const layerColors: Record<string, string> = {
   Voice: "bg-liberty-crimson",
   Values: "bg-victory-rose",
-  Policies: "bg-beacon-white",
+  Policies: "bg-bridge-violet",
   Brand: "bg-horizon-azure",
   Strategy: "bg-freedom-blue",
+};
+
+const layerTextColors: Record<string, string> = {
+  Policies: "text-white/90",
 };
 
 export function GrowthGraphic() {
@@ -69,7 +75,7 @@ export function GrowthGraphic() {
                       key={layer}
                       className={`${layerColors[layer]} rounded px-1 py-0.5 text-center`}
                     >
-                      <span className="text-[9px] sm:text-[10px] font-semibold text-regal-navy/80 leading-none">
+                      <span className={`text-[9px] sm:text-[10px] font-semibold leading-none ${layerTextColors[layer] || "text-regal-navy/80"}`}>
                         {layer}
                       </span>
                     </div>

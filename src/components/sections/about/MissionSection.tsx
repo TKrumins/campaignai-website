@@ -14,11 +14,16 @@ export function MissionSection() {
             $10,000 agency budget to share it with voters.
             <br />
             <br />
-            CampaignAI gives you
-            professional video, built-in compliance, and 48-hour delivery so you
-            can focus on what matters: your community, your message, your race.
+            CampaignAI gives you professional video, built-in compliance through
+            state-specific AI disclosure labels updated as rules change, and
+            48-hour post-production delivery once you submit, so you can focus
+            on what matters: your community, your message, your race.
           </p>
-          <Button variant="crimson" href="/get-started">
+          <Button
+            variant="blue-outline"
+            href="/get-started#waitlist"
+            className="!border-freedom-blue/60 !text-beacon-white/90 hover:!bg-freedom-blue hover:!text-white"
+          >
             Join the waitlist &rarr;
           </Button>
         </ScrollReveal>

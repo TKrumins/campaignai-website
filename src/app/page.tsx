@@ -7,10 +7,11 @@ import { PricingSection } from "@/components/sections/home/PricingSection";
 import { StorytellingSection } from "@/components/sections/home/StorytellingSection";
 import { HowItWorksSection } from "@/components/sections/home/HowItWorksSection";
 import { AudienceSection } from "@/components/sections/home/AudienceSection";
+import { StatsMomentSection } from "@/components/sections/home/StatsMomentSection";
 import { TrustSection } from "@/components/sections/home/TrustSection";
 import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { FAQSection } from "@/components/sections/home/FAQSection";
-import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
+import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { BookDemoSection } from "@/components/sections/home/BookDemoSection";
 import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
 import { RibbonDivider } from "@/components/ui/RibbonDivider";
@@ -28,13 +29,14 @@ export default function HomePage() {
       <PricingSection />
       <RibbonDivider className="py-0 bg-white" />
       <HowItWorksSection />
+      <StatsMomentSection />
       <StorytellingSection />
       <AudienceSection />
       <RibbonDivider className="py-0 bg-white" />
       <TrustSection />
       <EthicsSection />
       <FAQSection />
-      <FinalCTASection />
+      <BookingBanner />
       <BookDemoSection />
     </>
   );

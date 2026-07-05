@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /CampaignAIDisclosure
+
+Sitemap: https://campaignai.us/sitemap.xml

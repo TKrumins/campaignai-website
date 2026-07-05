@@ -81,7 +81,11 @@ export function IntersectionGraphic() {
         {/* Center convergence point */}
         <ScrollReveal delay={600}>
           <div className="flex flex-col items-center">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full patriot-gradient p-[3px] shadow-xl mb-4">
+            {/* Bridge gradient: an explicit multi-partisanship moment (C.3) */}
+            <div
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-[3px] shadow-xl mb-4"
+              style={{ background: "linear-gradient(135deg, #FF3366 0%, #8E5CF7 50%, #4D9FFF 100%)" }}
+            >
               <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                 <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-regal-navy" />
               </div>

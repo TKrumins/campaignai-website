@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
-import { PricingDisplay } from "@/components/sections/pricing/PricingDisplay";
+import { CondensedPricingDisplay } from "@/components/sections/shared/CondensedPricingDisplay";
 
 export const metadata: Metadata = {
   title: "Pricing - CampaignAI",
@@ -57,8 +57,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Condensed pricing display */}
-      <PricingDisplay />
+      {/* Condensed pricing display + America 250 module */}
+      <CondensedPricingDisplay showCtas />
 
       {/* Transparency note */}
       <section className="py-10 bg-white">

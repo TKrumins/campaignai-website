@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
@@ -24,7 +25,7 @@ const teamTiers = [
   {
     title: "Party Committees",
     description:
-      "State and local parties supporting full slates. One platform, consistent quality, compliance handled across every district.",
+      "State and local parties supporting full slates. One platform, consistent quality, state-specific AI disclosure labels handled across every district.",
   },
   {
     title: "PACs",
@@ -39,11 +40,12 @@ const teamTiers = [
 ];
 
 const everyoneTags = [
-  "Advocacy Organizations",
-  "Ballot Initiatives",
-  "Nonprofits",
-  "Grassroots Movements",
-  "Social Impact Businesses",
+  { label: "Advocacy Organizations" },
+  { label: "Ballot Initiatives" },
+  { label: "Nonprofits" },
+  { label: "Grassroots Movements" },
+  // Renamed per 7-8 doc Section 0.3; links to /get-started
+  { label: "Other Businesses or Organizations", href: "/get-started" },
 ];
 
 export function AudienceSection() {
@@ -111,14 +113,24 @@ export function AudienceSection() {
             For Everyone with a Story to Tell
           </h3>
           <div className="flex flex-wrap gap-3">
-            {everyoneTags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium"
-              >
-                {tag}
-              </span>
-            ))}
+            {everyoneTags.map(({ label, href }) =>
+              href ? (
+                <Link
+                  key={label}
+                  href={href}
+                  className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium hover:border-freedom-blue hover:text-regal-navy transition-colors"
+                >
+                  {label}
+                </Link>
+              ) : (
+                <span
+                  key={label}
+                  className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium"
+                >
+                  {label}
+                </span>
+              )
+            )}
           </div>
         </ScrollReveal>
 

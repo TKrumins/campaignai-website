@@ -51,3 +51,6 @@ assets/jermaine-johnson-photos/
 next-env.d.ts
 
 .vercel
+
+# claude local settings
+.claude/settings.local.json

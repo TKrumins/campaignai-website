@@ -1,10 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import {
+  CALENDLY_PURCHASE,
+  CTA_PRIMARY,
+  CTA_MICROCOPY,
+  WAITLIST_SHORT,
+} from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center pt-24 overflow-hidden">
+    <section
+      data-hero
+      className="relative min-h-[85vh] flex items-center justify-center pt-24 overflow-hidden"
+    >
       {/* Background: American flag image with navy overlay */}
       <div className="absolute inset-[-5%] animate-flag-wave">
         <Image
@@ -18,7 +28,7 @@ export function HeroSection() {
       </div>
       <div className="absolute inset-0 bg-regal-navy/50" />
 
-      {/* Content */}
+      {/* Content: poster staging (E.8) — headline, badge, one primary action */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-20">
         {/* Eyebrow */}
         <p className="font-body text-sm md:text-base text-beacon-white/80 uppercase tracking-widest mb-4">
@@ -50,34 +60,29 @@ export function HeroSection() {
           Create professional campaign videos in days, not weeks. AI-powered. Human-centered. Built for local and underfunded campaigns.
         </p>
 
-        {/* Primary CTA */}
-        <div className="mb-4">
+        {/* Primary CTA — the one primary action in this viewport */}
+        <div className="mb-6">
           <Button
             variant="crimson"
-            href="https://calendly.com/campaignai/campaignai-purchase-call"
+            href={CALENDLY_PURCHASE}
             external
             className="px-8 py-3 text-base"
           >
-            Buy your first video &rarr;
+            {CTA_PRIMARY}
           </Button>
-          <p className="text-beacon-white/70 text-sm mt-2">
-            Book a 30-minute call to get started.
-          </p>
+          <p className="text-beacon-white/70 text-sm mt-2">{CTA_MICROCOPY}</p>
         </div>
 
-        {/* Secondary CTA */}
-        <div className="mb-8">
-          <Button
-            variant="blue-outline"
+        {/* Secondary action, visually quiet (E.5) */}
+        <p className="mb-8 text-sm">
+          <Link
             href="/get-started#waitlist"
-            className="!border-freedom-blue/60 !text-beacon-white/80 hover:!bg-freedom-blue hover:!text-white"
+            className="text-beacon-white/70 underline underline-offset-4 hover:text-beacon-white transition-colors"
           >
             Join the waitlist
-          </Button>
-          <p className="text-beacon-white/50 text-xs mt-2 max-w-sm mx-auto">
-            Be first in line when it launches.
-          </p>
-        </div>
+          </Link>{" "}
+          <span className="text-beacon-white/50">{WAITLIST_SHORT}</span>
+        </p>
 
         {/* Founders' credibility line */}
         <p className="text-beacon-white/60 text-sm max-w-lg mx-auto">

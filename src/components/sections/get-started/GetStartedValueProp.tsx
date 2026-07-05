@@ -12,7 +12,7 @@ export function GetStartedValueProp() {
             Professional campaign video in days, not weeks.
           </p>
           <p className="text-granite text-xl leading-relaxed">
-            AI-powered. Human-centered. Built-in compliance.
+            AI-powered. Human-centered. Built-in compliance: state-specific AI disclosure labels on every video, updated as rules change.
           </p>
         </ScrollReveal>
       </div>

@@ -1,84 +1,17 @@
-"use client";
-
-import { useState, useRef, useEffect, useCallback } from "react";
-import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
-
-/* ── Badge with tooltip (reused from TrustBarSection pattern) ── */
-function BadgeWithTooltip({ label, tooltip }: { label: string; tooltip: string }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLButtonElement>(null);
-  const tooltipId = `pricing-tooltip-${label.replace(/\s+/g, "-").toLowerCase()}`;
-
-  const close = useCallback(() => setOpen(false), []);
-
-  useEffect(() => {
-    if (!open) return;
-    function handleClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) close();
-    }
-    function handleKey(e: KeyboardEvent) {
-      if (e.key === "Escape") close();
-    }
-    document.addEventListener("click", handleClick);
-    document.addEventListener("keydown", handleKey);
-    return () => {
-      document.removeEventListener("click", handleClick);
-      document.removeEventListener("keydown", handleKey);
-    };
-  }, [open, close]);
-
-  return (
-    <button
-      ref={ref}
-      type="button"
-      className="group relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-regal-navy text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue/50 bg-white"
-      style={{
-        border: "2px solid transparent",
-        backgroundClip: "padding-box",
-      }}
-      onClick={() => setOpen((prev) => !prev)}
-      aria-describedby={tooltipId}
-    >
-      <span
-        className="absolute inset-0 rounded-full -z-10"
-        style={{
-          padding: "2px",
-          background: "linear-gradient(135deg, #FF3366 0%, #8E5CF7 50%, #4D9FFF 100%)",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-          borderRadius: "inherit",
-        }}
-      />
-      <span>{label}</span>
-      <span
-        id={tooltipId}
-        role="tooltip"
-        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-64 rounded-lg bg-white text-granite text-xs leading-relaxed p-3 shadow-lg pointer-events-none transition-opacity duration-200 z-20 ${
-          open ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
-        }`}
-      >
-        {tooltip}
-      </span>
-    </button>
-  );
-}
-
-/* ── Logo mark bullet ── */
-function LogoMarkBullet() {
-  return (
-    <Image
-      src="/assets/logos/favicon-dark-circle.svg"
-      alt=""
-      width={16}
-      height={16}
-      className="w-4 h-4 shrink-0 mt-0.5"
-    />
-  );
-}
+import { BadgeWithTooltip } from "@/components/ui/BadgeWithTooltip";
+import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
+import { America250Module } from "@/components/sections/shared/America250Module";
+import {
+  CALENDLY_PURCHASE,
+  CALENDLY_DEMO,
+  CTA_PRIMARY,
+  CTA_MICROCOPY,
+  CTA_TEAM,
+  ETHICS_LINE,
+} from "@/lib/constants";
 
 export function PricingSection() {
   return (
@@ -97,26 +30,9 @@ export function PricingSection() {
           </div>
         </ScrollReveal>
 
-        {/* America 250 ribbon */}
+        {/* America 250 module (upgrades the ribbon, 5.12) */}
         <ScrollReveal delay={60}>
-          <div
-            className="rounded-xl p-[2px] mb-10"
-            style={{
-              background: "linear-gradient(135deg, #FF3366 0%, #8E5CF7 50%, #4D9FFF 100%)",
-            }}
-          >
-            <div className="bg-white rounded-[10px] px-6 py-4 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-              <span className="text-2xl shrink-0" role="img" aria-label="US flag">&#127482;&#127480;</span>
-              <div className="text-center sm:text-left">
-                <p className="font-heading font-bold text-regal-navy">
-                  America 250 Special: buy two videos, get your first for just $250!
-                </p>
-                <p className="text-slate text-sm">
-                  Available for first 250 customers. Offer ends Nov 3, 2026.
-                </p>
-              </div>
-            </div>
-          </div>
+          <America250Module className="mb-10" />
         </ScrollReveal>
 
         {/* Three pricing cards */}
@@ -139,27 +55,18 @@ export function PricingSection() {
                 <p className="text-granite text-sm leading-relaxed mb-5">
                   Full production for the teams behind the campaigns: consultancies, party committees, PACs, and organizations producing at scale.
                 </p>
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {[
+                <LogoMarkBulletList
+                  className="mb-6 flex-1"
+                  items={[
                     "Polished, finished video ads, not templates",
                     "Human editorial review on every video",
                     "15-, 30-, and 60-second versions in every format",
                     "State-specific AI disclosure labels",
                     "Full ownership. No watermark.",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-granite">
-                      <LogoMarkBullet />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant="crimson"
-                  href="https://calendly.com/campaignai/campaignai-purchase-call"
-                  external
-                  className="w-full"
-                >
-                  Buy your first video &rarr;
+                  ]}
+                />
+                <Button variant="crimson" href={CALENDLY_PURCHASE} external className="w-full">
+                  {CTA_PRIMARY}
                 </Button>
               </div>
             </div>
@@ -184,27 +91,18 @@ export function PricingSection() {
                 <p className="text-granite text-sm leading-relaxed mb-5">
                   School board to U.S. Senate. Because every campaign deserves a fair shot.
                 </p>
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {[
+                <LogoMarkBulletList
+                  className="mb-6 flex-1"
+                  items={[
                     "The exact same production and editors",
                     "Human editorial review on every video",
                     "15-, 30-, and 60-second versions in every format",
                     "State-specific AI disclosure labels",
                     "Full ownership. No watermark.",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-granite">
-                      <LogoMarkBullet />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant="crimson"
-                  href="https://calendly.com/campaignai/campaignai-purchase-call"
-                  external
-                  className="w-full"
-                >
-                  Buy your first video &rarr;
+                  ]}
+                />
+                <Button variant="crimson" href={CALENDLY_PURCHASE} external className="w-full">
+                  {CTA_PRIMARY}
                 </Button>
               </div>
             </div>
@@ -224,13 +122,8 @@ export function PricingSection() {
                 <p className="text-granite text-sm leading-relaxed mb-6 flex-1">
                   Telling a story for a cause instead of a candidate? We price nonprofit work case by case, so your budget never decides whether your story gets told. Book a call and we&apos;ll find the fit.
                 </p>
-                <Button
-                  variant="verdant-outline"
-                  href="https://calendly.com/campaignai/demo"
-                  external
-                  className="w-full"
-                >
-                  Talk to our team &rarr;
+                <Button variant="verdant-outline" href={CALENDLY_DEMO} external className="w-full">
+                  {CTA_TEAM}
                 </Button>
               </div>
             </div>
@@ -241,16 +134,10 @@ export function PricingSection() {
         <ScrollReveal delay={300}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <div className="text-center">
-              <Button
-                variant="crimson"
-                href="https://calendly.com/campaignai/campaignai-purchase-call"
-                external
-              >
-                Buy your first video &rarr;
+              <Button variant="crimson" href={CALENDLY_PURCHASE} external>
+                {CTA_PRIMARY}
               </Button>
-              <p className="text-slate text-sm mt-2">
-                Book a 30-minute call to get started.
-              </p>
+              <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>
             </div>
             <div className="text-center">
               <Button variant="blue-outline" href="/get-started#waitlist">
@@ -281,7 +168,7 @@ export function PricingSection() {
         <ScrollReveal delay={380}>
           <p className="text-center text-granite text-base">
             <span className="text-verdant mr-1.5">&#x2713;</span>
-            We do the hard ethical work, so you can focus on the work only you can do.
+            {ETHICS_LINE}
           </p>
         </ScrollReveal>
 

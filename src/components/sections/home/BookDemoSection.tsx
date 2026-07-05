@@ -1,5 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { CALENDLY_DEMO } from "@/lib/constants";
 
 export function BookDemoSection() {
   return (
@@ -13,8 +14,8 @@ export function BookDemoSection() {
             Book a demo and we will walk you through exactly how your video gets made.
           </p>
           <Button
-            variant="navy-outline"
-            href="https://calendly.com/campaignai/demo"
+            variant="verdant-outline"
+            href={CALENDLY_DEMO}
             external
           >
             Book a demo &rarr;

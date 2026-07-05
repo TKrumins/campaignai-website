@@ -4,8 +4,8 @@ import { Check, X, Minus } from "lucide-react";
 
 const rows = [
   { feature: "Professional quality video", campaignai: true, agency: true, diy: false },
-  { feature: "Built-in compliance & disclosure", campaignai: true, agency: "varies", diy: false },
-  { feature: "48-hour turnaround", campaignai: true, agency: false, diy: "varies" },
+  { feature: "Built-in compliance: state disclosure labels, updated as rules change", campaignai: true, agency: "varies", diy: false },
+  { feature: "48-hour post-production turnaround once you submit", campaignai: true, agency: false, diy: "varies" },
   { feature: "Multi-format delivery", campaignai: true, agency: true, diy: false },
   { feature: "Human-edited by real producers", campaignai: true, agency: true, diy: false },
   { feature: "No production experience needed", campaignai: true, agency: true, diy: false },

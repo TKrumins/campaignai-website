@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
@@ -36,21 +36,13 @@ const VOLUME_OPTIONS = [
 ];
 
 interface WaitlistFormProps {
-  prefillEmail?: string;
   variant?: "default" | "compact";
 }
 
-export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistFormProps) {
+export function WaitlistForm({ variant = "default" }: WaitlistFormProps) {
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (prefillEmail) {
-      setEmail(prefillEmail);
-      setTimeout(() => nameRef.current?.focus(), 100);
-    }
-  }, [prefillEmail]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

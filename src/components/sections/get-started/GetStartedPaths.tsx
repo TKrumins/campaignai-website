@@ -106,6 +106,9 @@ export function GetStartedPaths() {
             <p className="text-slate text-xs mt-2">
               Be first in line when it launches.
             </p>
+            <p className="text-slate/80 text-xs mt-1 max-w-md mx-auto">
+              It ships when it meets the same bar as everything else we make. We&apos;d rather be right than first.
+            </p>
           </div>
         </ScrollReveal>
 

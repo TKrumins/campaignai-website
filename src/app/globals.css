@@ -73,6 +73,154 @@
   }
 }
 
+/* ── Patriot purchase button (5.1) ─────────────────────────────── */
+/* Sweep implemented as a conic-gradient rotation via CSS @property
+   where supported; linear background-position sweep as the fallback. */
+@property --pp-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ppSweepConic {
+  from { --pp-angle: 0deg; }
+  to { --pp-angle: 360deg; }
+}
+
+@keyframes ppSweepLinear {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
+}
+
+@keyframes ppPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.patriot-purchase {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 3px;
+  background-image: linear-gradient(135deg, #FF3366 0%, #E8F4F8 40%, #4D9FFF 80%, #0D1B3E 100%);
+}
+
+.patriot-purchase .pp-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 9999px;
+  background: #E8F4F8; /* Beacon White fill */
+  color: #0D1B3E; /* Regal Navy text */
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.patriot-purchase.pp-linear {
+  background-size: 250% 250%;
+  background-position: 0% 0%;
+}
+
+.patriot-purchase.pp-conic {
+  background-image: conic-gradient(
+    from calc(135deg + var(--pp-angle)),
+    #FF3366 0%,
+    #E8F4F8 40%,
+    #4D9FFF 80%,
+    #0D1B3E 100%
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .patriot-purchase {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  /* Hover AND keyboard focus: sweep + lift + soft navy shadow */
+  .patriot-purchase:hover,
+  .patriot-purchase:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 27, 62, 0.35);
+  }
+
+  .patriot-purchase.pp-conic:hover,
+  .patriot-purchase.pp-conic:focus-within {
+    animation: ppSweepConic 1.1s ease;
+  }
+
+  .patriot-purchase.pp-linear:hover,
+  .patriot-purchase.pp-linear:focus-within {
+    animation: ppSweepLinear 1.1s ease;
+  }
+
+  /* Once per page load, ~5s after load: sweep + gentle scale pulse */
+  .patriot-purchase.pp-conic.pp-load-sweep {
+    animation: ppSweepConic 1.1s ease, ppPulse 1.1s ease;
+  }
+
+  .patriot-purchase.pp-linear.pp-load-sweep {
+    animation: ppSweepLinear 1.1s ease, ppPulse 1.1s ease;
+  }
+}
+
+/* ── AnnouncementBar (5.11, amended 7-8 doc 0.1) ───────────────── */
+/* Height reserved via CSS var so the fixed nav and page content
+   offset without layout shift; collapsed pre-paint when dismissed. */
+:root {
+  --announce-h: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --announce-h: 2.5rem;
+  }
+}
+
+html[data-a250="dismissed"] {
+  --announce-h: 0px;
+}
+
+html[data-a250="dismissed"] .announcement-bar {
+  display: none;
+}
+
+@keyframes announceGradientSlide {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.announce-underline {
+  background-image: linear-gradient(135deg, #FF3366 0%, #E8F4F8 40%, #4D9FFF 80%, #0D1B3E 100%);
+  background-size: 300% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .announce-underline {
+    animation: announceGradientSlide 8s ease infinite;
+  }
+}
+
+/* ── America 250 module animated border (5.12) ─────────────────── */
+@keyframes a250BorderSweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.a250-border {
+  background-image: linear-gradient(135deg, #FF3366 0%, #E8F4F8 40%, #4D9FFF 80%, #0D1B3E 100%);
+  background-size: 300% 300%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .a250-border.a250-animate {
+    animation: a250BorderSweep 6s ease infinite;
+  }
+}
+
 /* Base styles */
 html {
   scroll-behavior: smooth;
@@ -209,13 +357,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Tri-color ribbon divider */
+/* Tri-color ribbon divider (C.1: red → Bridge Violet → blue) */
 .ribbon-divider {
   height: 6px;
   background: linear-gradient(
     90deg,
     #FF3366 0%, #FF3366 33%,
-    #E8F4F8 33%, #E8F4F8 66%,
+    #8E5CF7 33%, #8E5CF7 66%,
     #4D9FFF 66%, #4D9FFF 100%
   );
   border-radius: 3px;

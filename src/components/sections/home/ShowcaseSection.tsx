@@ -135,7 +135,7 @@ function VideoCard({
           />
         )}
 
-        {/* Party pill overlay */}
+        {/* Party pill overlay (semantic colors, never restyled) */}
         <span
           className="absolute top-3 left-3 z-10 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded"
           style={{ backgroundColor: partyColor, color: partyTextColor }}

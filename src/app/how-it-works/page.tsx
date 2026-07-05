@@ -5,12 +5,12 @@ import { GrowthSection } from "@/components/sections/home/GrowthSection";
 import { ComplianceBridge } from "@/components/sections/how-it-works/ComplianceBridge";
 
 import { HIWFAQ } from "@/components/sections/how-it-works/HIWFAQ";
-import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
+import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 
 export const metadata: Metadata = {
   title: "How It Works - CampaignAI",
   description:
-    "From your story to a finished campaign ad in 48 hours. Learn how CampaignAI helps you produce professional campaign video with built-in compliance.",
+    "From your story to a finished campaign ad, delivered within 48 hours of submission. Learn how CampaignAI helps you produce professional campaign video with built-in compliance: state-specific AI disclosure labels, updated as rules change.",
 };
 
 export default function HowItWorksPage() {
@@ -21,7 +21,7 @@ export default function HowItWorksPage() {
       <GrowthSection />
       <ComplianceBridge />
       <HIWFAQ />
-      <FinalCTASection />
+      <BookingBanner />
     </>
   );
 }
