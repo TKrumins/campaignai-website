@@ -20,46 +20,73 @@ export function StepMedia({ step, title }: { step: number; title: string }) {
 
   if (hasClip) {
     return (
-      <StepClip
-        src={`/assets/how-it-works/${clip}`}
-        poster={hasStill ? `/assets/how-it-works/${still}` : undefined}
-        title={title}
-      />
+      <div className="relative w-full">
+        <div className="absolute inset-0 rounded-2xl bg-freedom-blue/10 rotate-[1.5deg]" aria-hidden="true" />
+        <div className="relative rounded-2xl border-4 border-white shadow-md overflow-hidden">
+          <StepClip
+            src={`/assets/how-it-works/${clip}`}
+            poster={hasStill ? `/assets/how-it-works/${still}` : undefined}
+            title={title}
+          />
+        </div>
+      </div>
     );
   }
 
   if (hasStill) {
     return (
-      <div className="relative w-full rounded-2xl overflow-hidden shadow-lg ring-1 ring-gray-200" style={{ aspectRatio: "16 / 10" }}>
-        <Image
-          src={`/assets/how-it-works/${still}`}
-          alt={title}
-          fill
-          sizes="(max-width: 768px) 100vw, 420px"
-          className="object-cover"
-        />
+      <div className="relative w-full">
+        <div className="absolute inset-0 rounded-2xl bg-freedom-blue/10 rotate-[1.5deg]" aria-hidden="true" />
+        <div
+          className="relative w-full rounded-2xl overflow-hidden shadow-md border-4 border-white"
+          style={{ aspectRatio: "16 / 10" }}
+        >
+          <Image
+            src={`/assets/how-it-works/${still}`}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, 420px"
+            className="object-cover"
+          />
+        </div>
       </div>
     );
   }
 
-  /* Placeholder frame, exact-sized and duotone-styled */
+  /* Placeholder: exact-sized, duotone-styled, and designed to feel hopeful
+     rather than empty -- a sunrise scene in a tilted collage frame, so the
+     real walkthrough drops in without any layout work. */
   return (
-    <div
-      className="relative w-full rounded-2xl overflow-hidden shadow-inner flex items-center justify-center"
-      style={{
-        aspectRatio: "16 / 10",
-        background:
-          "linear-gradient(135deg, rgba(13,27,62,0.92) 0%, rgba(13,27,62,0.75) 55%, rgba(77,159,255,0.35) 100%)",
-      }}
-      aria-hidden="true"
-    >
-      <div className="text-center px-6">
-        <span className="block font-heading font-extrabold text-beacon-white/30 text-5xl mb-2">
-          {String(step).padStart(2, "0")}
-        </span>
-        <span className="block text-beacon-white/50 text-xs uppercase tracking-wider">
-          Step recording coming soon
-        </span>
+    <div className="relative w-full" aria-hidden="true">
+      {/* Tilted backing card */}
+      <div className="absolute inset-0 rounded-2xl bg-freedom-blue/10 rotate-[1.5deg]" />
+      <div
+        className="relative w-full rounded-2xl overflow-hidden shadow-md border-4 border-white"
+        style={{ aspectRatio: "16 / 10" }}
+      >
+        <svg viewBox="0 0 320 200" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id={`step-sky-${step}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#0D1B3E" />
+              <stop offset="70%" stopColor="#23407E" />
+              <stop offset="100%" stopColor="#4D9FFF" />
+            </linearGradient>
+          </defs>
+          <rect width="320" height="200" fill={`url(#step-sky-${step})`} />
+          {/* Rising sun */}
+          <circle className="ga-glow" cx="160" cy="148" r="26" fill="#FFB800" opacity="0.9" />
+          {/* Hills */}
+          <path d="M0 158 Q80 126 160 150 T320 144 V200 H0 Z" fill="#4D9FFF" opacity="0.5" />
+          <path d="M0 176 Q96 148 192 170 T320 166 V200 H0 Z" fill="#0D1B3E" opacity="0.75" />
+          {/* Sparkle accents */}
+          <path className="ga-twinkle" d="M62 52l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#E8F4F8" opacity="0.9" />
+          <path className="ga-twinkle" d="M252 38l1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6z" fill="#E8F4F8" opacity="0.7" style={{ animationDelay: "700ms" }} />
+        </svg>
+        <div className="absolute inset-x-0 bottom-0 p-4 text-center">
+          <span className="inline-block bg-regal-navy/70 backdrop-blur-sm text-beacon-white/90 text-xs font-semibold px-3 py-1.5 rounded-full">
+            Step {String(step).padStart(2, "0")} walkthrough lands here
+          </span>
+        </div>
       </div>
     </div>
   );
