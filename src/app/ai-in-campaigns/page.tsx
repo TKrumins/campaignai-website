@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { GlossaryGrid } from "@/components/sections/glossary/GlossaryGrid";
 import { SuggestEntry } from "@/components/sections/glossary/SuggestEntry";
+import { ExperiencesRow } from "@/components/sections/experiences/ExperiencesRow";
+import { EXPERIENCE_ROUTES } from "@/lib/constants";
 
 // This page is the site's organic search asset: real attention on title/meta.
 export const metadata: Metadata = {
@@ -41,8 +43,16 @@ export default function AiInCampaignsPage() {
         </div>
       </section>
 
+      {/* Go deeper: the interactive experiences (soft CTA row) */}
+      <ExperiencesRow
+        routes={EXPERIENCE_ROUTES}
+        heading="Go deeper. See it, don't just read it."
+        subhead="Five short interactive experiences that show how AI actually shows up in campaigns, and where the human stays in charge."
+        tone="white"
+      />
+
       {/* Suggest an entry */}
-      <section className="py-14 md:py-20 bg-white">
+      <section className="py-14 md:py-20 bg-dawn-frost">
         <div className="max-w-[820px] mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <SuggestEntry />
@@ -51,7 +61,7 @@ export default function AiInCampaignsPage() {
       </section>
 
       {/* Soft CTA only (no purchase hard-sell on this page) */}
-      <section className="py-14 bg-dawn-frost">
+      <section className="py-14 bg-white">
         <div className="max-w-[640px] mx-auto px-4 sm:px-6 text-center">
           <ScrollReveal>
             <h2 className="font-heading font-bold text-2xl text-regal-navy mb-3">

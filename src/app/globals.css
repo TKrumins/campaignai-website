@@ -444,6 +444,41 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ── Campaign Machine (4.3) ───────────────────────────────────── */
+@keyframes machineSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes machineSpinRev {
+  to { transform: rotate(-360deg); }
+}
+@keyframes machineTimeSavedPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.72; }
+}
+
+.machine-gear {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .machine-gear.spinning {
+    animation: machineSpin var(--gear-dur, 8s) linear infinite;
+  }
+  .machine-gear.spinning.rev {
+    animation-name: machineSpinRev;
+  }
+}
+/* Stepped states only under reduced motion; gears hold still, copy carries it */
+@media (prefers-reduced-motion: reduce) {
+  .machine-gear.spinning { animation: none !important; }
+}
+
+/* Output leaving the machine mis-registers when human review is removed */
+.machine-output-degraded {
+  transform: rotate(-2.5deg) translateY(2px);
+  filter: saturate(0.6);
+}
+
 /* Tri-color ribbon divider (C.1: red → Bridge Violet → blue) */
 .ribbon-divider {
   height: 6px;

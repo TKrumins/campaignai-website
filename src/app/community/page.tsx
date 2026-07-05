@@ -5,6 +5,7 @@ import { WhatWereBuilding } from "@/components/sections/community/WhatWereBuildi
 import { BuildingInPublic } from "@/components/sections/community/BuildingInPublic";
 import { UpcomingContent } from "@/components/sections/community/UpcomingContent";
 import { CommunityFinalCTA } from "@/components/sections/community/CommunityFinalCTA";
+import { ExperiencesRow } from "@/components/sections/experiences/ExperiencesRow";
 
 export const metadata: Metadata = {
   title: "Substack Community",
@@ -20,6 +21,11 @@ export default function CommunityPage() {
       <AILandscape />
       <WhatWereBuilding />
       <UpcomingContent />
+      <ExperiencesRow
+        routes={["/voters-eyes", "/campaign-machine"]}
+        heading="Two experiences worth sharing."
+        subhead="Short, interactive, and built to make the conversation concrete."
+      />
       <CommunityFinalCTA />
     </>
   );

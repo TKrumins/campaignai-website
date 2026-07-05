@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { PRIVACY_MICROCOPY, SOCIAL_SUBSTACK } from "@/lib/constants";
 
-type Purpose = "waitlist" | "newsletter" | "substack";
+type Purpose = "waitlist" | "newsletter" | "substack" | "labelgen";
 
 interface EmailCaptureProps {
   purpose: Purpose;
@@ -12,6 +12,8 @@ interface EmailCaptureProps {
   body?: string;
   buttonLabel?: string;
   compact?: boolean;
+  /** Fired once on a successful submit (e.g. the label-gen gate reveal). */
+  onSuccess?: () => void;
 }
 
 /**
@@ -29,6 +31,7 @@ export function EmailCapture({
   body,
   buttonLabel = "Subscribe →",
   compact = false,
+  onSuccess,
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -48,6 +51,9 @@ export function EmailCapture({
     const endpoint =
       purpose === "waitlist"
         ? process.env.NEXT_PUBLIC_WAITLIST_WEBHOOK_URL
+        : purpose === "labelgen"
+        ? process.env.NEXT_PUBLIC_MAILERLITE_LABELGEN_URL ||
+          process.env.NEXT_PUBLIC_MAILERLITE_NEWSLETTER_URL
         : process.env.NEXT_PUBLIC_MAILERLITE_NEWSLETTER_URL;
 
     try {
@@ -64,6 +70,7 @@ export function EmailCapture({
       }
       setStatus("success");
       setEmail("");
+      onSuccess?.();
     } catch {
       // Error state preserves the entered fields
       setStatus("error");
