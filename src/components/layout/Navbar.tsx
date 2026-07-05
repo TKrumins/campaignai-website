@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
-const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community"];
+const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations"];
 
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
