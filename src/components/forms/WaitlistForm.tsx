@@ -98,9 +98,9 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
           You&apos;re on the list.
         </h3>
         <p className="text-slate text-sm max-w-md mx-auto">
-          You&apos;re on the waitlist for our self-serve platform and signed up
-          for updates. We&apos;ll let you know when it launches, along with
-          product news and tips along the way.
+          You&apos;re on the list. We&apos;ll let you know when you can
+          create videos end to end, on your own, along with product news
+          and tips along the way.
         </p>
       </div>
     );

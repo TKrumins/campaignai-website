@@ -169,6 +169,23 @@ h1, h2, h3, h4, h5, h6 {
   animation: flagWave 12s ease-in-out infinite;
 }
 
+/* Sheen sweep for coming-soon cards */
+@keyframes sheenSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.sheen-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  animation: sheenSweep 4s ease-in-out infinite;
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
@@ -177,6 +194,15 @@ h1, h2, h3, h4, h5, h6 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .sheen-sweep::after {
+    animation: none !important;
+    display: none;
+  }
+
+  .animate-ping {
+    animation: none !important;
   }
 }
 

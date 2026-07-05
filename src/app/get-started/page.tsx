@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { GetStartedHero } from "@/components/sections/get-started/GetStartedHero";
-import { ComparisonSection } from "@/components/sections/get-started/ComparisonSection";
-import { GetStartedForm } from "@/components/sections/get-started/GetStartedForm";
-import { GetStartedReminder } from "@/components/sections/get-started/GetStartedReminder";
+import { GetStartedValueProp } from "@/components/sections/get-started/GetStartedValueProp";
+import { GetStartedPricing } from "@/components/sections/get-started/GetStartedPricing";
+import { GetStartedBooking } from "@/components/sections/get-started/GetStartedBooking";
+import { GetStartedPaths } from "@/components/sections/get-started/GetStartedPaths";
+import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 
 export const metadata: Metadata = {
   title: "Get Started - CampaignAI",
   description:
-    "Join the CampaignAI waitlist. Professional campaign video at a fraction of the agency cost, with built-in compliance and 48-hour delivery.",
+    "Your first video starts today. Professional campaign video in days, not weeks. AI-powered. Human-centered. Built-in compliance.",
 };
 
 export default function GetStartedPage() {
   return (
     <>
-      <GetStartedHero />
-      <GetStartedForm />
-      <ComparisonSection />
-      <GetStartedReminder />
+      <GetStartedValueProp />
+      <GetStartedPricing />
+      <GetStartedBooking />
+      <GetStartedPaths />
+      <GetStartedIncludes />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -46,12 +45,12 @@ export function HeroSection() {
           Every campaign has a story. Tell yours today.
         </h1>
 
-        {/* Subheadline (2.1) */}
+        {/* Subheadline */}
         <p className="font-body font-medium text-lg md:text-2xl text-beacon-white/90 leading-relaxed max-w-[720px] mx-auto mb-8">
           Create professional campaign videos in days, not weeks. AI-powered. Human-centered. Built for local and underfunded campaigns.
         </p>
 
-        {/* Primary CTA (2.6 + addendum B) */}
+        {/* Primary CTA */}
         <div className="mb-4">
           <Button
             variant="crimson"
@@ -70,27 +69,27 @@ export function HeroSection() {
         <div className="mb-8">
           <Button
             variant="blue-outline"
-            href="/get-started"
+            href="/get-started#waitlist"
             className="!border-freedom-blue/60 !text-beacon-white/80 hover:!bg-freedom-blue hover:!text-white"
           >
             Join the waitlist
           </Button>
           <p className="text-beacon-white/50 text-xs mt-2 max-w-sm mx-auto">
-            Our self-serve platform is launching soon. Join the waitlist to be first in line.
+            Be first in line when it launches.
           </p>
         </div>
 
-        {/* Founders' credibility line (2.5) */}
+        {/* Founders' credibility line */}
         <p className="text-beacon-white/60 text-sm max-w-lg mx-auto">
           <span className="font-semibold">Built by a Republican, a Democrat, and an Independent.</span>{" "}
           Because every campaign deserves a fair shot.
         </p>
 
         <a
-          href="#product"
+          href="#pricing"
           className="inline-flex items-center gap-2 mt-6 text-freedom-blue hover:underline transition-colors text-base font-medium"
         >
-          See how it works
+          See pricing
           <ArrowDown className="w-4 h-4 animate-bounce" />
         </a>
       </div>

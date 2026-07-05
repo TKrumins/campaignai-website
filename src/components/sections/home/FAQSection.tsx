@@ -13,7 +13,7 @@ const faqs = [
   {
     question: "Do I need any video or design experience?",
     answer:
-      "None at all. Our guided process walks you through every step \u2014 from scripting to visuals to narration. You make the creative decisions; we handle the production.",
+      "None at all. Our guided process walks you through every step, from scripting to visuals to narration. You make the creative decisions; we handle the production.",
   },
   {
     question: "What if I\u2019m not happy with the result?",
