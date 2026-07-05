@@ -13,15 +13,14 @@ export function ComplianceBridge() {
               Regulations are complicated. That&apos;s our problem, not yours.
             </h2>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px] mb-4">
-              AI in campaigns is new territory, and the rules are different in
-              every state. We monitor disclosure requirements, track pending
-              legislation, and build the right safeguards into every video you
-              produce. Every ad includes clear disclosure label, tailored to
-              meet state-specific laws. Every production reflects the most
-              current compliance requirements we can identify.
+              AI in campaigns is new territory, and the rules differ in every
+              state. We monitor disclosure requirements and track pending
+              legislation so you don&apos;t have to.
             </p>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px]">
-              We do this work so you don&apos;t have to.
+              Every video ships with a clear disclosure label tailored to your
+              state&apos;s laws, built to the most current requirements we can
+              identify.
             </p>
           </div>
 

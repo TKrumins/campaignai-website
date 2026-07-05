@@ -1,4 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Button } from "@/components/ui/Button";
+import { CALENDLY_PURCHASE, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
 export function GetStartedValueProp() {
   return (
@@ -9,11 +11,14 @@ export function GetStartedValueProp() {
             Your first video starts today.
           </h1>
           <p className="text-granite text-xl leading-relaxed">
-            Professional campaign video in days, not weeks.
+            Professional campaign video in days, not weeks. AI-powered, human-finished, with disclosure labels built in.
           </p>
-          <p className="text-granite text-xl leading-relaxed">
-            AI-powered. Human-centered. Built-in compliance: state-specific AI disclosure labels on every video, updated as rules change.
-          </p>
+          <div className="mt-8">
+            <Button variant="crimson" href={CALENDLY_PURCHASE} external className="px-8 py-3 text-base">
+              {CTA_PRIMARY}
+            </Button>
+            <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>
+          </div>
         </ScrollReveal>
       </div>
     </section>

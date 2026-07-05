@@ -18,7 +18,7 @@ const faqs = [
   {
     question: "What if I\u2019m not happy with the result?",
     answer:
-      "Every video includes one revision during production and one back-and-forth with our editors in post-production. We work with you until the final product represents your campaign.",
+      "Every video includes three revisions during production and one more with our editors in post. We work with you until the final product represents your campaign.",
   },
   {
     question: "Is my campaign data safe?",

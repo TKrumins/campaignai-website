@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { America250Module } from "@/components/sections/shared/America250Module";
@@ -60,7 +61,10 @@ export function CondensedPricingDisplay({
               </span>
             </div>
             <p className="text-verdant font-semibold text-base mt-6">
-              Nonprofit or advocacy organization? Mission pricing available. Ask us.
+              Nonprofit or advocacy organization?{" "}
+              <Link href="/for/nonprofits" className="underline underline-offset-2 hover:text-verdant/80">
+                Mission pricing available &rarr;
+              </Link>
             </p>
           </ScrollReveal>
         ) : variant === "mission" ? (
@@ -106,7 +110,10 @@ export function CondensedPricingDisplay({
 
             {/* Nonprofit line */}
             <p className="text-verdant font-semibold text-base mb-6">
-              Nonprofit or advocacy organization? Mission pricing available. Ask us.
+              Nonprofit or advocacy organization?{" "}
+              <Link href="/for/nonprofits" className="underline underline-offset-2 hover:text-verdant/80">
+                Mission pricing available &rarr;
+              </Link>
             </p>
           </ScrollReveal>
         )}

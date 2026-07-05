@@ -10,14 +10,13 @@ export function CommunityHero() {
         </span>
 
         <h1 className="font-heading font-extrabold text-[36px] sm:text-[40px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
-          We&apos;re building this in public. And we want you in the room.
+          Building this in public.
         </h1>
 
         {/* P3 (approved) */}
         <p className="text-beacon-white/90 text-lg md:text-xl leading-relaxed max-w-[720px] mx-auto mb-10">
-          CampaignAI is more than a product. The conversation about AI and
-          campaigns is happening with or without you; this is where it happens
-          with you in it. Join us today.
+          The conversation about AI and campaigns is already happening. This is
+          where it happens with you in the room.
         </p>
 
         <a

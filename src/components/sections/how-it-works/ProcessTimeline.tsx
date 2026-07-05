@@ -12,7 +12,7 @@ import {
 const steps = [
   {
     number: 1,
-    title: "Train your CampaignAI",
+    title: "Teach CampaignAI your story",
     body: "Start with a conversation about your campaign: who you are, why you're running, and who needs to hear it. The platform learns your story, your voice, and your race, and every video you make builds on that foundation.",
   },
   {

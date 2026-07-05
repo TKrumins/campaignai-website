@@ -38,7 +38,7 @@ export const ethicsRefusals = [
 ];
 
 export const ethicsDisclaimer =
-  "All campaigns should confirm compliance with applicable federal, state, and local regulations. CampaignAI works diligently to stay ahead of evolving rules, but we are one company and there may be gaps or delays. We provide tools and guidance, not legal advice. When in doubt, consult with your campaign's legal counsel.";
+  "All campaigns should confirm compliance with applicable federal, state, and local rules. We work to stay ahead of evolving regulations and provide tools and guidance, not legal advice. When in doubt, consult your campaign's legal counsel.";
 
 export function EthicsSection() {
   return (
@@ -48,11 +48,11 @@ export function EthicsSection() {
           <div className="border-l-[6px] border-l-verdant pl-6 md:pl-8 mb-12">
             <SectionLabel text="Ethics-First" color="verdant" />
             <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy mt-3 mb-5">
-              We do the work. So you don&apos;t have to.
+              We do the hard ethical work.
             </h2>
             {/* P1 (approved) */}
             <p className="text-granite text-lg leading-[1.7] max-w-[760px]">
-              We built guardrails before we built features. Here&apos;s what that means in practice.
+              So you can focus on the work only you can do. We built the guardrails before we built the features.
             </p>
           </div>
         </ScrollReveal>
@@ -98,13 +98,13 @@ export function EthicsSection() {
             {ethicsDisclaimer}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-3">
             <Button variant="verdant-outline" href="/ethics">
               Read our full ethics commitment &rarr;
             </Button>
-            <Button variant="verdant-outline" href="/regulations">
-              Learn how we track regulations across all 50 states &rarr;
-            </Button>
+            <a href="/compliance" className="text-freedom-blue text-sm font-semibold hover:underline">
+              How we handle 50-state compliance &rarr;
+            </a>
           </div>
         </ScrollReveal>
       </div>

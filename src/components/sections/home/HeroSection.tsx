@@ -57,7 +57,7 @@ export function HeroSection() {
 
         {/* Subheadline */}
         <p className="font-body font-medium text-lg md:text-2xl text-beacon-white/90 leading-relaxed max-w-[720px] mx-auto mb-8">
-          Create professional campaign videos in days, not weeks. AI-powered. Human-centered. Built for local and underfunded campaigns.
+          Professional campaign videos in days, not weeks. AI-powered, human-finished, and built so any campaign can compete online.
         </p>
 
         {/* Primary CTA — the one primary action in this viewport */}
@@ -92,10 +92,10 @@ export function HeroSection() {
 
         <a
           href="#pricing"
-          className="inline-flex items-center gap-2 mt-6 text-freedom-blue hover:underline transition-colors text-base font-medium"
+          className="inline-flex items-center gap-2 mt-6 text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
         >
           See pricing
-          <ArrowDown className="w-4 h-4 animate-bounce" />
+          <ArrowDown className="w-4 h-4" />
         </a>
       </div>
     </section>

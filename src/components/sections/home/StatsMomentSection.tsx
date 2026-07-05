@@ -6,7 +6,14 @@ import { useEffect, useRef, useState } from "react";
  * E.4 numbers-as-design moment. TRUE product facts only; never usage or
  * vanity metrics. Count-ups freeze at final values under reduced motion.
  */
-const stats = [
+const stats: {
+  value: number;
+  prefix: string;
+  suffix: string;
+  kicker?: string;
+  label: string;
+  color: string;
+}[] = [
   {
     value: 48,
     prefix: "",
@@ -18,7 +25,8 @@ const stats = [
     value: 599,
     prefix: "$",
     suffix: "",
-    label: "Starting price for candidates this cycle",
+    kicker: "Starting at",
+    label: "per video for candidates this cycle",
     color: "text-freedom-blue",
   },
   {
@@ -114,8 +122,11 @@ export function StatsMomentSection() {
     <section className="py-16 md:py-20 bg-white">
       <div ref={ref} className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map(({ value, prefix, suffix, label, color }) => (
+          {stats.map(({ value, prefix, suffix, kicker, label, color }) => (
             <div key={label} className="text-center">
+              {kicker && (
+                <p className="text-slate text-xs font-semibold uppercase tracking-wider mb-1">{kicker}</p>
+              )}
               <p className={`font-heading font-extrabold text-4xl md:text-5xl ${color} mb-2`}>
                 <CountUp
                   target={value}

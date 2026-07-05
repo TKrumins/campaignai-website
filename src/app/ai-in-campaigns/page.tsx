@@ -77,6 +77,12 @@ export default function AiInCampaignsPage() {
             >
               Visit the Substack Community &rarr;
             </Link>
+            <p className="mt-6 text-sm text-slate">
+              Running a campaign now?{" "}
+              <Link href="/get-started" className="text-freedom-blue font-semibold hover:underline">
+                See how CampaignAI builds this into your video &rarr;
+              </Link>
+            </p>
           </ScrollReveal>
         </div>
       </section>

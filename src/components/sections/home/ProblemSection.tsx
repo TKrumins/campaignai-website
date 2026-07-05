@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { Button } from "@/components/ui/Button";
 import { DollarSign, Video, UserX, Lock } from "lucide-react";
+import { CALENDLY_PURCHASE, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
 const stats = [
   { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle", icon: DollarSign, color: "text-liberty-crimson" },
@@ -45,17 +48,23 @@ export function ProblemSection() {
 
         <ScrollReveal>
           <p className="text-center text-lg font-semibold max-w-[700px] mx-auto mb-6">
-            We make professional video for $1,999. Candidates pay $599. Agencies charge $10,000+.
-          </p>
-          <p className="text-granite text-center text-lg font-semibold max-w-[600px] mx-auto">
-            Your story matters.
-            <br />
-            You shouldn&apos;t have to pay a premium just to tell it.
+            Our professional video starts at $1,999. For candidates, starting at $599. Agencies can charge $10,000 or more.
           </p>
           {/* P5 (approved) */}
-          <p className="text-granite text-center text-lg max-w-[600px] mx-auto mt-6">
+          <p className="text-granite text-center text-lg max-w-[600px] mx-auto mb-8">
             None of this is your fault. The tools were priced for someone else. That&apos;s the part we fixed.
           </p>
+          <div className="text-center">
+            <Button variant="crimson" href={CALENDLY_PURCHASE} external className="px-8 py-3">
+              {CTA_PRIMARY}
+            </Button>
+            <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>
+            <p className="mt-4 text-sm">
+              <Link href="/get-started" className="text-freedom-blue font-semibold hover:underline">
+                Find the fit for your race &rarr;
+              </Link>
+            </p>
+          </div>
         </ScrollReveal>
       </div>
     </section>

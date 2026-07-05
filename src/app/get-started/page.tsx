@@ -4,6 +4,7 @@ import { CondensedPricingDisplay } from "@/components/sections/shared/CondensedP
 import { GetStartedBooking } from "@/components/sections/get-started/GetStartedBooking";
 import { GetStartedPaths } from "@/components/sections/get-started/GetStartedPaths";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
+import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 
 export const metadata: Metadata = {
   title: "Get Started - CampaignAI",
@@ -19,6 +20,7 @@ export default function GetStartedPage() {
       <GetStartedBooking />
       <GetStartedPaths />
       <GetStartedIncludes />
+      <BookingBanner headline="Your first video starts with one call." />
     </>
   );
 }

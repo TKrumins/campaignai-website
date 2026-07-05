@@ -8,7 +8,7 @@ const candidateTiers = [
   {
     title: "Local Candidates",
     description:
-      "City council, school board, county races. The campaigns closest to your community, with the tightest budgets and the most at stake for the people you serve.",
+      "Mayor, city council, sheriff, school board, county races. The campaigns closest to your community, with the tightest budgets and the most at stake for the people you serve.",
     href: "/for/candidates",
     intent: "I'm running for office",
   },
@@ -69,7 +69,7 @@ export function AudienceSection() {
           <div className="text-center max-w-3xl mx-auto mb-14">
             <SectionLabel text="Who We Serve" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-              Tactical content for campaigns of all shapes and sizes.
+              Video built for your race.
             </h2>
           </div>
         </ScrollReveal>

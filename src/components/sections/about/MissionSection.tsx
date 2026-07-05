@@ -15,17 +15,17 @@ export function MissionSection() {
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-beacon-white tracking-[-1px] mb-6 md:whitespace-nowrap">
             Democracy shouldn&apos;t have a paywall.
           </h2>
-          <p className="text-beacon-white/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-beacon-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
             You have the story. You have the passion. You shouldn&apos;t need a
-            $10,000 agency budget to share it with voters.
-            <br />
-            <br />
-            CampaignAI gives you professional video, built-in compliance through
-            state-specific AI disclosure labels updated as rules change, and
-            48-hour post-production delivery once you submit, so you can focus
-            on what matters: your community, your message, your race.
+            five-figure agency budget to share it with voters.
           </p>
-          <div className="mb-6">
+          <p className="text-beacon-white/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+            From a first-time sheriff&apos;s run to a statewide campaign,
+            professional video shouldn&apos;t hinge on your budget. We build it
+            with compliance in and deliver most projects within 48 hours of
+            submission.
+          </p>
+          <div className="mb-4">
             <Button
               variant="crimson"
               href={CALENDLY_PURCHASE}
@@ -36,16 +36,15 @@ export function MissionSection() {
             </Button>
             <p className="text-beacon-white/60 text-sm mt-2">{CTA_MICROCOPY}</p>
           </div>
-          <div className="mb-10">
-            <Button
-              variant="blue-outline"
+          <p className="mb-10 text-sm">
+            <a
               href="/get-started#waitlist"
-              className="!border-freedom-blue/60 !text-beacon-white/90 hover:!bg-freedom-blue hover:!text-white"
+              className="text-beacon-white/70 underline underline-offset-4 hover:text-beacon-white transition-colors"
             >
-              Join the waitlist
-            </Button>
-            <p className="text-beacon-white/50 text-xs mt-2">{WAITLIST_SHORT}</p>
-          </div>
+              Not ready to buy? Join the waitlist &rarr;
+            </a>{" "}
+            <span className="text-beacon-white/45">{WAITLIST_SHORT}</span>
+          </p>
           {/* P8 (approved) */}
           <p className="text-beacon-white/80 text-base font-medium">
             We&apos;re building this in the open, in South Carolina, across the

@@ -27,7 +27,7 @@ const allBadges = [
   },
   {
     icon: UserCheck,
-    label: "Human-in-the-Loop",
+    label: "Human-Reviewed",
     tooltip:
       "Every video is reviewed and finished by a real person before it reaches you.",
   },
