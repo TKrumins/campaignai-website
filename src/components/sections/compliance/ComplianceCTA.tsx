@@ -10,13 +10,20 @@ export function ComplianceCTA() {
             You focus on your race. We&apos;ll handle the rules.
           </h2>
           <p className="text-beacon-white/85 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Join the waitlist. Every video includes state-specific disclosure
+            Every video includes state-specific disclosure
             labels, human editorial review, and the most current compliance
             guidance we can provide.
           </p>
-          <Button variant="crimson" href="/get-started">
-            Join the waitlist &rarr;
+          <Button
+            variant="crimson"
+            href="https://calendly.com/campaignai/campaignai-purchase-call"
+            external
+          >
+            Buy your first video &rarr;
           </Button>
+          <p className="text-beacon-white/60 text-sm mt-2">
+            Book a 30-minute call to get started.
+          </p>
         </ScrollReveal>
       </div>
     </section>

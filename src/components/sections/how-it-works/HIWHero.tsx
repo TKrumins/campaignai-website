@@ -15,9 +15,16 @@ export function HIWHero() {
           content, your voice, your story. Craft professional-quality campaign
           ads faster, more affordably, and with compliance in mind.
         </p>
-        <Button variant="crimson" href="/get-started">
-          Tell your story &rarr;
+        <Button
+          variant="crimson"
+          href="https://calendly.com/campaignai/campaignai-purchase-call"
+          external
+        >
+          Buy your first video &rarr;
         </Button>
+        <p className="text-beacon-white/60 text-sm mt-2">
+          Book a 30-minute call to get started.
+        </p>
       </div>
     </section>
   );

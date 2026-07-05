@@ -27,11 +27,10 @@ export function WaitlistFormSection() {
         <ScrollReveal>
           <div className="text-center mb-6">
             <h2 className="font-heading font-bold text-2xl md:text-3xl text-beacon-white mb-3">
-              Join the waitlist.
+              Join the waitlist for our self-serve platform.
             </h2>
             <p className="text-beacon-white/80 text-base">
-              We onboard campaigns in the order they join. The sooner
-              you&apos;re on the list, the sooner your story gets told.
+              Our self-serve platform is launching soon. Join the waitlist to be first in line.
             </p>
           </div>
           <form
@@ -50,7 +49,7 @@ export function WaitlistFormSection() {
               type="submit"
               className="btn-hover bg-liberty-crimson px-6 py-3 rounded-full text-white text-sm font-semibold whitespace-nowrap"
             >
-              Get early access &rarr;
+              Join the waitlist &rarr;
             </button>
           </form>
         </ScrollReveal>

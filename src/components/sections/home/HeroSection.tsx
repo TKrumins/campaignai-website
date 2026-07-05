@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { HeroEmailCapture } from "@/components/forms/HeroEmailCapture";
 import { ArrowDown } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -45,17 +46,49 @@ export function HeroSection() {
           Every campaign has a story. Tell yours today.
         </h1>
 
-        <p className="text-beacon-white/90 text-lg md:text-xl leading-relaxed max-w-[600px] mx-auto mb-6">
-          Professional video, strategic messaging, and built-in
-          compliance -- finally built for local and underfunded
-          campaigns, not retrofitted for them.
+        {/* Subheadline (2.1) */}
+        <p className="font-body font-medium text-lg md:text-2xl text-beacon-white/90 leading-relaxed max-w-[720px] mx-auto mb-8">
+          Create professional campaign videos in days, not weeks. AI-powered. Human-centered. Built for local and underfunded campaigns.
         </p>
 
-        <HeroEmailCapture />
+        {/* Primary CTA (2.6 + addendum B) */}
+        <div className="mb-4">
+          <Button
+            variant="crimson"
+            href="https://calendly.com/campaignai/campaignai-purchase-call"
+            external
+            className="px-8 py-3 text-base"
+          >
+            Buy your first video &rarr;
+          </Button>
+          <p className="text-beacon-white/70 text-sm mt-2">
+            Book a 30-minute call to get started.
+          </p>
+        </div>
+
+        {/* Secondary CTA */}
+        <div className="mb-8">
+          <Button
+            variant="blue-outline"
+            href="/get-started"
+            className="!border-freedom-blue/60 !text-beacon-white/80 hover:!bg-freedom-blue hover:!text-white"
+          >
+            Join the waitlist
+          </Button>
+          <p className="text-beacon-white/50 text-xs mt-2 max-w-sm mx-auto">
+            Our self-serve platform is launching soon. Join the waitlist to be first in line.
+          </p>
+        </div>
+
+        {/* Founders' credibility line (2.5) */}
+        <p className="text-beacon-white/60 text-sm max-w-lg mx-auto">
+          <span className="font-semibold">Built by a Republican, a Democrat, and an Independent.</span>{" "}
+          Because every campaign deserves a fair shot.
+        </p>
 
         <a
           href="#product"
-          className="inline-flex items-center gap-2 mt-4 text-freedom-blue hover:underline transition-colors text-base font-medium"
+          className="inline-flex items-center gap-2 mt-6 text-freedom-blue hover:underline transition-colors text-base font-medium"
         >
           See how it works
           <ArrowDown className="w-4 h-4 animate-bounce" />

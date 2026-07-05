@@ -98,10 +98,9 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
           You&apos;re on the list.
         </h3>
         <p className="text-slate text-sm max-w-md mx-auto">
-          You&apos;ll receive product intro emails beginning at sign-up. Once
-          the waitlist clears, we&apos;ll send you a personal email with
-          everything you need to produce your first video, including pricing
-          tailored to your campaign.
+          You&apos;re on the waitlist for our self-serve platform and signed up
+          for updates. We&apos;ll let you know when it launches, along with
+          product news and tips along the way.
         </p>
       </div>
     );

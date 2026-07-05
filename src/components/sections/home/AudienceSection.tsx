@@ -126,11 +126,15 @@ export function AudienceSection() {
           <div className="text-center mt-14">
             <Button
               variant="crimson"
-              href="/get-started"
+              href="https://calendly.com/campaignai/campaignai-purchase-call"
+              external
               className="px-8 py-3 text-base"
             >
-              Tell your story &rarr;
+              Buy your first video &rarr;
             </Button>
+            <p className="text-slate text-sm mt-2">
+              Book a 30-minute call to get started.
+            </p>
           </div>
         </ScrollReveal>
       </div>

@@ -17,9 +17,16 @@ export function SocialProofSection() {
               back soon for real stories from real races. Or better yet, be one
               of them.
             </p>
-            <Button variant="crimson" href="#waitlist-form">
-              Tell your story &rarr;
+            <Button
+              variant="crimson"
+              href="https://calendly.com/campaignai/campaignai-purchase-call"
+              external
+            >
+              Buy your first video &rarr;
             </Button>
+            <p className="text-granite text-sm mt-2">
+              Book a 30-minute call to get started.
+            </p>
           </div>
         </ScrollReveal>
       </div>

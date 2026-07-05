@@ -95,26 +95,26 @@ export function Navbar() {
                 </Link>
               )
             )}
-            <Link
-              href="/get-started"
-              className="btn-hover inline-flex items-center rounded-full patriot-gradient p-[3px] shadow-md"
+            <a
+              href="https://calendly.com/campaignai/campaignai-purchase-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-hover inline-flex items-center rounded-full bg-liberty-crimson px-6 py-2.5 shadow-md text-white text-sm font-semibold"
             >
-              <span className="inline-flex items-center px-6 py-2.5 rounded-full bg-dawn-frost text-regal-navy text-sm font-semibold">
-                Join the waitlist <span className="ml-1 text-regal-navy">&rarr;</span>
-              </span>
-            </Link>
+              Buy your first video <span className="ml-1">&rarr;</span>
+            </a>
           </div>
 
           {/* Mobile: CTA + hamburger */}
           <div className="flex md:hidden items-center gap-3">
-            <Link
-              href="/get-started"
-              className="btn-hover inline-flex items-center rounded-full patriot-gradient p-[3px] shadow-md"
+            <a
+              href="https://calendly.com/campaignai/campaignai-purchase-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-hover inline-flex items-center rounded-full bg-liberty-crimson px-4 py-1.5 shadow-md text-white text-xs font-semibold"
             >
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-dawn-frost text-regal-navy text-xs font-semibold">
-                Join the waitlist <span className="ml-1">&rarr;</span>
-              </span>
-            </Link>
+              Buy a video <span className="ml-1">&rarr;</span>
+            </a>
             <button
               className={`transition-colors ${menuIconColor}`}
               onClick={() => setMobileOpen(!mobileOpen)}

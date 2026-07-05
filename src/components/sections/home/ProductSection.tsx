@@ -41,7 +41,7 @@ export function ProductSection() {
               Professional campaign video. Delivered in 48 hours.
             </h2>
             <p className="text-granite text-lg leading-[1.7]">
-              With each video, your voice gets sharper, your brand gets
+              Built for local and underfunded campaigns, not retrofitted for them. With each video, your voice gets sharper, your brand gets
               clearer, and your voters understand you better. Story by story.
               Chapter by chapter. With you at the center.
             </p>

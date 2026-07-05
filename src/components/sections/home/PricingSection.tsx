@@ -76,9 +76,16 @@ export function PricingSection() {
         {/* Single CTA */}
         <ScrollReveal delay={320}>
           <div className="text-center mb-8">
-            <Button variant="crimson" href="#waitlist-form">
-              Join the waitlist &rarr;
+            <Button
+              variant="crimson"
+              href="https://calendly.com/campaignai/campaignai-purchase-call"
+              external
+            >
+              Buy your first video &rarr;
             </Button>
+            <p className="text-slate text-sm mt-2">
+              Book a 30-minute call to get started.
+            </p>
           </div>
         </ScrollReveal>
 
