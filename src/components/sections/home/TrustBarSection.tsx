@@ -6,10 +6,12 @@ import {
   Users,
   UserCheck,
   Sparkles,
+  Scale,
+  Lock,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
-const heroBadges = [
+const allBadges = [
   {
     icon: ShieldCheck,
     label: "Meaningful Disclosure Framework",
@@ -33,6 +35,18 @@ const heroBadges = [
     label: "AI Only Where It Helps",
     tooltip:
       "We design our process to use AI only where it genuinely helps, which keeps our energy footprint lower and our work faster.",
+  },
+  {
+    icon: Scale,
+    label: "FEC & State Compliance Aware",
+    tooltip:
+      "We track the rules that apply to campaign advertising so your video starts on the right side of them.",
+  },
+  {
+    icon: Lock,
+    label: "Privacy-First",
+    tooltip:
+      "Your campaign's information stays with your campaign. We never share it across campaigns.",
   },
 ];
 
@@ -115,7 +129,7 @@ export function TrustBarSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-8">
         <ScrollReveal>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {heroBadges.map((badge) => (
+            {allBadges.map((badge) => (
               <BadgeWithTooltip key={badge.label} {...badge} />
             ))}
           </div>
