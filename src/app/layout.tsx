@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "Create professional campaign videos at a fraction of the cost. CampaignAI helps political campaigns and organizations tell their stories with AI-powered video production.",
   icons: {
-    icon: "/logos/favicon-dark-background.svg",
+    icon: "/assets/logos/favicon-dark-background.svg",
   },
   openGraph: {
     type: "website",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with human-edited quality, built-in compliance, and 48-hour delivery.",
     images: [
       {
-        url: "/hero-bg.png",
+        url: "/assets/images/hero-bg.png",
         width: 1200,
         height: 630,
         alt: "CampaignAI - Campaign-ready video production",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "CampaignAI - Professional Campaign Video for Political Campaigns",
     description:
       "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with built-in compliance.",
-    images: ["/hero-bg.png"],
+    images: ["/assets/images/hero-bg.png"],
   },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://campaignai.us"

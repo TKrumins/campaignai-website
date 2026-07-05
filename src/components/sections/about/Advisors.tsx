@@ -15,7 +15,7 @@ export function Advisors() {
           <div className="bg-dawn-frost rounded-2xl p-8 md:p-10 flex flex-col sm:flex-row items-center gap-6">
             <div className="w-[120px] h-[120px] rounded-full overflow-hidden shrink-0">
               <Image
-                src="/profile-pictures/Andrew-Yang.png"
+                src="/assets/profile-pictures/Andrew-Yang.png"
                 alt="Andrew Yang"
                 width={120}
                 height={120}

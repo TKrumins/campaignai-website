@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 
 const founders = [
   {
-    photo: "/profile-pictures/Tom-Krumins.png",
+    photo: "/assets/profile-pictures/Tom-Krumins.png",
     name: "Tom Krumins",
     title: "SC Forward Party Advisory Board.",
     description: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
@@ -13,7 +13,7 @@ const founders = [
     partyColor: "bg-purple-600",
   },
   {
-    photo: "/profile-pictures/Jermaine-Johnson.png",
+    photo: "/assets/profile-pictures/Jermaine-Johnson.png",
     name: "Jermaine Johnson",
     title: "SC State Representative. Gubernatorial Candidate.",
     description: "Deacon. Educator. A true grassroots leader.",
@@ -21,7 +21,7 @@ const founders = [
     partyColor: "bg-blue-600",
   },
   {
-    photo: "/profile-pictures/Brandon-Guffey.png",
+    photo: "/assets/profile-pictures/Brandon-Guffey.png",
     name: "Brandon Guffey",
     title: "SC State Representative",
     description: "Child safety advocate. Business owner. Father on a mission.",
@@ -31,7 +31,7 @@ const founders = [
 ];
 
 const advisor = {
-  photo: "/profile-pictures/Andrew-Yang.png",
+  photo: "/assets/profile-pictures/Andrew-Yang.png",
   name: "Andrew Yang",
   title: "Former U.S. Presidential Candidate \u00B7 Tech Entrepreneur \u00B7 AI Thought Leader",
 };

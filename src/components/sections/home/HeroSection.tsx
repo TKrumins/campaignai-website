@@ -9,7 +9,7 @@ export function HeroSection() {
       {/* Background: American flag image with navy overlay */}
       <div className="absolute inset-[-5%] animate-flag-wave">
         <Image
-          src="/hero-bg.png"
+          src="/assets/images/hero-bg.png"
           alt=""
           fill
           priority

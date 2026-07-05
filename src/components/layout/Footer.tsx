@@ -12,7 +12,7 @@ export function Footer() {
           <div>
             <Link href="/" className="inline-block">
               <Image
-                src="/logos/logo-dark-background.svg"
+                src="/assets/logos/logo-dark-background.svg"
                 alt="CampaignAI"
                 width={140}
                 height={32}

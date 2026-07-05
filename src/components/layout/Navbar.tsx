@@ -63,7 +63,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-24">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logos/logo-dark-background.svg"
+              src="/assets/logos/logo-dark-background.svg"
               alt="CampaignAI"
               width={160}
               height={36}
