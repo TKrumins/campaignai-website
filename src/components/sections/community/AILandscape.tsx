@@ -2,7 +2,6 @@
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { SubstackCapture } from "@/components/forms/SubstackCapture";
 import {
   Brain,
   FileText,
@@ -312,8 +311,13 @@ export function AILandscape() {
                 It&apos;s whether we shape how it&apos;s used, together.
               </span>
             </p>
-            <div className="max-w-md mx-auto mt-8">
-              <SubstackCapture variant="light" buttonText="Subscribe" />
+            <div className="mt-8">
+              <a
+                href="#subscribe"
+                className="btn-hover inline-flex items-center justify-center text-center rounded-full bg-regal-navy px-6 py-3 text-white text-sm font-semibold"
+              >
+                Join the conversation &rarr;
+              </a>
             </div>
           </div>
         </ScrollReveal>

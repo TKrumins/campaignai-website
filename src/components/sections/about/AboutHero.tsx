@@ -1,8 +1,11 @@
-import { SubstackCapture } from "@/components/forms/SubstackCapture";
+import { SOCIAL_SUBSTACK } from "@/lib/constants";
 
 export function AboutHero() {
   return (
-    <section className="relative bg-regal-navy min-h-[70vh] flex items-center justify-center pt-24">
+    <section
+      data-hero
+      className="relative bg-regal-navy min-h-[70vh] flex items-center justify-center pt-24"
+    >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center py-20">
         <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           About
@@ -14,9 +17,14 @@ export function AboutHero() {
           CampaignAI was founded by a multi-partisan team who recognize that
           building better AI is more important than any one partisan victory.
         </p>
-        <div className="max-w-lg mx-auto mb-4">
-          <SubstackCapture variant="dark" buttonText="Subscribe" />
-        </div>
+        <a
+          href={SOCIAL_SUBSTACK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-hover inline-flex items-center justify-center text-center rounded-full border-2 border-beacon-white/60 px-6 py-3 text-beacon-white text-sm font-semibold hover:bg-beacon-white hover:text-regal-navy transition-colors mb-4"
+        >
+          Join us on Substack &rarr;
+        </a>
         <p className="text-beacon-white/50 text-xs">
           Follow us on Substack to learn about the team and our approach to building.
         </p>

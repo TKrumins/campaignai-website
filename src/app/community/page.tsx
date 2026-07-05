@@ -7,7 +7,7 @@ import { UpcomingContent } from "@/components/sections/community/UpcomingContent
 import { CommunityFinalCTA } from "@/components/sections/community/CommunityFinalCTA";
 
 export const metadata: Metadata = {
-  title: "Our Community",
+  title: "Substack Community",
   description:
     "Deep dives on AI and democracy. Practical campaign guides. Community discussions and polls. Join the conversation about the responsible use of AI in political campaigns.",
 };

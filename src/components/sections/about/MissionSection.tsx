@@ -1,5 +1,11 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import {
+  CALENDLY_PURCHASE,
+  CTA_PRIMARY,
+  CTA_MICROCOPY,
+  WAITLIST_SHORT,
+} from "@/lib/constants";
 
 export function MissionSection() {
   return (
@@ -19,13 +25,32 @@ export function MissionSection() {
             48-hour post-production delivery once you submit, so you can focus
             on what matters: your community, your message, your race.
           </p>
-          <Button
-            variant="blue-outline"
-            href="/get-started#waitlist"
-            className="!border-freedom-blue/60 !text-beacon-white/90 hover:!bg-freedom-blue hover:!text-white"
-          >
-            Join the waitlist &rarr;
-          </Button>
+          <div className="mb-6">
+            <Button
+              variant="crimson"
+              href={CALENDLY_PURCHASE}
+              external
+              className="px-8 py-3 text-base"
+            >
+              {CTA_PRIMARY}
+            </Button>
+            <p className="text-beacon-white/60 text-sm mt-2">{CTA_MICROCOPY}</p>
+          </div>
+          <div className="mb-10">
+            <Button
+              variant="blue-outline"
+              href="/get-started#waitlist"
+              className="!border-freedom-blue/60 !text-beacon-white/90 hover:!bg-freedom-blue hover:!text-white"
+            >
+              Join the waitlist
+            </Button>
+            <p className="text-beacon-white/50 text-xs mt-2">{WAITLIST_SHORT}</p>
+          </div>
+          {/* P8 (approved) */}
+          <p className="text-beacon-white/80 text-base font-medium">
+            We&apos;re building this in the open, in South Carolina, across the
+            aisle. Come see for yourself.
+          </p>
         </ScrollReveal>
       </div>
     </section>

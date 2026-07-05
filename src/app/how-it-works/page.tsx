@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HIWHero } from "@/components/sections/how-it-works/HIWHero";
 import { ProcessTimeline } from "@/components/sections/how-it-works/ProcessTimeline";
+import { ScriptDemo } from "@/components/sections/how-it-works/ScriptDemo";
 import { GrowthSection } from "@/components/sections/home/GrowthSection";
 import { ComplianceBridge } from "@/components/sections/how-it-works/ComplianceBridge";
 
@@ -18,6 +19,7 @@ export default function HowItWorksPage() {
     <>
       <HIWHero />
       <ProcessTimeline />
+      <ScriptDemo />
       <GrowthSection />
       <ComplianceBridge />
       <HIWFAQ />

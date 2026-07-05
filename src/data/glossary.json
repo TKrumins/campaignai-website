@@ -1,0 +1,170 @@
+[
+  {
+    "term": "Voice cloning",
+    "plainDefinition": "Software that learns what a person's voice sounds like from recordings, then generates new speech in that voice saying things the person may never have said.",
+    "whyItMatters": "A cloned voice can record a new radio ad in minutes, or it can put words in a real person's mouth. The technology is identical; the disclosure and consent are what separate a tool from a deception.",
+    "howToSpot": "Listen for flat emotional range, odd pacing around names and numbers, and breathing that never varies. When a clip sounds slightly too clean for a phone line or a rally, ask where the original recording came from.",
+    "category": "Video",
+    "iconKey": "waveform"
+  },
+  {
+    "term": "Deepfake",
+    "plainDefinition": "A video or audio clip manipulated by AI so a real person appears to say or do something they never said or did.",
+    "whyItMatters": "Deepfakes target the basic trust voters place in their own eyes and ears. Even a clumsy fake can spread for hours before a correction catches up, and the correction never travels as far as the fake.",
+    "howToSpot": "Check the edges: hairlines, glasses, teeth, and hands glitch first. Look for mismatched lighting between face and background, and search for the original clip. If a moment seems perfectly designed to outrage you, verify before you share.",
+    "category": "Video",
+    "iconKey": "split-frame"
+  },
+  {
+    "term": "Synthetic media",
+    "plainDefinition": "Any image, audio, or video created or substantially altered by AI rather than captured by a camera or microphone.",
+    "whyItMatters": "Synthetic media is not automatically deceptive. An animated explainer is synthetic; so is a fabricated scandal clip. What matters is whether the audience is told what was created and what was captured.",
+    "howToSpot": "Look for disclosure labels, check whether the scene could physically have been filmed, and notice textures: skin, water, text, and crowds are hard for AI to render consistently.",
+    "category": "Video",
+    "iconKey": "morph"
+  },
+  {
+    "term": "Captured vs. created media",
+    "plainDefinition": "The plain-language line between footage recorded from real life (captured) and imagery generated or heavily altered by software (created).",
+    "whyItMatters": "This distinction is the foundation of honest AI disclosure. Voters do not need a technical breakdown; they need to know which parts of what they are watching happened in front of a camera.",
+    "howToSpot": "Well-labeled ads increasingly say it outright: \"Real event footage\" or \"AI-generated imagery.\" When a label is missing, ask whether the moment on screen could have been filmed at all.",
+    "category": "Video",
+    "iconKey": "split-frame"
+  },
+  {
+    "term": "Generative AI",
+    "plainDefinition": "AI systems that produce new content, such as text, images, audio, or video, from a prompt, based on patterns learned from enormous amounts of existing material.",
+    "whyItMatters": "Generative AI collapses the cost of producing campaign content of every kind. That levels the field for small campaigns and simultaneously lowers the cost of producing misleading content at scale.",
+    "howToSpot": "You usually cannot spot it from the output alone anymore. Look for disclosure, provenance information, and the publisher's track record instead of trusting your eyes.",
+    "category": "Video",
+    "iconKey": "morph"
+  },
+  {
+    "term": "AI narration",
+    "plainDefinition": "A computer-generated voice reading a script, used in place of a human voiceover artist.",
+    "whyItMatters": "AI narration makes professional-sounding video affordable for campaigns that could never hire studio talent. Used with disclosure, it is a production tool; used to imitate a specific real person, it becomes voice cloning.",
+    "howToSpot": "Generic AI narration sounds polished but placeless: no regional accent, perfectly even emphasis. Many honest ads now disclose it directly in the credits or the spoken track.",
+    "category": "Video",
+    "iconKey": "waveform"
+  },
+  {
+    "term": "Script assistance",
+    "plainDefinition": "Using AI to help draft, tighten, or restructure the words of an ad, speech, or post, with a human deciding what is actually said.",
+    "whyItMatters": "This is one of the most common and least alarming campaign uses of AI: a drafting partner. The judgment calls, the claims, and the promises still belong to the humans who approve the script.",
+    "howToSpot": "You generally cannot, and that is fine. Watch for whether claims are accurate and whether a real person stands behind them, not whether software helped with the wording.",
+    "category": "Video",
+    "iconKey": "script"
+  },
+  {
+    "term": "Microtargeting",
+    "plainDefinition": "Splitting an audience into very narrow slices, sometimes down to a few hundred people, and showing each slice a message tailored specifically to it.",
+    "whyItMatters": "Tailored messages can be relevance or manipulation. When every slice sees a different promise and nobody sees the whole picture, public accountability gets harder.",
+    "howToSpot": "Use the platform's own ad transparency tools: \"Why am I seeing this ad?\" and public ad libraries show how narrowly an ad was aimed and by whom.",
+    "category": "Outreach",
+    "iconKey": "targeting-grid"
+  },
+  {
+    "term": "Lookalike audience",
+    "plainDefinition": "A targeting technique where a platform finds new people who statistically resemble a group you already know, such as your existing donors.",
+    "whyItMatters": "Lookalikes are how small donor lists become large fundraising programs. They also mean you can be targeted because of what strangers who resemble you have done, not anything you chose.",
+    "howToSpot": "If you donated to one cause and suddenly see appeals from many similar ones, a lookalike model probably found you. Platform ad-transparency panels sometimes say an advertiser used a customer list to reach you.",
+    "category": "Fundraising",
+    "iconKey": "targeting-grid"
+  },
+  {
+    "term": "Voter file",
+    "plainDefinition": "The public record of registered voters, including party registration and election turnout history, that campaigns license, clean, and enrich with additional data.",
+    "whyItMatters": "The voter file is the backbone of almost every campaign's outreach on every side. Knowing it exists explains a lot: campaigns know whether you vote, and they spend accordingly.",
+    "howToSpot": "You cannot see the file itself, but mail addressed to the registered voter in your household, or door-knockers with your first name on a clipboard, are the voter file at work.",
+    "category": "Data",
+    "iconKey": "database"
+  },
+  {
+    "term": "Audience modeling",
+    "plainDefinition": "Statistical scoring that predicts things about individual voters, such as how likely they are to turn out, persuadable they are, or care about a given issue.",
+    "whyItMatters": "Models decide who gets a knock, a call, or an ad, and who gets ignored. A wrong score is invisible to the person it mislabels, and being ignored by campaigns is a real civic cost.",
+    "howToSpot": "You mostly experience it as absence or intensity: a flood of attention in a close race if you score as persuadable, silence if you do not.",
+    "category": "Data",
+    "iconKey": "pulse"
+  },
+  {
+    "term": "A/B testing",
+    "plainDefinition": "Sending two or more versions of the same message to samples of an audience, measuring which performs better, and then sending the winner to everyone else.",
+    "whyItMatters": "Testing is standard practice in fundraising email and ads across the spectrum. It quietly optimizes for what makes people click and give, which is often urgency and alarm, not accuracy.",
+    "howToSpot": "Compare notes with a friend on the same list: different subject lines for the same email are a test in progress. So are near-identical ads with one changed sentence.",
+    "category": "Fundraising",
+    "iconKey": "split-test"
+  },
+  {
+    "term": "Programmatic ads",
+    "plainDefinition": "Advertising bought and placed by software in automated auctions, deciding in milliseconds which ad you see on which page or app.",
+    "whyItMatters": "Most digital political advertising moves through these automated markets. Speed and scale make oversight hard: an ad can reach millions before a human reviewer ever looks at it.",
+    "howToSpot": "Political ads that follow you across unrelated websites and apps are programmatic. Ad libraries and the small \"i\" or \"AdChoices\" icons show who paid.",
+    "category": "Outreach",
+    "iconKey": "broadcast"
+  },
+  {
+    "term": "Recommendation algorithm",
+    "plainDefinition": "The software that decides which posts, videos, or channels a platform suggests to you next, optimizing for whatever keeps you engaged.",
+    "whyItMatters": "Campaign content lives or dies by these systems, so campaigns produce what the algorithm rewards. That shapes political speech itself, usually toward the emotional and the brief.",
+    "howToSpot": "Notice when you never searched for something but keep seeing more of it. \"Suggested for you\" and autoplay queues are the algorithm speaking.",
+    "category": "Outreach",
+    "iconKey": "feed"
+  },
+  {
+    "term": "Algorithmic feed",
+    "plainDefinition": "A social media timeline ordered by predicted engagement rather than by time, so software chooses what you see first and what you never see at all.",
+    "whyItMatters": "Two neighbors following identical accounts can see entirely different campaigns. The feed is each voter's private front page, assembled by prediction, and no editor is accountable for it.",
+    "howToSpot": "If posts appear out of chronological order, or a friend saw an announcement you never did, you are in an algorithmic feed. Many platforms hide a \"latest\" or \"following\" toggle that shows the difference.",
+    "category": "Outreach",
+    "iconKey": "feed"
+  },
+  {
+    "term": "Automated outreach",
+    "plainDefinition": "Software that sends texts, emails, or social replies to large lists on a schedule or trigger, with message content queued up in advance by the campaign.",
+    "whyItMatters": "Automation is how a five-person campaign talks to fifty thousand voters. It also means the \"personal\" message you received was personal for thousands of people at once.",
+    "howToSpot": "Instant replies at odd hours, your first name inserted a little too mechanically, and texts from a rotating set of unfamiliar numbers are hallmarks of automation.",
+    "category": "Outreach",
+    "iconKey": "broadcast"
+  },
+  {
+    "term": "Chatbot",
+    "plainDefinition": "A program that holds text conversations automatically, answering questions or making an ask, sometimes while presenting itself like a human volunteer.",
+    "whyItMatters": "A well-labeled chatbot answering polling-place questions at 2am is a genuine service. The ethical line is impersonation: voters deserve to know when they are talking to software.",
+    "howToSpot": "Instant, perfectly typed responses to anything you send, graceful dodges of unexpected questions, and a suspicious eagerness to return to the script suggest a bot. Honest ones say so when asked directly.",
+    "category": "Outreach",
+    "iconKey": "chat"
+  },
+  {
+    "term": "Sentiment analysis",
+    "plainDefinition": "Software that reads large volumes of posts, comments, or replies and estimates how people feel about a candidate or issue.",
+    "whyItMatters": "Campaigns use it as a real-time focus group. It is cheap and fast, but it reads the loudest voices online, which are not the same as the electorate.",
+    "howToSpot": "You will not see it directly. Its fingerprints are rapid message changes after an online storm, or talking points that answer yesterday's trending complaint.",
+    "category": "Data",
+    "iconKey": "pulse"
+  },
+  {
+    "term": "AI disclosure label",
+    "plainDefinition": "The on-screen or spoken notice telling the audience that AI was used to create or alter part of what they are seeing or hearing.",
+    "whyItMatters": "Labels are the difference between a production technique and a deception. A meaningful label says what was AI-made and what was real, not just a generic stamp in tiny print.",
+    "howToSpot": "Look for wording in the ad itself: a lower-third line, a spoken sentence, or an end card. Several states require specific wording for political ads that use synthetic media.",
+    "category": "Video",
+    "iconKey": "label"
+  },
+  {
+    "term": "Provenance",
+    "plainDefinition": "The verifiable history of a piece of media: where it came from, when it was captured or created, and what has been done to it since.",
+    "whyItMatters": "When anything can be faked, proving where real footage came from becomes as important as spotting fakes. Provenance standards let a photo or video carry its receipts with it.",
+    "howToSpot": "Look for content-credential icons or \"about this image\" panels on platforms that support them, showing capture device, edit history, and signing organization.",
+    "category": "Video",
+    "iconKey": "seal"
+  },
+  {
+    "term": "Send-time optimization",
+    "plainDefinition": "Software that learns when each person on a list is most likely to open a message and schedules delivery for that moment, individually.",
+    "whyItMatters": "It is a small, everyday example of AI in campaigns: no content changes at all, just timing. Multiplied across millions of messages, it measurably moves fundraising and turnout numbers.",
+    "howToSpot": "Campaign email that reliably lands right when you tend to check your phone is not a coincidence; it is a model that learned your habits from your open history.",
+    "category": "Fundraising",
+    "iconKey": "clock"
+  }
+]

@@ -44,3 +44,4 @@ export const SOCIAL_SUBSTACK = "https://campaignai.substack.com";
 
 // Feature flags
 export const TEASER_DISCLOSURE_PAGE = false; // hidden Meaningful Disclosure teaser blocks (OFF)
+export const TEASER_PROVENANCE_RECEIPT = false; // Demo D moved internal; teaser stays OFF

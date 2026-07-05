@@ -54,3 +54,6 @@ next-env.d.ts
 
 # claude local settings
 .claude/settings.local.json
+
+# hidden disclosure page plaintext (encrypted copy ships instead)
+src/content/disclosure/content.json

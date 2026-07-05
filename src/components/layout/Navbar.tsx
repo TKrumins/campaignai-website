@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 import { PatriotPurchaseButton } from "@/components/ui/PatriotPurchaseButton";
 import { usePatriotViewport } from "@/lib/usePatriotViewport";
 
-const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations", "/pricing", "/ethics"];
+const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations", "/pricing", "/ethics", "/ai-in-campaigns", "/CampaignAIDisclosure"];
 
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
