@@ -479,6 +479,27 @@ h1, h2, h3, h4, h5, h6 {
   filter: saturate(0.6);
 }
 
+/* Connected machine: conveyor belt drift + items flowing through stations */
+@keyframes machineBelt {
+  to { stroke-dashoffset: -28; }
+}
+@keyframes machineFlow {
+  0% { transform: translateX(0); opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { transform: translateX(560px); opacity: 0; }
+}
+@keyframes machineDrop {
+  0% { transform: translateY(-14px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(22px); opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .machine-belt.spinning { animation: machineBelt 0.9s linear infinite; }
+  .machine-flow.spinning { animation: machineFlow 5.5s linear infinite; }
+  .machine-drop.spinning { animation: machineDrop 2.4s ease-in infinite; }
+}
+
 /* Tri-color ribbon divider (C.1: red → Bridge Violet → blue) */
 .ribbon-divider {
   height: 6px;
