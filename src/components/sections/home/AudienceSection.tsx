@@ -3,21 +3,28 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 
+// Every tile resolves to a Who We Serve route (7.7); intent phrasing per E.6.
 const candidateTiers = [
   {
     title: "Local Candidates",
     description:
       "City council, school board, county races. The campaigns closest to your community, with the tightest budgets and the most at stake for the people you serve.",
+    href: "/for/candidates",
+    intent: "I'm running for office",
   },
   {
     title: "State Legislative",
     description:
       "State house and senate campaigns. Big districts, real budget constraints, and opponents who already have the tools you're looking for.",
+    href: "/for/candidates",
+    intent: "I'm running for office",
   },
   {
     title: "Statewide & Federal",
     description:
       "Governor, AG, congressional, and Senate races. Campaigns that need to scale fast, stay compliant across jurisdictions, and produce content at a pace that matches the stakes.",
+    href: "/for/candidates",
+    intent: "I'm running for office",
   },
 ];
 
@@ -26,24 +33,30 @@ const teamTiers = [
     title: "Party Committees",
     description:
       "State and local parties supporting full slates. One platform, consistent quality, state-specific AI disclosure labels handled across every district.",
+    href: "/for/parties-and-pacs",
+    intent: "I support a slate",
   },
   {
     title: "PACs",
     description:
       "Independent committees producing content at scale. Professional video for the campaigns and causes you support.",
+    href: "/for/parties-and-pacs",
+    intent: "I support a slate",
   },
   {
     title: "Consultancies",
     description:
       "Produce more ads, at higher quality, for less. Deliver more for every client.",
+    href: "/for/consultants",
+    intent: "I advise campaigns",
   },
 ];
 
 const everyoneTags = [
-  { label: "Advocacy Organizations" },
-  { label: "Ballot Initiatives" },
-  { label: "Nonprofits" },
-  { label: "Grassroots Movements" },
+  { label: "Advocacy Organizations", href: "/for/nonprofits" },
+  { label: "Ballot Initiatives", href: "/for/nonprofits" },
+  { label: "Nonprofits", href: "/for/nonprofits" },
+  { label: "Grassroots Movements", href: "/for/grassroots" },
   // Renamed per 7-8 doc Section 0.3; links to /get-started
   { label: "Other Businesses or Organizations", href: "/get-started" },
 ];
@@ -68,9 +81,9 @@ export function AudienceSection() {
           </h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {candidateTiers.map(({ title, description }, i) => (
+          {candidateTiers.map(({ title, description, href, intent }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
-              <div className="card-hover rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
+              <Link href={href} className="card-hover block rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
                 <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
                   <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
                     {title}
@@ -78,8 +91,11 @@ export function AudienceSection() {
                   <p className="text-granite text-sm leading-relaxed flex-1">
                     {description}
                   </p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold">
+                    {intent} &rarr;
+                  </span>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
@@ -91,9 +107,9 @@ export function AudienceSection() {
           </h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {teamTiers.map(({ title, description }, i) => (
+          {teamTiers.map(({ title, description, href, intent }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
-              <div className="card-hover rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
+              <Link href={href} className="card-hover block rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
                 <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
                   <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
                     {title}
@@ -101,8 +117,11 @@ export function AudienceSection() {
                   <p className="text-granite text-sm leading-relaxed flex-1">
                     {description}
                   </p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold">
+                    {intent} &rarr;
+                  </span>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
@@ -113,24 +132,15 @@ export function AudienceSection() {
             For Everyone with a Story to Tell
           </h3>
           <div className="flex flex-wrap gap-3">
-            {everyoneTags.map(({ label, href }) =>
-              href ? (
-                <Link
-                  key={label}
-                  href={href}
-                  className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium hover:border-freedom-blue hover:text-regal-navy transition-colors"
-                >
-                  {label}
-                </Link>
-              ) : (
-                <span
-                  key={label}
-                  className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium"
-                >
-                  {label}
-                </span>
-              )
-            )}
+            {everyoneTags.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium hover:border-freedom-blue hover:text-regal-navy transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
           </div>
         </ScrollReveal>
 

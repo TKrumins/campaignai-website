@@ -34,6 +34,25 @@ export const ELECTION_TARGET = "2026-11-03T00:01:00-05:00";
 export const PRIVACY_MICROCOPY =
   "We'll never share your information or use it to train major models.";
 
+// Funnel + experience routing (Commit 7-8, Section 2)
+export const FUNNEL_ROUTES = [
+  "/for/candidates",
+  "/for/consultants",
+  "/for/parties-and-pacs",
+  "/for/nonprofits",
+  "/for/grassroots",
+];
+export const EXPERIENCE_ROUTES = [
+  "/voters-eyes",
+  "/day-on-the-trail",
+  "/campaign-machine",
+  "/story-arc-builder",
+  "/disclosure-labels",
+];
+export const EXPERIENCE_EYEBROW = "A CampaignAI Experience";
+export const CTA_TEAM_MICROCOPY_NONPROFIT =
+  "Book a call and we'll find the fit for your budget.";
+
 // Social URLs
 export const SOCIAL_LINKEDIN = "https://www.linkedin.com/company/campaignai-us";
 export const SOCIAL_FACEBOOK = "https://www.facebook.com/CampaignAI.US/";

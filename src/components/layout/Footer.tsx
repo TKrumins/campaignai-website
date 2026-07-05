@@ -19,6 +19,15 @@ const siteLinks = [
   { href: "/community", label: "Community" },
 ];
 
+// Who We Serve column (Commit 7, Section 0.2 / 7.7): between Site and Trust.
+const whoWeServeLinks = [
+  { href: "/for/candidates", label: "Candidates" },
+  { href: "/for/consultants", label: "Consultants" },
+  { href: "/for/parties-and-pacs", label: "Parties & PACs" },
+  { href: "/for/nonprofits", label: "Nonprofits" },
+  { href: "/for/grassroots", label: "Grassroots" },
+];
+
 function SocialIcon({ href, label, path }: { href: string; label: string; path: string }) {
   return (
     <a
@@ -62,8 +71,8 @@ export function Footer() {
   return (
     <footer className="bg-regal-navy text-beacon-white border-t-4 border-t-freedom-blue">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Link columns: Brand · Site · [Who We Serve, Commit 7] · Trust & Legal */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Link columns: Brand · Site · Who We Serve · Trust & Legal */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Column 1: Brand */}
           <div>
             <Link href="/" className="inline-block">
@@ -105,7 +114,26 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Trust & Legal */}
+          {/* Column 3: Who We Serve */}
+          <div className="md:pt-1">
+            <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
+              Who We Serve
+            </h3>
+            <ul className="space-y-2">
+              {whoWeServeLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Trust & Legal */}
           <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Trust &amp; Legal
