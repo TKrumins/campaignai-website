@@ -49,7 +49,7 @@ export function ProductSection() {
         </ScrollReveal>
 
         {/* 2x2 card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {videoTypes.map(({ title, icon: Icon, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
               <div className="card-hover rounded-2xl overflow-hidden shadow-md h-full">
@@ -68,6 +68,15 @@ export function ProductSection() {
               </div>
             </ScrollReveal>
           ))}
+        </div>
+
+        <div className="text-center">
+          <a
+            href="#our-work"
+            className="text-freedom-blue font-semibold text-base hover:underline transition-colors inline-flex items-center gap-1"
+          >
+            See our work <span>&rarr;</span>
+          </a>
         </div>
       </div>
     </section>

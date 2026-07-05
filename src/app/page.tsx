@@ -12,6 +12,7 @@ import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { FAQSection } from "@/components/sections/home/FAQSection";
 import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
 import { BookDemoSection } from "@/components/sections/home/BookDemoSection";
+import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
 import { RibbonDivider } from "@/components/ui/RibbonDivider";
 
 export default function HomePage() {
@@ -21,7 +22,7 @@ export default function HomePage() {
       <TrustBarSection />
       <SocialProofStrip />
       <ProductSection />
-      {/* Reserved slot: ShowcaseSection lands here in Commit 4 */}
+      <ShowcaseSection />
       <RibbonDivider className="py-0 bg-white" />
       <ProblemSection />
       <PricingSection />

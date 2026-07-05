@@ -1,6 +1,6 @@
 interface SectionLabelProps {
   text: string;
-  color?: "blue" | "crimson" | "verdant" | "gold";
+  color?: "blue" | "crimson" | "verdant" | "gold" | "horizon";
 }
 
 const colorMap = {
@@ -8,6 +8,7 @@ const colorMap = {
   crimson: "text-liberty-crimson",
   verdant: "text-verdant",
   gold: "text-pioneer-gold",
+  horizon: "text-horizon-azure",
 };
 
 export function SectionLabel({ text, color = "blue" }: SectionLabelProps) {
