@@ -29,9 +29,6 @@ export function HeroSection() {
         <p className="text-beacon-white/90 text-lg md:text-2xl font-medium leading-relaxed max-w-[780px] mx-auto mb-12">
           Professional video, strategic messaging, and compliance support for
           local and underfunded candidates and mission-driven campaigns.
-          <br />
-          <br />
-          <span className="paintbrush-underline">&ldquo;Primaries Special&rdquo; through June 30</span>
         </p>
 
         <HeroEmailCapture />
