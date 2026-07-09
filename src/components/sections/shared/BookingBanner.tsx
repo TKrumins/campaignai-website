@@ -2,7 +2,8 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { BadgeWithTooltip } from "@/components/ui/BadgeWithTooltip";
 import {
-  CALENDLY_PURCHASE,
+  PURCHASE_URL,
+  CALENDLY_DEMO,
   CTA_PRIMARY,
   CTA_MICROCOPY,
   ETHICS_LINE,
@@ -21,6 +22,8 @@ interface BookingBannerProps {
   ctaMicrocopy?: string;
   ctaVariant?: "crimson" | "verdant-outline";
   showScarcity?: boolean;
+  /** Render a quiet "Book a demo" secondary action beside the primary CTA. */
+  showDemo?: boolean;
 }
 
 const badges = [
@@ -48,14 +51,15 @@ const badges = [
 
 export function BookingBanner({
   headline = "Campaigns move quickly. Start your next video today.",
-  subline = "Book a 30-minute call and we'll set you up on the platform. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 48 hours.",
+  subline = "Choose your plan, check out securely, and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 48 hours.",
   showBadges = true,
   showEthicsLine = true,
   ctaLabel = CTA_PRIMARY,
-  ctaHref = CALENDLY_PURCHASE,
+  ctaHref = PURCHASE_URL,
   ctaMicrocopy = CTA_MICROCOPY,
   ctaVariant = "crimson",
   showScarcity = true,
+  showDemo = true,
 }: BookingBannerProps) {
   return (
     <section className="py-20 md:py-28 bg-regal-navy">
@@ -75,17 +79,29 @@ export function BookingBanner({
           )}
 
           <div className="mb-8">
-            <Button
-              variant={ctaVariant}
-              href={ctaHref}
-              external
-              className={`px-8 py-3 text-base ${
-                ctaVariant === "verdant-outline" ? "!text-white hover:!text-white" : ""
-              }`}
-            >
-              {ctaLabel}
-            </Button>
-            <p className="text-white/60 text-sm mt-2">{ctaMicrocopy}</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button
+                variant={ctaVariant}
+                href={ctaHref}
+                external={!ctaHref.startsWith("/")}
+                className={`px-8 py-3 text-base ${
+                  ctaVariant === "verdant-outline" ? "!text-white hover:!text-white" : ""
+                }`}
+              >
+                {ctaLabel}
+              </Button>
+              {showDemo && (
+                <a
+                  href={CALENDLY_DEMO}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3 text-base font-semibold text-white/90 transition-colors hover:border-white/60 hover:bg-white/10"
+                >
+                  Book a demo &rarr;
+                </a>
+              )}
+            </div>
+            <p className="text-white/60 text-sm mt-3">{ctaMicrocopy}</p>
           </div>
         </ScrollReveal>
 

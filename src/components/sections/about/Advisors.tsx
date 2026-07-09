@@ -15,28 +15,32 @@ const advisors: Advisor[] = [
   {
     photo: "/assets/profile-pictures/Andrew-Yang.png",
     name: "Andrew Yang",
-    credential:
-      "Former U.S. Presidential Candidate · Tech Entrepreneur · AI Thought Leader",
-    note: "Launched a presidential campaign in 2017 to raise awareness about the coming AI wave.",
+    credential: "Former U.S. Presidential Candidate · Founder, Forward Party",
+    note: "Founder of the Forward Party — the third-largest U.S. political party by resources — and a national voice on AI and democracy for nearly a decade.",
   },
 ];
 
 function AdvisorCard({ photo, name, credential, note, link }: Advisor) {
   const inner = (
     <div className="bg-dawn-frost rounded-2xl p-8 md:p-10 h-full flex flex-col sm:flex-row items-center gap-6">
-      <div className="w-[120px] h-[120px] rounded-full overflow-hidden shrink-0">
-        <Image
-          src={photo}
-          alt={name}
-          width={120}
-          height={120}
-          className="w-full h-full object-cover"
-        />
+      <div className="shrink-0 w-[128px] h-[128px] rounded-full patriot-gradient p-[3px] shadow-sm">
+        <div className="w-full h-full rounded-full overflow-hidden bg-white">
+          <Image
+            src={photo}
+            alt={name}
+            width={128}
+            height={128}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
       <div className="text-center sm:text-left">
-        <h3 className="font-heading font-bold text-lg text-regal-navy">{name}</h3>
+        <span className="inline-block text-freedom-blue text-[11px] font-bold uppercase tracking-widest mb-1">
+          Strategic Advisor
+        </span>
+        <h3 className="font-heading font-bold text-xl text-regal-navy">{name}</h3>
         <p className="text-freedom-blue text-sm font-semibold mb-2">{credential}</p>
-        {note && <p className="text-slate text-sm">{note}</p>}
+        {note && <p className="text-slate text-sm leading-relaxed">{note}</p>}
       </div>
     </div>
   );
@@ -68,12 +72,6 @@ export function Advisors() {
             </ScrollReveal>
           ))}
         </div>
-
-        <ScrollReveal delay={200}>
-          <p className="text-slate text-sm text-center mt-8">
-            Advisory board expanding. Announcements soon.
-          </p>
-        </ScrollReveal>
       </div>
     </section>
   );

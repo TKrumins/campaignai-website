@@ -5,8 +5,19 @@ export const CALENDLY_PURCHASE =
   "https://calendly.com/campaignai/campaignai-purchase-call";
 export const CALENDLY_DEMO = "https://calendly.com/campaignai/demo";
 
+// Primary purchase flow: the "Buy your first video" CTA now routes to an
+// on-site purchase page (pick plan → pay via Stripe → book onboarding call).
+export const PURCHASE_URL = "/purchase";
+
+// Stripe Payment Links — create each in the Stripe dashboard and paste the
+// hosted URL here. While empty, the purchase page falls back to booking the
+// onboarding call so the page stays functional.
+export const STRIPE_LINK_PROFESSIONAL = "";
+export const STRIPE_LINK_CANDIDATE = "";
+export const STRIPE_LINK_A250 = "";
+
 export const CTA_PRIMARY = "Buy your first video →";
-export const CTA_MICROCOPY = "Book a 30-minute call to get started.";
+export const CTA_MICROCOPY = "Pick your plan, pay securely, and book your onboarding call.";
 export const CTA_TEAM = "Talk to our team →";
 
 export const WAITLIST_LONG =

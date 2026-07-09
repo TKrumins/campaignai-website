@@ -19,7 +19,7 @@ const timeline = [
     icon: Users,
     year: "2022 \u2013 Present",
     title: "Crossing the aisle before it was the mission.",
-    body: "Before CampaignAI existed, Jermaine Johnson and Brandon Guffey were already proving that bipartisanship works. As colleagues in the South Carolina State House, a Democrat and a Republican found common ground on legislation that mattered to their communities. That working relationship became the foundation for a company built on the belief that the best ideas come from people willing to disagree and still build together.",
+    body: "Before CampaignAI existed, Jermaine Johnson and Brandon Guffey were already proving it works. As colleagues in the South Carolina State House — a Democrat and a Republican — they found common ground on legislation that mattered to their communities. That working relationship became the foundation for a company built on a belief: the best ideas come from people willing to disagree and still build together.",
   },
   {
     icon: Globe,

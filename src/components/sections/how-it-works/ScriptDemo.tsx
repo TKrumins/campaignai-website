@@ -54,21 +54,65 @@ export function ScriptDemo() {
   }
 
   return (
-    <section className="py-20 md:py-24 bg-dawn-frost">
-      <div className="max-w-[860px] mx-auto px-4 sm:px-6">
+    <section id="script-step" className="py-20 md:py-24 bg-white scroll-mt-24">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <div className="text-center mb-10">
             <h2 className="font-heading font-extrabold text-3xl md:text-4xl text-regal-navy tracking-[-1px] mb-3">
-              Try the script step.
+              A blank box is the enemy of a good idea.
             </h2>
-            <p className="text-granite text-base max-w-[540px] mx-auto">
-              Pick a story. Watch it become structure. Approve it, or don&apos;t. That&apos;s the whole workflow.
+            <p className="text-granite text-base max-w-[600px] mx-auto">
+              Most AI tools drop you into an empty chat and wish you luck.
+              CampaignAI starts from your story and guides you to a structured
+              script &mdash; and you approve every word.
             </p>
           </div>
         </ScrollReveal>
 
+        {/* Contrast: the empty chatbox vs. the guided path */}
+        <ScrollReveal delay={60}>
+          <div className="grid md:grid-cols-2 gap-5 mb-10 items-stretch">
+            <div className="rounded-2xl bg-dawn-frost ring-1 ring-gray-200 p-6 flex flex-col">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate mb-3">
+                A generic AI tool
+              </p>
+              <div className="rounded-xl border border-gray-200 bg-white p-4 flex items-center gap-1.5">
+                <span className="text-slate/50 text-sm">Write me a campaign video script&hellip;</span>
+                <span className="w-[2px] h-4 bg-slate/60 animate-pulse" />
+              </div>
+              <p className="text-slate text-sm mt-3">
+                Now what? A blank page and a blinking cursor.
+              </p>
+            </div>
+            <div className="rounded-2xl bg-white ring-1 ring-freedom-blue/25 shadow-sm p-6 flex flex-col">
+              <p className="text-xs font-bold uppercase tracking-wider text-freedom-blue mb-3">
+                CampaignAI
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["The hook", "The story", "The ask"].map((chip) => (
+                  <span
+                    key={chip}
+                    className="inline-flex items-center rounded-lg border border-freedom-blue/25 bg-dawn-frost px-3 py-1.5 text-sm font-semibold text-regal-navy"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+              <p className="text-granite text-sm mt-3">
+                Structure built from your story. You steer; you approve.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+
         <ScrollReveal delay={80}>
-          <div className="bg-white rounded-2xl shadow-md p-6 md:p-8">
+          <div className="bg-white rounded-2xl shadow-md ring-1 ring-black/5 p-6 md:p-8">
+            <div className="text-center mb-6">
+              <p className="font-heading font-bold text-lg text-regal-navy">See it for yourself.</p>
+              <p className="text-slate text-sm">
+                Pick a story. Watch it become structure. Approve it, or don&apos;t.
+              </p>
+            </div>
             {/* Text in */}
             <p className="font-heading font-bold text-sm uppercase tracking-wider text-slate mb-3">
               1 &middot; Your story

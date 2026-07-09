@@ -191,8 +191,10 @@ export function ShowcaseSection() {
             <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mt-3 mb-4">
               Don&apos;t take our word for it. Watch the work.
             </h2>
-            <p className="font-body font-semibold text-lg text-beacon-white/90 max-w-[700px] mx-auto leading-relaxed">
-              Two videos. Two co-founders. One Republican, one Democrat, the same story-first process.
+            <p className="font-body font-semibold text-lg text-beacon-white/90 max-w-[720px] mx-auto leading-relaxed">
+              We&apos;re a three-person founding team, and two of us are current
+              candidates. Here is a film each made with our own product, one
+              Republican, one Democrat, the same story-first process.
             </p>
           </div>
         </ScrollReveal>

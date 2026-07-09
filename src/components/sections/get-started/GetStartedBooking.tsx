@@ -1,6 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { Phone, Pencil, Send } from "lucide-react";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 const steps = [
   {
@@ -51,16 +52,11 @@ export function GetStartedBooking() {
 
         <ScrollReveal delay={300}>
           <div className="text-center">
-            <Button
-              variant="crimson"
-              href="https://calendly.com/campaignai/campaignai-purchase-call"
-              external
-              className="px-8 py-3"
-            >
-              Buy your first video &rarr;
+            <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3">
+              {CTA_PRIMARY}
             </Button>
             <p className="text-slate text-sm mt-2">
-              Book a 30-minute call to get started.
+              Pick your plan, pay securely, and book your onboarding call.
             </p>
           </div>
         </ScrollReveal>

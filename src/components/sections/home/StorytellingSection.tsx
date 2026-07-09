@@ -1,10 +1,11 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const channels = [
-  { label: "Social Media", desc: "Facebook \u00b7 TikTok \u00b7 Instagram\nX/Twitter \u00b7 LinkedIn \u00b7 BlueSky", angle: 0 },
+  { label: "Social Media", desc: "Facebook · TikTok · Instagram\nX/Twitter · LinkedIn · BlueSky", angle: 0 },
   { label: "Campaign Website", desc: "Build trust with visitors\nright on your homepage", angle: 60 },
   { label: "Email &\nNewsletters", desc: "Update supporters with\nengaging content", angle: 120 },
   { label: "Volunteer\nNetworks", desc: "Send through group chats\nor text campaigns", angle: 180 },
@@ -12,144 +13,176 @@ const channels = [
   { label: "In-Person\nEvents", desc: "Share at town halls,\nrallies, and fundraisers", angle: 300 },
 ];
 
-// Each spoke gets two dots (one blue, one red) with staggered delays
-const pulsePairs = [
-  { blue: 0, red: 1.4 },
-  { blue: 2.6, red: 0.5 },
-  { blue: 1.1, red: 3.3 },
-  { blue: 3.8, red: 2.0 },
-  { blue: 1.8, red: 4.2 },
-  { blue: 4.5, red: 0.9 },
-];
+// Red / Blue / Violet (Multi-Partisan) lights travel every line at random;
+// each destination flashes the color of whatever light just reached it.
+const COLORS = ["#FF3366", "#4D9FFF", "#8E5CF7"];
+
+const SPARKLE_D =
+  "M12 0 C12.8 6.6 17.4 11.2 24 12 C17.4 12.8 12.8 17.4 12 24 C11.2 17.4 6.6 12.8 0 12 C6.6 11.2 11.2 6.6 12 0 Z";
 
 function makeNodes(cx: number, cy: number, spokeLen: number) {
   return channels.map(({ label, desc, angle }, i) => {
     const rad = (angle - 90) * (Math.PI / 180);
-    const nx = cx + spokeLen * Math.cos(rad);
-    const ny = cy + spokeLen * Math.sin(rad);
-    return { label, desc, nx, ny, angle, idx: i };
+    return {
+      label,
+      desc,
+      nx: cx + spokeLen * Math.cos(rad),
+      ny: cy + spokeLen * Math.sin(rad),
+      idx: i,
+    };
   });
 }
 
-function HubAndSpoke() {
-  const cx = 450;
-  const cy = 450;
-  const nodes = makeNodes(cx, cy, 290);
-  const mNodes = makeNodes(300, 300, 185);
-  const rectW = 190;
-  const rectH = 90;
-  const mRectW = 160;
-  const mRectH = 76;
+function HubSparkle({
+  x,
+  y,
+  size,
+  color,
+  dur,
+  delay,
+}: {
+  x: number;
+  y: number;
+  size: number;
+  color: string;
+  dur: number;
+  delay: number;
+}) {
+  const s = size / 24;
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s}) translate(-12 -12)`}>
+      <path
+        d={SPARKLE_D}
+        fill={color}
+        className="sparkle-twinkle"
+        style={{ ["--dur"]: `${dur}s`, animationDelay: `${delay}s` } as CSSProperties}
+      />
+    </g>
+  );
+}
+
+function Hub({
+  cx,
+  cy,
+  spokeLen,
+  rectW,
+  rectH,
+  hubR,
+  viewBox,
+  idp,
+  className,
+}: {
+  cx: number;
+  cy: number;
+  spokeLen: number;
+  rectW: number;
+  rectH: number;
+  hubR: number;
+  viewBox: string;
+  idp: string;
+  className: string;
+}) {
+  const nodes = makeNodes(cx, cy, spokeLen);
+
+  // Three lights per line, each a random color / speed / start offset, so all
+  // six lines carry red, blue, and violet with no fixed rhythm. Deterministic
+  // (no Math.random) so server and client render identically.
+  const dotConfigs = nodes.map(({ idx }) =>
+    [0, 1, 2].map((k) => ({
+      color: COLORS[(idx + k) % 3],
+      dur: 4.2 + ((idx * 2 + k * 3) % 5) * 0.4,
+      begin: Number(((idx * 1.7 + k * 2.6) % 8).toFixed(2)),
+    }))
+  );
+
+  // Fraction of the spoke a dot has covered when it reaches the node's near
+  // border — the flash fires exactly then, so dot and flash meet in sync.
+  const arriveFrac = (spokeLen - rectW / 2) / spokeLen;
 
   return (
-    <>
-    <svg viewBox="60 60 780 780" className="w-full max-w-[900px] mx-auto hidden md:block" xmlns="http://www.w3.org/2000/svg">
-      {/* Spoke path definitions for animateMotion */}
-      {nodes.map(({ label, nx, ny, idx }) => (
-        <path
-          key={`path-${idx}`}
-          id={`spoke-${idx}`}
-          d={`M ${cx} ${cy} L ${nx} ${ny}`}
-          fill="none"
-          stroke="none"
-        />
+    <svg viewBox={viewBox} className={className} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id={`${idp}ring`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FF3366" />
+          <stop offset="0.5" stopColor="#8E5CF7" />
+          <stop offset="1" stopColor="#4D9FFF" />
+        </linearGradient>
+      </defs>
+
+      {/* motion paths */}
+      {nodes.map(({ nx, ny, idx }) => (
+        <path key={`p-${idx}`} id={`${idp}spoke-${idx}`} d={`M ${cx} ${cy} L ${nx} ${ny}`} fill="none" stroke="none" />
       ))}
 
-      {/* Spoke lines */}
-      {nodes.map(({ label, nx, ny }) => (
-        <line
-          key={label}
-          x1={cx}
-          y1={cy}
-          x2={nx}
-          y2={ny}
-          stroke="#0D1B3E"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          opacity="0.15"
-        />
+      {/* spoke lines */}
+      {nodes.map(({ nx, ny, idx }) => (
+        <line key={`l-${idx}`} x1={cx} y1={cy} x2={nx} y2={ny} stroke="#0D1B3E" strokeWidth="2.5" strokeLinecap="round" opacity="0.12" />
       ))}
 
-      {/* Pulsing energy dots — two per spoke (blue + red) */}
+      {/* traveling lights: three random-color lights per line */}
       {nodes.map(({ idx }) => (
         <g key={`pulse-${idx}`}>
-          {/* Blue dot */}
-          <circle r="6" fill="#4D9FFF" opacity="0">
-            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`}>
-              <mpath href={`#spoke-${idx}`} />
-            </animateMotion>
-            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`} />
-          </circle>
-          <circle r="12" fill="#4D9FFF" opacity="0">
-            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`}>
-              <mpath href={`#spoke-${idx}`} />
-            </animateMotion>
-            <animate attributeName="opacity" values="0;0.25;0.25;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`} />
-          </circle>
-          {/* Red dot */}
-          <circle r="6" fill="#FF3366" opacity="0">
-            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`}>
-              <mpath href={`#spoke-${idx}`} />
-            </animateMotion>
-            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`} />
-          </circle>
-          <circle r="12" fill="#FF3366" opacity="0">
-            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`}>
-              <mpath href={`#spoke-${idx}`} />
-            </animateMotion>
-            <animate attributeName="opacity" values="0;0.25;0.25;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`} />
-          </circle>
+          {dotConfigs[idx].map((d, k) => (
+            <g key={k}>
+              <circle r="10" fill={d.color} opacity="0">
+                <animateMotion dur={`${d.dur}s`} repeatCount="indefinite" begin={`${d.begin}s`}>
+                  <mpath href={`#${idp}spoke-${idx}`} />
+                </animateMotion>
+                <animate attributeName="opacity" values="0;0.2;0.2;0" keyTimes="0;0.12;0.82;1" dur={`${d.dur}s`} repeatCount="indefinite" begin={`${d.begin}s`} />
+              </circle>
+              <circle r="5.5" fill={d.color} opacity="0">
+                <animateMotion dur={`${d.dur}s`} repeatCount="indefinite" begin={`${d.begin}s`}>
+                  <mpath href={`#${idp}spoke-${idx}`} />
+                </animateMotion>
+                <animate attributeName="opacity" values="0;0.95;0.95;0" keyTimes="0;0.12;0.82;1" dur={`${d.dur}s`} repeatCount="indefinite" begin={`${d.begin}s`} />
+              </circle>
+            </g>
+          ))}
         </g>
       ))}
 
-      {/* Outer nodes — rounded rectangles with navy borders */}
-      {nodes.map(({ label, desc, nx, ny }) => {
+      {/* destination nodes (flash the color of whatever light just arrived) */}
+      {nodes.map(({ label, desc, nx, ny, idx }) => {
         const labelLines = label.split("\n");
         const descLines = desc.split("\n");
         const labelBlockH = labelLines.length * 15;
         const totalH = labelBlockH + 4 + descLines.length * 12;
         const startY = ny - totalH / 2;
-
         return (
-          <g key={label}>
-            <rect
-              x={nx - rectW / 2}
-              y={ny - rectH / 2}
-              width={rectW}
-              height={rectH}
-              rx="14"
-              fill="white"
-              stroke="#0D1B3E"
-              strokeWidth="2"
-            />
-            {/* Title */}
-            {labelLines.map((line, j) => (
-              <text
-                key={`t-${j}`}
-                x={nx}
-                y={startY + j * 15 + 8}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#0D1B3E"
-                fontSize="13"
-                fontWeight="700"
+          <g key={`node-${label}`}>
+            <rect x={nx - rectW / 2} y={ny - rectH / 2} width={rectW} height={rectH} rx="14" fill="white" stroke="#0D1B3E" strokeWidth="2" />
+            {/* per-light arrival flashes — the border flashes the dot's color */}
+            {dotConfigs[idx].map((d, k) => (
+              <rect
+                key={k}
+                x={nx - rectW / 2}
+                y={ny - rectH / 2}
+                width={rectW}
+                height={rectH}
+                rx="14"
+                fill="none"
+                stroke={d.color}
+                strokeWidth="3.5"
+                opacity="0"
+                pointerEvents="none"
               >
+                <animate
+                  attributeName="opacity"
+                  begin={`${(d.begin + d.dur * arriveFrac).toFixed(2)}s`}
+                  dur={`${d.dur}s`}
+                  repeatCount="indefinite"
+                  values="0.95;0;0"
+                  keyTimes="0;0.18;1"
+                />
+              </rect>
+            ))}
+            {labelLines.map((line, j) => (
+              <text key={`t-${j}`} x={nx} y={startY + j * 15 + 8} textAnchor="middle" dominantBaseline="central" fill="#0D1B3E" fontSize="13" fontWeight="700">
                 {line}
               </text>
             ))}
-            {/* Description */}
             {descLines.map((line, j) => (
-              <text
-                key={`d-${j}`}
-                x={nx}
-                y={startY + labelBlockH + 6 + j * 12 + 6}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#0D1B3E"
-                fontSize="9.5"
-                fontWeight="400"
-                opacity="0.7"
-              >
+              <text key={`d-${j}`} x={nx} y={startY + labelBlockH + 6 + j * 12 + 6} textAnchor="middle" dominantBaseline="central" fill="#0D1B3E" fontSize="9.5" fontWeight="400" opacity="0.7">
                 {line}
               </text>
             ))}
@@ -157,138 +190,34 @@ function HubAndSpoke() {
         );
       })}
 
-      {/* Center hub */}
-      <circle cx={cx} cy={cy} r="72" fill="#0D1B3E" />
-      <circle cx={cx} cy={cy} r="72" fill="none" stroke="#4D9FFF" strokeWidth="2" opacity="0.3" />
-
-      {/* Play button triangle */}
-      <polygon
-        points={`${cx - 22},${cy - 30} ${cx - 22},${cy + 30} ${cx + 28},${cy}`}
-        fill="white"
-        opacity="0.9"
-      />
-
-      {/* Label */}
-      <text x={cx} y={cy + 58} textAnchor="middle" fill="white" fontSize="10" fontWeight="600" opacity="0.7">
-        Your Video
-      </text>
-    </svg>
-
-    {/* Mobile version — compact layout, larger text */}
-    <svg viewBox="30 30 540 540" className="w-full md:hidden" xmlns="http://www.w3.org/2000/svg">
-      {/* Spoke path definitions */}
-      {mNodes.map(({ nx, ny, idx }) => (
+      {/* center hub */}
+      <g>
+        {/* rotating gradient ring */}
+        <circle cx={cx} cy={cy} r={hubR + 9} fill="none" stroke={`url(#${idp}ring)`} strokeWidth="3" strokeDasharray="4 8" strokeLinecap="round" opacity="0.9">
+          <animateTransform attributeName="transform" type="rotate" from={`0 ${cx} ${cy}`} to={`360 ${cx} ${cy}`} dur="26s" repeatCount="indefinite" />
+        </circle>
+        {/* disc */}
+        <circle cx={cx} cy={cy} r={hubR} fill="#0D1B3E" />
+        <circle cx={cx} cy={cy} r={hubR} fill="none" stroke="#4D9FFF" strokeWidth="1.5" opacity="0.35" />
+        {/* play button */}
+        <circle cx={cx} cy={cy - hubR * 0.12} r={hubR * 0.42} fill="rgba(255,255,255,0.08)" />
         <path
-          key={`mpath-${idx}`}
-          id={`mspoke-${idx}`}
-          d={`M 300 300 L ${nx} ${ny}`}
-          fill="none"
-          stroke="none"
+          d={`M ${cx - hubR * 0.16} ${cy - hubR * 0.32} L ${cx - hubR * 0.16} ${cy + hubR * 0.08} L ${cx + hubR * 0.26} ${cy - hubR * 0.12} Z`}
+          fill="white"
+          strokeLinejoin="round"
+          stroke="white"
+          strokeWidth={hubR * 0.06}
         />
-      ))}
-
-      {/* Spoke lines */}
-      {mNodes.map(({ label, nx, ny }) => (
-        <line
-          key={`ml-${label}`}
-          x1={300}
-          y1={300}
-          x2={nx}
-          y2={ny}
-          stroke="#0D1B3E"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          opacity="0.15"
-        />
-      ))}
-
-      {/* Pulsing dots */}
-      {mNodes.map(({ idx }) => (
-        <g key={`mpulse-${idx}`}>
-          <circle r="6" fill="#4D9FFF" opacity="0">
-            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`}>
-              <mpath href={`#mspoke-${idx}`} />
-            </animateMotion>
-            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].blue}s`} />
-          </circle>
-          <circle r="6" fill="#FF3366" opacity="0">
-            <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`}>
-              <mpath href={`#mspoke-${idx}`} />
-            </animateMotion>
-            <animate attributeName="opacity" values="0;0.9;0.9;0" dur="2.8s" repeatCount="indefinite" begin={`${pulsePairs[idx].red}s`} />
-          </circle>
-        </g>
-      ))}
-
-      {/* Outer nodes */}
-      {mNodes.map(({ label, desc, nx, ny }) => {
-        const labelLines = label.split("\n");
-        const descLines = desc.split("\n");
-        const labelBlockH = labelLines.length * 15;
-        const totalH = labelBlockH + 4 + descLines.length * 12;
-        const startY = ny - totalH / 2;
-
-        return (
-          <g key={`m-${label}`}>
-            <rect
-              x={nx - mRectW / 2}
-              y={ny - mRectH / 2}
-              width={mRectW}
-              height={mRectH}
-              rx="12"
-              fill="white"
-              stroke="#0D1B3E"
-              strokeWidth="2"
-            />
-            {labelLines.map((line, j) => (
-              <text
-                key={`mt-${j}`}
-                x={nx}
-                y={startY + j * 15 + 8}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#0D1B3E"
-                fontSize="13"
-                fontWeight="700"
-              >
-                {line}
-              </text>
-            ))}
-            {descLines.map((line, j) => (
-              <text
-                key={`md-${j}`}
-                x={nx}
-                y={startY + labelBlockH + 6 + j * 12 + 6}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="#0D1B3E"
-                fontSize="10"
-                fontWeight="400"
-                opacity="0.7"
-              >
-                {line}
-              </text>
-            ))}
-          </g>
-        );
-      })}
-
-      {/* Center hub */}
-      <circle cx={300} cy={300} r="52" fill="#0D1B3E" />
-      <circle cx={300} cy={300} r="52" fill="none" stroke="#4D9FFF" strokeWidth="2" opacity="0.3" />
-
-      {/* Play button */}
-      <polygon
-        points="284,278 284,322 316,300"
-        fill="white"
-        opacity="0.9"
-      />
-
-      <text x={300} y={342} textAnchor="middle" fill="white" fontSize="9" fontWeight="600" opacity="0.7">
-        Your Video
-      </text>
+        {/* sparkles around the play */}
+        <HubSparkle x={cx + hubR * 0.62} y={cy - hubR * 0.62} size={hubR * 0.3} color="#FF3366" dur={3.2} delay={0} />
+        <HubSparkle x={cx - hubR * 0.7} y={cy - hubR * 0.34} size={hubR * 0.22} color="#4D9FFF" dur={2.8} delay={0.6} />
+        <HubSparkle x={cx + hubR * 0.5} y={cy + hubR * 0.58} size={hubR * 0.24} color="#8E5CF7" dur={3.6} delay={1.1} />
+        {/* label */}
+        <text x={cx} y={cy + hubR * 0.62} textAnchor="middle" fill="white" fontSize={hubR * 0.18} fontWeight="700" letterSpacing="0.5">
+          Your Video
+        </text>
+      </g>
     </svg>
-    </>
   );
 }
 
@@ -303,9 +232,8 @@ export function StorytellingSection() {
               Share your video far and wide.
             </h2>
             <p className="text-granite text-lg leading-relaxed mb-6">
-              Videos are your most powerful tool on a campaign. Once produced,
-              it&apos;s ready to work hard wherever your audience spends their
-              time.
+              Video is your most powerful tool on a campaign. Once produced, it
+              is ready to work hard wherever your audience spends their time.
             </p>
             <p className="font-heading font-bold text-xl text-regal-navy">
               Post it. Share it. Run it. Repeat.
@@ -314,7 +242,8 @@ export function StorytellingSection() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <HubAndSpoke />
+          <Hub cx={450} cy={450} spokeLen={290} rectW={190} rectH={90} hubR={72} viewBox="60 60 780 780" idp="d-" className="w-full max-w-[900px] mx-auto hidden md:block" />
+          <Hub cx={300} cy={300} spokeLen={185} rectW={160} rectH={76} hubR={52} viewBox="30 30 540 540" idp="m-" className="w-full md:hidden" />
         </ScrollReveal>
       </div>
     </section>

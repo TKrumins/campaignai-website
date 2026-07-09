@@ -164,7 +164,7 @@ const categories: Category[] = [
   },
   {
     name: "Agents & Automation",
-    tagColor: "bg-verdant/10 text-verdant border-verdant/20",
+    tagColor: "bg-bridge-violet/10 text-bridge-violet border-bridge-violet/20",
     capabilities: [
       {
         icon: Bot,
@@ -205,7 +205,7 @@ const categoryAccentBorders: Record<string, string> = {
   "Data & Analytics": "border-l-freedom-blue",
   "Algorithmic Targeting & Amplification": "border-l-pioneer-gold",
   "Deepfakes & Cloning": "border-l-critical-scarlet",
-  "Agents & Automation": "border-l-verdant",
+  "Agents & Automation": "border-l-bridge-violet",
 };
 
 const categoryIconColors: Record<string, string> = {
@@ -213,18 +213,18 @@ const categoryIconColors: Record<string, string> = {
   "Data & Analytics": "text-freedom-blue",
   "Algorithmic Targeting & Amplification": "text-pioneer-gold",
   "Deepfakes & Cloning": "text-critical-scarlet",
-  "Agents & Automation": "text-verdant",
+  "Agents & Automation": "text-bridge-violet",
 };
 
 export function AILandscape() {
   return (
-    <section className="py-20 md:py-28 bg-white overflow-hidden">
+    <section className="py-20 md:py-28 bg-dawn-frost overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-6">
             <SectionLabel text="The AI Landscape" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-4">
-              AI is already reshaping campaigns.
+              What AI can do in a campaign today.
             </h2>
             <p className="text-granite text-lg leading-relaxed max-w-[680px] mx-auto">
               From voter analysis to synthetic media, artificial intelligence is
@@ -277,7 +277,7 @@ export function AILandscape() {
                 {caps.map(({ icon: Icon, title, description }, i) => (
                   <ScrollReveal key={title} delay={i * 50}>
                     <div
-                      className={`group rounded-xl border border-gray-100 border-l-[3px] ${categoryAccentBorders[name]} bg-dawn-frost/50 p-5 h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]`}
+                      className={`group rounded-xl border border-gray-100 border-l-[3px] ${categoryAccentBorders[name]} bg-white p-5 h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]`}
                     >
                       <div className="flex items-start gap-4">
                         <div className="shrink-0 w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center">
@@ -313,7 +313,7 @@ export function AILandscape() {
             </p>
             <div className="mt-8">
               <a
-                href="#subscribe"
+                href="/community"
                 className="btn-hover inline-flex items-center justify-center text-center rounded-full bg-regal-navy px-6 py-3 text-white text-sm font-semibold"
               >
                 Join the conversation &rarr;

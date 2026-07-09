@@ -1,7 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import {
-  CALENDLY_PURCHASE,
+  PURCHASE_URL,
   CTA_PRIMARY,
   CTA_MICROCOPY,
   WAITLIST_SHORT,
@@ -15,28 +15,22 @@ export function MissionSection() {
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-beacon-white tracking-[-1px] mb-6 md:whitespace-nowrap">
             Democracy shouldn&apos;t have a paywall.
           </h2>
-          <p className="text-beacon-white/80 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            You have the story. You have the passion. You shouldn&apos;t need a
-            five-figure agency budget to share it with voters.
-          </p>
           <p className="text-beacon-white/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            From a first-time sheriff&apos;s run to a statewide campaign,
-            professional video shouldn&apos;t hinge on your budget. We build it
-            with compliance in and deliver most projects within 48 hours of
-            submission.
+            You have the story. You have the passion. You shouldn&apos;t need a
+            five-figure agency budget to share it with voters &mdash; from a
+            first-time sheriff&apos;s run to a statewide campaign.
           </p>
           <div className="mb-4">
             <Button
               variant="crimson"
-              href={CALENDLY_PURCHASE}
-              external
+              href={PURCHASE_URL}
               className="px-8 py-3 text-base"
             >
               {CTA_PRIMARY}
             </Button>
             <p className="text-beacon-white/60 text-sm mt-2">{CTA_MICROCOPY}</p>
           </div>
-          <p className="mb-10 text-sm">
+          <p className="text-sm">
             <a
               href="/get-started#waitlist"
               className="text-beacon-white/70 underline underline-offset-4 hover:text-beacon-white transition-colors"
@@ -44,11 +38,6 @@ export function MissionSection() {
               Not ready to buy? Join the waitlist &rarr;
             </a>{" "}
             <span className="text-beacon-white/45">{WAITLIST_SHORT}</span>
-          </p>
-          {/* P8 (approved) */}
-          <p className="text-beacon-white/80 text-base font-medium">
-            We&apos;re building this in the open, in South Carolina, across the
-            aisle. Come see for yourself.
           </p>
         </ScrollReveal>
       </div>

@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CALENDLY_PURCHASE, CTA_PRIMARY } from "@/lib/constants";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 interface PatriotPurchaseButtonProps {
   /** Sanctioned uses ONLY: nav CTA, America 250 module button, sticky mobile CTA. */
@@ -19,7 +20,7 @@ const sizeStyles: Record<NonNullable<PatriotPurchaseButtonProps["size"]>, string
 };
 
 export function PatriotPurchaseButton({
-  href = CALENDLY_PURCHASE,
+  href = PURCHASE_URL,
   label = CTA_PRIMARY,
   size = "md",
   className = "",
@@ -51,20 +52,24 @@ export function PatriotPurchaseButton({
     };
   }, []);
 
+  const isInternal = href.startsWith("/");
+  const innerCls = `pp-inner focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue ${sizeStyles[size]} ${innerClassName}`;
+
   return (
     <span
       className={`patriot-purchase ${conic ? "pp-conic" : "pp-linear"} ${
         loadSweep ? "pp-load-sweep" : ""
       } ${className}`}
     >
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`pp-inner focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue ${sizeStyles[size]} ${innerClassName}`}
-      >
-        {label}
-      </a>
+      {isInternal ? (
+        <Link href={href} className={innerCls}>
+          {label}
+        </Link>
+      ) : (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={innerCls}>
+          {label}
+        </a>
+      )}
     </span>
   );
 }

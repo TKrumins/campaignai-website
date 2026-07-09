@@ -2,19 +2,25 @@ import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
-import { CondensedPricingDisplay } from "@/components/sections/shared/CondensedPricingDisplay";
+import { PricingTiers } from "@/components/sections/shared/PricingTiers";
+import { ETHICS_LINE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Pricing - CampaignAI",
   description:
-    "Professional campaign video starting at $1,999. Candidate campaigns starting at $599. Flat starting rates with add-ons priced upfront.",
+    "Professional campaign video starting at $1,999. Candidate campaigns starting at $599. A flat starting rate for one finished video, with add-ons priced on your onboarding call.",
 };
 
 const faqs = [
   {
     question: "How much does a video cost?",
     answer:
-      "Professional video starts at $1,999. Candidate campaigns start at $599 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. All pricing is a flat starting rate with add-ons priced upfront, so you always know the cost before you commit. Agency production costs range significantly with the size and competitiveness of the race.",
+      "Professional video starts at $1,999. Candidate campaigns start at $599 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your onboarding call, so you always know the full cost before you commit.",
+  },
+  {
+    question: "What does the starting rate include, and what is an add-on?",
+    answer:
+      "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 30-minute onboarding call, before anything goes into production.",
   },
   {
     question: "How fast do I get my video?",
@@ -49,22 +55,27 @@ export default function PricingPage() {
             <h1 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-4">
               Professional campaign video. No agency required.
             </h1>
-            <p className="text-granite text-lg leading-relaxed max-w-[600px] mx-auto">
-              Flat starting rates with add-ons priced upfront, so you always know the cost before you commit.
+            <p className="text-granite text-lg leading-relaxed max-w-[620px] mx-auto">
+              A flat starting rate for one finished video, with any add-ons
+              priced on your onboarding call, so you always know the full cost
+              before you commit.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Condensed pricing display + America 250 module */}
-      <CondensedPricingDisplay showCtas />
+      {/* Pricing cards — shared with the homepage so the two always match */}
+      <section className="pb-12 bg-white">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+          <PricingTiers showAmerica250 />
 
-      {/* Transparency note */}
-      <section className="py-10 bg-white">
-        <div className="max-w-[600px] mx-auto px-4 sm:px-6 text-center">
-          <ScrollReveal>
-            <p className="text-granite text-sm leading-relaxed">
-              All pricing is a flat starting rate with add-ons priced upfront. You will always know the full cost before you commit to production.
+          <ScrollReveal delay={320}>
+            <p className="text-center text-granite text-base mt-10">
+              <span className="text-verdant mr-1.5">&#x2713;</span>
+              {ETHICS_LINE}
+            </p>
+            <p className="text-center text-slate text-xs mt-4">
+              Agency production costs range significantly with the size and competitiveness of the race.
             </p>
           </ScrollReveal>
         </div>

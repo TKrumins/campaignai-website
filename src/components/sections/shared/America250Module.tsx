@@ -89,7 +89,7 @@ export function America250Module({ className = "" }: { className?: string }) {
           </>
         )}
         <div>
-          <PatriotPurchaseButton />
+          <PatriotPurchaseButton label="Get the Special →" />
           <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>
         </div>
       </div>

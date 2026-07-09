@@ -1,4 +1,4 @@
-import { HeroSection } from "@/components/sections/home/HeroSection";
+import { HeroComboB } from "@/components/sections/home/hero-trials/HeroComboB";
 import { TrustBarSection } from "@/components/sections/home/TrustBarSection";
 import { SocialProofStrip } from "@/components/sections/home/SocialProofStrip";
 import { ProductSection } from "@/components/sections/home/ProductSection";
@@ -7,37 +7,37 @@ import { PricingSection } from "@/components/sections/home/PricingSection";
 import { StorytellingSection } from "@/components/sections/home/StorytellingSection";
 import { HowItWorksSection } from "@/components/sections/home/HowItWorksSection";
 import { AudienceSection } from "@/components/sections/home/AudienceSection";
-import { StatsMomentSection } from "@/components/sections/home/StatsMomentSection";
 import { TrustSection } from "@/components/sections/home/TrustSection";
 import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { FAQSection } from "@/components/sections/home/FAQSection";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
-import { BookDemoSection } from "@/components/sections/home/BookDemoSection";
 import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
 import { RibbonDivider } from "@/components/ui/RibbonDivider";
 
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <TrustBarSection />
-      <SocialProofStrip />
-      <ProductSection />
-      <ShowcaseSection />
-      <RibbonDivider className="py-0 bg-white" />
-      <ProblemSection />
-      <PricingSection />
-      <RibbonDivider className="py-0 bg-white" />
-      <HowItWorksSection />
-      <StatsMomentSection />
-      <StorytellingSection />
-      <AudienceSection />
-      <RibbonDivider className="py-0 bg-white" />
-      <TrustSection />
-      <EthicsSection />
-      <FAQSection />
-      <BookingBanner />
-      <BookDemoSection />
+      <HeroComboB />
+      {/* Lift everything after the hero above the hero's pinned (sticky)
+          background, whose -mb-[100vh] otherwise leaks over these sections. */}
+      <div className="relative z-10 bg-white">
+        <TrustBarSection />
+        <ProductSection />
+        <ShowcaseSection />
+        <SocialProofStrip />
+        <RibbonDivider className="py-0 bg-white" />
+        <ProblemSection />
+        <PricingSection />
+        <RibbonDivider className="py-0 bg-white" />
+        <HowItWorksSection />
+        <StorytellingSection />
+        <AudienceSection />
+        <RibbonDivider className="py-0 bg-white" />
+        <TrustSection />
+        <EthicsSection />
+        <FAQSection />
+        <BookingBanner showDemo />
+      </div>
     </>
   );
 }

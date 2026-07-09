@@ -1,28 +1,33 @@
 import Link from "next/link";
+import { Landmark, Building2, Flag, Users, Megaphone, Briefcase, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
-// Every tile resolves to a Who We Serve route (7.7); intent phrasing per E.6.
+// Every tile is a funnel entry to a Who We Serve route (7.7); intent per E.6.
 const candidateTiers = [
   {
     title: "Local Candidates",
+    icon: Landmark,
     description:
-      "Mayor, city council, sheriff, school board, county races. The campaigns closest to your community, with the tightest budgets and the most at stake for the people you serve.",
+      "Mayor, council, sheriff, school board, county. The races closest to your community, with the tightest budgets and the most at stake.",
     href: "/for/candidates",
     intent: "I'm running for office",
   },
   {
     title: "State Legislative",
+    icon: Building2,
     description:
-      "State house and senate campaigns. Big districts, real budget constraints, and opponents who already have the tools you're looking for.",
+      "State house and senate campaigns. Big districts, real budget limits, and opponents who already have the tools you want.",
     href: "/for/candidates",
     intent: "I'm running for office",
   },
   {
     title: "Statewide & Federal",
+    icon: Flag,
     description:
-      "Governor, AG, congressional, and Senate races. Campaigns that need to scale fast, stay compliant across jurisdictions, and produce content at a pace that matches the stakes.",
+      "Governor, AG, congressional, and Senate races. Scale fast, stay compliant across jurisdictions, and produce at the pace the stakes demand.",
     href: "/for/candidates",
     intent: "I'm running for office",
   },
@@ -31,22 +36,25 @@ const candidateTiers = [
 const teamTiers = [
   {
     title: "Party Committees",
+    icon: Users,
     description:
-      "State and local parties supporting full slates. One platform, consistent quality, state-specific AI disclosure labels handled across every district.",
+      "State and local parties backing full slates. One platform, consistent quality, disclosure labels handled across every district.",
     href: "/for/parties-and-pacs",
     intent: "I support a slate",
   },
   {
     title: "PACs",
+    icon: Megaphone,
     description:
-      "Independent committees producing content at scale. Professional video for the campaigns and causes you support.",
+      "Independent committees producing at scale. Professional video for every campaign and cause you support.",
     href: "/for/parties-and-pacs",
     intent: "I support a slate",
   },
   {
     title: "Consultancies",
+    icon: Briefcase,
     description:
-      "Produce more ads, at higher quality, for less. Deliver more for every client.",
+      "Produce more ads, at higher quality, for less. Deliver more for every client you advise.",
     href: "/for/consultants",
     intent: "I advise campaigns",
   },
@@ -57,9 +65,34 @@ const everyoneTags = [
   { label: "Ballot Initiatives", href: "/for/nonprofits" },
   { label: "Nonprofits", href: "/for/nonprofits" },
   { label: "Grassroots Movements", href: "/for/grassroots" },
-  // Renamed per 7-8 doc Section 0.3; links to /get-started
   { label: "Other Businesses or Organizations", href: "/get-started" },
 ];
+
+type Tier = {
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  description: string;
+  href: string;
+  intent: string;
+};
+
+function TierCard({ title, icon: Icon, description, href, intent }: Tier) {
+  return (
+    <Link href={href} className="card-hover group block rounded-xl p-[2px] patriot-gradient shadow-sm h-full">
+      <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
+        <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-regal-navy/5">
+          <Icon className="h-5 w-5 text-regal-navy" />
+        </div>
+        <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">{title}</h4>
+        <p className="text-granite text-sm leading-relaxed flex-1">{description}</p>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-freedom-blue text-sm font-semibold">
+          {intent}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export function AudienceSection() {
   return (
@@ -71,31 +104,21 @@ export function AudienceSection() {
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
               Video built for your race.
             </h2>
+            <p className="text-granite text-lg leading-relaxed">
+              Find your role below for the videos, pricing, and playbook built
+              around it.
+            </p>
           </div>
         </ScrollReveal>
 
         {/* Tier 1: For Candidates */}
         <ScrollReveal>
-          <h3 className="font-heading font-bold text-2xl text-regal-navy mb-6">
-            For Candidates
-          </h3>
+          <h3 className="font-heading font-bold text-2xl text-regal-navy mb-6">For Candidates</h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {candidateTiers.map(({ title, description, href, intent }, i) => (
-            <ScrollReveal key={title} delay={i * 80}>
-              <Link href={href} className="card-hover block rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
-                <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
-                  <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
-                    {title}
-                  </h4>
-                  <p className="text-granite text-sm leading-relaxed flex-1">
-                    {description}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold">
-                    {intent} &rarr;
-                  </span>
-                </div>
-              </Link>
+          {candidateTiers.map((tier, i) => (
+            <ScrollReveal key={tier.title} delay={i * 80}>
+              <TierCard {...tier} />
             </ScrollReveal>
           ))}
         </div>
@@ -107,21 +130,9 @@ export function AudienceSection() {
           </h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {teamTiers.map(({ title, description, href, intent }, i) => (
-            <ScrollReveal key={title} delay={i * 80}>
-              <Link href={href} className="card-hover block rounded-xl p-[3px] patriot-gradient shadow-sm h-full">
-                <div className="bg-white rounded-[10px] p-7 h-full flex flex-col">
-                  <h4 className="font-heading font-bold text-lg text-regal-navy mb-2">
-                    {title}
-                  </h4>
-                  <p className="text-granite text-sm leading-relaxed flex-1">
-                    {description}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold">
-                    {intent} &rarr;
-                  </span>
-                </div>
-              </Link>
+          {teamTiers.map((tier, i) => (
+            <ScrollReveal key={tier.title} delay={i * 80}>
+              <TierCard {...tier} />
             </ScrollReveal>
           ))}
         </div>
@@ -136,9 +147,10 @@ export function AudienceSection() {
               <Link
                 key={label}
                 href={href}
-                className="inline-block px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium hover:border-freedom-blue hover:text-regal-navy transition-colors"
+                className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-gray-200 text-granite text-sm font-medium hover:border-freedom-blue hover:text-regal-navy transition-colors"
               >
                 {label}
+                <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </Link>
             ))}
           </div>
@@ -146,17 +158,10 @@ export function AudienceSection() {
 
         <ScrollReveal>
           <div className="text-center mt-14">
-            <Button
-              variant="crimson"
-              href="https://calendly.com/campaignai/campaignai-purchase-call"
-              external
-              className="px-8 py-3 text-base"
-            >
-              Buy your first video &rarr;
+            <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3 text-base">
+              {CTA_PRIMARY}
             </Button>
-            <p className="text-slate text-sm mt-2">
-              Book a 30-minute call to get started.
-            </p>
+            <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>
           </div>
         </ScrollReveal>
       </div>

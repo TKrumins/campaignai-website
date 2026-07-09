@@ -13,9 +13,9 @@ export function UpcomingContent() {
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <SectionLabel text="From the Substack Community" />
+            <SectionLabel text="From Our Substack" />
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-regal-navy tracking-[-1px] mt-3">
-              Read what we&apos;re reading. Then argue with us.
+              Read what we&apos;re writing. Then argue with us.
             </h2>
           </div>
         </ScrollReveal>
@@ -51,17 +51,21 @@ export function UpcomingContent() {
 
         {/* Cross-link to the Living Glossary */}
         <ScrollReveal delay={200}>
-          <div className="mt-10 rounded-2xl border-2 border-freedom-blue/20 bg-white p-7 md:p-8 text-center">
-            <h3 className="font-heading font-bold text-xl text-regal-navy mb-2">
-              New to the vocabulary?
+          <div className="mt-12 rounded-2xl bg-regal-navy p-8 md:p-10 text-center">
+            <span className="inline-block text-freedom-blue text-xs font-bold uppercase tracking-widest mb-3">
+              The Living Glossary
+            </span>
+            <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px] mb-3">
+              AI is already in every campaign &mdash; and has been for years.
             </h3>
-            <p className="text-granite text-base leading-relaxed mb-4 max-w-[560px] mx-auto">
-              Our Living Glossary explains every AI-in-campaigns term in plain
+            <p className="text-beacon-white/80 text-base leading-relaxed mb-6 max-w-[600px] mx-auto">
+              From voter modeling to synthetic media, it&apos;s already shaping how
+              races are run. Our Living Glossary explains every term in plain
               language: what it is, why it matters, and how to spot it.
             </p>
             <Link
               href="/ai-in-campaigns"
-              className="text-freedom-blue font-semibold hover:underline"
+              className="btn-hover inline-flex items-center justify-center rounded-full bg-freedom-blue px-6 py-3 text-white text-sm font-semibold"
             >
               Explore the Living Glossary &rarr;
             </Link>

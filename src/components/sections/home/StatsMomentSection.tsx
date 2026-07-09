@@ -141,7 +141,7 @@ export function StatsMomentSection() {
           ))}
         </div>
         <p className="text-center text-regal-navy font-heading font-bold text-lg mt-10">
-          One Republican. One Democrat. One Independent. One process.
+          One process, built for every kind of campaign.
         </p>
       </div>
     </section>

@@ -46,6 +46,15 @@ Thumbs.db
 # raw assets (not deployed)
 assets/jermaine-johnson-photos/
 
+# working scratch — bloats the static export, never ship
+/public/OLD/
+/public/Founder Photos/
+/complete-brand-kit-updated.html
+/Screenshot*.png
+
+# showcase source video — hosted off-repo, see docs/closeout/video-hosting.md
+/public/assets/videos/*.mp4
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

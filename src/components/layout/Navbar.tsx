@@ -8,7 +8,10 @@ import { Menu, X } from "lucide-react";
 import { PatriotPurchaseButton } from "@/components/ui/PatriotPurchaseButton";
 import { usePatriotViewport } from "@/lib/usePatriotViewport";
 
-const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations", "/pricing", "/ethics", "/ai-in-campaigns", "/CampaignAIDisclosure"];
+// Pages with a DARK hero: the nav is transparent over the hero (light logo),
+// then solidifies to navy on scroll. Light-hero pages (e.g. /pricing) are left
+// off, so their nav stays solid navy — light logo, always legible, no swap.
+const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations", "/ethics", "/ai-in-campaigns", "/CampaignAIDisclosure"];
 
 const navLinks = [
   { href: "/how-it-works", label: "How It Works" },
@@ -25,7 +28,7 @@ export function Navbar() {
   const { heroExited, moduleInView } = usePatriotViewport();
 
   const hasDarkHero = darkHeroPages.includes(pathname);
-  const isTransparent = !scrolled && !mobileOpen;
+  const isTransparent = !scrolled && !mobileOpen && hasDarkHero;
 
   // Mobile viewport discipline (5.1): the nav CTA renders until the sticky
   // bar activates (hero exits viewport), then crossfades out; scroll to top
@@ -41,7 +44,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navBg = isTransparent && hasDarkHero ? "bg-transparent" : "bg-regal-navy border-b-2 border-b-freedom-blue";
+  const navBg = isTransparent ? "bg-transparent" : "bg-regal-navy border-b-2 border-b-freedom-blue";
 
   function getLinkClasses(href: string) {
     const isActive = pathname === href;
@@ -65,6 +68,8 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           <Link href="/" className="flex items-center">
+            {/* Light logo — the bar is always dark (transparent over a dark hero,
+                or solid navy), so one logo serves every page. */}
             <Image
               src="/assets/logos/logo-dark-background.svg"
               alt="CampaignAI"
@@ -100,7 +105,7 @@ export function Navbar() {
               <PatriotPurchaseButton size="sm" />
             </div>
             <button
-              className="text-beacon-white transition-colors"
+              className="text-beacon-white"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >

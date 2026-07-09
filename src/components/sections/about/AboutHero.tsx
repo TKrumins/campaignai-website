@@ -4,9 +4,9 @@ export function AboutHero() {
   return (
     <section
       data-hero
-      className="relative bg-regal-navy min-h-[70vh] flex items-center justify-center pt-24"
+      className="relative bg-regal-navy pt-40 pb-16"
     >
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center py-20">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           About
         </span>
@@ -14,8 +14,10 @@ export function AboutHero() {
           Built by people who&apos;ve been in the arena.
         </h1>
         <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-          CampaignAI was founded by a multi-partisan team who recognize that
-          building better AI is more important than any one partisan victory.
+          CampaignAI was founded by a multi-partisan team &mdash; Republican,
+          Democrat, and independent &mdash; who believe getting this technology
+          right matters more than any single election. We build for the next
+          generation, not the next news cycle.
         </p>
         <a
           href={SOCIAL_SUBSTACK}

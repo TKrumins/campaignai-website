@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commit 6 Scoping v4: Voter's Eyes + One-Off Lead Gens</title>
+<style>
+  :root{
+    --crimson:#FF3366; --blue:#4D9FFF; --navy:#0D1B3E; --beacon:#E8F4F8;
+    --frost:#F5FAFC; --verdant:#00D084; --gold:#FFB800; --granite:#2C2C2C;
+    --slate:#666666; --silver:#B8B8B8; --amber:#FF9500; --azure:#7AB8FF;
+  }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Arial,sans-serif;color:var(--granite);margin:0;background:#fff;line-height:1.55;font-size:15px}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 24px 80px}
+  header.doc{background:var(--navy);color:var(--beacon);padding:28px 24px;border-bottom:4px solid var(--blue)}
+  header.doc h1{margin:0 0 6px;font-size:24px;letter-spacing:-0.5px}
+  header.doc p{margin:2px 0;font-size:13px;opacity:.85}
+  h2.item{font-size:19px;color:var(--navy);margin:48px 0 4px;padding-top:20px;border-top:2px solid var(--frost);letter-spacing:-0.3px}
+  h2.item .num{color:var(--crimson);margin-right:8px}
+  h3.sub{font-size:15px;color:var(--navy);margin:20px 0 8px}
+  .meta{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+  .why{background:var(--frost);border-left:4px solid var(--blue);padding:10px 14px;font-size:14px;margin:12px 0}
+  .copy{background:#fff;border:1px solid #dde6ec;border-radius:8px;padding:14px 16px;margin:12px 0;font-size:14px}
+  .copy .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--slate);margin-bottom:8px}
+  .copy code{background:var(--frost);padding:1px 5px;border-radius:4px;font-size:13px}
+  .verbatim{font-family:Georgia,serif;color:var(--navy)}
+  .rec{margin-top:8px;padding:10px 12px;background:#fff;border-left:4px solid var(--verdant);font-size:14px}
+  .rec strong{color:var(--navy)}
+  .verdict{display:flex;gap:16px;align-items:center;background:var(--navy);color:var(--beacon);border-radius:8px;padding:12px 16px;margin:16px 0 8px;font-size:14px;flex-wrap:wrap}
+  .verdict .tag{font-weight:700;letter-spacing:.5px;font-size:12px;text-transform:uppercase}
+  .verdict .opt{border:1px solid rgba(255,255,255,.4);border-radius:6px;padding:4px 14px}
+  .verdict .notes{flex:1;min-width:150px;border-bottom:1px dotted rgba(255,255,255,.4);font-size:12px;opacity:.7;padding-bottom:2px}
+  ul,ol{margin:8px 0;padding-left:22px} li{margin:4px 0}
+  .demo{border:2px dashed var(--silver);border-radius:12px;padding:18px;margin:16px 0;background:#fbfdfe}
+  .demo .cap{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--slate);margin-bottom:12px}
+  .illus{font-size:12px;color:var(--slate);margin-top:8px}
+
+  /* voter phone */
+  .voterwrap{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+  .phone2{width:262px;border:9px solid #1a1a1a;border-radius:26px;overflow:hidden;background:#0f1830;flex-shrink:0}
+  .phone2 .status{background:#0f1830;color:var(--beacon);font-size:9px;display:flex;justify-content:space-between;padding:6px 12px;opacity:.7}
+  .phone2 .feed{padding:8px;display:flex;flex-direction:column;gap:8px;min-height:330px}
+  .fitem{border-radius:11px;overflow:hidden;cursor:pointer;transform-style:preserve-3d;transition:transform .5s;position:relative;animation:slidein .5s ease backwards}
+  .fitem:nth-child(1){animation-delay:.3s}.fitem:nth-child(2){animation-delay:1.1s}.fitem:nth-child(3){animation-delay:1.9s}
+  @keyframes slidein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .face{backface-visibility:hidden}
+  .front{background:#fff;padding:10px 11px;font-size:11px}
+  .front .app{font-size:8.5px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:flex;justify-content:space-between}
+  .front .app .flip{color:var(--blue);text-transform:none;letter-spacing:0}
+  .back{position:absolute;inset:0;background:var(--navy);color:var(--beacon);padding:9px 11px;font-size:9.5px;transform:rotateY(180deg);overflow:auto}
+  .fitem.flipped{transform:rotateY(180deg)}
+  .back .h{color:var(--gold);font-weight:700;font-size:8.5px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+  .back .step{display:flex;gap:5px;margin:3px 0}
+  .back .step i{color:var(--azure);font-style:normal}
+  .back .hum{color:var(--verdant);margin-top:4px;font-weight:600}
+  .adthumb{height:52px;border-radius:7px;background:linear-gradient(135deg,#16295c,#0D1B3E);position:relative;margin:5px 0}
+  .adthumb .pl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--beacon);font-size:13px}
+  .adthumb .dl{position:absolute;left:4px;bottom:4px;background:rgba(13,27,62,.9);border-left:2px solid var(--verdant);color:var(--beacon);font-size:6.5px;padding:2px 4px;border-radius:3px}
+  .voterside{flex:1;min-width:240px;font-size:13.5px}
+
+  /* tracker */
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:7px;max-width:520px}
+  .ttile{border-radius:8px;padding:8px 4px;text-align:center;color:#fff;font-weight:700;font-size:12px;cursor:pointer;transition:transform .15s}
+  .ttile:hover{transform:translateY(-3px)}
+  .ttile .st{display:block;font-size:7px;font-weight:600;opacity:.85;margin-top:2px;text-transform:uppercase;letter-spacing:.3px}
+  .t-req{background:var(--verdant)} .t-pend{background:var(--amber)} .t-none{background:#8aa0b8}
+  .tdetail{margin-top:10px;background:var(--navy);color:var(--beacon);border-radius:9px;padding:10px 14px;font-size:12.5px;min-height:42px}
+  .legend{display:flex;gap:14px;font-size:11.5px;margin:8px 0;flex-wrap:wrap}
+  .legend span i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+  .alertrow{display:flex;gap:6px;margin-top:12px;max-width:420px}
+  .alertrow input{flex:1;border:1px solid #cfd9e2;border-radius:8px;padding:8px 10px;font-size:12.5px}
+  .alertrow .btn{background:var(--crimson);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer}
+  .paid{display:inline-block;background:var(--gold);color:var(--navy);border-radius:4px;font-size:9.5px;font-weight:800;padding:1px 6px;letter-spacing:.4px;vertical-align:1px}
+
+  /* calculator */
+  .calc{display:flex;gap:16px;flex-wrap:wrap}
+  .calc .in{flex:1;min-width:210px}
+  .calc select{width:100%;border:1px solid #cfd9e2;border-radius:8px;padding:9px 10px;font-size:13.5px;margin:5px 0 12px;background:#fff}
+  .calc label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--slate)}
+  .calc .out{flex:1.2;min-width:250px}
+  .cbar{margin:9px 0}
+  .cbar .n{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:3px}
+  .cbar .n b{color:var(--navy)}
+  .cbar .track{height:20px;background:var(--frost);border-radius:10px;overflow:hidden}
+  .cbar .fill{height:100%;border-radius:10px;transition:width .6s cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;justify-content:flex-end;color:#fff;font-size:10.5px;font-weight:700;padding-right:8px;min-width:34px}
+  .save{background:#f0faf5;border:1px solid rgba(0,208,132,.45);border-radius:9px;padding:9px 12px;font-size:13px;color:var(--navy);margin-top:8px}
+  .save b{color:var(--verdant)}
+
+  /* label generator */
+  .gen{display:flex;gap:16px;flex-wrap:wrap}
+  .gen .qs2{flex:1;min-width:220px}
+  .chk{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #dde6ec;border-radius:9px;padding:9px 12px;margin:7px 0;font-size:13px;cursor:pointer;user-select:none}
+  .chk input{accent-color:var(--blue);width:16px;height:16px}
+  .gen .res{flex:1.2;min-width:250px}
+  .labelout{background:var(--navy);color:var(--beacon);border-left:4px solid var(--verdant);border-radius:10px;padding:12px 14px;font-size:13px;min-height:64px}
+  .labelout .h{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--verdant);margin-bottom:6px}
+  .copybtn{margin-top:8px;border:1.5px solid var(--blue);color:var(--blue);background:#fff;border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer}
+  .legal{font-size:11px;color:var(--slate);margin-top:10px}
+  @media (prefers-reduced-motion: reduce){.fitem{animation:none;transition:none}.cbar .fill{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="doc">
+  <div class="wrap" style="padding:0 24px">
+    <h1>Commit 6 Scoping v4: Voter's Eyes + One-Off Lead Gens</h1>
+    <p>Branch: <strong>feat/content-pages</strong> · Chat 3, round 4 · July 4, 2026</p>
+    <p>Locked in round 3: 6.3 spine now A → B → C (Demo D removed from the page; the Provenance Receipt moves internal, handover brief delivered separately) · Option 4 skeleton · Option 3 skipped, handover brief delivered separately · Options 2 and 5 approved with immersion-punch-up commitments recorded for the build doc · Yang stays · Go Film It fully out of this build, handover brief delivered separately.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="copy">
+  <div class="lbl">Immersion commitments for Options 2 and 5 (what "really punch it up" means concretely in the build doc)</div>
+  <strong>Day on the Trail:</strong> full-screen scroll-driven experience, one stop per viewport; time-of-day lighting shifts the palette as you scroll (dawn golds → work-hours whites → evening navy); each stop is an illustrated scene with one micro-interaction (tap the phone to read the donor summary, tap the door to hear the knock); a persistent clock ticks with scroll position; ends on "Her day had 17 hours in it. AI gave her 3 back." with the glossary and email capture. <strong>Campaign Machine:</strong> the switch becomes the whole page: gears rendered as a full-width machine with belts and motion lines, flipping AI on triggers a satisfying cascade (staggered spin-ups, speed lines, a time-saved counter rolling up), the candidate gear visibly resists and holds; a second toggle, "remove the candidate," stops the entire machine dead, which is the argument in one interaction. Both: CSS-first motion, reduced-motion fallbacks, share cards, email capture at exit.
+</div>
+
+<!-- OPTION 1 REWORK -->
+<h2 class="item"><span class="num">6.4</span>Option 1 reworked · Through the Voter's Eyes</h2>
+<div class="meta">Your instinct, followed: the map was the campaign's view. This is Maria's.</div>
+<div class="why">The straight-line problem was real: the pulse showed the machinery's perspective, which no voter ever experiences. The rework inverts it. The visitor watches an ordinary phone over an ordinary week; three campaign touchpoints arrive the way they actually arrive, unremarkable and human. <strong>Tap any of them to flip it over</strong> and see the chain that produced it, ending every time with the same green line: what stayed human. The page's argument: the machinery is invisible, and the disclosure question is whether that's honest.</div>
+<div class="demo">
+  <div class="cap">Live demo: items arrive in sequence · tap/click each one to flip it · fictional campaign, party-neutral</div>
+  <div class="voterwrap">
+    <div class="phone2">
+      <div class="status"><span>9:41</span><span>Maria's phone · Tuesday</span><span>▮▮▮</span></div>
+      <div class="feed">
+        <div class="fitem" onclick="this.classList.toggle('flipped')">
+          <div class="face front">
+            <div class="app"><span>Messages</span><span class="flip">tap to flip ⟲</span></div>
+            <strong>Dana (Rivera campaign):</strong> Hi Maria! It's Dana, a volunteer with Alex Rivera's city council campaign. We're asking neighbors what matters most this year. Mind sharing yours?
+          </div>
+          <div class="face back">
+            <div class="h">Behind this text</div>
+            <div class="step"><i>1.</i> Voter file matched Maria as an infrequent voter in Precinct 4</div>
+            <div class="step"><i>2.</i> AI drafted three opener variants for Dana</div>
+            <div class="step"><i>3.</i> Dana picked one, edited it, hit send</div>
+            <div class="hum">What stayed human: Dana. Every reply Maria sends goes to a person.</div>
+          </div>
+        </div>
+        <div class="fitem" onclick="this.classList.toggle('flipped')">
+          <div class="face front">
+            <div class="app"><span>Social feed · Sponsored</span><span class="flip">tap to flip ⟲</span></div>
+            <strong>The Roads Bill, Explained</strong>
+            <div class="adthumb"><div class="pl">▶</div><div class="dl">✓ Created visuals · AI narration, candidate-approved</div></div>
+            Why your street floods every spring, in 30 seconds.
+          </div>
+          <div class="face back">
+            <div class="h">Behind this ad</div>
+            <div class="step"><i>1.</i> Audience model flagged road funding as Precinct 4's top issue</div>
+            <div class="step"><i>2.</i> Explainer produced: AI visuals + AI narration, script approved line by line</div>
+            <div class="step"><i>3.</i> Meaningful disclosure applied on the ad itself (flip back, it's there)</div>
+            <div class="hum">What stayed human: the position, the words, the sign-off.</div>
+          </div>
+        </div>
+        <div class="fitem" onclick="this.classList.toggle('flipped')">
+          <div class="face front">
+            <div class="app"><span>Email</span><span class="flip">tap to flip ⟲</span></div>
+            <strong>What we heard on your street</strong><br>
+            Last weekend our volunteers knocked 214 doors in your neighborhood. Here's what your neighbors told us, and what Alex plans to do about it.
+          </div>
+          <div class="face back">
+            <div class="h">Behind this email</div>
+            <div class="step"><i>1.</i> Volunteers logged door-knock notes all weekend</div>
+            <div class="step"><i>2.</i> AI summarized 214 conversations into themes</div>
+            <div class="step"><i>3.</i> Staff reviewed, corrected two mischaracterizations, approved</div>
+            <div class="hum">What stayed human: the doors. Every conversation in this email happened.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="voterside">
+      <strong style="color:var(--navy)">Full page mechanics:</strong>
+      <ul>
+        <li>A week-long timeline scrubber (Mon-Sun); touchpoints accumulate on Maria's phone as the visitor scrubs, roughly seven across the week, mixing channels (text, ad, mailer rendered as a photo, email, a knock rendered as a doorbell moment).</li>
+        <li>Every flip ends on the green "what stayed human" line; the pattern is the message.</li>
+        <li>Persona picker up top (new mover · infrequent voter · small-dollar donor) changes which touchpoints arrive and in what order, which quietly teaches microtargeting from the receiving end.</li>
+        <li>Closing beat: <span class="verbatim">Every campaign now works this way. The difference is whether they tell you.</span> → glossary entries + email capture.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="verdict"><span class="tag">Verdict (Option 1 rework)</span><span class="opt">APPROVE</span><span class="opt">REVISE</span><span class="notes">notes</span></div>
+
+<!-- ONE-OFFS -->
+<h2 class="item"><span class="num">6.4</span>The three one-offs, built as working examples</h2>
+
+<h3 class="sub">One-off 1 · Regulatory Tracker (free map + paid alerts)</h3>
+<div class="demo">
+  <div class="cap">Click a state tile · ALL STATUSES BELOW ARE ILLUSTRATIVE PLACEHOLDERS, not legal reality; the real page is populated from your tracked data and reviewed before launch</div>
+  <div class="legend">
+    <span><i style="background:var(--verdant)"></i>Disclosure required</span>
+    <span><i style="background:var(--amber)"></i>Legislation pending</span>
+    <span><i style="background:#8aa0b8"></i>No requirement yet</span>
+  </div>
+  <div class="tgrid">
+    <div class="ttile t-req" onclick="tdet('State A','Disclosure required','AI-generated content in political ads must carry a disclosure label. Rules updated this session.')">ST-A<span class="st">Required</span></div>
+    <div class="ttile t-pend" onclick="tdet('State B','Legislation pending','A disclosure bill passed one chamber. We are tracking the second vote.')">ST-B<span class="st">Pending</span></div>
+    <div class="ttile t-none" onclick="tdet('State C','No requirement yet','No AI disclosure rule on the books. Federal preemption debate applies.')">ST-C<span class="st">None yet</span></div>
+    <div class="ttile t-req" onclick="tdet('State D','Disclosure required','Labeling required for synthetic media depicting candidates within 90 days of an election.')">ST-D<span class="st">Required</span></div>
+    <div class="ttile t-pend" onclick="tdet('State E','Legislation pending','Two competing bills in committee; definitions of synthetic media differ.')">ST-E<span class="st">Pending</span></div>
+    <div class="ttile t-req" onclick="tdet('State F','Disclosure required','Broad rule covering audio and video. Penalties attach to the committee, not the vendor.')">ST-F<span class="st">Required</span></div>
+    <div class="ttile t-none" onclick="tdet('State G','No requirement yet','No statute. Best practice still recommended, which is where meaningful disclosure comes in.')">ST-G<span class="st">None yet</span></div>
+    <div class="ttile t-pend" onclick="tdet('State H','Legislation pending','Bill introduced last month. Hearing scheduled.')">ST-H<span class="st">Pending</span></div>
+  </div>
+  <div class="tdetail" id="tdetail">Tap a state to see its status card. The full page renders all 50 + DC and territories on a real US map.</div>
+  <div class="alertrow"><input placeholder="you@campaign.com"><button class="btn">Alert me when my state changes →</button></div>
+  <div class="illus"><span class="paid">PAID TIER</span>&nbsp; Instant alerts for your states + a monthly all-state digest. Free tier: the map itself, always current. The 50-State Landscape piece on /community is the free sample that sells the subscription.</div>
+</div>
+
+<h3 class="sub">One-off 2 · The Budget Reality Check</h3>
+<div class="demo">
+  <div class="cap">Working example · numbers consistent with the locked bridge line, no competitors named</div>
+  <div class="calc">
+    <div class="in">
+      <label>Your race</label>
+      <select id="race" onchange="calc()"><option value="c">School board to U.S. Senate (candidate rate)</option><option value="p">Organization / consultancy / PAC</option></select>
+      <label>Videos this cycle</label>
+      <select id="vids" onchange="calc()"><option>1</option><option selected>3</option><option>5</option><option>10</option></select>
+    </div>
+    <div class="out">
+      <div class="cbar"><div class="n"><b>What agencies often charge*</b><span id="agn"></span></div><div class="track"><div class="fill" id="agf" style="background:var(--slate)"></div></div></div>
+      <div class="cbar"><div class="n"><b>Making it with CampaignAI</b><span id="can"></span></div><div class="track"><div class="fill" id="caf" style="background:var(--blue)"></div></div></div>
+      <div class="save" id="save"></div>
+    </div>
+  </div>
+  <div class="illus">*Agency production costs range significantly with the size and competitiveness of the race. Full page: email-gated PDF breakdown, then the purchase-call CTA. Every number sources from the approved pricing constants; the calculator can never drift from the site's claims.</div>
+</div>
+
+<h3 class="sub">One-off 3 · The Disclosure Label Generator</h3>
+<div class="demo">
+  <div class="cap">Working example · Demo C's logic, public-facing · answer four questions, get your language</div>
+  <div class="gen">
+    <div class="qs2">
+      <label class="chk"><input type="checkbox" id="g-voice" onchange="gen()"> Does your ad use an AI narration voice?</label>
+      <label class="chk"><input type="checkbox" id="g-vis" onchange="gen()"> Are the visuals AI-generated?</label>
+      <label class="chk"><input type="checkbox" id="g-broll" onchange="gen()"> Is AI b-roll mixed with real footage?</label>
+      <label class="chk"><input type="checkbox" id="g-script" onchange="gen()"> Did AI help draft the script?</label>
+    </div>
+    <div class="res">
+      <div class="labelout"><div class="h">Your meaningful disclosure</div><div id="g-out">Real footage, real voice, human-written script. Nothing in this ad was AI-generated.</div></div>
+      <button class="copybtn">Copy this language</button>
+      <div class="legal">Your state may also require specific legal disclosure labels; CampaignAI applies those automatically on every video we produce. This tool offers language, not legal advice; confirm requirements with your campaign's counsel. Full page: results email-gated; a per-ad receipt version becomes the paid tier when the internal Provenance Receipt work ships.</div>
+    </div>
+  </div>
+</div>
+
+<div class="verdict"><span class="tag">Verdict (three one-offs as built)</span><span class="opt">ALL 3</span><span class="opt">SOME: ___</span><span class="opt">REVISE</span><span class="notes">notes</span></div>
+
+<p style="margin-top:48px;font-size:12px;color:var(--slate);border-top:2px solid var(--frost);padding-top:16px">End of round 4. Two verdicts remain (Option 1 rework · the three one-offs), then the combined Commits 5+6 build instructions doc ships, with the lead-gen suite speced for Commit 8. The three handover briefs (Provenance Receipt · quiz media · Go Film It) are delivered alongside this file.</p>
+
+</div>
+
+<script>
+function tdet(n,s,d){document.getElementById('tdetail').innerHTML='<strong>'+n+' · '+s+'</strong><br>'+d+'<br><span style="opacity:.6;font-size:10.5px">Illustrative placeholder, not legal status.</span>';}
+function calc(){
+  var v=parseInt(document.getElementById('vids').value);
+  var isC=document.getElementById('race').value==='c';
+  var ag=v*10000, ca=v*(isC?599:1999);
+  var agf=document.getElementById('agf'), caf=document.getElementById('caf');
+  document.getElementById('agn').textContent='$'+ag.toLocaleString()+'+';
+  document.getElementById('can').textContent='Starting at $'+ca.toLocaleString();
+  agf.style.width='100%'; agf.textContent='$'+ag.toLocaleString()+'+';
+  var pct=Math.max(ca/ag*100,9);
+  caf.style.width=pct+'%'; caf.textContent='$'+ca.toLocaleString();
+  document.getElementById('save').innerHTML='That difference is <b>$'+(ag-ca).toLocaleString()+'+</b> your campaign keeps for doors, mail, and ads that run the video you just made.';
+}
+calc();
+function gen(){
+  var v=document.getElementById('g-voice').checked,
+      vi=document.getElementById('g-vis').checked,
+      b=document.getElementById('g-broll').checked,
+      s=document.getElementById('g-script').checked;
+  var parts=[];
+  if(v) parts.push('Narration is an AI voice, approved word-for-word by the candidate.');
+  if(vi) parts.push('Visuals in this ad were AI-generated.');
+  if(b) parts.push('AI-generated b-roll appears alongside real footage; created segments are marked on screen.');
+  if(s) parts.push('The script was drafted with AI assistance; the candidate approved every word.');
+  if(!vi && !b) parts.push('All footage is real.');
+  if(!v && !vi && !b && !s) parts=['Real footage, real voice, human-written script. Nothing in this ad was AI-generated.'];
+  document.getElementById('g-out').textContent=parts.join(' ');
+}
+</script>
+</body>
+</html>

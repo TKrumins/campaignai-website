@@ -40,13 +40,13 @@ const trustSignals = [
   },
   {
     icon: Scale,
-    title: "Accountability across the aisle",
+    title: "Accountability in every direction",
     description: "Our founders hold each other to a higher standard because they don't always agree.",
   },
   {
     icon: ShieldCheck,
     title: "Your trust is the product",
-    description: "If campaigns on both sides trust us, we're doing something right.",
+    description: "If campaigns across the spectrum trust us, we're doing something right.",
   },
 ];
 
@@ -94,8 +94,9 @@ export function IntersectionGraphic() {
               Principles we can all agree on
             </p>
             <p className="text-slate text-sm mt-1 text-center max-w-[360px]">
-              When your team disagrees on politics but agrees on principles,
-              the product earns trust from everyone.
+              We don&apos;t agree on much in politics. We do agree that every
+              campaign deserves professional tools &mdash; and that&apos;s the
+              whole idea.
             </p>
           </div>
         </ScrollReveal>

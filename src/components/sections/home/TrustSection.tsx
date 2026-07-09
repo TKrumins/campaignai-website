@@ -8,7 +8,7 @@ const founders = [
   {
     photo: "/assets/profile-pictures/Tom-Krumins.png",
     name: "Tom Krumins",
-    title: "SC Forward Party Advisory Board.",
+    title: "SC Forward Party Founding Member.",
     description: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
     party: "Forward",
   },
@@ -43,8 +43,6 @@ export function TrustSection() {
             <SectionLabel text="Who We Are" />
             <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mt-3 mb-5">
               Republican. Democrat. Independent.
-              <br />
-              Because getting AI right is more important than any one partisan victory.
             </h2>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px] mx-auto">
               CampaignAI was founded by a team of candidates, legislators, and
@@ -64,29 +62,31 @@ export function TrustSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {founders.map(({ photo, name, title, description, party }, i) => (
             <ScrollReveal key={name} delay={i * 100}>
-              <div className="text-center">
-                <div className="relative w-[180px] h-[180px] mx-auto mb-4">
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <Image
-                      src={photo}
-                      alt={name}
-                      width={180}
-                      height={180}
-                      className="w-full h-full object-cover"
-                    />
+              <div className="card-hover text-center rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 h-full">
+                <div className="relative w-[168px] h-[168px] mx-auto mb-5">
+                  <div className="w-full h-full rounded-full p-[3px] patriot-gradient shadow-sm">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white">
+                      <Image
+                        src={photo}
+                        alt={name}
+                        width={168}
+                        height={168}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
                   <PartyPill
                     party={party}
-                    className="absolute bottom-1 left-1/2 -translate-x-1/2"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2"
                   />
                 </div>
-                <h3 className="font-heading font-bold text-lg text-black">
+                <h3 className="font-heading font-bold text-lg text-regal-navy">
                   {name}
                 </h3>
-                <p className="text-black text-sm font-semibold mb-2">
+                <p className="text-regal-navy text-sm font-semibold mb-2">
                   {title}
                 </p>
-                <p className="text-black/70 text-sm leading-relaxed">
+                <p className="text-slate text-sm leading-relaxed">
                   {description}
                 </p>
               </div>

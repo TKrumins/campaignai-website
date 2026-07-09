@@ -1,32 +1,68 @@
 import fs from "fs";
 import path from "path";
 import Image from "next/image";
-import { StepClip } from "@/components/sections/how-it-works/StepClip";
 
 /**
- * Media slot per step (6.3). Exact drop-in filenames:
- *   public/assets/how-it-works/step-{n}.png        (screenshot / recording still)
- *   public/assets/how-it-works/step-{n}-clip.mp4   (CEO micro-clip)
- * Renders the clip through the self-hosted player when it exists, the still
- * when only that exists, and a duotone placeholder frame (E.3) until files
- * land, so real media drops in without layout work.
+ * Media slot per step (6.3). Exact drop-in filenames (first match wins):
+ *   public/assets/how-it-works/step-{n}-clip.mp4   (best: MP4 walkthrough clip)
+ *   public/assets/how-it-works/step-{n}.gif        (recorded walkthrough GIF)
+ *   public/assets/how-it-works/step-{n}.png        (screenshot / still)
+ * Renders the clip through the self-hosted player when it exists, then an
+ * animated GIF, then a still, and finally a duotone placeholder frame (E.3)
+ * until files land, so real media drops in without layout work.
  */
 export function StepMedia({ step, title }: { step: number; title: string }) {
   const base = path.join(process.cwd(), "public", "assets", "how-it-works");
   const still = `step-${step}.png`;
   const clip = `step-${step}-clip.mp4`;
+  const gif = `step-${step}.gif`;
   const hasStill = fs.existsSync(path.join(base, still));
   const hasClip = fs.existsSync(path.join(base, clip));
+  const hasGif = fs.existsSync(path.join(base, gif));
 
   if (hasClip) {
     return (
       <div className="relative w-full">
         <div className="absolute inset-0 rounded-2xl bg-freedom-blue/10 rotate-[1.5deg]" aria-hidden="true" />
-        <div className="relative rounded-2xl border-4 border-white shadow-md overflow-hidden">
-          <StepClip
-            src={`/assets/how-it-works/${clip}`}
+        <div
+          className="relative rounded-2xl border-4 border-white shadow-md overflow-hidden"
+          style={{ aspectRatio: "16 / 10" }}
+        >
+          {/* Autoplay, looped, muted, and non-interactive — the walkthrough
+              plays itself and can't be paused or scrubbed on this page. */}
+          <video
+            className="pointer-events-none absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
             poster={hasStill ? `/assets/how-it-works/${still}` : undefined}
-            title={title}
+            aria-label={title}
+          >
+            <source src={`/assets/how-it-works/${clip}`} type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    );
+  }
+
+  if (hasGif) {
+    return (
+      <div className="relative w-full">
+        <div className="absolute inset-0 rounded-2xl bg-freedom-blue/10 rotate-[1.5deg]" aria-hidden="true" />
+        <div
+          className="relative w-full rounded-2xl overflow-hidden shadow-md border-4 border-white"
+          style={{ aspectRatio: "16 / 10" }}
+        >
+          {/* unoptimized so the GIF animates under static export */}
+          <Image
+            src={`/assets/how-it-works/${gif}`}
+            alt={title}
+            fill
+            unoptimized
+            sizes="(max-width: 768px) 100vw, 420px"
+            className="object-cover"
           />
         </div>
       </div>

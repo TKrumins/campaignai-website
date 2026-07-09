@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { GlossaryGrid } from "@/components/sections/glossary/GlossaryGrid";
 import { SuggestEntry } from "@/components/sections/glossary/SuggestEntry";
+import { ScriptDemo } from "@/components/sections/how-it-works/ScriptDemo";
+import { AILandscape } from "@/components/sections/community/AILandscape";
 import { ExperiencesRow } from "@/components/sections/experiences/ExperiencesRow";
 import { EXPERIENCE_ROUTES } from "@/lib/constants";
 
@@ -36,6 +38,12 @@ export default function AiInCampaignsPage() {
         </div>
       </section>
 
+      {/* The AI landscape — the map of what AI already does across a campaign */}
+      <AILandscape />
+
+      {/* Guided vs. the blank box — the product's core value, hands-on */}
+      <ScriptDemo />
+
       {/* Glossary database */}
       <section className="py-14 md:py-20 bg-dawn-frost">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,9 +53,9 @@ export default function AiInCampaignsPage() {
 
       {/* Go deeper: the interactive experiences (soft CTA row) */}
       <ExperiencesRow
-        routes={EXPERIENCE_ROUTES}
+        routes={["#script-step", ...EXPERIENCE_ROUTES]}
         heading="Go deeper. See it, don't just read it."
-        subhead="Five short interactive experiences that show how AI actually shows up in campaigns, and where the human stays in charge."
+        subhead="Short, interactive tools that show how AI actually shows up in campaigns, and where the human stays in charge."
         tone="white"
       />
 

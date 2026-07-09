@@ -2,9 +2,9 @@ export function CommunityHero() {
   return (
     <section
       data-hero
-      className="relative min-h-[70vh] flex items-center justify-center pt-24 bg-regal-navy"
+      className="relative bg-regal-navy pt-40 pb-16"
     >
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center py-24">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           Substack Community
         </span>

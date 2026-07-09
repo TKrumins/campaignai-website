@@ -33,13 +33,13 @@
 
 /* Gradient utilities — Patriot Gradient */
 /* 45% red / 10% white / 45% blue diagonal */
+/* Patriot gradient — real Red / White / Blue. NEVER includes navy. */
 @utility patriot-gradient {
-  background: linear-gradient(135deg, #FF3366 0%, #FF3366 40%, #E8F4F8 47%, #E8F4F8 53%, #4D9FFF 60%, #0D1B3E 100%);
+  background: linear-gradient(135deg, #FF3366 0%, #FF3366 36%, #E8F4F8 50%, #4D9FFF 64%, #4D9FFF 100%);
 }
 
-/* No-white variant — text on light backgrounds */
 @utility patriot-gradient-text {
-  background: linear-gradient(135deg, #FF3366 0%, #FF3366 40%, #E8F4F8 47%, #E8F4F8 53%, #4D9FFF 60%, #0D1B3E 100%);
+  background: linear-gradient(135deg, #FF3366 0%, #FF3366 36%, #E8F4F8 50%, #4D9FFF 64%, #4D9FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -102,7 +102,8 @@
   display: inline-flex;
   border-radius: 9999px;
   padding: 3px;
-  background-image: linear-gradient(135deg, #FF3366 0%, #E8F4F8 40%, #4D9FFF 80%, #0D1B3E 100%);
+  /* Balanced red → purple → blue swirl (blue/purple weighted, not red-heavy). */
+  background-image: linear-gradient(115deg, #FF3366 0%, #FF6B8F 15%, #8E5CF7 42%, #7AB8FF 70%, #4D9FFF 100%);
 }
 
 .patriot-purchase .pp-inner {
@@ -125,11 +126,14 @@
 
 .patriot-purchase.pp-conic {
   background-image: conic-gradient(
-    from calc(135deg + var(--pp-angle)),
-    #FF3366 0%,
-    #E8F4F8 40%,
-    #4D9FFF 80%,
-    #0D1B3E 100%
+    from calc(115deg + var(--pp-angle)),
+    #4D9FFF 0%,
+    #7AB8FF 14%,
+    #8E5CF7 36%,
+    #FF6B8F 50%,
+    #8E5CF7 64%,
+    #7AB8FF 86%,
+    #4D9FFF 100%
   );
 }
 
@@ -498,6 +502,331 @@ h1, h2, h3, h4, h5, h6 {
   .machine-belt.spinning { animation: machineBelt 0.9s linear infinite; }
   .machine-flow.spinning { animation: machineFlow 5.5s linear infinite; }
   .machine-drop.spinning { animation: machineDrop 2.4s ease-in infinite; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO TRIALS (temporary) — 5 candidate homepage heroes for review.
+   Remove the losers + this block once a direction is chosen.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Patriot gradient on text, tuned for DARK backgrounds (no navy tail). */
+@utility patriot-gradient-text-bright {
+  background: linear-gradient(120deg, #FF3366 0%, #FF6B8F 26%, #E8F4F8 50%, #7AB8FF 74%, #4D9FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Patriot gradient on text for LIGHT backgrounds — mirrors the header's
+   bright gradient but drops the near-white middle (invisible on white) and
+   the navy tail, so keywords read the same on light sections. */
+@utility patriot-gradient-text-onlight {
+  background: linear-gradient(120deg, #FF3366 0%, #FF6B8F 28%, #8E5CF7 60%, #4D9FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Real RWB patriot gradient text on a LIGHT bg, kept legible through the
+   near-white middle by a faint navy under-shadow that defines each glyph. */
+@utility patriot-gradient-text-shadowed {
+  background: linear-gradient(120deg, #FF3366 0%, #FF6B8F 26%, #E8F4F8 50%, #7AB8FF 74%, #4D9FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 1px 1px rgba(13, 27, 62, 0.45));
+}
+
+/* Flippable product cards */
+.flip-card { perspective: 1200px; }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back { transform: rotateY(180deg); }
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .flip-card-inner { transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+}
+
+/* Safety net: off-screen elements (badge tooltips, decorative art) never
+   create a horizontal scrollbar. `clip` (not `hidden`) so position: sticky
+   in the hero keeps working. */
+html,
+body { overflow-x: clip; }
+
+/* V4 — kinetic slanted patriot gradient band */
+.hero-kinetic-bg {
+  background: linear-gradient(115deg, #0D1B3E 0%, #FF3366 30%, #8E5CF7 50%, #4D9FFF 70%, #0D1B3E 100%);
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+}
+
+/* V4 — rotating word: stacked words, one visible at a time */
+.hero-word-rotator { position: relative; display: inline-block; }
+.hero-word-rotator .hero-word-sizer { visibility: hidden; }
+.hero-word-rotator .hero-word {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+}
+.hero-word-rotator .hero-word:first-of-type { opacity: 1; } /* reduced-motion + no-JS fallback */
+
+@keyframes heroKineticPan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes heroWordCycle {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(0.35em); }
+  4%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  21%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  25%  { opacity: 0; transform: translateX(-50%) translateY(-0.35em); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-0.35em); }
+}
+@keyframes heroSlowFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-kinetic-bg { animation: heroKineticPan 16s ease-in-out infinite; }
+  .hero-word-rotator .hero-word {
+    animation: heroWordCycle 8s infinite;
+    animation-delay: calc(var(--w) * 2s);
+  }
+  .hero-word-rotator .hero-word:first-of-type { opacity: 0; } /* animation takes over */
+  .hero-float { animation: heroSlowFloat 7s ease-in-out infinite; }
+}
+
+/* ── HERO COMBOS A/B (temporary, for review) ───────────────────── */
+
+/* Stronger flag-in-the-wind wave for the combo backgrounds. */
+@keyframes flagWaveStrong {
+  0%, 100% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1.06); }
+  25%      { transform: translate3d(-1.3%, 0.7%, 0) skewX(-1.6deg) scale(1.09); }
+  50%      { transform: translate3d(0.4%, -0.9%, 0) skewX(0.9deg) scale(1.07); }
+  75%      { transform: translate3d(1.3%, 0.5%, 0) skewX(1.4deg) scale(1.09); }
+}
+.animate-flag-wave-strong {
+  animation: flagWaveStrong 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Red → blue → red gradient sheen, panning across the flag. */
+.hero-sheen {
+  background: linear-gradient(
+    115deg,
+    rgba(255, 51, 102, 0) 0%,
+    rgba(255, 51, 102, 0.38) 22%,
+    rgba(77, 159, 255, 0.42) 50%,
+    rgba(255, 51, 102, 0.38) 78%,
+    rgba(255, 51, 102, 0) 100%
+  );
+  background-size: 280% 280%;
+  background-position: 0% 50%;
+  mix-blend-mode: overlay;
+}
+@keyframes heroSheenPan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Left-aligned 6-phrase audience cycler. */
+.phrase-rotator { position: relative; display: inline-block; }
+.phrase-rotator .phrase-sizer { visibility: hidden; }
+.phrase-rotator .phrase {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+}
+.phrase-rotator .phrase:first-of-type { opacity: 1; } /* reduced-motion fallback */
+/* Mobile: let the rotating hero phrase wrap instead of overflowing.
+   Placed after the base nowrap rule so it wins the cascade. */
+@media (max-width: 639px) {
+  .phrase-rotator .phrase,
+  .phrase-rotator .phrase-sizer { white-space: normal; }
+}
+@keyframes heroPhraseCycle {
+  0%    { opacity: 0; transform: translateY(0.5em); }
+  1.6%  { opacity: 1; transform: translateY(0); }
+  14%   { opacity: 1; transform: translateY(0); }
+  16.6% { opacity: 0; transform: translateY(-0.5em); }
+  100%  { opacity: 0; transform: translateY(-0.5em); }
+}
+
+/* "Time with voters" bar: waits, then slowly fills. Patriot gradient
+   (no navy); green stays reserved for ethics. */
+.bar-patriot {
+  background: linear-gradient(115deg, #FF3366 0%, #FF3366 24%, #E8F4F8 50%, #4D9FFF 76%, #4D9FFF 100%);
+}
+@keyframes ratioFill { from { width: 12%; } to { width: 78%; } }
+@keyframes ratioFade { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Woven filmstrip proof graphic */
+.filmstrip-ribbon {
+  position: absolute;
+  background: #0b1633;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, #FF3366, #8E5CF7, #4D9FFF, #8E5CF7, #FF3366) 1;
+  overflow: hidden;
+}
+.filmstrip-ribbon::before,
+.filmstrip-ribbon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background: repeating-linear-gradient(90deg, #E8F4F8 0 9px, transparent 9px 21px);
+  opacity: 0.8;
+}
+.filmstrip-ribbon::before { top: 6px; }
+.filmstrip-ribbon::after { bottom: 6px; }
+.filmstrip-flow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #FF3366, #8E5CF7, #4D9FFF, #8E5CF7, #FF3366);
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+@keyframes filmstripFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Vertical weaving ribbon: gentle sway + a pulse where it meets each still. */
+@keyframes ribbonSway {
+  0%, 100% { transform: translateX(-1.8%); }
+  50% { transform: translateX(1.8%); }
+}
+@keyframes ribbonPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+/* AI sparkle twinkle — used across motion graphics. */
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.65) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.1) rotate(35deg); }
+}
+.sparkle-twinkle {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* The Problem — broken paywall graphic */
+@keyframes paywallPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+@keyframes paywallRay { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.5; } }
+@keyframes paywallReveal {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* America 250 pop-up: tilt + entrance + hover shine. */
+.a250-popup { transform: rotate(3deg); }
+.a250-shine { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
+.a250-shine::before {
+  content: "";
+  position: absolute; top: 0; left: -70%;
+  width: 45%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-18deg);
+  opacity: 0;
+}
+@keyframes a250Pop {
+  0%   { transform: rotate(3deg) scale(0.6); opacity: 0; }
+  70%  { transform: rotate(3deg) scale(1.06); opacity: 1; }
+  100% { transform: rotate(3deg) scale(1); opacity: 1; }
+}
+@keyframes a250Sweep { from { left: -70%; opacity: 0.9; } to { left: 130%; opacity: 0.9; } }
+@keyframes a250Sparkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.8) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1.15) rotate(25deg); }
+}
+
+/* Proof film graphic: tri-color patriot wave motion. */
+@keyframes proofWaveDash { to { stroke-dashoffset: -320; } }
+@keyframes proofRingSpin { to { transform: rotate(360deg); } }
+/* Solid ribbon with a light "comet" traveling it (not dotted). */
+@keyframes ribbonComet { to { stroke-dashoffset: -1426; } }
+
+/* How It Works timeline: a light travels down the vertical spine, and each
+   step node breathes a soft ring as you scroll the process. */
+@keyframes hiwSpineFlow {
+  0% { top: -14%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 108%; opacity: 0; }
+}
+@keyframes hiwNodePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(77, 159, 255, 0); }
+  50% { box-shadow: 0 0 0 7px rgba(77, 159, 255, 0.12); }
+}
+
+/* Growth graphic: a shimmer sweeps up the "it gets it now" bar, and a light
+   travels the growth arrow. */
+@keyframes growShimmer {
+  0% { transform: translateY(110%); opacity: 0; }
+  30%, 70% { opacity: 1; }
+  100% { transform: translateY(-110%); opacity: 0; }
+}
+@keyframes growArrowComet {
+  0% { left: -6%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 104%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hiw-spine-comet { animation: hiwSpineFlow 4.2s linear infinite; }
+  .hiw-node-pulse { animation: hiwNodePulse 3.2s ease-in-out infinite; }
+  .grow-shimmer { animation: growShimmer 3s ease-in-out infinite; }
+  .grow-arrow-comet { animation: growArrowComet 3.4s linear infinite; }
+  .hero-sheen { animation: heroSheenPan 13s ease-in-out infinite; }
+  .phrase-rotator .phrase {
+    animation: heroPhraseCycle 15s infinite;
+    animation-delay: calc(var(--p) * 2.5s);
+  }
+  .phrase-rotator .phrase:first-of-type { opacity: 0; }
+  .ratio-fill { animation: ratioFill 2.8s cubic-bezier(0.33, 0.9, 0.4, 1) 2s both; }
+  .ratio-decoy { animation: ratioFade 4.4s ease-out both; }
+  .filmstrip-flow { animation: filmstripFlow 9s linear infinite; }
+  .a250-popup { animation: a250Pop 0.6s ease-out 0.35s both; }
+  .a250-popup:hover { transform: rotate(0deg) scale(1.04); transition: transform 0.25s ease; }
+  .a250-popup:hover .a250-shine::before { animation: a250Sweep 0.8s ease forwards; }
+  .a250-sparkle { animation: a250Sparkle 2.2s ease-in-out infinite; }
+  .proof-wave { stroke-dasharray: 14 12; animation: proofWaveDash 7s linear infinite; }
+  .proof-ring { transform-origin: center; animation: proofRingSpin 26s linear infinite; }
+  .ribbon-comet { stroke-dasharray: 26 1400; animation: ribbonComet 3.6s linear infinite; }
+  .ribbon-sway { animation: ribbonSway 7s ease-in-out infinite; }
+  .ribbon-pulse { animation: ribbonPulse 2.4s ease-in-out infinite; }
+  .sparkle-twinkle { animation: sparkleTwinkle var(--dur, 3s) ease-in-out infinite; }
+  .paywall-rim { animation: paywallPulse 3s ease-in-out infinite; }
+  .paywall-ray { animation: paywallRay 4s ease-in-out infinite; }
+  .paywall-reveal { animation: paywallReveal 0.8s ease-out both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ratio-fill { width: 78%; }
+  .ratio-decoy { opacity: 0; }
 }
 
 /* Tri-color ribbon divider (C.1: red → Bridge Violet → blue) */

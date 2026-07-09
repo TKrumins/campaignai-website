@@ -5,40 +5,40 @@ import { ShieldCheck, Eye, Lock, Copyright } from "lucide-react";
 
 export const ethicsColumns = [
   {
-    title: "Automatic Compliance",
+    title: "Disclosure, built in",
     icon: ShieldCheck,
     description:
-      "Every video includes the correct disclosure labels for your state. We track the rules across all 50 states and update as regulations change.",
+      "Every video ships with the AI disclosure labels we track for your state, and we keep them current as the rules change across all 50 states.",
   },
   {
     title: "Active Regulatory Monitoring",
     icon: Eye,
     description:
-      "We track AI disclosure legislation, FEC guidance, and state-level rules in real time. When new rules pass, we update before your next video.",
+      "We watch AI disclosure legislation, FEC guidance, and state-level rules as they move. When the rules change, we update before your next video.",
   },
   {
     title: "Your Data Stays Yours",
     icon: Lock,
     description:
-      "We don’t sell your data. No campaign data is sent to language models for training. Opt-in collection only. Your strategy stays yours.",
+      "We don’t sell your data, and no campaign data is used to train major AI models. Opt-in collection only. Your strategy stays yours.",
   },
   {
-    title: "You Own Your Content",
+    title: "You Make Every Call",
     icon: Copyright,
     description:
-      "Every video belongs to you. Full rights, no licensing restrictions, no watermarks. You make every creative decision along the way.",
+      "The AI never runs on its own. You make every creative decision along the way, and every finished video is yours — full rights, no watermark.",
   },
 ];
 
-// P2 (approved): three plain commitments, rendered under the columns
+// P2 (approved): plain commitments, rendered under the columns
 export const ethicsRefusals = [
-  "We will never impersonate a real person.",
+  "We will never impersonate a real person without their written consent.",
   "We will never help deceive voters about how, when, or where to vote.",
   "We will never train major AI models on your campaign's data.",
 ];
 
 export const ethicsDisclaimer =
-  "All campaigns should confirm compliance with applicable federal, state, and local rules. We work to stay ahead of evolving regulations and provide tools and guidance, not legal advice. When in doubt, consult your campaign's legal counsel.";
+  "We don't guarantee compliance. Rules vary by state and change quickly, and what we provide is tooling and guidance, not legal advice. Confirm your video against the applicable federal, state, and local rules — and check with your campaign's counsel before you publish.";
 
 export function EthicsSection() {
   return (

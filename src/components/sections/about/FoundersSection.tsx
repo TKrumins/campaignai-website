@@ -9,11 +9,11 @@ const founders = [
     firstName: "tom",
     fallbackPhoto: "/assets/profile-pictures/Tom-Krumins.png",
     name: "Tom Krumins",
-    title: "SC Forward Party Advisory Board.",
+    title: "SC Forward Party Founding Member.",
     tag: "CEO",
     party: "Forward",
     tagline: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
-    bio: "Tom is a social impact entrepreneur, movement-builder, and founding advisory board member of the South Carolina Forward Party. He has spent his career building and scaling nonprofits, darkhorse candidate campaigns, and advocacy movements. He serves as CEO, leading the company’s strategy and vision with a product that truly grows alongside our customers.\n\nTom spends his days asking the hard questions so you don’t have to. He builds in public and in community, showing that there are better ways to harness these technologies.",
+    bio: "Tom is a social impact entrepreneur, movement-builder, and founding member of the South Carolina Forward Party. He has spent his career building and scaling nonprofits, darkhorse candidate campaigns, and advocacy movements. He serves as CEO, leading the company’s strategy and vision with a product that truly grows alongside our customers.\n\nTom spends his days asking the hard questions so you don’t have to. He builds in public and in community, showing that there are better ways to harness these technologies.",
   },
   {
     firstName: "jermaine",

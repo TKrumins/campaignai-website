@@ -2,7 +2,6 @@
 
 import {
   ShieldCheck,
-  Users,
   UserCheck,
   Sparkles,
   Scale,
@@ -18,12 +17,6 @@ const allBadges = [
     label: "Meaningful Disclosure Framework",
     tooltip:
       "We tell your voters what is created and what is captured, so they always know what they are seeing.",
-  },
-  {
-    icon: Users,
-    label: "Multi-Partisan by Design",
-    tooltip:
-      "Built by a Republican, a Democrat, and an Independent. We serve campaigns across the spectrum.",
   },
   {
     icon: UserCheck,
@@ -53,9 +46,14 @@ const allBadges = [
 
 export function TrustBarSection() {
   return (
-    <section className="bg-regal-navy border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-8">
+    <section className="bg-regal-navy">
+      {/* gradient seal: closes out the scrolling hero */}
+      <div className="h-1.5 patriot-gradient" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <ScrollReveal>
+          <p className="text-center text-beacon-white/50 text-xs font-semibold uppercase tracking-[3px] mb-7">
+            The standards behind every video
+          </p>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {allBadges.map((badge) => (
               <BadgeWithTooltip key={badge.label} tone="navy" {...badge} />
@@ -63,7 +61,7 @@ export function TrustBarSection() {
           </div>
 
           {/* Ethics-as-feature line (2.3) */}
-          <p className="text-center text-beacon-white font-medium text-base mt-5">
+          <p className="text-center text-beacon-white font-medium text-base mt-7">
             <span className="text-verdant mr-1.5">&#x2713;</span>
             {ETHICS_LINE}
           </p>

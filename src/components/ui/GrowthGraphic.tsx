@@ -59,9 +59,18 @@ export function GrowthGraphic() {
     <div className="w-full max-w-[900px] mx-auto">
       {/* Rising bars */}
       <div className="flex items-end justify-center gap-2 sm:gap-5 md:gap-8 mb-8 overflow-x-auto">
-        {milestones.map(({ video, layers, height, opacity }, i) => (
+        {milestones.map(({ video, layers, height, opacity }, i) => {
+          const isPayoff = i === milestones.length - 1;
+          return (
           <ScrollReveal key={video} delay={i * 120}>
-            <div className="flex flex-col items-center">
+            <div className="relative flex flex-col items-center">
+              {/* Sparkles on the payoff bar — the AI now "gets" the campaign */}
+              {isPayoff && (
+                <>
+                  <span className="sparkle-twinkle absolute -top-1 right-0 text-pioneer-gold text-sm" aria-hidden="true">&#10022;</span>
+                  <span className="sparkle-twinkle absolute top-4 -left-1 text-freedom-blue text-xs" style={{ animationDelay: "700ms" }} aria-hidden="true">&#10022;</span>
+                </>
+              )}
               {/* Bar */}
               <div
                 className={`w-12 sm:w-20 md:w-28 ${height} rounded-t-xl overflow-hidden relative shadow-lg transition-all duration-500`}
@@ -81,21 +90,27 @@ export function GrowthGraphic() {
                     </div>
                   ))}
                 </div>
+                {/* Shimmer sweep on the payoff bar */}
+                {isPayoff && (
+                  <div className="grow-shimmer absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-transparent via-white/45 to-transparent pointer-events-none" aria-hidden="true" />
+                )}
               </div>
               {/* Label */}
               <div className="mt-3 text-center">
-                <p className="font-heading font-bold text-xs sm:text-sm text-regal-navy">
+                <p className={`font-heading font-bold text-xs sm:text-sm ${isPayoff ? "patriot-gradient-text" : "text-regal-navy"}`}>
                   {video}
                 </p>
               </div>
             </div>
           </ScrollReveal>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Growth arrow line */}
+      {/* Growth arrow line with a traveling light */}
       <div className="relative h-[2px] max-w-[700px] mx-auto mb-6">
         <div className="absolute inset-0 patriot-gradient rounded-full" />
+        <div className="grow-arrow-comet absolute top-1/2 -translate-y-1/2 w-10 h-[6px] rounded-full bg-white/70 blur-[1px]" aria-hidden="true" />
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-l-[8px] border-l-freedom-blue border-y-[5px] border-y-transparent" />
       </div>
 
