@@ -743,6 +743,16 @@ body { overflow-x: clip; }
 
 /* America 250 pop-up: tilt + entrance + hover shine. */
 .a250-popup { transform: rotate(3deg); }
+/* Thirteen horizontal stripes, barely-there. Sits under the content, above the
+   navy. Kept faint on purpose: the flag should be felt, not saluted. */
+.a250-stripes {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 51, 102, 0.07) 0 7.69%,
+    transparent 7.69% 15.38%
+  );
+}
 .a250-shine { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
 .a250-shine::before {
   content: "";
@@ -768,6 +778,16 @@ body { overflow-x: clip; }
 @keyframes proofRingSpin { to { transform: rotate(360deg); } }
 /* Solid ribbon with a light "comet" traveling it (not dotted). */
 @keyframes ribbonComet { to { stroke-dashoffset: -1426; } }
+/* Multi-Partisan cycle: each gradient stop walks red -> violet -> blue -> red.
+   Staggering the stops' delays down the ribbon makes the colour travel
+   top-to-bottom. stop-color is a real CSS property, so this needs no SMIL and
+   stays inert under prefers-reduced-motion. */
+@keyframes ribbonCycle {
+  0%   { stop-color: #FF3366; }
+  33%  { stop-color: #8E5CF7; }
+  66%  { stop-color: #4D9FFF; }
+  100% { stop-color: #FF3366; }
+}
 
 /* How It Works timeline: a light travels down the vertical spine, and each
    step node breathes a soft ring as you scroll the process. */
@@ -817,6 +837,7 @@ body { overflow-x: clip; }
   .proof-wave { stroke-dasharray: 14 12; animation: proofWaveDash 7s linear infinite; }
   .proof-ring { transform-origin: center; animation: proofRingSpin 26s linear infinite; }
   .ribbon-comet { stroke-dasharray: 26 1400; animation: ribbonComet 3.6s linear infinite; }
+  .ribbon-stop { animation: ribbonCycle 9s linear infinite; }
   .ribbon-sway { animation: ribbonSway 7s ease-in-out infinite; }
   .ribbon-pulse { animation: ribbonPulse 2.4s ease-in-out infinite; }
   .sparkle-twinkle { animation: sparkleTwinkle var(--dur, 3s) ease-in-out infinite; }

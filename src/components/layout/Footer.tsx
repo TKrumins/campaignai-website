@@ -28,6 +28,11 @@ const whoWeServeLinks = [
   { href: "/for/grassroots", label: "Grassroots" },
 ];
 
+/**
+ * The glyph stays 20x20; the *tap target* is 44x44. Bare 20px anchors fell under the
+ * 24px WCAG 2.2 AA minimum (2.5.8) on every page of the site — these are the only
+ * controls in the footer and they are thumb-sized on a phone now, not fingernail-sized.
+ */
 function SocialIcon({ href, label, path }: { href: string; label: string; path: string }) {
   return (
     <a
@@ -35,9 +40,9 @@ function SocialIcon({ href, label, path }: { href: string; label: string; path: 
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="text-beacon-white/70 hover:text-victory-rose transition-colors"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-beacon-white/70 transition-colors hover:bg-white/5 hover:text-victory-rose"
     >
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
         <path d={path} />
       </svg>
     </a>
@@ -88,7 +93,9 @@ export function Footer() {
             </p>
             {/* Icon row: LinkedIn, Facebook, Reddit, Bluesky (no Substack icon;
                 the button in Stay in the loop is the footer's single Substack) */}
-            <div className="flex items-center gap-4 mt-4">
+            {/* gap-0 and the negative margin keep the row's *visual* rhythm identical to
+                the old 20px icons at gap-4, while each anchor now owns a 44px box. */}
+            <div className="mt-2 -ml-3 flex items-center gap-0">
               {socialIcons.map((icon) => (
                 <SocialIcon key={icon.label} {...icon} />
               ))}
@@ -155,13 +162,17 @@ export function Footer() {
                   </span>
                 </span>
               </li>
+              {/* Unlinked until src/content/legal/ai-disclosure.md exists. The page
+                  currently renders only "This policy is being finalized," and sending
+                  a reader there from the footer is a dead end. Matches the Regulatory
+                  Tracker treatment above. Restore the <Link> when the file lands. */}
               <li>
-                <Link
-                  href="/ai-disclosure"
-                  className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
-                >
+                <span className="inline-flex items-center gap-2 text-beacon-white/50 text-sm">
                   AI Disclosure
-                </Link>
+                  <span className="rounded-full bg-pioneer-gold/15 text-pioneer-gold text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">
+                    Coming Soon
+                  </span>
+                </span>
               </li>
               <li>
                 <Link
@@ -231,7 +242,12 @@ export function Footer() {
 
         {/* Contact / bottom bar */}
         <div className="mt-8 pt-8 border-t border-white/10 text-center text-beacon-white/40 text-sm">
-          <a href={`mailto:${EMAIL}`} className="hover:text-beacon-white transition-colors">
+          {/* inline-block + py-1.5 lifts the tap target from 17px to the 24px WCAG minimum
+              without moving the text a pixel. */}
+          <a
+            href={`mailto:${EMAIL}`}
+            className="inline-block py-1.5 transition-colors hover:text-beacon-white"
+          >
             {EMAIL}
           </a>{" "}
           &middot; &copy; 2026 CampaignAI, Inc. &middot; Based in South Carolina. &middot; Multi-partisan by design.

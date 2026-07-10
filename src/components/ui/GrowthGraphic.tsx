@@ -95,9 +95,14 @@ export function GrowthGraphic() {
                   <div className="grow-shimmer absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-transparent via-white/45 to-transparent pointer-events-none" aria-hidden="true" />
                 )}
               </div>
-              {/* Label */}
+              {/* Label. No gradient here: the Patriot gradient is reserved for large,
+                  bold heading text on a dark background, and this is a text-xs caption
+                  on bg-dawn-frost. The on-light variant wouldn't rescue it either —
+                  violet on a light background at this size falls under the 4.5:1 contrast
+                  floor. The payoff bar is already the tallest and carries a shimmer, so
+                  weight alone is emphasis enough. */}
               <div className="mt-3 text-center">
-                <p className={`font-heading font-bold text-xs sm:text-sm ${isPayoff ? "patriot-gradient-text" : "text-regal-navy"}`}>
+                <p className={`font-heading text-xs sm:text-sm text-regal-navy ${isPayoff ? "font-extrabold" : "font-bold"}`}>
                   {video}
                 </p>
               </div>

@@ -1,5 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 export function HIWCTA() {
   return (
@@ -12,12 +13,8 @@ export function HIWCTA() {
           <p className="text-granite text-lg leading-relaxed mb-8">
             Professional campaign video without the agency price tag.
           </p>
-          <Button
-            variant="crimson"
-            href="https://calendly.com/campaignai/campaignai-purchase-call"
-            external
-          >
-            Buy your first video &rarr;
+          <Button variant="crimson" href={PURCHASE_URL}>
+            {CTA_PRIMARY}
           </Button>
           <p className="mt-2 text-slate text-sm">
             Book a 30-minute call to get started.

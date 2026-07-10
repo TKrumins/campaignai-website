@@ -1,5 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 export function ComplianceCTA() {
   return (
@@ -14,12 +15,8 @@ export function ComplianceCTA() {
             labels, human editorial review, and the most current compliance
             guidance we can provide.
           </p>
-          <Button
-            variant="crimson"
-            href="https://calendly.com/campaignai/campaignai-purchase-call"
-            external
-          >
-            Buy your first video &rarr;
+          <Button variant="crimson" href={PURCHASE_URL}>
+            {CTA_PRIMARY}
           </Button>
           <p className="text-beacon-white/60 text-sm mt-2">
             Book a 30-minute call to get started.

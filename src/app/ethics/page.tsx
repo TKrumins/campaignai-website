@@ -189,12 +189,16 @@ export default function EthicsPage() {
       <section className="pb-20 md:pb-28 bg-white">
         <div className="max-w-[760px] mx-auto px-4 sm:px-6 text-center">
           <ScrollReveal>
+            {/* This block used to close with "Read our AI Disclosure" and "Read our
+                Privacy Policy". Every page under src/content/legal/ is still a stub
+                reading "This policy is being finalized" — so both CTAs walked this
+                page's most-persuaded reader into a dead end, at the exact moment the
+                site had earned the most trust. /compliance has real substance, so it
+                carries the close until the four legal Markdown files land. Restore the
+                originals then. */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button variant="verdant-outline" href="/ai-disclosure">
-                Read our AI Disclosure &rarr;
-              </Button>
-              <Button variant="verdant-outline" href="/privacy">
-                Read our Privacy Policy &rarr;
+              <Button variant="verdant-outline" href="/compliance">
+                See how we handle compliance &rarr;
               </Button>
             </div>
           </ScrollReveal>

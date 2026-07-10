@@ -100,12 +100,16 @@ export function HeroComboB() {
                   <ArrowDown className="h-4 w-4" />
                 </a>
               </div>
-              <p className="mt-3 text-sm text-beacon-white/60">{CTA_MICROCOPY}</p>
+              <p className="mt-3 max-w-md text-sm text-beacon-white/60">{CTA_MICROCOPY}</p>
             </div>
 
-            {/* America 250 special — pinned inside the sticky column, so it
-                stays visible the entire time while only the films scroll. */}
-            <America250Popup className="mx-auto mt-10 block max-w-max lg:absolute lg:bottom-10 lg:left-0 lg:mt-0 z-30" />
+            {/* America 250 special — kept in normal flow rather than absolutely
+                pinned to the column's bottom. Pinned, it collided with the
+                microcopy on laptop viewports and pushed below the fold on short
+                ones; in flow it sits under the CTA and is reachable at every
+                breakpoint. It still rides the sticky column, so it stays put
+                while the films scroll past. */}
+            <America250Popup className="z-30 mx-auto mt-10 max-w-max lg:mx-0" />
           </div>
         </div>
 

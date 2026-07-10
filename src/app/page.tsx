@@ -1,7 +1,7 @@
 import { HeroComboB } from "@/components/sections/home/hero-trials/HeroComboB";
 import { TrustBarSection } from "@/components/sections/home/TrustBarSection";
 import { SocialProofStrip } from "@/components/sections/home/SocialProofStrip";
-import { ProductSection } from "@/components/sections/home/ProductSection";
+import { ProductDemoPreview } from "@/components/sections/home/ProductDemoPreview";
 import { ProblemSection } from "@/components/sections/home/ProblemSection";
 import { PricingSection } from "@/components/sections/home/PricingSection";
 import { StorytellingSection } from "@/components/sections/home/StorytellingSection";
@@ -22,7 +22,7 @@ export default function HomePage() {
           background, whose -mb-[100vh] otherwise leaks over these sections. */}
       <div className="relative z-10 bg-white">
         <TrustBarSection />
-        <ProductSection />
+        <ProductDemoPreview />
         <ShowcaseSection />
         <SocialProofStrip />
         <RibbonDivider className="py-0 bg-white" />

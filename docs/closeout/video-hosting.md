@@ -1,32 +1,84 @@
-# Showcase video hosting — open decision
+# Showcase video hosting — RESOLVED 2026-07-10
 
-**Status:** Deferred 2026-07-09 so the Vercel review preview wasn't blocked. Needs a decision before v1.2 ships.
+**Decision:** Option 1 — host on a CDN. Both films now live in Vercel Blob and play.
+**Status:** Done. Verified in a real browser, not by checking that a URL returns 200.
 
-## The finding
+---
 
-`ShowcaseSection.tsx` and `ProductDemoPreview.tsx` reference:
+## Correction to the original note
 
-- `/assets/videos/the-resilience-act.mp4` (35.6 MB)
-- `/assets/videos/shasm-act.mp4` (28.1 MB)
+The first version of this document said the missing `.mp4`s "degrade gracefully… reads as
+intentional rather than broken." **That was wrong**, and it understated the bug by a lot.
 
-**Neither file has ever been committed** — not in any commit, on any branch, in the whole history. Only the poster JPGs are tracked. Because untracked files never reach GitHub, and GitHub Pages builds from the repo, **these two videos 404 on the live site (campaignai.us) today.**
+In `ShowcaseSection.tsx` the poster crossfade is guarded by `{!hasStarted && posters.map(...)}`.
+The slideshow is the **pre-play state**, not a 404 fallback. Clicking play sets `hasStarted`,
+which unmounts the posters and reveals `<video controls>` pointed at a file that 404s. So the
+real user experience was: attractive rotating stills → click → **broken video player**, on the
+homepage of a video production company.
 
-It degrades gracefully: `ShowcaseSection` shows a rotating poster sequence until playback starts, so it reads as intentional rather than broken. But the video never plays. On a video agency's homepage, the showcase is the money shot — this is a real defect, not cosmetic.
+That error mattered, because it made the fix look cosmetic when it was a P0. Recorded here so
+the mistake is visible rather than quietly overwritten.
 
-This predates the v1.2 batch. `HEAD`'s committed `ShowcaseSection` already pointed at the missing `.mp4`.
+## What shipped
 
-## Why we didn't just commit them
+Both films were re-encoded from Tom's masters — not from the previously compressed copies, so
+there is no generation loss — and uploaded to Vercel Blob.
 
-Both files are now gitignored (`/public/assets/videos/*.mp4`). Committing 63.7 MB would take `.git` from ~23 MB to ~87 MB **permanently**, on a **public** repo — every clone pays it, and undoing requires a history rewrite (`git filter-repo`). Largest currently-tracked file is 2.9 MB, so this would be wildly out of band.
+| | master | shipped | resolution | SSIM vs master |
+|---|---|---|---|---|
+| `the-resiliency-act.mp4` | 119.5 MB, 1080p, 45s | **30.9 MB** | 1920×1080 | 0.9870 |
+| `the-shasm-act.mp4` | 319.8 MB, **4K**, 60s | **24.2 MB** | 1920×1080 | 0.9908 |
 
-## Options
+439 MB of masters → **55.1 MB**, below the 61 MB that was previously being served, at higher
+quality. The 4K SHASM master downscaled especially well: reducing 4K to 1080p removes sensor
+noise before the encoder sees it, so bits go into detail instead of grain.
 
-1. **Host on a CDN (recommended).** Upload to Vercel Blob (free tier), Cloudflare R2, or Mux; point `src` at the public URL. Works identically for the Vercel preview and GitHub Pages production. Repo stays lean. Right shape for a video company that will add more reels.
-2. **Compress, then commit.** `ffmpeg` to ~720p H.264 (not currently installed). Likely 5–8 MB each. Fixes prod, modest bloat, no external dependency. Acceptable if the library stays small.
-3. **Commit as-is.** Simplest, permanent 63.7 MB public bloat. Not recommended.
+- **Store:** `campaignai-public-media` (Vercel Blob, **public**, region iad1)
+- **URLs:** exported as `VIDEO_RESILIENCY_ACT` / `VIDEO_SHASM_ACT` from `src/lib/constants.ts`
+- **Cache:** `public, max-age=31536000` — immutable, one year
+- **Encoding:** `npm run encode:media` (CRF 22, `preset slow`, `+faststart`, capped at 1080p)
 
-## Notes for whoever picks this up
+### Why public, not private
 
-- The `<video>` elements already have working `poster` attributes, so a CDN swap is a one-line `src` change in each of the two components.
-- `public/assets/videos/posters/` (7 JPGs) **is** tracked and should stay in-repo — those are small and load first.
-- Feed this to the **professional video agency lead** persona in the Phase 1 review; it will surface there independently.
+Private blobs are delivered through a Vercel Function. This site is a static export served by
+GitHub Pages — there is no function to deliver them. Private access is also the wrong tool for
+files that every visitor is meant to watch: you pay data transfer twice and delivery is slower.
+
+The store's access mode is **permanent**. `campaignai-public-media` holds public marketing media
+only. Anything sensitive needs its own store.
+
+## Naming
+
+The bill is **The Resiliency Act**, per the master and the on-screen text in the film itself.
+The site previously called it "The Resilience Act" everywhere — poster filenames, alt text,
+Product section label, showcase card. Corrected sitewide on 2026-07-10.
+
+## Verification
+
+`preload="none"` means a `curl` returning 200 proves nothing about playback. Both films were
+verified by driving a real browser, clicking play, and asserting `currentTime` advanced past zero:
+
+| | plays | position | readyState |
+|---|---|---|---|
+| Product section → Resiliency Act | yes | 2.19s / 45.1s | 4 |
+| Showcase → SHASM Act | yes | 3.26s / 60.1s | 4 |
+
+No `.mp4` HTTP errors. Posters stay in-repo (`public/assets/videos/posters/`) — they are small
+and must paint before the first video byte arrives.
+
+## Open: the bandwidth ceiling
+
+Vercel **Hobby** includes 100 GB/month of Blob data transfer. At 55 MB for both films, that is
+roughly **1,800 full double-plays per month**.
+
+Exceeding it on Hobby **does not bill you — it disables Blob access for 30 days.** The homepage
+videos would simply stop. With four more cutdowns plus walkthroughs and product demos planned,
+**move to Pro before autumn**, where overage costs money instead of taking the site down.
+
+## Adding more videos
+
+1. Drop masters in `media-src/` (gitignored — see its README).
+2. `npm run encode:media` — CRF 22 is the project default, measured and agreed. Don't change it
+   without re-measuring; the rationale is at the top of `scripts/encode-media.mjs`.
+3. `vercel blob put public/assets/videos/<name>.mp4 --access public --pathname videos/<name>.mp4 -c 31536000`
+4. Add the URL to `src/lib/constants.ts`. Never inline a media URL in a component.

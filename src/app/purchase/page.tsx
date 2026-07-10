@@ -1,26 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Check, CreditCard, CalendarClock, ListChecks } from "lucide-react";
+import { Check, CalendarClock, Receipt, ListChecks } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import {
   CALENDLY_PURCHASE,
   CALENDLY_DEMO,
-  STRIPE_LINK_PROFESSIONAL,
-  STRIPE_LINK_CANDIDATE,
-  STRIPE_LINK_A250,
+  CALENDLY_PROFESSIONAL,
+  CALENDLY_CANDIDATE,
+  CALENDLY_A250,
+  CTA_PRIMARY,
   ETHICS_LINE,
 } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Buy your first video - CampaignAI",
+  title: "Get started - CampaignAI",
   description:
-    "Pick your plan, pay securely, and book your 30-minute onboarding call. Add-ons are scoped and priced on the call before anything goes into production.",
+    "Pick your plan and book your 30-minute onboarding call. We scope your video and price any add-ons on the call, then invoice you. Nothing is charged upfront.",
 };
 
-// Empty Stripe links fall back to booking the onboarding call so the page
-// stays functional until the Payment Links are created.
 const plans = [
   {
     key: "professional",
@@ -28,7 +27,7 @@ const plans = [
     price: "$1,999",
     tag: "Teams producing at scale",
     blurb: "Consultancies, party committees, PACs, and organizations.",
-    link: STRIPE_LINK_PROFESSIONAL,
+    link: CALENDLY_PROFESSIONAL,
   },
   {
     key: "candidate",
@@ -36,7 +35,7 @@ const plans = [
     price: "$599",
     tag: "2026 cycle mission rate",
     blurb: "School board to U.S. Senate. Discounted from $1,999.",
-    link: STRIPE_LINK_CANDIDATE,
+    link: CALENDLY_CANDIDATE,
     featured: true,
   },
   {
@@ -45,7 +44,7 @@ const plans = [
     price: "$250",
     tag: "First of two videos",
     blurb: "Buy two videos, get your first for just $250. First 250 customers.",
-    link: STRIPE_LINK_A250,
+    link: CALENDLY_A250,
   },
 ];
 
@@ -63,14 +62,14 @@ const steps = [
     body: "Pick the option that fits your race. Every plan is the same story-first production and human review.",
   },
   {
-    icon: CreditCard,
-    title: "2. Pay securely",
-    body: "Checkout is handled by Stripe, with an instant receipt. Your card details never touch our servers.",
+    icon: CalendarClock,
+    title: "2. Book your onboarding call",
+    body: "Grab a 30-minute slot. We talk through your race, your story, and exactly what you need before anything is committed.",
   },
   {
-    icon: CalendarClock,
-    title: "3. Book your onboarding call",
-    body: "After payment you'll schedule a 30-minute call. We finalize your scope and price any add-ons there, before production.",
+    icon: Receipt,
+    title: "3. We scope it, then invoice you",
+    body: "We finalize your scope and price any add-ons on the call. Your invoice follows — so nothing is charged before you know the full cost.",
   },
 ];
 
@@ -81,14 +80,14 @@ export default function PurchasePage() {
         {/* Header */}
         <ScrollReveal>
           <div className="text-center max-w-[700px] mx-auto mb-12">
-            <SectionLabel text="Checkout" />
+            <SectionLabel text="Get Started" />
             <h1 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-4">
-              Buy your first video.
+              Get started.
             </h1>
             <p className="text-granite text-lg leading-relaxed">
-              Three quick steps: pick your plan, pay securely, and book your
-              30-minute onboarding call. Add-ons are scoped and priced on the
-              call, before anything goes into production.
+              Three quick steps: pick your plan, book your 30-minute onboarding
+              call, and we&apos;ll scope your video together. Add-ons are priced
+              on the call and your invoice follows, so nothing is charged upfront.
             </p>
           </div>
         </ScrollReveal>
@@ -114,15 +113,12 @@ export default function PurchasePage() {
                     {plan.tag}
                   </span>
                   <p className="text-granite text-sm leading-relaxed mb-5 flex-1">{plan.blurb}</p>
-                  <Button
-                    variant="crimson"
-                    href={plan.link || CALENDLY_PURCHASE}
-                    external
-                    className="w-full"
-                  >
-                    Continue to checkout &rarr;
+                  <Button variant="crimson" href={plan.link} external className="w-full">
+                    {CTA_PRIMARY}
                   </Button>
-                  <p className="text-slate text-xs text-center mt-2">Secure payment via Stripe</p>
+                  <p className="text-slate text-xs text-center mt-2">
+                    Books your call &middot; nothing charged today
+                  </p>
                 </div>
               </div>
             </ScrollReveal>
@@ -182,7 +178,7 @@ export default function PurchasePage() {
         <ScrollReveal>
           <div className="text-center mt-12">
             <p className="text-granite text-sm mb-3">
-              Prefer to talk first? Book your onboarding call and we&apos;ll get you set up.
+              Not sure which plan fits? Book the call anyway and we&apos;ll work it out together.
             </p>
             <Button variant="navy-outline" href={CALENDLY_PURCHASE} external>
               Book your onboarding call &rarr;

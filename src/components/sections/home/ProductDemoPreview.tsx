@@ -6,6 +6,7 @@ import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera } from "
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
+import { VIDEO_RESILIENCY_ACT } from "@/lib/constants";
 
 type VideoType = {
   key: string;
@@ -68,9 +69,9 @@ const TYPES: VideoType[] = [
     ],
     spark: "#8E5CF7",
     video: {
-      src: "/assets/videos/the-resilience-act.mp4",
-      poster: "/assets/videos/posters/the-resilience-act.jpg",
-      label: "The Resilience Act",
+      src: VIDEO_RESILIENCY_ACT,
+      poster: "/assets/videos/posters/the-resiliency-act.jpg",
+      label: "The Resiliency Act",
     },
   },
   {
@@ -91,8 +92,22 @@ const TYPES: VideoType[] = [
   },
 ];
 
-export function ProductDemoPreview() {
-  const [active, setActive] = useState(0);
+/**
+ * The Product section. Promoted to the live homepage 2026-07-10, replacing the
+ * static ProductSection grid.
+ *
+ * `internal` shows the preview banner and is set only by the hidden
+ * /preview/product route. The homepage must never render it.
+ */
+export function ProductDemoPreview({ internal = false }: { internal?: boolean }) {
+  // Open on a type that has a real film rather than on TYPES[0] (Announcement),
+  // whose stage reads "Demo film in production" — a bad first impression for a
+  // section whose job is to prove the product exists. Once every type has a
+  // sample this collapses back to 0 on its own and the arc order is restored.
+  const [active, setActive] = useState(() => {
+    const i = TYPES.findIndex((t) => t.video);
+    return i === -1 ? 0 : i;
+  });
   const [playing, setPlaying] = useState(false);
   const t = TYPES[active];
 
@@ -104,11 +119,12 @@ export function ProductDemoPreview() {
   return (
     <section className="py-16 md:py-24 bg-dawn-frost">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* internal banner */}
-        <div className="mb-8 rounded-xl border border-bridge-violet/30 bg-bridge-violet/5 px-5 py-3 text-center text-sm text-regal-navy">
-          <span className="font-semibold">Internal preview.</span> This is what the
-          Product section becomes once demo films for each type are produced.
-        </div>
+        {internal && (
+          <div className="mb-8 rounded-xl border border-bridge-violet/30 bg-bridge-violet/5 px-5 py-3 text-center text-sm text-regal-navy">
+            <span className="font-semibold">Internal preview.</span> This is the live
+            homepage Product section, rendered in isolation.
+          </div>
+        )}
 
         <div className="text-center max-w-[760px] mx-auto mb-12">
           <SectionLabel text="The Product" />
@@ -346,9 +362,9 @@ function MilestoneSpotlight() {
 
 function LibrarySpotlight() {
   const shots = [
-    "/assets/videos/posters/the-resilience-act.jpg",
+    "/assets/videos/posters/the-resiliency-act.jpg",
     "/assets/videos/posters/shasm-act.jpg",
-    "/assets/videos/posters/the-resilience-act-2.jpg",
+    "/assets/videos/posters/the-resiliency-act-2.jpg",
     "/assets/videos/posters/shasm-act-2.jpg",
   ];
   return (

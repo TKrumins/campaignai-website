@@ -5,19 +5,37 @@ export const CALENDLY_PURCHASE =
   "https://calendly.com/campaignai/campaignai-purchase-call";
 export const CALENDLY_DEMO = "https://calendly.com/campaignai/demo";
 
-// Primary purchase flow: the "Buy your first video" CTA now routes to an
-// on-site purchase page (pick plan → pay via Stripe → book onboarding call).
+// Primary purchase flow: the "Get Started" CTA routes to an on-site purchase
+// page (pick plan → book onboarding call → we scope it, then invoice you).
+// Agency-only launch: no self-serve checkout. Invoicing happens after the call.
 export const PURCHASE_URL = "/purchase";
 
-// Stripe Payment Links — create each in the Stripe dashboard and paste the
-// hosted URL here. While empty, the purchase page falls back to booking the
-// onboarding call so the page stays functional.
-export const STRIPE_LINK_PROFESSIONAL = "";
-export const STRIPE_LINK_CANDIDATE = "";
-export const STRIPE_LINK_A250 = "";
+// Plan-tagged booking links. Calendly surfaces utm_* on the scheduled event, in
+// the team's notification email, and on the webhook payload — so whoever takes
+// the call already knows which plan the visitor picked. The A250 tag is what
+// tells us they intend to buy two videos.
+const bookingFor = (campaign: string) =>
+  `${CALENDLY_PURCHASE}?utm_source=campaignai.us&utm_medium=purchase-flow&utm_campaign=${campaign}`;
 
-export const CTA_PRIMARY = "Buy your first video →";
-export const CTA_MICROCOPY = "Pick your plan, pay securely, and book your onboarding call.";
+export const CALENDLY_PROFESSIONAL = bookingFor("professional-video");
+export const CALENDLY_CANDIDATE = bookingFor("candidate-campaign");
+export const CALENDLY_A250 = bookingFor("america-250-special");
+
+// Showcase films. Hosted on Vercel Blob (store `campaignai-public-media`, public,
+// immutable 1-year cache) rather than committed: 55 MB of video would sit in a
+// public repo permanently, and every clone would pay for it. Encoded from the
+// masters by `npm run encode:media`. See docs/closeout/video-hosting.md.
+//
+// Posters stay in-repo (public/assets/videos/posters/) — they're small and must
+// paint before the video byte one arrives.
+const BLOB_MEDIA = "https://saymedxk6dunjd1t.public.blob.vercel-storage.com";
+
+export const VIDEO_RESILIENCY_ACT = `${BLOB_MEDIA}/videos/the-resiliency-act.mp4`;
+export const VIDEO_SHASM_ACT = `${BLOB_MEDIA}/videos/the-shasm-act.mp4`;
+
+export const CTA_PRIMARY = "Get Started →";
+export const CTA_MICROCOPY =
+  "Pick your plan and book your onboarding call. We scope your video together, then invoice you — nothing is charged upfront.";
 export const CTA_TEAM = "Talk to our team →";
 
 export const WAITLIST_LONG =

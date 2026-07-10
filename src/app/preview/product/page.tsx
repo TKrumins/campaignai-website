@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { ProductDemoPreview } from "@/components/sections/home/ProductDemoPreview";
 
 /**
- * Hidden preview of the "ultimate" Product section: the interactive four-type
- * demo toggle with placeholder players. Excluded from nav, footer, and
- * sitemap; noindex below. Swap the live ProductSection for this once real
- * sample films exist for each type.
+ * Isolated view of the homepage Product section. Kept as a sandbox for reviewing
+ * the section without scrolling the whole homepage. Excluded from nav, footer,
+ * and sitemap; noindex below.
+ *
+ * As of 2026-07-10 this is no longer a "preview of what's coming" — the section
+ * is live on the homepage. Only the banner differs.
  */
 export const metadata: Metadata = {
   title: "Product Preview",
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
 export default function ProductPreviewPage() {
   return (
     <main className="pt-24">
-      <ProductDemoPreview />
+      <ProductDemoPreview internal />
     </main>
   );
 }

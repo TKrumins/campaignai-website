@@ -1,7 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { Phone, Pencil, Send } from "lucide-react";
-import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
+import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
 const steps = [
   {
@@ -55,9 +55,7 @@ export function GetStartedBooking() {
             <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3">
               {CTA_PRIMARY}
             </Button>
-            <p className="text-slate text-sm mt-2">
-              Pick your plan, pay securely, and book your onboarding call.
-            </p>
+            <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>
           </div>
         </ScrollReveal>
       </div>

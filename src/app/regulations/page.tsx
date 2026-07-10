@@ -32,7 +32,7 @@ export default function RegulationsPage() {
           produce, and our ethics commitment explains how.
         </p>
 
-        <Button variant="verdant-outline" href="/compliance" className="!text-verdant">
+        <Button variant="verdant-outline" href="/ethics" className="!text-verdant">
           Read our ethics commitment &rarr;
         </Button>
 

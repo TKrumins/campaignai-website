@@ -8,16 +8,22 @@ import { AISparkle } from "@/components/ui/AISparkle";
  * is visible up top, a light "comet" travels it (not dotted), and it tucks
  * behind a still at the bottom. Cells stay landscape so no words crop.
  */
-type Still = { src: string; side: "left" | "right"; rot: number; z: number; label?: string };
+type Still = { src: string; side: "left" | "right"; rot: number; z: number; label?: string; alt: string };
 
+// Slots 2 and 6 swapped (was shasm-act / the-resiliency-act-3). Position,
+// rotation and stacking stay with the slot; only the image moves.
+//
+// `label` is the visible caption, set on one still per film. `alt` is what a screen
+// reader hears, and every still carries its own. These are seven distinct frames from
+// two real campaign films — proof, not decoration — so none of them takes alt="".
 const STILLS: Still[] = [
-  { src: "/assets/videos/posters/the-resilience-act.jpg", side: "left", rot: -3, z: 30, label: "The Resilience Act" },
-  { src: "/assets/videos/posters/shasm-act.jpg", side: "right", rot: 3, z: 10 },
-  { src: "/assets/videos/posters/the-resilience-act-2.jpg", side: "left", rot: -2, z: 30 },
-  { src: "/assets/videos/posters/shasm-act-34s.jpg", side: "right", rot: 3, z: 10 },
-  { src: "/assets/videos/posters/shasm-act-2.jpg", side: "left", rot: -3, z: 30, label: "The SHASM Act" },
-  { src: "/assets/videos/posters/the-resilience-act-3.jpg", side: "right", rot: 2, z: 10 },
-  { src: "/assets/videos/posters/shasm-act-3.jpg", side: "left", rot: -2, z: 30 },
+  { src: "/assets/videos/posters/the-resiliency-act.jpg", side: "left", rot: -3, z: 30, label: "The Resiliency Act", alt: "The Resiliency Act — opening frame" },
+  { src: "/assets/videos/posters/the-resiliency-act-3.jpg", side: "right", rot: 3, z: 10, alt: "The Resiliency Act — still from the film" },
+  { src: "/assets/videos/posters/the-resiliency-act-2.jpg", side: "left", rot: -2, z: 30, alt: "The Resiliency Act — on-screen policy callout" },
+  { src: "/assets/videos/posters/shasm-act-34s.jpg", side: "right", rot: 3, z: 10, alt: "The SHASM Act — frame from the 34-second cutdown" },
+  { src: "/assets/videos/posters/shasm-act-2.jpg", side: "left", rot: -3, z: 30, label: "The SHASM Act", alt: "The SHASM Act — opening frame" },
+  { src: "/assets/videos/posters/shasm-act.jpg", side: "right", rot: 2, z: 10, alt: "The SHASM Act — still from the film" },
+  { src: "/assets/videos/posters/shasm-act-3.jpg", side: "left", rot: -2, z: 30, alt: "The SHASM Act — closing frame" },
 ];
 
 // Red / White / Blue sparkles only.
@@ -36,6 +42,22 @@ const SPARKS = [
 const RIBBON_D =
   "M 42 16 C 42 90, 84 120, 84 190 S 18 300, 18 360 S 84 470, 84 530 S 30 600, 28 640";
 
+// One full red -> violet -> blue -> red rotation. Slow on purpose: the motion
+// should register as a slow tide, not a light show. Blue lerps back to red
+// through the same violet, so the ribbon never leaves the brand's three hues.
+const RIBBON_CYCLE_S = 9;
+
+// Static colours = the original fixed ramp, kept as the reduced-motion fallback.
+const RIBBON_STOPS = [
+  { offset: 0, color: "#FF3366" },
+  { offset: 0.1667, color: "#FF3366" },
+  { offset: 0.3333, color: "#D144A1" },
+  { offset: 0.5, color: "#8E5CF7" },
+  { offset: 0.6667, color: "#6A81FB" },
+  { offset: 0.8333, color: "#4D9FFF" },
+  { offset: 1, color: "#4D9FFF" },
+];
+
 export function ProofFilmGraphic() {
   return (
     <div className="mx-auto w-full max-w-[460px]">
@@ -49,12 +71,21 @@ export function ProofFilmGraphic() {
           aria-hidden
         >
           <defs>
+            {/* Seven evenly-spaced stops, each cycling red -> Bridge Violet ->
+                blue on a staggered delay, so the tri-color drifts steadily down
+                the ribbon: no single party's colour ever sits at the top for
+                long. The static stopColor values below are the reduced-motion
+                fallback and reproduce the original fixed ramp exactly. */}
             <linearGradient id="ribbonTri" x1="0" y1="0" x2="0.35" y2="1">
-              <stop offset="0" stopColor="#FF3366" />
-              <stop offset="0.22" stopColor="#FF3366" />
-              <stop offset="0.5" stopColor="#8E5CF7" />
-              <stop offset="0.8" stopColor="#4D9FFF" />
-              <stop offset="1" stopColor="#4D9FFF" />
+              {RIBBON_STOPS.map(({ offset, color }, i) => (
+                <stop
+                  key={offset}
+                  className="ribbon-stop"
+                  offset={offset}
+                  stopColor={color}
+                  style={{ animationDelay: `${(i * RIBBON_CYCLE_S) / RIBBON_STOPS.length - RIBBON_CYCLE_S}s` }}
+                />
+              ))}
             </linearGradient>
           </defs>
           <path d={RIBBON_D} fill="none" stroke="url(#ribbonTri)" strokeWidth="7" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
@@ -93,7 +124,7 @@ export function ProofFilmGraphic() {
               <div className="relative aspect-video overflow-hidden rounded-lg border-2 border-white/45 shadow-2xl ring-1 ring-black/20">
                 <Image
                   src={s.src}
-                  alt={s.label ?? "Campaign film still"}
+                  alt={s.alt}
                   fill
                   sizes="330px"
                   className="object-cover"

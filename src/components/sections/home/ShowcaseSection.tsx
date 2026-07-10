@@ -6,6 +6,12 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { Play } from "lucide-react";
+import {
+  PURCHASE_URL,
+  CTA_PRIMARY,
+  VIDEO_RESILIENCY_ACT,
+  VIDEO_SHASM_ACT,
+} from "@/lib/constants";
 
 interface VideoCardProps {
   party: "Democratic" | "Republican";
@@ -207,16 +213,16 @@ export function ShowcaseSection() {
               partyTextColor="#0D1B3E"
               typePill="Policy Explainer"
               levelPill="Gubernatorial"
-              title="The Resilience Act"
+              title="The Resiliency Act"
               credit="Produced by co-founder Jermaine Johnson"
-              src="/assets/videos/the-resilience-act.mp4"
+              src={VIDEO_RESILIENCY_ACT}
               posters={[
-                "/assets/videos/posters/the-resilience-act.jpg",
-                "/assets/videos/posters/the-resilience-act-2.jpg",
-                "/assets/videos/posters/the-resilience-act-3.jpg",
+                "/assets/videos/posters/the-resiliency-act.jpg",
+                "/assets/videos/posters/the-resiliency-act-2.jpg",
+                "/assets/videos/posters/the-resiliency-act-3.jpg",
               ]}
-              isPlaying={activeVideo === "resilience"}
-              onPlay={() => setActiveVideo("resilience")}
+              isPlaying={activeVideo === "resiliency"}
+              onPlay={() => setActiveVideo("resiliency")}
             />
             <VideoCard
               party="Republican"
@@ -226,7 +232,7 @@ export function ShowcaseSection() {
               levelPill="State House"
               title="The Stop Harm from Addictive Social Media (SHASM) Act"
               credit="Produced by co-founder Brandon Guffey"
-              src="/assets/videos/shasm-act.mp4"
+              src={VIDEO_SHASM_ACT}
               posters={[
                 "/assets/videos/posters/shasm-act.jpg",
                 "/assets/videos/posters/shasm-act-2.jpg",
@@ -240,13 +246,8 @@ export function ShowcaseSection() {
 
         <ScrollReveal delay={200}>
           <div className="text-center">
-            <Button
-              variant="crimson"
-              href="https://calendly.com/campaignai/campaignai-purchase-call"
-              external
-              className="px-8 py-3"
-            >
-              Buy your first video &rarr;
+            <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3">
+              {CTA_PRIMARY}
             </Button>
             <p className="text-horizon-azure text-sm mt-2">
               Book a 30-minute call to get started.
