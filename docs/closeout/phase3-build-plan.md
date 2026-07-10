@@ -46,12 +46,12 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ✅ Card-topper gradient: new `multipartisan-gradient` (red → Bridge Violet → blue, no white) swapped across all 11 topper strips sitewide.
 - ✅ Primary "Get Started" CTA (deferred from Batch 1): crimson → animated Patriot-gradient ring button (light fill + navy text, matched to nav/A250), ~15 sites. New `patriot-cta` utility; Button `patriot` variant repurposed. **Open for Tom's review:** reads softer than crimson on white cards — flagged.
 
-## BATCH 3 — Home hero experience
-- ☐ Reposition ribbon so it never covers a face in still #2; make tri-color read clearly in first viewport.
-- ☐ Header letter-clipping (descenders on g/p/y) — fix line-box/overflow.
-- ☐ Hero header darken+border transition only fires once the film scroll-through completes (not before).
-- ☐ Prevent left-aligned items scrolling too close to the header before the film sequence finishes.
-- ☐ Reconcile nav logo ↔ hero headline left edge after spacing settles.
+## BATCH 3 — Home hero experience  ✅ (built 7970150, local — awaiting push OK)
+- ✅ Ribbon: still #2 raised above the ribbon (z 30) so it tucks behind and never crosses the face; ribbon gradient now continuous red→Bridge-Violet→blue (no flat run) so all three read in first viewport. **Also per Tom:** swapped 3rd↔4th stills (image moves, slot keeps side/rotation).
+- ✅ Header descenders (g/p/y): gradient rotating phrases get line-height + bottom padding so background-clip:text stops clipping them.
+- ✅ Nav darken+border deferred to `heroExited` (after the pinned film sequence exits) instead of at 10px scroll; added a soft top scrim during that phase so films behind the nav don't wash out the links. **Open for Tom:** the transparent-nav-during-hero means films pass behind it — scrim mitigates but a bright film crossing the nav's lower edge still shows faintly; dial scrim strength to taste.
+- ✅ Left column pinned below the fixed nav (`lg:top-[120px]`) so items don't ride under the header mid-scroll.
+- ✅ Hero grid padding matched to the nav (`px-4/6/8`) so the headline left edge aligns with the nav logo.
 
 ## BATCH 4 — About page
 - ☐ Founder titles off all-blue → non-partisan treatment.
