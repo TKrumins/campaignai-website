@@ -60,13 +60,17 @@ export function HeroComboB() {
       </div>
 
       {/* content */}
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 sm:px-8 lg:grid-cols-2 lg:gap-14 lg:px-12 xl:px-20">
+      {/* px matches the Navbar (max-w-7xl · px-4 sm:px-6 lg:px-8) so the hero
+          headline's left edge lines up with the nav logo. */}
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8">
         {/* left: pinned message */}
         <div className="relative">
           {/* No min-h-screen below lg: a full-viewport text column pushed the films
               entirely below the fold on a phone, so the first thing a visitor saw was
               copy. The reel is the proof — it should greet them. */}
-          <div className="relative flex flex-col justify-center pt-24 pb-6 lg:sticky lg:top-0 lg:min-h-screen lg:py-0">
+          {/* Pin the column below the fixed nav (announce bar + h-24), so as the
+              films scroll past, the left items never ride up under the header. */}
+          <div className="relative flex flex-col justify-center pt-24 pb-6 lg:sticky lg:top-[120px] lg:min-h-[calc(100vh-120px)] lg:py-0">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-beacon-white/60">
               Campaign-ready video, at the speed of AI
             </p>
@@ -75,13 +79,13 @@ export function HeroComboB() {
               Campaign video for
               <br />
               <span className="phrase-rotator">
-                <span className="phrase-sizer patriot-gradient-text-bright" aria-hidden>
+                <span className="phrase-sizer patriot-gradient-text-bright leading-[1.15] pb-[0.14em]" aria-hidden>
                   {WIDEST}
                 </span>
                 {PHRASES.map((p, i) => (
                   <span
                     key={p}
-                    className="phrase patriot-gradient-text-bright"
+                    className="phrase patriot-gradient-text-bright leading-[1.15] pb-[0.14em]"
                     style={{ "--p": i } as CSSProperties}
                   >
                     {p}

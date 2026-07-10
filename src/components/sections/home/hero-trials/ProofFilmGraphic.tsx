@@ -10,17 +10,19 @@ import { AISparkle } from "@/components/ui/AISparkle";
  */
 type Still = { src: string; side: "left" | "right"; rot: number; z: number; label?: string; alt: string };
 
-// Slots 2 and 6 swapped (was shasm-act / the-resiliency-act-3). Position,
-// rotation and stacking stay with the slot; only the image moves.
+// Position, rotation and stacking stay with the slot; only the image moves.
+// Slot 3 <-> slot 4 swapped per Tom (the-resiliency-act-2 now rides the right
+// slot; shasm-act-34s the left). Still #2 sits at z 30 — above the ribbon
+// (z 20) — so the connecting ribbon tucks behind it and never crosses the face.
 //
 // `label` is the visible caption, set on one still per film. `alt` is what a screen
 // reader hears, and every still carries its own. These are seven distinct frames from
 // two real campaign films — proof, not decoration — so none of them takes alt="".
 const STILLS: Still[] = [
   { src: "/assets/videos/posters/the-resiliency-act.jpg", side: "left", rot: -3, z: 30, label: "The Resiliency Act", alt: "The Resiliency Act — opening frame" },
-  { src: "/assets/videos/posters/the-resiliency-act-3.jpg", side: "right", rot: 3, z: 10, alt: "The Resiliency Act — still from the film" },
-  { src: "/assets/videos/posters/the-resiliency-act-2.jpg", side: "left", rot: -2, z: 30, alt: "The Resiliency Act — on-screen policy callout" },
-  { src: "/assets/videos/posters/shasm-act-34s.jpg", side: "right", rot: 3, z: 10, alt: "The SHASM Act — frame from the 34-second cutdown" },
+  { src: "/assets/videos/posters/the-resiliency-act-3.jpg", side: "right", rot: 3, z: 30, alt: "The Resiliency Act — still from the film" },
+  { src: "/assets/videos/posters/shasm-act-34s.jpg", side: "left", rot: -2, z: 30, alt: "The SHASM Act — frame from the 34-second cutdown" },
+  { src: "/assets/videos/posters/the-resiliency-act-2.jpg", side: "right", rot: 3, z: 10, alt: "The Resiliency Act — on-screen policy callout" },
   { src: "/assets/videos/posters/shasm-act-2.jpg", side: "left", rot: -3, z: 30, label: "The SHASM Act", alt: "The SHASM Act — opening frame" },
   { src: "/assets/videos/posters/shasm-act.jpg", side: "right", rot: 2, z: 10, alt: "The SHASM Act — still from the film" },
   { src: "/assets/videos/posters/shasm-act-3.jpg", side: "left", rot: -2, z: 30, alt: "The SHASM Act — closing frame" },
@@ -48,13 +50,13 @@ const RIBBON_D =
 const RIBBON_CYCLE_S = 9;
 
 // Static colours = the original fixed ramp, kept as the reduced-motion fallback.
+// Continuous red -> Bridge Violet -> blue with no flat run at either end, so
+// all three hues read within the first viewport instead of a red-dominated top.
 const RIBBON_STOPS = [
   { offset: 0, color: "#FF3366" },
-  { offset: 0.1667, color: "#FF3366" },
-  { offset: 0.3333, color: "#D144A1" },
+  { offset: 0.25, color: "#D144A1" },
   { offset: 0.5, color: "#8E5CF7" },
-  { offset: 0.6667, color: "#6A81FB" },
-  { offset: 0.8333, color: "#4D9FFF" },
+  { offset: 0.75, color: "#6A81FB" },
   { offset: 1, color: "#4D9FFF" },
 ];
 

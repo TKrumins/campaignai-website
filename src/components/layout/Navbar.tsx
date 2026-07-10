@@ -28,7 +28,12 @@ export function Navbar() {
   const { heroExited, moduleInView } = usePatriotViewport();
 
   const hasDarkHero = darkHeroPages.includes(pathname);
-  const isTransparent = !scrolled && !mobileOpen && hasDarkHero;
+  // On the homepage the hero runs a pinned film sequence; keep the nav
+  // transparent (darken + border deferred) until that whole sequence has
+  // scrolled past — `heroExited` — instead of solidifying on the first few px.
+  // Other dark-hero pages keep the simple scroll threshold.
+  const solidified = pathname === "/" ? heroExited : scrolled;
+  const isTransparent = !solidified && !mobileOpen && hasDarkHero;
 
   // Mobile viewport discipline (5.1): the nav CTA renders until the sticky
   // bar activates (hero exits viewport), then crossfades out; scroll to top
@@ -44,7 +49,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navBg = isTransparent ? "bg-transparent" : "bg-regal-navy border-b-2 border-b-freedom-blue";
+  // Transparent over a dark hero. On the homepage the films scroll up behind the
+  // nav during the pinned sequence, so a soft top-down scrim (no hard bottom
+  // border) keeps the links legible without firing the full darken+border — that
+  // still waits for the hero to exit. Other dark-hero pages stay fully clear.
+  const navBg = isTransparent
+    ? pathname === "/"
+      ? "bg-gradient-to-b from-regal-navy/90 via-regal-navy/45 to-transparent"
+      : "bg-transparent"
+    : "bg-regal-navy border-b-2 border-b-freedom-blue";
 
   function getLinkClasses(href: string) {
     const isActive = pathname === href;
