@@ -53,6 +53,16 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ✅ Left column pinned below the fixed nav (`lg:top-[120px]`) so items don't ride under the header mid-scroll.
 - ✅ Hero grid padding matched to the nav (`px-4/6/8`) so the headline left edge aligns with the nav logo.
 
+## REVIEW BATCH (Tom, post-Batch-3 preview)  ✅ (pushed 94be533)
+- ✅ Candidate card: crimson strikethrough, "You save $1,400" / "70% off" pills, heart "Our mission rate" banner + mission copy.
+- ✅ Light America 250 module removed sitewide (home/`/pricing`/`/get-started`/all `/for/*`); A250 now only the hero popup + announcement ticker.
+- ✅ Hero: "See pricing" back to light; A250 popup centered under microcopy; left column lowered off the darkened nav (Tom's condition for accepting the deferred nav-darken).
+- ✅ `/purchase` rebuilt on the home 3-up model (Professional / Candidate lifted+mission / Nonprofit), utm links kept; A250 as hovering hero-style popup; nonprofit note → add-ons reference + example.
+- ✅ Campaign Arc → bold navy stage card (stark break from light product overview). Our Work → graduated navy bg + lifted glass cards (no navy-on-navy). AI sparkles framing the product stage.
+- ✅ The Problem: "Starting at / $599" line-broken to align with Agencies. Rapid Response "same-day" → "quick turnaround".
+- ✅ Mobile: top nav slides up ↔ bottom nav slides in on hero exit (logo / shrunk Get Started / bottom-sheet menu), replacing MobileCTA. Product four-type selector freezes (sticky) while the stage scrolls — desktop left column, mobile 2×2 bar under the ticker.
+- ⚠ Open/watch: deferred nav stays transparent (scrim) a bit into the product-section top before solidifying; MobileCTA.tsx + America250Module.tsx now orphaned (left in place).
+
 ## BATCH 4 — About page
 - ☐ Founder titles off all-blue → non-partisan treatment.
 - ☐ Profile-picture cards get light-purple accent.
