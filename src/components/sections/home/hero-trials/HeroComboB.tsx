@@ -112,7 +112,7 @@ export function HeroComboB() {
                 on laptop viewports.) Below lg it is rendered after the films instead —
                 see the sibling below. Only one of the two is ever displayed, so screen
                 readers announce it exactly once. */}
-            <America250Popup className="z-30 mt-10 hidden max-w-max lg:ml-auto lg:block" />
+            <America250Popup className="z-30 mt-10 hidden max-w-max lg:mx-auto lg:block" />
           </div>
         </div>
 
