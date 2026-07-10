@@ -39,11 +39,12 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ✅ Bonus: fixed stale "check out securely" in BookingBanner subline (invoice-first correctness).
 - ⏭ Primary CTA "Get Started" → Patriot Gradient **with animation** — MOVED to Batch 2 (interacts with the America 250 button and many render sites; do it carefully with the visual pass).
 
-## BATCH 2 — Home pricing + America 250  (Wave A; full creative license)
-- ☐ Home pricing → side-by-side cards: left $1,999 (no word "standard", keep the sentiment), middle Candidate Campaigns with deliberate visual pop (2026-cycle reduction), right **Nonprofit Organizations** framed by what they *are* doing (no "advocacy", no candidate ref, no floor price). Decision: unify across `/pricing` + `/get-started` too, for consistency.
-- ☐ America 250 second-video pricing messaged clearly throughout (standard rate by customer type).
-- ☐ America 250 box: patriotic flair, nudge right on desktop (not left-aligned), light Patriot-gradient border (try), **drop the gold/yellow** for navy+RWB.
-- ☐ Card-topper gradient: replace literal red/white/blue line (reads "American Airlines") with Multi-Partisan red→Bridge-Violet→blue (no white). Sitewide.
+## BATCH 2 — Home pricing + America 250  (Wave A; full creative license)  ✅ (pushed 5e19996)
+- ✅ Home pricing → side-by-side cards: left $1,999 (no word "standard", keep the sentiment), middle Candidate Campaigns with deliberate visual pop (2026-cycle reduction), right **Nonprofit Organizations** framed by what they *are* doing (no "advocacy", no candidate ref, no floor price). Unified across `/`, `/pricing`, `/get-started`. Decision 1 also applied to `/purchase` + `CondensedPricingDisplay` ("Nonprofit or advocacy?" → "Nonprofit organization?"); reserved verdant → Bridge Violet on pricing surfaces.
+- ✅ America 250 second-video pricing messaged clearly throughout ($599 candidate, $1,999 organizations, mission pricing nonprofits) — A250 module, hero card, `/purchase` A250 plan.
+- ✅ America 250 box (hero popup): dropped gold for navy+RWB (gradient-text heading, white sparkle, light-blue $250), light Patriot-gradient ring, nudged right on desktop.
+- ✅ Card-topper gradient: new `multipartisan-gradient` (red → Bridge Violet → blue, no white) swapped across all 11 topper strips sitewide.
+- ✅ Primary "Get Started" CTA (deferred from Batch 1): crimson → animated Patriot-gradient ring button (light fill + navy text, matched to nav/A250), ~15 sites. New `patriot-cta` utility; Button `patriot` variant repurposed. **Open for Tom's review:** reads softer than crimson on white cards — flagged.
 
 ## BATCH 3 — Home hero experience
 - ☐ Reposition ribbon so it never covers a face in still #2; make tri-color read clearly in first viewport.
