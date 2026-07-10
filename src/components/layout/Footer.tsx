@@ -240,17 +240,19 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Contact / bottom bar */}
+        {/* Contact / bottom bar. Email sits on its own line above the legal line
+            rather than run inline with it, per Tom. inline-block + py-1.5 keeps the
+            tap target at the 24px WCAG minimum. */}
         <div className="mt-8 pt-8 border-t border-white/10 text-center text-beacon-white/40 text-sm">
-          {/* inline-block + py-1.5 lifts the tap target from 17px to the 24px WCAG minimum
-              without moving the text a pixel. */}
           <a
             href={`mailto:${EMAIL}`}
-            className="inline-block py-1.5 transition-colors hover:text-beacon-white"
+            className="inline-block py-1.5 font-medium text-beacon-white/60 transition-colors hover:text-beacon-white"
           >
             {EMAIL}
-          </a>{" "}
-          &middot; &copy; 2026 CampaignAI, Inc. &middot; Based in South Carolina. &middot; Multi-partisan by design.
+          </a>
+          <p className="mt-1">
+            &copy; 2026 CampaignAI, Inc. &middot; Based in South Carolina. &middot; Multi-partisan by design.
+          </p>
         </div>
 
         {/* Final line: inline SVG heart, currentColor, never an emoji */}

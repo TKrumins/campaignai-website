@@ -64,7 +64,9 @@ export function HIWFAQ() {
           <div className="text-center mb-10">
             <SectionLabel text="Questions We Hear" />
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-regal-navy mt-3">
-              This is new and powerful technology. Every campaign has questions!
+              This is new and powerful technology.
+              <br />
+              Every campaign has questions!
             </h2>
           </div>
         </ScrollReveal>

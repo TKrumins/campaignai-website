@@ -97,7 +97,7 @@ export function HeroComboB() {
                 </Button>
                 <a
                   href="#pricing"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-beacon-white/90 transition-colors hover:border-white/60 hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-freedom-blue/70 bg-freedom-blue/10 px-5 py-2.5 text-sm font-semibold text-horizon-azure transition-colors hover:border-freedom-blue hover:bg-freedom-blue/20"
                 >
                   See pricing
                   <ArrowDown className="h-4 w-4" />

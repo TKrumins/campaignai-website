@@ -46,7 +46,7 @@ export const ETHICS_LINE =
   "We do the hard ethical work, so you can focus on the work only you can do.";
 
 export const DELIVERY_LINE =
-  "48-hour post-production delivery once you submit. Weekends can shift timing, and we'll agree on a schedule that works for your campaign up front.";
+  "Your video is delivered 48 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it at checkout.";
 
 export const EMAIL = "info@campaignai.us";
 

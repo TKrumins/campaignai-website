@@ -51,7 +51,7 @@ const badges = [
 
 export function BookingBanner({
   headline = "Campaigns move quickly. Start your next video today.",
-  subline = "Choose your plan, check out securely, and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 48 hours.",
+  subline = "Choose your plan and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 48 hours, excluding weekends.",
   showBadges = true,
   showEthicsLine = true,
   ctaLabel = CTA_PRIMARY,
@@ -65,8 +65,14 @@ export function BookingBanner({
     <section className="py-20 md:py-28 bg-regal-navy">
       <div className="max-w-[800px] mx-auto px-4 sm:px-6 text-center">
         <ScrollReveal>
+          {/* Break a multi-sentence headline so each sentence sits on its own line
+              (Tom's centered-header rule). Single-sentence headlines render as one line. */}
           <h2 className="font-heading font-extrabold text-4xl md:text-[48px] md:leading-tight text-white tracking-[-1px] mb-5">
-            {headline}
+            {headline.split(/(?<=\.)\s+/).map((line, i) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
           </h2>
           <p className="text-white/85 text-lg leading-relaxed max-w-[640px] mx-auto mb-8">
             {subline}

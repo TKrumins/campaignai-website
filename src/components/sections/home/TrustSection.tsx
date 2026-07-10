@@ -64,7 +64,7 @@ export function TrustSection() {
             <ScrollReveal key={name} delay={i * 100}>
               <div className="card-hover text-center rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 h-full">
                 <div className="relative w-[168px] h-[168px] mx-auto mb-5">
-                  <div className="w-full h-full rounded-full p-[3px] patriot-gradient shadow-sm">
+                  <div className="w-full h-full rounded-full p-[3px] bg-regal-navy shadow-sm">
                     <div className="w-full h-full rounded-full overflow-hidden bg-white">
                       <Image
                         src={photo}
@@ -100,12 +100,12 @@ export function TrustSection() {
             Strategic Advisors
           </h3>
           <div className="bg-dawn-frost rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
-            <div className="w-[100px] h-[100px] rounded-full overflow-hidden shrink-0">
+            <div className="w-[140px] h-[140px] rounded-full overflow-hidden shrink-0">
               <Image
                 src={advisor.photo}
                 alt={advisor.name}
-                width={100}
-                height={100}
+                width={140}
+                height={140}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -126,7 +126,7 @@ export function TrustSection() {
         <ScrollReveal>
           <div className="text-center mt-10">
             <Button variant="navy-outline" href="/about">
-              Meet the full team &rarr;
+              Meet the team &rarr;
             </Button>
           </div>
         </ScrollReveal>

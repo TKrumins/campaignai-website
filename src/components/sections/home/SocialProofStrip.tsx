@@ -18,10 +18,9 @@ function QuoteCard({ name, quote }: { name: string; quote: string }) {
   return (
     <div className="flex-shrink-0 w-[300px] bg-white rounded-[10px] shadow-sm p-5 mx-2">
       <p className="font-heading font-bold text-sm text-regal-navy mb-1.5">{name}</p>
-      <p className="font-body font-medium text-sm text-granite leading-relaxed mb-2">
+      <p className="font-body font-medium text-sm text-granite leading-relaxed">
         &ldquo;{quote}&rdquo;
       </p>
-      <p className="text-slate text-xs">Comment on a CampaignAI-produced video</p>
     </div>
   );
 }
