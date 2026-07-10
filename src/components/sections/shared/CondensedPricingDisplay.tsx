@@ -60,17 +60,17 @@ export function CondensedPricingDisplay({
                 2026 midterm cycle mission rate &middot; school board to U.S. Senate
               </span>
             </div>
-            <p className="text-verdant font-semibold text-base mt-6">
-              Nonprofit or advocacy organization?{" "}
-              <Link href="/for/nonprofits" className="underline underline-offset-2 hover:text-verdant/80">
+            <p className="text-regal-navy font-semibold text-base mt-6">
+              Nonprofit organization?{" "}
+              <Link href="/for/nonprofits" className="text-bridge-violet underline underline-offset-2 hover:text-bridge-violet/80">
                 Mission pricing available &rarr;
               </Link>
             </p>
           </ScrollReveal>
         ) : variant === "mission" ? (
           <ScrollReveal>
-            {/* Verdant mission-pricing treatment (7.5) */}
-            <div className="rounded-2xl border-2 border-verdant/60 bg-verdant/5 px-6 py-8 md:px-10">
+            {/* Multi-Partisan mission-pricing treatment (Batch 2) */}
+            <div className="rounded-2xl border-2 border-bridge-violet/50 bg-bridge-violet/5 px-6 py-8 md:px-10">
               <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy mb-3">
                 Mission pricing for mission work
               </h2>
@@ -109,9 +109,9 @@ export function CondensedPricingDisplay({
             </span>
 
             {/* Nonprofit line */}
-            <p className="text-verdant font-semibold text-base mb-6">
-              Nonprofit or advocacy organization?{" "}
-              <Link href="/for/nonprofits" className="underline underline-offset-2 hover:text-verdant/80">
+            <p className="text-regal-navy font-semibold text-base mb-6">
+              Nonprofit organization?{" "}
+              <Link href="/for/nonprofits" className="text-bridge-violet underline underline-offset-2 hover:text-bridge-violet/80">
                 Mission pricing available &rarr;
               </Link>
             </p>
@@ -134,7 +134,7 @@ export function CondensedPricingDisplay({
           <ScrollReveal delay={120}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 mt-6">
               <div className="text-center">
-                <Button variant="crimson" href={CALENDLY_PURCHASE} external>
+                <Button variant="patriot" href={CALENDLY_PURCHASE} external>
                   {CTA_PRIMARY}
                 </Button>
                 <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>

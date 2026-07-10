@@ -16,7 +16,7 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   patriot:
-    "patriot-gradient text-white font-semibold",
+    "patriot-cta font-semibold",
   crimson:
     "bg-liberty-crimson text-white font-semibold",
   blue:

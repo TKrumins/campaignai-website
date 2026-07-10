@@ -240,7 +240,7 @@ export function StoryArcBuilder() {
           <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white mb-6">Start with chapter one.</h3>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-6">
             <div className="text-center">
-              <Button variant="crimson" href={CALENDLY_PURCHASE} external className="px-8 py-3">{CTA_PRIMARY}</Button>
+              <Button variant="patriot" href={CALENDLY_PURCHASE} external className="px-8 py-3">{CTA_PRIMARY}</Button>
               <p className="text-beacon-white/60 text-sm mt-2">{CTA_MICROCOPY}</p>
             </div>
             <div className="text-center">

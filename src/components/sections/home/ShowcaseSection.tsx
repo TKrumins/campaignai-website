@@ -246,7 +246,7 @@ export function ShowcaseSection() {
 
         <ScrollReveal delay={200}>
           <div className="text-center">
-            <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3">
+            <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
               {CTA_PRIMARY}
             </Button>
             <p className="text-horizon-azure text-sm mt-2">

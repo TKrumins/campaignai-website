@@ -48,7 +48,7 @@ export function TrustBarSection() {
   return (
     <section className="bg-regal-navy">
       {/* gradient seal: closes out the scrolling hero */}
-      <div className="h-1.5 patriot-gradient" />
+      <div className="h-1.5 multipartisan-gradient" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <ScrollReveal>
           <p className="text-center text-beacon-white/50 text-xs font-semibold uppercase tracking-[3px] mb-7">

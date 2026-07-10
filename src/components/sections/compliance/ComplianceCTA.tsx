@@ -15,7 +15,7 @@ export function ComplianceCTA() {
             labels, human editorial review, and the most current compliance
             guidance we can provide.
           </p>
-          <Button variant="crimson" href={PURCHASE_URL}>
+          <Button variant="patriot" href={PURCHASE_URL}>
             {CTA_PRIMARY}
           </Button>
           <p className="text-beacon-white/60 text-sm mt-2">

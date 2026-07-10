@@ -71,7 +71,7 @@ export function ProductSection() {
                 <div className="flip-card-inner rounded-2xl shadow-md">
                   {/* front */}
                   <div className="flip-face rounded-2xl overflow-hidden bg-white ring-1 ring-black/5">
-                    <div className="h-1.5 patriot-gradient" />
+                    <div className="h-1.5 multipartisan-gradient" />
                     <AISparkle
                       size={16}
                       color={spark}
@@ -92,7 +92,7 @@ export function ProductSection() {
                   </div>
                   {/* back */}
                   <div className="flip-face flip-back rounded-2xl overflow-hidden bg-regal-navy text-beacon-white">
-                    <div className="h-1.5 patriot-gradient" />
+                    <div className="h-1.5 multipartisan-gradient" />
                     <div className="p-8 h-full flex flex-col">
                       <h3 className="font-heading font-bold text-xl mb-3">{title}</h3>
                       <p className="text-sm leading-relaxed text-beacon-white/90 mb-5">{content}</p>

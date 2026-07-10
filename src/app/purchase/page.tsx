@@ -43,7 +43,8 @@ const plans = [
     name: "America 250 Special",
     price: "$250",
     tag: "First of two videos",
-    blurb: "Buy two videos, get your first for just $250. First 250 customers.",
+    blurb:
+      "Buy two videos, get your first for just $250 — your second is billed at your standard rate. First 250 customers.",
     link: CALENDLY_A250,
   },
 ];
@@ -101,7 +102,7 @@ export default function PurchasePage() {
                   plan.featured ? "shadow-xl ring-2 ring-regal-navy/10" : "shadow-md ring-1 ring-black/5"
                 }`}
               >
-                <div className="h-1.5 patriot-gradient" />
+                <div className="h-1.5 multipartisan-gradient" />
                 <div className="p-6 md:p-7 flex flex-col flex-1">
                   <p className="font-heading font-bold text-sm text-regal-navy uppercase tracking-wider mb-3">
                     {plan.name}
@@ -113,7 +114,7 @@ export default function PurchasePage() {
                     {plan.tag}
                   </span>
                   <p className="text-granite text-sm leading-relaxed mb-5 flex-1">{plan.blurb}</p>
-                  <Button variant="crimson" href={plan.link} external className="w-full">
+                  <Button variant="patriot" href={plan.link} external className="w-full">
                     {CTA_PRIMARY}
                   </Button>
                   <p className="text-slate text-xs text-center mt-2">
@@ -143,7 +144,7 @@ export default function PurchasePage() {
             </div>
             <div className="md:border-l md:border-gray-200 md:pl-6">
               <p className="font-heading font-bold text-sm text-regal-navy uppercase tracking-wider mb-3">
-                Nonprofit or advocacy?
+                Nonprofit organization?
               </p>
               <p className="text-granite text-sm leading-relaxed mb-4">
                 We price mission work case by case, so your budget never decides

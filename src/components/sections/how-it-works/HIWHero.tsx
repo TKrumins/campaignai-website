@@ -26,7 +26,7 @@ export function HIWHero() {
           your story to a black box. It&apos;s AI built to put you in charge.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3 text-base">
+          <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3 text-base">
             {CTA_PRIMARY}
           </Button>
           <a

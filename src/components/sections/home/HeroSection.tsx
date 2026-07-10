@@ -63,7 +63,7 @@ export function HeroSection() {
         {/* Primary CTA — the one primary action in this viewport */}
         <div className="mb-6">
           <Button
-            variant="crimson"
+            variant="patriot"
             href={CALENDLY_PURCHASE}
             external
             className="px-8 py-3 text-base"

@@ -407,7 +407,7 @@ function BeyondCard({
 }) {
   return (
     <div className="relative rounded-2xl bg-white p-7 shadow-md ring-1 ring-black/5">
-      <div className="h-1.5 patriot-gradient absolute inset-x-0 top-0 rounded-t-2xl" />
+      <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 rounded-t-2xl" />
       <AISparkle
         size={16}
         color={spark}

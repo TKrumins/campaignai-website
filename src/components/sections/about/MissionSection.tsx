@@ -22,7 +22,7 @@ export function MissionSection() {
           </p>
           <div className="mb-4">
             <Button
-              variant="crimson"
+              variant="patriot"
               href={PURCHASE_URL}
               className="px-8 py-3 text-base"
             >

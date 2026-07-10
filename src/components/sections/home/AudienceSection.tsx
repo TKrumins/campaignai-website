@@ -158,7 +158,7 @@ export function AudienceSection() {
 
         <ScrollReveal>
           <div className="text-center mt-14">
-            <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3 text-base">
+            <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3 text-base">
               {CTA_PRIMARY}
             </Button>
             <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>

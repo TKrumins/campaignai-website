@@ -92,7 +92,7 @@ export function HeroComboB() {
 
             <div className="mt-9">
               <div className="flex flex-wrap items-center gap-4">
-                <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3.5 text-base">
+                <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3.5 text-base">
                   {CTA_PRIMARY}
                 </Button>
                 <a
@@ -112,7 +112,7 @@ export function HeroComboB() {
                 on laptop viewports.) Below lg it is rendered after the films instead —
                 see the sibling below. Only one of the two is ever displayed, so screen
                 readers announce it exactly once. */}
-            <America250Popup className="z-30 mt-10 hidden max-w-max lg:block" />
+            <America250Popup className="z-30 mt-10 hidden max-w-max lg:ml-auto lg:block" />
           </div>
         </div>
 

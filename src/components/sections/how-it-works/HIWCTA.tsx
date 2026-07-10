@@ -13,7 +13,7 @@ export function HIWCTA() {
           <p className="text-granite text-lg leading-relaxed mb-8">
             Professional campaign video without the agency price tag.
           </p>
-          <Button variant="crimson" href={PURCHASE_URL}>
+          <Button variant="patriot" href={PURCHASE_URL}>
             {CTA_PRIMARY}
           </Button>
           <p className="mt-2 text-slate text-sm">

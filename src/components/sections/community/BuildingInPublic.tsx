@@ -253,7 +253,7 @@ export function BuildingInPublic() {
           {outcomes.map(({ title, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
               <div className="rounded-2xl overflow-hidden h-full">
-                <div className="h-1 patriot-gradient" />
+                <div className="h-1 multipartisan-gradient" />
                 <div className="bg-dawn-frost p-7 h-full">
                   <h3 className="font-heading font-bold text-lg text-regal-navy mb-3">
                     {title}

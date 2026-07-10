@@ -18,7 +18,7 @@ export function SocialProofSection() {
               back soon for real stories from real races. Or better yet, be one
               of them.
             </p>
-            <Button variant="crimson" href={PURCHASE_URL}>
+            <Button variant="patriot" href={PURCHASE_URL}>
               {CTA_PRIMARY}
             </Button>
             <p className="text-granite text-sm mt-2">

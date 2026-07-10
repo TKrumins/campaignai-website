@@ -14,7 +14,7 @@ export function GetStartedValueProp() {
             Professional campaign video in days, not weeks. AI-powered, human-finished, with disclosure labels built in.
           </p>
           <div className="mt-8">
-            <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3 text-base">
+            <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3 text-base">
               {CTA_PRIMARY}
             </Button>
             <p className="text-slate text-sm mt-2">{CTA_MICROCOPY}</p>

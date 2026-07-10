@@ -287,7 +287,7 @@ export function ProblemSection() {
               </div>
 
               <div className="mt-8">
-                <Button variant="crimson" href={PURCHASE_URL} className="px-8 py-3">
+                <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
                   {CTA_PRIMARY}
                 </Button>
                 <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
