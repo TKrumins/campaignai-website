@@ -31,7 +31,6 @@ export default function ConsultantsPage() {
       <FunnelProblem body="You know exactly what your clients' races need, and you know the math on producing it. An agency retainer for every client does not pencil out, and in-house production is a business you did not sign up for. There is a faster way to deliver quality video across your whole book: a process that keeps your strategic control and compounds with every video a client produces." />
 
       <CondensedPricingDisplay
-        showAmerica250
         footnote="Working across a slate of clients? Bring it to the call."
       />
 

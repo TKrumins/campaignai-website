@@ -107,7 +107,8 @@ function VideoCard({
   );
 
   return (
-    <div ref={containerRef} className="rounded-xl bg-regal-navy/60 border border-white/10 overflow-hidden">
+    <div ref={containerRef} className="rounded-xl bg-white/[0.055] border border-white/15 shadow-xl overflow-hidden">
+      <div className="h-1 multipartisan-gradient" />
       <div
         className="relative w-full"
         style={{ aspectRatio: "16 / 9" }}
@@ -189,7 +190,7 @@ export function ShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <section id="our-work" className="py-20 md:py-28 bg-regal-navy">
+    <section id="our-work" className="py-20 md:py-28 bg-gradient-to-b from-[#091026] via-regal-navy to-[#091026]">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12">

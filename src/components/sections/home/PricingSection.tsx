@@ -20,7 +20,7 @@ export function PricingSection() {
           </div>
         </ScrollReveal>
 
-        <PricingTiers showAmerica250 />
+        <PricingTiers />
 
         {/* Footnote (trust badges + ethics line consolidated into the badges band up top) */}
         <ScrollReveal delay={300}>

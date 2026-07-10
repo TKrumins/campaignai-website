@@ -3,7 +3,7 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { MobileCTA } from "@/components/layout/MobileCTA";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Analytics } from "@/components/layout/Analytics";
 import { A250_KEY } from "@/lib/constants";
@@ -104,7 +104,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <MobileCTA />
+        <MobileBottomNav />
         <Analytics />
       </body>
     </html>

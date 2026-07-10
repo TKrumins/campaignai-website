@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import { America250Module } from "@/components/sections/shared/America250Module";
 import {
   CALENDLY_PURCHASE,
   CTA_PRIMARY,
@@ -14,8 +13,6 @@ type PricingVariant = "default" | "candidate" | "mission";
 interface CondensedPricingDisplayProps {
   /** Visual treatment (Commit 7, 7.0). */
   variant?: PricingVariant;
-  /** Render the America 250 module beneath the prices (one per page max) */
-  showAmerica250?: boolean;
   /** Render the purchase + waitlist CTA pair */
   showCtas?: boolean;
   /** Render the founders trust line */
@@ -34,7 +31,6 @@ const TRUST_LINE =
  */
 export function CondensedPricingDisplay({
   variant = "default",
-  showAmerica250 = true,
   showCtas = false,
   showTrustLine = true,
   footnote,
@@ -121,12 +117,6 @@ export function CondensedPricingDisplay({
         {footnote && (
           <ScrollReveal delay={60}>
             <p className="text-slate text-sm mt-5">{footnote}</p>
-          </ScrollReveal>
-        )}
-
-        {showAmerica250 && (
-          <ScrollReveal delay={80}>
-            <America250Module className="mb-6 mt-6" />
           </ScrollReveal>
         )}
 

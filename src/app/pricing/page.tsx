@@ -67,7 +67,7 @@ export default function PricingPage() {
       {/* Pricing cards — shared with the homepage so the two always match */}
       <section className="pb-12 bg-white">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-          <PricingTiers showAmerica250 />
+          <PricingTiers />
 
           <ScrollReveal delay={320}>
             <p className="text-center text-granite text-base mt-10">

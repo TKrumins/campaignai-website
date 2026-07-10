@@ -40,6 +40,11 @@ export function Navbar() {
   // hands back. Desktop keeps the nav CTA always.
   const stickyOwnsPatriot = heroExited || moduleInView;
 
+  // When the bottom nav takes over (hero exited), slide the whole top nav up
+  // out of frame on mobile so the two move in one coordinated pass. Matches
+  // MobileBottomNav's `active`, so they animate together.
+  const bottomNavActive = heroExited && !moduleInView && pathname !== "/get-started";
+
   useEffect(() => {
     function handleScroll() {
       setScrolled(window.scrollY > 10);
@@ -75,7 +80,9 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed left-0 right-0 z-50 transition-colors duration-500 ease-in-out ${navBg}`}
+      className={`fixed left-0 right-0 z-50 transition-[transform,background-color,border-color] duration-300 ease-in-out ${
+        bottomNavActive ? "max-md:-translate-y-full" : ""
+      } ${navBg}`}
       style={{ top: "var(--announce-h, 0px)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -31,7 +31,6 @@ export default function PartiesAndPacsPage() {
       <FunnelProblem body="Producing enough video for a full ballot has always been too costly and too slow, so a few heavy-hitter races get real content and everyone down-ballot gets a graphic and good wishes. Not because committees don't care. Because until now, covering the full spread didn't pencil out. That is the gap that decides close races, and it is the gap this closes." />
 
       <CondensedPricingDisplay
-        showAmerica250
         footnote="Supporting a full slate? Bring it to the call."
       />
 

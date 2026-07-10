@@ -69,8 +69,9 @@ export function HeroComboB() {
               entirely below the fold on a phone, so the first thing a visitor saw was
               copy. The reel is the proof — it should greet them. */}
           {/* Pin the column below the fixed nav (announce bar + h-24), so as the
-              films scroll past, the left items never ride up under the header. */}
-          <div className="relative flex flex-col justify-center pt-24 pb-6 lg:sticky lg:top-[120px] lg:min-h-[calc(100vh-120px)] lg:py-0">
+              films scroll past, the left items never ride up under the header.
+              A little extra top clearance keeps them off the darkened bar. */}
+          <div className="relative flex flex-col justify-center pt-24 pb-6 lg:sticky lg:top-[152px] lg:min-h-[calc(100vh-152px)] lg:py-0">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-beacon-white/60">
               Campaign-ready video, at the speed of AI
             </p>
@@ -101,7 +102,7 @@ export function HeroComboB() {
                 </Button>
                 <a
                   href="#pricing"
-                  className="inline-flex items-center gap-2 rounded-full border border-freedom-blue/70 bg-freedom-blue/10 px-5 py-2.5 text-sm font-semibold text-horizon-azure transition-colors hover:border-freedom-blue hover:bg-freedom-blue/20"
+                  className="inline-flex items-center gap-2 rounded-full border border-beacon-white/40 bg-beacon-white/5 px-5 py-2.5 text-sm font-semibold text-beacon-white transition-colors hover:border-beacon-white/70 hover:bg-beacon-white/10"
                 >
                   See pricing
                   <ArrowDown className="h-4 w-4" />
@@ -116,7 +117,10 @@ export function HeroComboB() {
                 on laptop viewports.) Below lg it is rendered after the films instead —
                 see the sibling below. Only one of the two is ever displayed, so screen
                 readers announce it exactly once. */}
-            <America250Popup className="z-30 mt-10 hidden max-w-max lg:mx-auto lg:block" />
+            {/* Centered under the microcopy box (both max-w-md, column-left). */}
+            <div className="mt-10 hidden max-w-md lg:block">
+              <America250Popup className="z-30 mx-auto max-w-max" />
+            </div>
           </div>
         </div>
 

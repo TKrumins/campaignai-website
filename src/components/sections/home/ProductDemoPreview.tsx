@@ -92,6 +92,18 @@ const TYPES: VideoType[] = [
   },
 ];
 
+// Ambient Red / White / Blue AI sparkles set around the stage (home-hero
+// language). Some sit just off the edges (negative / >100 offsets) so they
+// frame the video rather than cover it.
+const STAGE_SPARKS = [
+  { l: -3, t: 7, c: "#FF3366", s: 18 },
+  { l: 96, t: -4, c: "#4D9FFF", s: 15 },
+  { l: 101, t: 46, c: "#E8F4F8", s: 13 },
+  { l: -4, t: 64, c: "#4D9FFF", s: 16 },
+  { l: 90, t: 93, c: "#FF3366", s: 14 },
+  { l: 34, t: -5, c: "#E8F4F8", s: 12 },
+];
+
 /**
  * The Product section. Promoted to the live homepage 2026-07-10, replacing the
  * static ProductSection grid.
@@ -138,8 +150,14 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 items-start">
-          {/* left: selectable type list */}
-          <div className="flex flex-col gap-3">
+          {/* left: selectable type list. On mobile it freezes as a compact
+              sticky bar under the nav so the four types stay tappable while the
+              stage scrolls; it releases at the bottom of this block. On desktop
+              it's the vertical column beside the stage. */}
+          {/* Mobile: the top nav has already slid to the bottom by the time
+              this section is reached, so the sticky bar only needs to clear the
+              announcement ticker. Desktop keeps the full nav-height offset. */}
+          <div className="sticky top-[calc(var(--announce-h,0px)+0.75rem)] z-30 mb-3 grid grid-cols-2 gap-2 rounded-xl bg-dawn-frost/95 py-2 backdrop-blur sm:grid-cols-4 lg:top-[calc(var(--announce-h,0px)+7rem)] lg:self-start lg:z-auto lg:mb-0 lg:flex lg:flex-col lg:gap-3 lg:rounded-none lg:bg-transparent lg:py-0 lg:backdrop-blur-none">
             {TYPES.map(({ key, title, icon: Icon, tagline }, i) => {
               const on = i === active;
               return (
@@ -147,25 +165,25 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                   key={key}
                   onClick={() => select(i)}
                   aria-pressed={on}
-                  className={`text-left rounded-xl border p-4 transition-all ${
+                  className={`text-left rounded-xl border p-2.5 transition-all lg:p-4 ${
                     on
                       ? "bg-regal-navy border-regal-navy shadow-lg"
                       : "bg-white border-gray-200 hover:border-freedom-blue/50 hover:shadow"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 lg:gap-3">
                     <span
-                      className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg lg:h-10 lg:w-10 ${
                         on ? "bg-white/10" : "bg-regal-navy/5"
                       }`}
                     >
-                      <Icon className={`h-5 w-5 ${on ? "text-beacon-white" : "text-regal-navy"}`} />
+                      <Icon className={`h-4 w-4 lg:h-5 lg:w-5 ${on ? "text-beacon-white" : "text-regal-navy"}`} />
                     </span>
-                    <div>
-                      <p className={`font-heading font-bold ${on ? "text-beacon-white" : "text-regal-navy"}`}>
+                    <div className="min-w-0">
+                      <p className={`font-heading font-bold text-sm leading-tight lg:text-base ${on ? "text-beacon-white" : "text-regal-navy"}`}>
                         {title}
                       </p>
-                      <p className={`text-xs ${on ? "text-beacon-white/70" : "text-slate"}`}>
+                      <p className={`hidden text-xs lg:block ${on ? "text-beacon-white/70" : "text-slate"}`}>
                         {tagline}
                       </p>
                     </div>
@@ -177,7 +195,19 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
 
           {/* right: stage + detail */}
           <div>
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 bg-regal-navy">
+            <div className="relative">
+              {/* ambient AI sparkles framing the stage — home-hero language */}
+              {STAGE_SPARKS.map((p, i) => (
+                <AISparkle
+                  key={i}
+                  size={p.s}
+                  color={p.c}
+                  glow
+                  className="sparkle-twinkle absolute z-20"
+                  style={{ left: `${p.l}%`, top: `${p.t}%`, ["--dur"]: `${2.6 + (i % 3) * 0.5}s`, animationDelay: `${i * 0.35}s` } as CSSProperties}
+                />
+              ))}
+              <div className="relative z-10 aspect-video w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 bg-regal-navy">
               {t.video && playing ? (
                 <video
                   src={t.video.src}
@@ -205,6 +235,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               ) : (
                 <PlaceholderStage title={t.title} spark={t.spark} />
               )}
+              </div>
             </div>
 
             <div className="mt-6">
@@ -239,8 +270,8 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             <BeyondCard
               icon={Zap}
               title="Rapid Response"
-              blurb="News breaks and the moment moves fast. Drop a quick-turn video in between your core content to answer an attack, seize a headline, or set the record straight, same day."
-              chips={["Same-day turnaround", "Slots between core films", "On-message, on-brand"]}
+              blurb="News breaks and the moment moves fast. Drop a quick-turn video in between your core content to answer an attack, seize a headline, or set the record straight, fast."
+              chips={["Quick turnaround", "Slots between core films", "On-message, on-brand"]}
               spark="#FF3366"
             />
             <BeyondCard
@@ -289,13 +320,16 @@ function CampaignArc() {
     { label: "Candid footage", color: "#94A3B8", small: true },
   ];
   return (
-    <div className="mt-16 rounded-2xl bg-white p-6 md:p-8 shadow-md ring-1 ring-black/5">
+    <div className="relative mt-24 overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-12 shadow-2xl">
+      {/* Stark stage change from the light product overview above: a navy band,
+          topped by the Multi-Partisan ribbon strip. */}
+      <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0" />
       <div className="text-center max-w-[640px] mx-auto mb-8">
-        <SectionLabel text="The Campaign Arc" />
-        <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy tracking-[-0.5px] mt-3">
+        <SectionLabel text="The Campaign Arc" color="horizon" />
+        <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px] mt-3">
           One video isn&apos;t a campaign. This is.
         </h3>
-        <p className="text-granite text-sm mt-3">
+        <p className="text-beacon-white/70 text-sm mt-3">
           Announcement and GOTV bookend the cycle, with fundraising and policy
           throughout, and rapid response and candid moments in between.
         </p>
@@ -311,20 +345,20 @@ function CampaignArc() {
                 style={{ width: s.r * 2, height: s.r * 2, background: s.color }}
               />
               {m.label && (
-                <span className="absolute left-1/2 top-[-30px] -translate-x-1/2 whitespace-nowrap text-[11px] font-bold text-regal-navy">
+                <span className="absolute left-1/2 top-[-30px] -translate-x-1/2 whitespace-nowrap text-[11px] font-bold text-beacon-white">
                   {m.label}
                 </span>
               )}
             </div>
           );
         })}
-        <span className="absolute left-0 top-5 text-[11px] font-medium text-slate">Launch</span>
-        <span className="absolute right-0 top-5 text-[11px] font-medium text-slate">Election Day</span>
+        <span className="absolute left-0 top-5 text-[11px] font-medium text-beacon-white/50">Launch</span>
+        <span className="absolute right-0 top-5 text-[11px] font-medium text-beacon-white/50">Election Day</span>
       </div>
 
       <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
         {legend.map((l) => (
-          <span key={l.label} className="inline-flex items-center gap-1.5 text-xs text-granite">
+          <span key={l.label} className="inline-flex items-center gap-1.5 text-xs text-beacon-white/80">
             <span
               className="rounded-full"
               style={{ width: l.small ? 8 : 12, height: l.small ? 8 : 12, background: l.color }}

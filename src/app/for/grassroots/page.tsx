@@ -30,7 +30,7 @@ export default function GrassrootsPage() {
 
       <FunnelProblem body="You built this with volunteers, folding tables, and group chats. When it is time to reach beyond the people who already show up, a shaky phone video undersells everything you have organized. Professional help always seemed priced for someone else. It was. That is what we changed." />
 
-      <CondensedPricingDisplay showAmerica250 />
+      <CondensedPricingDisplay />
 
       <ThreePaths />
 

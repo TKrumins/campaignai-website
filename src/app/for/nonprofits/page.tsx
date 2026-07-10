@@ -36,7 +36,7 @@ export default function NonprofitsPage() {
       <FunnelProblem body="You are up against noise, apathy, and opposition messaging with a bigger budget. The people who would care about your issue scroll past a hundred videos a day, and a wall of text does not stop the scroll. Your team knows this work better than any agency ever could. What you need is a way to turn that knowledge into video that carries the message, without pulling anyone off the mission to make it." />
 
       {/* Mission pricing; NO America 250 module on this page (Section 0.5). */}
-      <CondensedPricingDisplay variant="mission" showAmerica250={false} />
+      <CondensedPricingDisplay variant="mission" />
 
       <ThreePaths path3Cost="Priced case by case through mission pricing." />
 

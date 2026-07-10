@@ -280,7 +280,9 @@ export function ProblemSection() {
                     <p className="text-xs font-semibold uppercase tracking-wide text-regal-navy">
                       Candidate pricing
                     </p>
-                    <p className="font-heading text-2xl font-extrabold text-regal-navy">Starting at $599</p>
+                    <p className="font-heading text-2xl font-extrabold leading-tight text-regal-navy">
+                      Starting at<br />$599
+                    </p>
                     <p className="mt-0.5 text-[11px] text-slate">Our commitment to the cause</p>
                   </div>
                 </div>

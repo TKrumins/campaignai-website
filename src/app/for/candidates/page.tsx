@@ -35,7 +35,7 @@ export default function CandidatesPage() {
         body="Running for office is one of the hardest, most hopeful things a person can do. You did it anyway. Now the modern race asks you to be a video producer too, because voters live on their screens even when you would rather meet them at their doors. You don't have to choose. Plan your video in an evening, submit it, and get back to the handshakes, the porches, and the town halls. That is where you win. We'll handle the rendering."
       />
 
-      <CondensedPricingDisplay variant="candidate" showAmerica250 />
+      <CondensedPricingDisplay variant="candidate" />
 
       <ThreePaths
         path2FinalClause="and every one of those hours is an hour you are not with voters."
