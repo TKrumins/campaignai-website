@@ -53,8 +53,13 @@ export default function PartiesAndPacsPage() {
             body: "48-hour post-production per video once submitted, at a fraction of typical production cost, so covering the full spread stops being a luxury.",
           },
           {
-            title: "Compliance built in, every jurisdiction.",
-            body: "State-specific AI disclosure labels applied to every video and updated as rules change, across every jurisdiction you work in.",
+            // Interim language, drafted 2026-07-10 to close the gap between this sales
+            // page ("built in, every jurisdiction") and what /compliance and /ethics
+            // actually promise ("tools and guidance, not legal advice… we don't guarantee
+            // compliance"). A party committee's counsel reads this page before they sign.
+            // CampaignAI is drafting final wording with its own counsel — replace then.
+            title: "Compliance tracked, jurisdiction by jurisdiction.",
+            body: "We track AI-disclosure rules at the federal, state, and social-platform level, and label every video as those rules change. It is not a guarantee, and we will always tell you to have counsel review the final cut. Our job is to make that review far easier.",
           },
           {
             title: "Nothing crosses campaigns.",

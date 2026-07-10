@@ -60,10 +60,13 @@ export function HeroComboB() {
       </div>
 
       {/* content */}
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:gap-14">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 sm:px-8 lg:grid-cols-2 lg:gap-14 lg:px-12 xl:px-20">
         {/* left: pinned message */}
         <div className="relative">
-          <div className="relative flex min-h-screen flex-col justify-center py-20 lg:sticky lg:top-0 lg:py-0">
+          {/* No min-h-screen below lg: a full-viewport text column pushed the films
+              entirely below the fold on a phone, so the first thing a visitor saw was
+              copy. The reel is the proof — it should greet them. */}
+          <div className="relative flex flex-col justify-center pt-24 pb-6 lg:sticky lg:top-0 lg:min-h-screen lg:py-0">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-beacon-white/60">
               Campaign-ready video, at the speed of AI
             </p>
@@ -103,20 +106,23 @@ export function HeroComboB() {
               <p className="mt-3 max-w-md text-sm text-beacon-white/60">{CTA_MICROCOPY}</p>
             </div>
 
-            {/* America 250 special — kept in normal flow rather than absolutely
-                pinned to the column's bottom. Pinned, it collided with the
-                microcopy on laptop viewports and pushed below the fold on short
-                ones; in flow it sits under the CTA and is reachable at every
-                breakpoint. It still rides the sticky column, so it stays put
-                while the films scroll past. */}
-            <America250Popup className="z-30 mx-auto mt-10 max-w-max lg:mx-0" />
+            {/* America 250 special. On lg it rides the pinned column, below the CTA,
+                so it stays put while the films scroll past. (It used to be absolutely
+                positioned at the column's bottom, where it collided with the microcopy
+                on laptop viewports.) Below lg it is rendered after the films instead —
+                see the sibling below. Only one of the two is ever displayed, so screen
+                readers announce it exactly once. */}
+            <America250Popup className="z-30 mt-10 hidden max-w-max lg:block" />
           </div>
         </div>
 
         {/* right: films that scroll up while the text stays put */}
-        <div className="py-16 lg:py-24">
+        <div className="pb-6 lg:py-24">
           <ProofFilmGraphic />
         </div>
+
+        {/* mobile/tablet: the offer lands after the reel, not before it */}
+        <America250Popup className="z-30 mx-auto mb-14 max-w-max lg:hidden" />
       </div>
     </section>
   );

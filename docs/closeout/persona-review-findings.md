@@ -214,9 +214,25 @@ Five personas flagged `Nonprofits & Advocacy` as a brand violation — **because
 
 So it is **not a current defect**. But it becomes a live question the moment Wave A starts, because `PricingTiers.tsx` renders on `/`, `/pricing`, *and* `/get-started` — you cannot rename the tile on the homepage alone. And `/purchase` ("Nonprofit or advocacy?") and `AudienceSection.tsx` ("Advocacy Organizations") are separate surfaces again.
 
-> **Ruling needed:** (a) home pricing cards only, (b) every pricing/purchase surface, or (c) sitewide including nav labels. This changes Wave A's blast radius. My recommendation is **(b)** — the nonprofit ED's objection is to the pricing experience specifically, and (c) would strip a legitimate audience word from `/for/nonprofits` prose where it reads as inclusive rather than dismissive.
+> **✅ RULED 2026-07-10 — (b), pricing and purchase surfaces only.** Tom's reasoning is commercial,
+> not cosmetic, and should govern the Wave A copy:
+>
+> - The tier label grouped nonprofits with "advocacy". Many **501(c)(4) advocacy organizations will
+>   read that as an invitation to negotiate the nonprofit rate.**
+> - **Most advocacy groups should pay the standard $1,999**, which is already anchored well below
+>   traditional video ad agencies. The discount is not for them by default.
+> - Mission pricing for nonprofits is real and case-by-case, but **must not read as a standing,
+>   advertised discount.** The nuance is "we will work with you," not "here is your coupon."
+>
+> **Therefore:** pricing and purchase surfaces say **"Nonprofit Organizations."** `/for/nonprofits`
+> prose may still address advocacy organizations — they are a served audience, just not a discounted
+> one. Do not strip the word from nav labels or body copy.
+>
+> **Wave A scope:** `PricingTiers.tsx` (renders on `/`, `/pricing`, `/get-started`), `/purchase`
+> ("Nonprofit or advocacy?" → "Nonprofit organization?"), and `CondensedPricingDisplay.tsx`.
+> `AudienceSection.tsx`'s "Advocacy Organizations" nav label **stays**.
 
-**2. Pull the three Tom-blocked inputs forward from Phase 6?** The Stripe links, the four legal Markdown files, and the video-hosting call are P0-1/2/3. Everything else in Phase 3 is buildable without you.
+**2. Pull the three Tom-blocked inputs forward from Phase 6?** ✅ **Done.** Stripe resolved (no checkout at agency-only launch), video hosting resolved (Vercel Blob), legal files still outstanding.
 
 **3. Pin reviewers to an immutable deployment URL for Phase 3?** The project is git-connected, so each wave I push moves the preview under anyone mid-review.
 

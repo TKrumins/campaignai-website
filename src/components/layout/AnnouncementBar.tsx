@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { useElectionCountdown } from "@/lib/useElectionCountdown";
 import { A250_KEY } from "@/lib/constants";
@@ -23,6 +24,11 @@ function Segment({ value, unit, ready }: { value: number; unit: string; ready: b
  */
 export function AnnouncementBar() {
   const countdown = useElectionCountdown();
+  // On the homepage the hero's floating America 250 card states the offer, so the bar
+  // stating it too puts the same sentence on screen twice before a visitor has seen a
+  // single thing about the product. Everywhere else the bar is the only place it appears,
+  // so it keeps the full copy. The countdown and the "See pricing" link stay on every page.
+  const isHome = usePathname() === "/";
 
   function dismiss() {
     try {
@@ -60,12 +66,16 @@ export function AnnouncementBar() {
           </span>
           {!countdown.isElectionDay && (
             <span className="min-w-0 truncate">
-              {/* Desktop copy */}
-              <span className="hidden md:inline">
-                America 250 Special: buy two videos, get your first for just $250.{" "}
-              </span>
-              {/* Mobile truncation */}
-              <span className="md:hidden">First video $250 with any two. </span>
+              {!isHome && (
+                <>
+                  {/* Desktop copy */}
+                  <span className="hidden md:inline">
+                    America 250 Special: buy two videos, get your first for just $250.{" "}
+                  </span>
+                  {/* Mobile truncation */}
+                  <span className="md:hidden">First video $250 with any two. </span>
+                </>
+              )}
               <Link
                 href="/#pricing"
                 className="underline underline-offset-2 font-semibold hover:text-victory-rose transition-colors whitespace-nowrap"
