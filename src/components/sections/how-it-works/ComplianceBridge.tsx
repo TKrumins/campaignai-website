@@ -68,16 +68,9 @@ export function ComplianceBridge() {
                 Regulations are complicated. That&apos;s our problem, not yours.
               </h2>
               <p className="text-granite text-lg leading-[1.7] mb-4">
-                You focus on the message only you can deliver. Making sure it
-                ships clean &mdash; every disclosure, in every state you run in
-                &mdash; is our job, built into your production.
-              </p>
-              <p className="text-granite text-lg leading-[1.7] mb-4">
-                AI in campaigns is new territory, and the rules differ in every
-                state. We monitor disclosure requirements and track pending
-                legislation so you don&apos;t have to &mdash; and every video
-                ships with a clear label tailored to your state&apos;s laws,
-                built to the most current requirements we can identify.
+                You focus on the message only you can deliver. Making sure it ships
+                clean &mdash; the right disclosure, in every state you run in &mdash;
+                is our job, built into your production and updated as the rules change.
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">

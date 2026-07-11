@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ComplianceHero } from "@/components/sections/compliance/ComplianceHero";
+import { ComplianceClearance } from "@/components/sections/compliance/ComplianceClearance";
 import { RegulatoryLandscape } from "@/components/sections/compliance/RegulatoryLandscape";
 import { WhatWeTrack } from "@/components/sections/compliance/WhatWeTrack";
 import { DisclosureValue } from "@/components/sections/compliance/DisclosureValue";
@@ -18,6 +19,7 @@ export default function CompliancePage() {
   return (
     <>
       <ComplianceHero />
+      <ComplianceClearance />
       <RegulatoryLandscape />
       <WhatWeTrack />
       <DisclosureValue />
