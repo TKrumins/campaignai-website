@@ -152,7 +152,7 @@ function PaywallGraphic() {
       <p className="mb-5 text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
         Democracy shouldn&apos;t have a paywall.
       </p>
-      <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal affordable pricing">
+      <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal that professional campaign video is within reach">
         <defs>
           <radialGradient id="holeGlow" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
             <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.98" />
@@ -204,13 +204,15 @@ function PaywallGraphic() {
           )}
         </g>
 
-        {/* reveal: pricing through the opening */}
+        {/* reveal: affordability through the opening — a universal message that
+            fits every visitor, not the candidate-only rate (that lives in the
+            pricing section and on /for/candidates). */}
         <g style={contentStyle("0.5s")}>
-          <text x={CX} y="186" textAnchor="middle" fill="#0D1B3E" fontSize="14" fontWeight="700" letterSpacing="2">
-            STARTING AT
+          <text x={CX} y="196" textAnchor="middle" fill="#0D1B3E" fontFamily="Manrope, sans-serif" fontSize="40" fontWeight="800">
+            Within
           </text>
-          <text x={CX} y="242" textAnchor="middle" fill="#0D1B3E" fontFamily="Manrope, sans-serif" fontSize="62" fontWeight="800">
-            $599
+          <text x={CX} y="240" textAnchor="middle" fill="#0D1B3E" fontFamily="Manrope, sans-serif" fontSize="40" fontWeight="800">
+            reach.
           </text>
         </g>
 
@@ -270,7 +272,7 @@ export function ProblemSection() {
               {/* price contrast */}
               <div className="mt-7 flex flex-wrap items-center gap-4">
                 <div className="rounded-xl border border-gray-200 bg-dawn-frost px-4 py-3 text-center">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate">Agencies</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate">One agency ad</p>
                   <p className="font-heading text-2xl font-extrabold text-slate line-through decoration-liberty-crimson/70">
                     $10,000+
                   </p>
@@ -279,15 +281,25 @@ export function ProblemSection() {
                 <div className="rounded-xl p-[2px] patriot-gradient shadow-sm">
                   <div className="rounded-[10px] bg-white px-4 py-3 text-center">
                     <p className="text-xs font-semibold uppercase tracking-wide text-regal-navy">
-                      Candidate pricing
+                      CampaignAI
                     </p>
                     <p className="font-heading text-2xl font-extrabold leading-tight text-regal-navy">
-                      Starting at<br className="md:hidden" /> $599
+                      A fraction<br className="md:hidden" /> of that
                     </p>
-                    <p className="mt-0.5 text-[11px] text-slate">Our commitment to the cause</p>
+                    <p className="mt-0.5 text-[11px] text-slate">Priced for who you serve</p>
                   </div>
                 </div>
               </div>
+              {/* Honest range so a non-candidate visitor isn't anchored on the
+                  candidate rate before the pricing section below. */}
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-slate">
+                Candidates start at <span className="font-semibold text-regal-navy">$599</span> this
+                cycle, organizations at <span className="font-semibold text-regal-navy">$1,999</span>,
+                and nonprofits get mission-based pricing.{" "}
+                <Link href="#pricing" className="font-semibold text-freedom-blue hover:underline">
+                  See what applies to you &rarr;
+                </Link>
+              </p>
 
               <div className="mt-8">
                 <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">

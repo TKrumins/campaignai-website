@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Flag } from "lucide-react";
+import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Flag, Lock } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
@@ -17,10 +17,16 @@ type VideoType = {
   deliver: string[];
   spark: string;
   video: { src: string; poster: string; label: string } | null;
+  // "core" = one of the four films we produce; "support" = a format that lives
+  // alongside the core films but works differently (coming soon, or your own
+  // footage). Support types are selectable but sit apart in the picker and show
+  // an explainer stage instead of a demo film.
+  variant?: "core" | "support";
+  statusLabel?: string;
 };
 
-// Four core video types. Policy Explainers is wired to a real dogfooded film;
-// the rest are placeholders until sample films are produced.
+// Four core video types plus two supporting formats. Policy Explainers is wired
+// to a real dogfooded film; the rest are placeholders until sample films exist.
 const TYPES: VideoType[] = [
   {
     key: "announce",
@@ -90,7 +96,37 @@ const TYPES: VideoType[] = [
     spark: "#E8F4F8",
     video: null,
   },
+  {
+    key: "rapid",
+    title: "Rapid Response",
+    icon: Zap,
+    variant: "support",
+    statusLabel: "Coming soon",
+    tagline: "When news breaks.",
+    blurb:
+      "A quick-turn video you drop between your core films to answer an attack, seize a headline, or set the record straight.",
+    deliver: [],
+    spark: "#FF3366",
+    video: null,
+  },
+  {
+    key: "candid",
+    title: "Authentic & Candid",
+    icon: Camera,
+    variant: "support",
+    statusLabel: "Your own footage",
+    tagline: "Straight from the trail.",
+    blurb:
+      "The raw, from-the-trail clips you film yourself and post straight to social — no studio, no tools. A real part of your story, so we make room for it alongside the polished films.",
+    deliver: [],
+    spark: "#8E5CF7",
+    video: null,
+  },
 ];
+
+// Only the four core films auto-rotate; the two supporting formats are
+// selectable but sit out of the cycle.
+const CORE_INDICES = TYPES.map((t, i) => (t.variant === "support" ? -1 : i)).filter((i) => i >= 0);
 
 // Ambient Red / White / Blue AI sparkles set around the stage (home-hero
 // language). Some sit just off the edges (negative / >100 offsets) so they
@@ -112,20 +148,31 @@ const STAGE_SPARKS = [
  * /preview/product route. The homepage must never render it.
  */
 export function ProductDemoPreview({ internal = false }: { internal?: boolean }) {
-  // Open on a type that has a real film rather than on TYPES[0] (Announcement),
-  // whose stage reads "Demo film in production" — a bad first impression for a
-  // section whose job is to prove the product exists. Once every type has a
-  // sample this collapses back to 0 on its own and the arc order is restored.
-  const [active, setActive] = useState(() => {
-    const i = TYPES.findIndex((t) => t.video);
-    return i === -1 ? 0 : i;
-  });
+  // Open on Announcement (the arc's first beat) and auto-rotate through the four
+  // core types every 4s so the section previews the whole product on its own.
+  // The moment a visitor picks a type, the rotation stops for good — they're
+  // driving now — until the page is refreshed.
+  const [active, setActive] = useState(0);
+  const [userPicked, setUserPicked] = useState(false);
   const [playing, setPlaying] = useState(false);
   const t = TYPES[active];
+
+  useEffect(() => {
+    if (userPicked) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      setActive((prev) => {
+        const at = CORE_INDICES.indexOf(prev);
+        return CORE_INDICES[(at + 1) % CORE_INDICES.length];
+      });
+    }, 4000);
+    return () => clearInterval(id);
+  }, [userPicked]);
 
   function select(i: number) {
     setActive(i);
     setPlaying(false);
+    setUserPicked(true);
   }
 
   return (
@@ -144,8 +191,9 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             One product. Every video your campaign runs.
           </h2>
           <p className="text-granite text-lg leading-[1.7]">
-            Pick a type to see it in action. Same story-first process, same
-            48-hour delivery, whatever the moment calls for.
+            Watch each type in action, or jump to the one you need. Same
+            story-first process, same 48-hour delivery, whatever the moment
+            calls for.
           </p>
         </div>
 
@@ -158,37 +206,57 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               this section is reached, so the sticky bar only needs to clear the
               announcement ticker. Desktop keeps the full nav-height offset. */}
           <div className="sticky top-[calc(var(--announce-h,0px)+0.75rem)] z-30 mb-3 grid grid-cols-2 gap-2 rounded-xl bg-dawn-frost/95 py-2 backdrop-blur sm:grid-cols-4 lg:top-[calc(var(--announce-h,0px)+7rem)] lg:self-start lg:z-auto lg:mb-0 lg:flex lg:flex-col lg:gap-3 lg:rounded-none lg:bg-transparent lg:py-0 lg:backdrop-blur-none">
-            {TYPES.map(({ key, title, icon: Icon, tagline }, i) => {
+            {TYPES.map(({ key, title, icon: Icon, tagline, variant, statusLabel }, i) => {
               const on = i === active;
+              const support = variant === "support";
+              const firstSupport = support && TYPES[i - 1]?.variant !== "support";
               return (
-                <button
-                  key={key}
-                  onClick={() => select(i)}
-                  aria-pressed={on}
-                  className={`text-left rounded-xl border p-2.5 transition-all lg:p-4 ${
-                    on
-                      ? "bg-regal-navy border-regal-navy shadow-lg"
-                      : "bg-white border-gray-200 hover:border-freedom-blue/50 hover:shadow"
-                  }`}
-                >
-                  <div className="flex items-center gap-2 lg:gap-3">
-                    <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg lg:h-10 lg:w-10 ${
-                        on ? "bg-white/10" : "bg-regal-navy/5"
-                      }`}
-                    >
-                      <Icon className={`h-4 w-4 lg:h-5 lg:w-5 ${on ? "text-beacon-white" : "text-regal-navy"}`} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className={`font-heading font-bold text-sm leading-tight lg:text-base ${on ? "text-beacon-white" : "text-regal-navy"}`}>
-                        {title}
-                      </p>
-                      <p className={`hidden text-xs lg:block ${on ? "text-beacon-white/70" : "text-slate"}`}>
-                        {tagline}
-                      </p>
+                <Fragment key={key}>
+                  {firstSupport && (
+                    <p className="col-span-2 mt-1 px-1 text-[10px] font-bold uppercase tracking-wider text-slate sm:col-span-4 lg:col-span-1 lg:mt-3 lg:border-t lg:border-gray-200 lg:pt-3">
+                      Also part of the mix
+                    </p>
+                  )}
+                  <button
+                    onClick={() => select(i)}
+                    aria-pressed={on}
+                    className={`text-left rounded-xl border p-2.5 transition-all lg:p-4 ${
+                      on
+                        ? "bg-regal-navy border-regal-navy shadow-lg"
+                        : support
+                          ? "border-dashed border-gray-300 bg-white/60 hover:border-freedom-blue/50 hover:shadow"
+                          : "bg-white border-gray-200 hover:border-freedom-blue/50 hover:shadow"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 lg:gap-3">
+                      <span
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg lg:h-10 lg:w-10 ${
+                          on ? "bg-white/10" : "bg-regal-navy/5"
+                        }`}
+                      >
+                        <Icon className={`h-4 w-4 lg:h-5 lg:w-5 ${on ? "text-beacon-white" : "text-regal-navy"}`} />
+                      </span>
+                      <div className="min-w-0">
+                        <p className={`font-heading font-bold text-sm leading-tight lg:text-base ${on ? "text-beacon-white" : "text-regal-navy"}`}>
+                          {title}
+                        </p>
+                        {support && statusLabel ? (
+                          <span
+                            className={`mt-0.5 inline-block rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:text-[10px] ${
+                              on ? "bg-white/15 text-beacon-white/80" : "bg-regal-navy/5 text-slate"
+                            }`}
+                          >
+                            {statusLabel}
+                          </span>
+                        ) : (
+                          <p className={`hidden text-xs lg:block ${on ? "text-beacon-white/70" : "text-slate"}`}>
+                            {tagline}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </Fragment>
               );
             })}
           </div>
@@ -232,6 +300,8 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                     {t.video.label} &middot; real film
                   </span>
                 </button>
+              ) : t.variant === "support" ? (
+                <SupportStage typeKey={t.key} />
               ) : (
                 <PlaceholderStage title={t.title} spark={t.spark} />
               )}
@@ -239,52 +309,158 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             </div>
 
             <div className="mt-6">
-              <h3 className="font-heading font-bold text-2xl text-regal-navy mb-2">{t.title}</h3>
+              <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h3 className="font-heading font-bold text-2xl text-regal-navy">{t.title}</h3>
+                {t.variant === "support" && t.statusLabel && (
+                  <span
+                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider ${
+                      t.key === "rapid"
+                        ? "bg-liberty-crimson/10 text-liberty-crimson"
+                        : "bg-bridge-violet/10 text-bridge-violet"
+                    }`}
+                  >
+                    {t.statusLabel}
+                  </span>
+                )}
+              </div>
               <p className="text-granite leading-relaxed mb-5">{t.blurb}</p>
-              <LogoMarkBulletList items={t.deliver} />
 
-              {/* per-type capability spotlight */}
-              {t.key === "fund" && <MilestoneSpotlight />}
-              {t.key === "policy" && <LibrarySpotlight />}
+              {t.variant === "support" ? (
+                <SupportDetail typeKey={t.key} />
+              ) : (
+                <>
+                  <LogoMarkBulletList items={t.deliver} />
 
-              <p className="mt-5 text-sm text-slate">
-                <Check className="mr-1 inline h-4 w-4 text-verdant" />
-                Every type ships with a human editorial review and full ownership. No watermark.
-              </p>
+                  {/* per-type capability spotlight */}
+                  {t.key === "fund" && <MilestoneSpotlight />}
+                  {t.key === "policy" && <LibrarySpotlight />}
+
+                  <p className="mt-5 text-sm text-slate">
+                    <Check className="mr-1 inline h-4 w-4 text-verdant" />
+                    Every type ships with a human editorial review and full ownership. No watermark.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </div>
 
         {/* Campaign arc: how the types play out over a cycle */}
         <CampaignArc />
-
-        {/* Beyond the four core types */}
-        <div className="mt-16">
-          <div className="text-center max-w-[720px] mx-auto mb-8">
-            <SectionLabel text="Beyond the Four" />
-            <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy tracking-[-0.5px] mt-3">
-              Core content, plus everything in between.
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <BeyondCard
-              icon={Zap}
-              title="Rapid Response"
-              blurb="When news breaks, drop a quick-turn video between your core films — answer an attack, seize a headline, set the record straight."
-              chips={["Quick turnaround", "On-message, on-brand"]}
-              spark="#FF3366"
-            />
-            <BeyondCard
-              icon={Camera}
-              title="Authentic & Candid"
-              blurb="Run raw, from-the-trail moments alongside your polished films, so voters see the person, not just the campaign."
-              chips={["Candid, hand-held feel", "Real moments, real voice"]}
-              spark="#8E5CF7"
-            />
-          </div>
-        </div>
       </div>
     </section>
+  );
+}
+
+/** Explainer stage shown for the two supporting formats (no demo film). */
+function SupportStage({ typeKey }: { typeKey: string }) {
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
+      <svg viewBox="0 0 320 180" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+        {typeKey === "rapid" ? (
+          <>
+            {/* a signal pinging out — news breaking, answered fast */}
+            {[0, 1, 2].map((i) => (
+              <circle
+                key={i}
+                cx="160"
+                cy="92"
+                r={22 + i * 22}
+                fill="none"
+                stroke="#FF3366"
+                strokeWidth="2"
+                opacity={0.5 - i * 0.12}
+                className="ga-glow"
+                style={{ animationDelay: `${i * 0.4}s` } as CSSProperties}
+              />
+            ))}
+            <circle cx="160" cy="92" r="12" fill="#FF3366" className="ga-blink" />
+            <path d="M156 86 h8 l-5 8 h6 l-11 14 3 -12 h-6 z" fill="#fff" />
+            {/* incoming headline ticker */}
+            <rect x="34" y="150" width="252" height="14" rx="4" fill="#ffffff" opacity="0.08" />
+            <rect x="42" y="155" width="120" height="4" rx="2" fill="#FF6B8F" className="ga-draw" />
+            <rect x="170" y="155" width="80" height="4" rx="2" fill="#7AB8FF" opacity="0.6" />
+          </>
+        ) : (
+          <>
+            {/* a hand-held phone capturing a candid moment */}
+            <g transform="rotate(-8 160 92)">
+              <rect x="128" y="40" width="64" height="112" rx="12" fill="#0b1633" stroke="#8E5CF7" strokeWidth="2.5" />
+              <rect x="134" y="52" width="52" height="80" rx="6" fill="url(#candidScreen)" />
+              <circle cx="160" cy="142" r="4" fill="#8E5CF7" opacity="0.7" />
+              <g className="ga-glow">
+                <circle cx="160" cy="90" r="13" fill="#ffffff" opacity="0.85" />
+                <path d="M156 84 v12 l10 -6 z" fill="#0D1B3E" />
+              </g>
+            </g>
+            <defs>
+              <linearGradient id="candidScreen" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="#B94FC4" stopOpacity="0.55" />
+                <stop offset="1" stopColor="#4D9FFF" stopOpacity="0.6" />
+              </linearGradient>
+            </defs>
+            <text x="160" y="168" textAnchor="middle" fontSize="9" fontFamily="sans-serif" fill="#E8F4F8" opacity="0.65" fontWeight="bold">
+              Filmed by you · shared straight to social
+            </text>
+          </>
+        )}
+      </svg>
+      <AISparkle
+        size={20}
+        color={typeKey === "rapid" ? "#FF3366" : "#8E5CF7"}
+        glow
+        className="sparkle-twinkle absolute left-[16%] top-[20%]"
+        style={{ ["--dur"]: "3s" } as CSSProperties}
+      />
+      <AISparkle
+        size={14}
+        color="#E8F4F8"
+        glow
+        className="sparkle-twinkle absolute right-[18%] bottom-[26%]"
+        style={{ ["--dur"]: "2.4s" } as CSSProperties}
+      />
+    </div>
+  );
+}
+
+/** Below-stage explainer for the supporting formats. */
+function SupportDetail({ typeKey }: { typeKey: string }) {
+  if (typeKey === "rapid") {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-5">
+        <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-regal-navy">
+          <Lock className="h-4 w-4 text-liberty-crimson" />
+          Turns on as your library grows
+        </p>
+        <p className="mb-4 text-sm leading-relaxed text-granite">
+          Rapid response will be a self-serve capability. Once your campaign has produced a
+          handful of videos, we have enough of your voice and story for the tool to draft an
+          on-message reply at news speed — so it unlocks then, not on day one.
+        </p>
+        <div className="flex items-center gap-3">
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
+            <div className="h-full w-2/5 rounded-full multipartisan-gradient" />
+          </div>
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">Coming soon</span>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-5">
+      <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-regal-navy">
+        <Camera className="h-4 w-4 text-bridge-violet" />
+        This is footage you already have
+      </p>
+      <p className="text-sm leading-relaxed text-granite">
+        Candid clips aren&apos;t something we produce — they&apos;re yours, filmed on your phone
+        and posted as they happen. We call it out here because it&apos;s a real part of the mix
+        that keeps your polished films feeling human.
+      </p>
+      <p className="mt-3 text-xs text-slate">
+        On the roadmap: simple trimming and captions so your own clips are quick to post.
+      </p>
+    </div>
   );
 }
 
@@ -313,19 +489,29 @@ function CampaignArc() {
     { key: "gotv", label: "Get Out The Vote", cadence: "Final weekend", color: "#8E5CF7", flag: true, marks: [96] },
   ];
   return (
-    <div className="relative mt-24 overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-10 shadow-2xl">
+    <div className="mt-16 md:mt-24">
+      {/* Light-bg lead-in: a labeled break BEFORE the navy card so on mobile the
+          arc reads as its own subsection, not a continuation of whichever video
+          type is selected in the sticky picker above (same bg blurred them). */}
+      <div className="mb-6 flex flex-col items-center gap-3 text-center">
+        <span className="h-8 w-px bg-gradient-to-b from-transparent to-regal-navy/25" aria-hidden />
+        <SectionLabel text="The Campaign Arc" />
+      </div>
+
+      <div className="relative overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-10 shadow-2xl">
       {/* Stark stage change from the light product overview above: a navy band,
           topped by the Multi-Partisan ribbon strip. */}
       <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0" />
       <div className="text-center max-w-[660px] mx-auto mb-10">
-        <SectionLabel text="The Campaign Arc" color="horizon" />
-        <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px] mt-3">
-          One video isn&apos;t a campaign. This is.
+        <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px]">
+          A campaign is a series of stories,
+          <br />
+          told in new and exciting ways.
         </h3>
         <p className="text-beacon-white/70 text-sm mt-3">
-          A full cycle, planned like a calendar — steady fundraising and policy,
-          candid moments and rapid response in between, bookended by your launch
-          and the final push.
+          Every video is a chapter — your launch, your asks, the policies you
+          fight for, the candid moments, the closing push. No single film is your
+          campaign. Told together, over a race, they are.
         </p>
       </div>
 
@@ -389,6 +575,7 @@ function CampaignArc() {
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
 }
@@ -439,45 +626,6 @@ function LibrarySpotlight() {
               </span>
             </span>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function BeyondCard({
-  icon: Icon,
-  title,
-  blurb,
-  chips,
-  spark,
-}: {
-  icon: ComponentType<{ className?: string }>;
-  title: string;
-  blurb: string;
-  chips: string[];
-  spark: string;
-}) {
-  return (
-    <div className="relative rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5">
-      <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 rounded-t-2xl" />
-      <AISparkle
-        size={16}
-        color={spark}
-        glow
-        className="sparkle-twinkle absolute right-5 top-6"
-        style={{ ["--dur"]: "2.8s" } as CSSProperties}
-      />
-      <div className="mb-4 mt-2 flex h-11 w-11 items-center justify-center rounded-lg bg-regal-navy/5">
-        <Icon className="h-5 w-5 text-regal-navy" />
-      </div>
-      <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">{title}</h4>
-      <p className="text-granite text-sm leading-relaxed mb-4">{blurb}</p>
-      <div className="flex flex-wrap gap-2">
-        {chips.map((c) => (
-          <span key={c} className="rounded-full bg-regal-navy/5 px-3 py-1 text-xs font-medium text-regal-navy">
-            {c}
-          </span>
         ))}
       </div>
     </div>

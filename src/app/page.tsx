@@ -12,6 +12,7 @@ import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { FAQSection } from "@/components/sections/home/FAQSection";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
+import { HumanityTeam, HumanityField } from "@/components/sections/home/HumanitySection";
 
 export default function HomePage() {
   return (
@@ -21,14 +22,19 @@ export default function HomePage() {
           background, whose -mb-[100vh] otherwise leaks over these sections. */}
       <div className="relative z-10 bg-white">
         <TrustBarSection />
+        {/* Mobile nav-swap line: the top→bottom nav switch fires when this
+            boundary (the white Product section's top) meets the nav's bottom. */}
+        <div data-nav-switch aria-hidden />
         <ProductDemoPreview />
         <ShowcaseSection />
+        <HumanityTeam />
         <SocialProofStrip />
         <ProblemSection />
         <PricingSection />
         <HowItWorksSection />
         <StorytellingSection />
         <AudienceSection />
+        <HumanityField />
         <TrustSection />
         <EthicsSection />
         <FAQSection />

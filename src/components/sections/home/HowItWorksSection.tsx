@@ -1,39 +1,40 @@
-import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
-import { AISparkle } from "@/components/ui/AISparkle";
+import { StepAnimation } from "@/components/sections/how-it-works/StepAnimation";
 import { SlidersHorizontal, UserCheck, Send } from "lucide-react";
 
-// Condensed to three phases for the homepage; the full six-step walkthrough
+// Condensed to three phases for the homepage; the full seven-step walkthrough
 // lives on /how-it-works, so this primes and funnels rather than duplicates.
+// Each card borrows one of the process page's branded StepAnimation scenes so
+// the teaser feels like the same world — kept deliberately high-level here.
 const phases = [
   {
     number: "01",
     icon: SlidersHorizontal,
+    visual: 3,
     title: "You direct every decision",
     description:
       "Your story, your script, your storyboard, your narration and music. You make every creative call. Nothing goes in that you didn't choose.",
     chips: ["Story", "Script", "Storyboard", "Voice & music"],
-    spark: "#FF3366",
   },
   {
     number: "02",
     icon: UserCheck,
+    visual: 6,
     title: "A human editor polishes every frame",
     description:
       "Your video goes to our production team. Real editors review, refine, and finalize the whole thing before it ever reaches you.",
     chips: ["Human editorial review"],
-    spark: "#8E5CF7",
   },
   {
     number: "03",
     icon: Send,
+    visual: 7,
     title: "You download and deploy",
     description:
       "Your finished ad arrives within 48 hours with disclosure labels built in. Ready for social, email, your website, and digital ads.",
     chips: ["48-hour delivery", "Disclosure built in"],
-    spark: "#4D9FFF",
   },
 ];
 
@@ -55,35 +56,32 @@ export function HowItWorksSection() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {phases.map(({ number, icon: Icon, title, description, chips, spark }, i) => (
+          {phases.map(({ number, icon: Icon, visual, title, description, chips }, i) => (
             <ScrollReveal key={number} delay={i * 100}>
-              <div className="relative h-full rounded-2xl bg-white p-7 shadow-md ring-1 ring-black/5">
-                <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 rounded-t-2xl" />
-                <AISparkle
-                  size={15}
-                  color={spark}
-                  glow
-                  className="sparkle-twinkle absolute right-5 top-6"
-                  style={{ ["--dur"]: `${2.6 + i * 0.4}s` } as CSSProperties}
-                />
-                <div className="mt-2 mb-4 flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full patriot-gradient p-[2px] shrink-0">
-                    <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
-                      <span className="font-heading font-bold text-xs text-white">{number}</span>
-                    </div>
-                  </div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-regal-navy/5">
-                    <Icon className="h-5 w-5 text-regal-navy" />
-                  </div>
+              <div className="relative h-full overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5">
+                <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 z-10" />
+                {/* process-page-style animated scene */}
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <StepAnimation step={visual} />
+                  <span className="absolute left-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-regal-navy/85 font-heading text-xs font-bold text-white ring-1 ring-white/20">
+                    {number}
+                  </span>
                 </div>
-                <h3 className="font-heading font-bold text-xl text-regal-navy mb-2">{title}</h3>
-                <p className="text-granite text-sm leading-relaxed mb-4">{description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {chips.map((c) => (
-                    <span key={c} className="rounded-full bg-regal-navy/5 px-3 py-1 text-xs font-medium text-regal-navy">
-                      {c}
+                <div className="p-6">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-regal-navy/5">
+                      <Icon className="h-4 w-4 text-regal-navy" />
                     </span>
-                  ))}
+                    <h3 className="font-heading font-bold text-xl text-regal-navy">{title}</h3>
+                  </div>
+                  <p className="text-granite text-sm leading-relaxed mb-4">{description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {chips.map((c) => (
+                      <span key={c} className="rounded-full bg-regal-navy/5 px-3 py-1 text-xs font-medium text-regal-navy">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

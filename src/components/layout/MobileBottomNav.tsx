@@ -18,11 +18,11 @@ import { navItems } from "@/lib/nav";
  */
 export function MobileBottomNav() {
   const pathname = usePathname();
-  const { heroExited, moduleInView } = usePatriotViewport();
+  const { navSwitched, moduleInView } = usePatriotViewport();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const hidden = pathname === "/get-started";
-  const active = heroExited && !moduleInView;
+  const active = navSwitched && !moduleInView;
 
   if (hidden) return null;
 
@@ -96,7 +96,7 @@ export function MobileBottomNav() {
 
       {/* the bar */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-[1000] border-t border-white/10 bg-regal-navy/95 backdrop-blur-[8px] transition-transform duration-700 ${
+        className={`fixed bottom-0 left-0 right-0 z-[1000] border-t border-white/10 bg-regal-navy/95 backdrop-blur-[8px] transition-transform duration-700 ease-in-out ${
           active ? "translate-y-0" : "translate-y-full"
         }`}
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}

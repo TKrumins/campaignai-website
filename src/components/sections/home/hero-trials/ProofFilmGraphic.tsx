@@ -28,23 +28,18 @@ const STILLS: Still[] = [
   { src: "/assets/videos/posters/shasm-act-3.jpg", side: "left", rot: -2, z: 30, alt: "The SHASM Act — closing frame" },
 ];
 
-// Red / White / Blue sparkles only. Per Tom: the 2nd still (right) carries two
-// blue sparkles (small + extra-small); the 3rd still (left) carries two red
-// sparkles (small + extra-small) and no blue.
+// Only the sparkles that RIDE a specific still live here, so they scroll with
+// their still. Per Tom: the 2nd still (right) carries two blue sparkles (small +
+// extra-small); the 3rd still (left) carries two red sparkles. The ambient
+// background sparkles moved to the pinned hero backdrop (HeroComboB BG_SPARKS)
+// so they stay static as the reel scrolls past.
 const SPARKS = [
-  { l: 58, t: 6, c: "#FF3366", s: 20 },
   // 2nd screenshot (right) — two blue
   { l: 86, t: 17, c: "#4D9FFF", s: 13 },
   { l: 77, t: 25, c: "#4D9FFF", s: 9 },
   // 3rd screenshot (left) — two red
   { l: 22, t: 33, c: "#FF3366", s: 15 },
   { l: 31, t: 41, c: "#FF3366", s: 10 },
-  { l: 82, t: 50, c: "#FF3366", s: 16 },
-  { l: 22, t: 64, c: "#E8F4F8", s: 20 },
-  { l: 80, t: 80, c: "#4D9FFF", s: 18 },
-  { l: 44, t: 94, c: "#FF3366", s: 15 },
-  { l: 10, t: 14, c: "#4D9FFF", s: 12 },
-  { l: 92, t: 66, c: "#E8F4F8", s: 12 },
 ];
 
 const RIBBON_D =

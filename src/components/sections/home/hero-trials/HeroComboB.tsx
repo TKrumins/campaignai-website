@@ -17,18 +17,28 @@ const PHRASES = [
 ];
 const WIDEST = "state & local parties.";
 
-// Ambient AI sparkles (Red / White / Blue) kept to the far gutters, top and
-// bottom margins of the pinned hero — never over the headline, CTAs, or the
-// America 250 card, which live in the centered content column.
+// Ambient AI sparkles (Red / White / Blue) that live in the PINNED hero
+// background, so they stay put while the films scroll up past them — the
+// static backdrop Tom asked for. Kept off the centered content column
+// (headline, CTAs, America 250 card); the sparkles that ride specific film
+// stills stay inside ProofFilmGraphic so they scroll with their still.
 const BG_SPARKS = [
-  // Left-column sparkles pulled tight to the very edge (per Tom: keep them off
-  // the eyebrow and the Get Started button).
+  // Left gutter — pulled tight to the very edge, off the eyebrow/CTA.
   { l: 1, t: 9, c: "#E8F4F8", s: 16 },
   { l: 1.5, t: 62, c: "#4D9FFF", s: 12 },
   { l: 1, t: 88, c: "#FF3366", s: 13 },
+  // Right gutter.
   { l: 92, t: 40, c: "#FF3366", s: 11 },
   { l: 96, t: 12, c: "#4D9FFF", s: 15 },
   { l: 97, t: 74, c: "#E8F4F8", s: 13 },
+  // Ambient depth over the right (film) half + a few mid-field — relocated out
+  // of the scrolling reel so they read as a still starfield behind the films.
+  { l: 60, t: 6, c: "#FF3366", s: 18 },
+  { l: 71, t: 30, c: "#4D9FFF", s: 12 },
+  { l: 55, t: 52, c: "#E8F4F8", s: 15 },
+  { l: 84, t: 88, c: "#FF3366", s: 14 },
+  { l: 47, t: 82, c: "#4D9FFF", s: 12 },
+  { l: 66, t: 68, c: "#E8F4F8", s: 11 },
 ];
 
 /**
@@ -112,7 +122,7 @@ export function HeroComboB() {
                 </a>
               </div>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-beacon-white/60">
-                Book your onboarding call.
+                Book your onboarding call today.
                 <br />
                 We scope your video together, then invoice you.
                 <br />

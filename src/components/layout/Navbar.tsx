@@ -23,7 +23,7 @@ export function Navbar() {
   // navy bar reads far cleaner, and it still slides to the bottom at hero exit.
   const [mobileScrolled, setMobileScrolled] = useState(false);
   const pathname = usePathname();
-  const { heroExited, moduleInView } = usePatriotViewport();
+  const { heroExited, moduleInView, navSwitched } = usePatriotViewport();
 
   const hasDarkHero = darkHeroPages.includes(pathname);
   // On the homepage the hero runs a pinned film sequence; keep the nav
@@ -34,14 +34,15 @@ export function Navbar() {
   const isTransparent = !solidified && !mobileOpen && hasDarkHero;
 
   // Mobile viewport discipline (5.1): the nav CTA renders until the sticky
-  // bar activates (hero exits viewport), then crossfades out; scroll to top
-  // hands back. Desktop keeps the nav CTA always.
-  const stickyOwnsPatriot = heroExited || moduleInView;
+  // bar activates (the nav-swap line is reached), then crossfades out; scroll
+  // to top hands back. Desktop keeps the nav CTA always. Keyed off the same
+  // `navSwitched` flag as the bottom bar so exactly one Patriot button shows.
+  const stickyOwnsPatriot = navSwitched || moduleInView;
 
-  // When the bottom nav takes over (hero exited), slide the whole top nav up
-  // out of frame on mobile so the two move in one coordinated pass. Matches
-  // MobileBottomNav's `active`, so they animate together.
-  const bottomNavActive = heroExited && !moduleInView && pathname !== "/get-started";
+  // When the bottom nav takes over, slide the whole top nav up out of frame on
+  // mobile so the two move in one coordinated pass (same trigger, same 700ms
+  // ease-in-out as MobileBottomNav, so they travel in lockstep).
+  const bottomNavActive = navSwitched && !moduleInView && pathname !== "/get-started";
 
   useEffect(() => {
     function handleScroll() {
@@ -79,6 +80,7 @@ export function Navbar() {
 
   return (
     <nav
+      data-navbar
       className={`fixed left-0 right-0 z-50 transition-[transform,background-color,border-color] duration-700 ease-in-out ${
         bottomNavActive ? "max-md:-translate-y-full" : ""
       } ${navBg}`}
