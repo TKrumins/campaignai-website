@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ChannelsHero } from "@/components/sections/channels/ChannelsHero";
 import { ChannelChooser } from "@/components/sections/channels/ChannelChooser";
-import { ScreenSection } from "@/components/sections/channels/ScreenSection";
 import { ChannelsCTA } from "@/components/sections/channels/ChannelsCTA";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default function ChannelsPage() {
     <>
       <ChannelsHero />
       <ChannelChooser />
-      <ScreenSection />
       <ChannelsCTA />
     </>
   );

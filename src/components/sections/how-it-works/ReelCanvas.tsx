@@ -43,15 +43,21 @@ export function ReelCanvas({ children }: { children: ReactNode }) {
       });
 
       // Smooth path anchored exactly at each node centre, bowing gently to
-      // alternating sides between consecutive nodes.
+      // alternating sides between consecutive nodes. The bow is capped by the
+      // room actually available on that side (minus a stroke-width margin), so on
+      // narrow/mobile layouts — where the nodes hug the left edge — the ribbon
+      // never curves off-canvas.
+      const MARGIN = 6;
       let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
       for (let i = 1; i < pts.length; i++) {
         const p0 = pts[i - 1];
         const p1 = pts[i];
         const dy = p1.y - p0.y;
         const side = i % 2 === 0 ? 1 : -1;
-        const amp = Math.min(48, dy * 0.22);
-        const cx = (p0.x + p1.x) / 2 + side * amp;
+        const midx = (p0.x + p1.x) / 2;
+        const room = side < 0 ? midx - MARGIN : c.width - MARGIN - midx;
+        const amp = Math.max(0, Math.min(48, dy * 0.22, room));
+        const cx = midx + side * amp;
         d += ` C ${cx.toFixed(1)} ${(p0.y + dy * 0.35).toFixed(1)}, ${cx.toFixed(1)} ${(p0.y + dy * 0.65).toFixed(1)}, ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}`;
       }
 

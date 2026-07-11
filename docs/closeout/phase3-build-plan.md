@@ -155,3 +155,18 @@ Original note: Tom loves the current aesthetics of both. Next: add **animation /
 - **Substack covers:** 5 flagship animated covers built (`/preview/substack-covers`); extend to the 3 real posts + per-article covers; wire into Community.
 - **Deepfake/likeness/avatar + Ethics visuals** (Batch 8) and the sitewide "artistic human designer" SVG punch-up (About IntersectionGraphic, etc.).
 - **Built to Grow toggle (Tom 2026-07-11 — DONE):** the two views are now a space-saving toggle (profile default / "Draft your GOTV ad" behind it) instead of stacked.
+
+### 📱 Mobile-first + page fixes (Tom 2026-07-11 tranche 2 — REGISTERED for Fable run)
+- **STANDING DIRECTIVE: review EVERY section of the site through a mobile-first lens during the Fable pass.**
+- **HIW Video Production Process — mobile ribbon overflow:** the Multi-Partisan process ribbon runs off the LEFT edge on mobile (animation breaks). Fix `ReelCanvas`/`ProcessTimeline` so the ribbon stays on-screen on small viewports.
+- **/channels ("Where to Share It") — mobile sticky selector:** apply the same "pin the options to the top of the screen while scrolling" pattern as the home **Product** section (its sticky four-type selector) so the channel list (Social … Broadcast TV) stays reachable without scrolling up/down. Make the chooser genuinely mobile-friendly.
+- **/channels — fold `ScreenSection` in:** collapse the standalone "Onto the screen" (Connected TV + Broadcast TV depth) INTO the Connected TV + Broadcast TV options in the chooser above. Simplify the page — but KEEP the CTV waitlist.
+- **Get Started — pricing picker on one mobile screen:** the `GetStartedSetup` "starting point" picker should be fully visible on ONE mobile screen with no scrolling. Take creative leaps to keep the same info/goal but fit a single mobile viewport (mobile-first).
+
+### Fable run — tranche 3 (Tom 2026-07-11, registered; run uninterrupted)
+- **Mobile footer → two columns** where it fits; if too tight, don't force it.
+- **Legal pages — only what a company website needs.** Self-serve platform hasn't launched and the User Agreement is signed person-by-person through the agency, so DON'T ship the full set yet. **Remove all "COMING SOON" badges** (footer currently shows AI Disclosure · Coming Soon + Regulatory Tracker · Coming Soon). List only what's explicitly needed (recommend **Privacy Policy + Terms of Use**), and **flag the rest (EULA, AI Disclosure) for Tom** to add shortly. Still need the actual Privacy/Terms text from Tom (counsel-reviewed, rendered verbatim).
+- **Community "Our Approach" → interactive.** Add dropdowns + a "sticky picker" (home-Product-section pattern). Quick per-group panels showing WHY each group benefits from engaging with CampaignAI as members of the growing Substack. Subtle animation + HERO framing, targeted per group.
+- **WHO WE SERVE (/for/*) → HERO-JOURNEY pages.** Stress-test all 5 from a HESITANT and an OPTIMISTIC person in that group. These are top-of-funnel inbound lead-gen. Pull interactivity from across the site, tailored per group so they feel seen. Approachable language; get them excited to buy what they want/need.
+- **Substack/Community — add graphics** to the "Collaborative Research", "User Feedback Loops", and "Transparent Decisions" cards (`BuildingInPublic` outcomes).
+- **Humanity throughout:** find places to add real photos of real people — site is clean but needs more human warmth. (Constraint: use the REAL people we have — founders/advisors + archived candids; won't fabricate stock "real people." More lands when Tom's real client photos/videos arrive.)

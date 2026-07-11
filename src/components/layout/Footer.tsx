@@ -76,10 +76,11 @@ export function Footer() {
   return (
     <footer className="bg-regal-navy text-beacon-white border-t-4 border-t-freedom-blue">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Link columns: Brand · Site · Who We Serve · Trust & Legal */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Column 1: Brand */}
-          <div>
+        {/* Link columns — two columns on mobile (Brand spans both), five on desktop:
+            Brand · Site · Who We Serve · Trust & Values · Legal */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+          {/* Brand — full width on mobile */}
+          <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block">
               <Image
                 src="/assets/logos/logo-dark-background.svg"
@@ -102,7 +103,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Site */}
+          {/* Site */}
           <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Site
@@ -121,7 +122,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Who We Serve */}
+          {/* Who We Serve */}
           <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Who We Serve
@@ -140,10 +141,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Trust & Legal */}
+          {/* Trust & Values — the non-committal home for our commitments while the
+              full legal framework is drafted. */}
           <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
-              Trust &amp; Legal
+              Trust &amp; Values
             </h3>
             <ul className="space-y-2">
               <li>
@@ -151,29 +153,30 @@ export function Footer() {
                   href="/ethics"
                   className="text-verdant hover:text-verdant/80 transition-colors text-sm font-medium"
                 >
-                  Read our full ethics commitment &rarr;
+                  Ethics
                 </Link>
               </li>
               <li>
-                <span className="inline-flex items-center gap-2 text-beacon-white/50 text-sm">
-                  Regulatory Tracker
-                  <span className="rounded-full bg-pioneer-gold/15 text-pioneer-gold text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">
-                    Coming Soon
-                  </span>
-                </span>
+                <Link
+                  href="/compliance"
+                  className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
+                >
+                  Compliance
+                </Link>
               </li>
-              {/* Unlinked until src/content/legal/ai-disclosure.md exists. The page
-                  currently renders only "This policy is being finalized," and sending
-                  a reader there from the footer is a dead end. Matches the Regulatory
-                  Tracker treatment above. Restore the <Link> when the file lands. */}
-              <li>
-                <span className="inline-flex items-center gap-2 text-beacon-white/50 text-sm">
-                  AI Disclosure
-                  <span className="rounded-full bg-pioneer-gold/15 text-pioneer-gold text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">
-                    Coming Soon
-                  </span>
-                </span>
-              </li>
+            </ul>
+          </div>
+
+          {/* Legal — only what a company website needs today. The self-serve
+              platform hasn't launched and the agency signs a User Agreement
+              person-by-person, so the EULA + AI Disclosure (and the Regulatory
+              Tracker) are intentionally omitted for now — NO "coming soon" badges.
+              Add them here when Tom's full, counsel-reviewed set lands. */}
+          <div className="md:pt-1">
+            <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-2">
               <li>
                 <Link
                   href="/privacy"
@@ -187,15 +190,7 @@ export function Footer() {
                   href="/terms"
                   className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
                 >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/eula"
-                  className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
-                >
-                  EULA
+                  Terms of Use
                 </Link>
               </li>
             </ul>
