@@ -28,6 +28,9 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ☐ (Tom) restore `NEXT_PUBLIC_WAITLIST_WEBHOOK_URL` to `.env.local`.
 - ☐ (Tom) Vercel Pro before autumn (Blob transfer ceiling).
 
+## Queued polish notes (Tom — apply next pass)
+- ☐ **Home mobile nav swap (top→bottom):** when the top bar leaves and the bottom bar arrives, both should slide **up at the same time and the same speed** — smooth and subtle. (Both are `duration-700` today; check they share the SAME easing and trigger simultaneously — top nav uses `ease-in-out` in Navbar.tsx, bottom bar uses default ease in MobileBottomNav.tsx. Align easing + confirm `bottomNavActive`/`active` fire together so the two move in lockstep.)
+
 ---
 
 ## BATCH 1 — Global copy & CTA  ✅ (committed local, NOT pushed)
