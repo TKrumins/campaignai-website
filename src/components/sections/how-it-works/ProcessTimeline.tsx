@@ -12,6 +12,7 @@ import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 // gently flashes in its own colour (glow passed to the CSS var --node-glow).
 const NODE_COLORS = [
   { ring: "#FF3366", glow: "rgba(255,51,102,0.35)" },
+  { ring: "#E14A9E", glow: "rgba(225,74,158,0.32)" },
   { ring: "#B94FC4", glow: "rgba(185,79,196,0.32)" },
   { ring: "#8E5CF7", glow: "rgba(142,92,247,0.32)" },
   { ring: "#7E7BF0", glow: "rgba(126,123,240,0.30)" },
@@ -21,40 +22,45 @@ const NODE_COLORS = [
 
 // Slight per-scene tilt so the film players zig-zag down the ribbon like the
 // home hero's reel. Alternates with the card's side.
-const TILT = [-2.5, 2.5, -2, 2, -2.5, 2];
+const TILT = [-2.5, 2.5, -2, 2, -2.5, 2, -2];
 
 // The real production flow (6.3), in order. Titles are active — every step is
 // a decision the user makes; the AI only ever proposes.
 const steps = [
   {
     number: 1,
-    title: "Start with your story",
-    body: "Begin with a conversation about your campaign: who you are, why you're running, and who needs to hear it. The platform learns your story, your voice, and your race — and every video you make builds on that foundation.",
+    title: "Talk it through",
+    body: "It starts as a conversation. A guided intake interview asks about the core pieces of your video, offering context and suggestions as you describe what you want to make — so you never start from a blank page.",
   },
   {
     number: 2,
-    title: "Turn your goals into a plan",
-    body: "A guided video briefing turns your goals into a production plan. Tell it what this video needs to do — introduce you, explain an issue, or get out the vote — and the plan takes shape around it.",
+    title: "Approve your brief",
+    body: "The AI turns that conversation into a clear production brief — the blueprint for your video. You review it, adjust anything that's off, and approve it before a single frame gets built.",
   },
   {
     number: 3,
-    title: "Write the script, in your words",
-    body: "Draft your script with structured suggestions built from your own story. You set the message, adjust the tone, and approve every word. Nothing goes into the script that you didn't decide.",
+    title: "Shape the script, in your words",
+    body: "A script is written in real time, broken into frames that pair what the narrator says with what the viewer sees. Edit any line directly, or lean on an AI refinement panel — every final word is yours.",
   },
   {
     number: 4,
-    title: "Storyboard it, scene by scene",
-    body: "Lay out the video scene by scene and pick the content for each one: your own footage, stock, or AI-generated visuals with clear disclosure. If a shot only you can capture, we send friendly, detailed instructions to go film it.",
+    title: "Storyboard it, frame by frame",
+    body: "The AI sketches your storyboard as you watch — low-fidelity frames appearing before your eyes — so you can see the shape of the video and shape it, one frame at a time.",
   },
   {
     number: 5,
-    title: "Direct the voice and score",
-    body: "Choose the voice that carries your script and the score underneath it. Preview options and adjust until it sounds like your campaign.",
+    title: "Bring in your content",
+    body: "Fill each frame your way: pull from the CampaignAI asset library, upload your own photos and footage, drop a placeholder to add later, or get a “go film it” guide for a shot only you can capture. Prefer stock or AI-generated b-roll? Steer it with a reference of your own.",
   },
   {
     number: 6,
+    title: "Direct the voice and music",
+    body: "Choose the voiceover that carries your script — clear styles like Authoritative or Warm, in a male or female voice — then fine-tune it, or upload your own. Do the same for the score: an AI-made track you guide, your own recording, or none at all.",
+  },
+  {
+    number: 7,
     title: "Review, approve, and submit",
-    body: "Look over the full plan, make your final calls, and submit. Submitting is the moment your video goes into production — and it's the only step where you hand off the wheel.",
+    body: "Add anything still outstanding, look over the whole thing, and submit. That's the hand-off to post-production — polish, stitching, compliance checks, and quality assurance — and the only step where you hand off the wheel.",
   },
 ];
 
@@ -129,7 +135,7 @@ export function ProcessTimeline() {
               Your story, unfolding one scene at a time.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
-              Six scenes, from first conversation to finished film. The AI does
+              Seven steps, from first conversation to finished film. The AI does
               the heavy lifting &mdash; you direct every one, and nothing moves
               forward until you say so.
             </p>

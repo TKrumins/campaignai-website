@@ -59,6 +59,12 @@ assets/jermaine-johnson-photos/
 /media-src/*
 !/media-src/README.md
 
+# How-It-Works walkthrough clips (Fable-pass source reference). Raw app captures:
+# never ship on the public GitHub Pages repo, and they bloat the export. The
+# README (naming convention + mapping) is committed; the clips are not.
+/walkthrough-clips/*
+!/walkthrough-clips/README.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
