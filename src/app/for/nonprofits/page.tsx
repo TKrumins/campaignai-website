@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { FunnelHero } from "@/components/sections/funnel/FunnelHero";
 import { FunnelProblem } from "@/components/sections/funnel/FunnelProblem";
-import { CondensedPricingDisplay } from "@/components/sections/shared/CondensedPricingDisplay";
-import { ThreePaths } from "@/components/sections/shared/ThreePaths";
-import { FunnelBooking } from "@/components/sections/funnel/FunnelBooking";
+import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStrip";
+import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
-import { FunnelPaths } from "@/components/sections/funnel/FunnelPaths";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import {
@@ -33,20 +31,40 @@ export default function NonprofitsPage() {
         subtitle="Professional video for advocacy organizations, nonprofits, ballot initiatives, and issue campaigns. Explainers, calls to action, testimonials, and fundraising appeals, priced case by case so budget never decides whether your message moves."
       />
 
-      <FunnelProblem body="You are up against noise, apathy, and opposition messaging with a bigger budget. The people who would care about your issue scroll past a hundred videos a day, and a wall of text does not stop the scroll. Your team knows this work better than any agency ever could. What you need is a way to turn that knowledge into video that carries the message, without pulling anyone off the mission to make it." />
+      <FunnelProblem body="You're up against noise, apathy, and opposition messaging with a bigger budget. The people who would care about your issue scroll past a hundred videos a day, and a wall of text doesn't stop the scroll. Your team knows this work better than any agency ever could. What you need is a way to turn that knowledge into video that carries the message — without pulling anyone off the mission to make it." />
 
-      {/* Mission pricing; NO America 250 module on this page (Section 0.5). */}
-      <CondensedPricingDisplay variant="mission" />
+      <FounderGuideStrip
+        heading="Built by people who've had to do more with less."
+        sub="Founders who've run underfunded, mission-driven campaigns across the spectrum — and built this so budget never decides whose story gets told."
+      />
 
-      <ThreePaths path3Cost="Priced case by case through mission pricing." />
-
-      {/* CTA exception (7.5): the whole page converts on Talk to our team → demo. */}
-      <FunnelBooking
-        ctaLabel={CTA_TEAM}
+      <FunnelPlanner
+        label="Video for the whole mission"
+        labelColor="blue"
+        heading="Meet the moment, whatever it calls for."
+        sub="Pick what your next video needs to do. See how it fits the whole mission."
+        followNote="Plus"
+        chapters={[
+          { id: "explain", label: "Explain your issue", short: "Issue explainer", icon: "file", accent: "#8E5CF7", line: "Make your case in 60 seconds — clear enough to stop the scroll." },
+          { id: "cta", label: "Call people to action", short: "Call to action", icon: "megaphone", accent: "#FF3366", line: "Turn attention into a clear next step people can take now." },
+          { id: "testimonial", label: "Put faces on it", short: "Testimonial", icon: "users", accent: "#6A81FB", line: "Real voices make the mission impossible to scroll past." },
+          { id: "appeal", label: "Make the appeal", short: "Fundraising appeal", icon: "heart", accent: "#4D9FFF", line: "Ask when the moment calls, with a story that earns the gift." },
+        ]}
+        price="Mission pricing"
+        priceNote="case by case — we'll find the fit"
+        priceIsNumber={false}
+        bullets={[
+          "A real human reviews every video.",
+          "Mission pricing — case by case, never a coupon.",
+          "Delivered 48 hours after you submit.",
+          "Full ownership, no licensing surprises.",
+        ]}
+        ctaLabel="Talk to our team"
         ctaHref={CALENDLY_DEMO}
-        ctaMicrocopy={CTA_TEAM_MICROCOPY_NONPROFIT}
         ctaVariant="verdant-outline"
       />
+
+      <GetStartedIncludes />
 
       <FunnelProof
         heading="Video for the whole mission, priced for it too."
@@ -65,10 +83,6 @@ export default function NonprofitsPage() {
           },
         ]}
       />
-
-      <FunnelPaths />
-
-      <GetStartedIncludes />
 
       <BookingBanner
         headline="Tell us what you are working toward. We'll find the fit."

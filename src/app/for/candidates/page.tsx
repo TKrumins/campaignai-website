@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { FunnelHero } from "@/components/sections/funnel/FunnelHero";
 import { FunnelProblem } from "@/components/sections/funnel/FunnelProblem";
 import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStrip";
-import { CandidatePlanner } from "@/components/sections/funnel/CandidatePlanner";
+import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
+import { CALENDLY_CANDIDATE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "For Candidates - CampaignAI",
@@ -21,30 +22,46 @@ export const metadata: Metadata = {
 export default function CandidatesPage() {
   return (
     <>
-      {/* 1. Hero — name the hero (you) and the win */}
       <FunnelHero
         photoPlaceholder
         h1="You stepped up to run. Now let's make sure everyone behind a screen meets you too."
         subtitle="Professional campaign video starting at $599 this cycle — built so you can compete online and still spend your days where races are actually won: at the doors, with real voters."
       />
 
-      {/* 2. The dilemma — mirror the fear in plain English */}
       <FunnelProblem
         svg="/assets/explainers/screen-to-street.svg"
         svgAlt="A campaign moving from behind a screen out to real doors and a handshake"
         body="Running for office is one of the hardest, most hopeful things a person can do. You did it anyway. Now the modern race asks you to be a video producer too — and you're right to worry an AI video might look fake. So are we. That's exactly why a real human edits every one. You plan it in an evening, submit it, and get back to the porches and the town halls. That's where you win. We'll handle the rest."
       />
 
-      {/* 3. The guide — real people who've run (multi-partisan trust) */}
       <FounderGuideStrip />
 
-      {/* 4. The plan — interactive, tailored, price lives here */}
-      <CandidatePlanner />
+      <FunnelPlanner
+        label="Your campaign, one video at a time"
+        labelColor="crimson"
+        heading="Start with one video. Build a whole campaign."
+        sub="Pick where you want to start. Watch how it grows into everything a race needs."
+        chapters={[
+          { id: "announce", label: "Introduce yourself", short: "Announcement", icon: "megaphone", accent: "#FF3366", line: "Voters meet you first — so every video after this has a face they trust." },
+          { id: "issue", label: "Explain an issue", short: "Issue explainer", icon: "file", accent: "#8E5CF7", line: "Make your position clear and shareable, in your own words." },
+          { id: "raise", label: "Rally your donors", short: "Fundraising appeal", icon: "heart", accent: "#6A81FB", line: "Make the case for support right when it counts." },
+          { id: "gotv", label: "Get out the vote", short: "GOTV push", icon: "vote", accent: "#4D9FFF", line: "Turn the belief you've built into turnout in the final stretch." },
+        ]}
+        price="$599"
+        priceNote="per video, this cycle"
+        bullets={[
+          "A real human editor finishes every one — no AI slop.",
+          "Nothing charged upfront. You approve the cost first.",
+          "Delivered 48 hours after you submit.",
+          "You own it outright — no watermark, no fees.",
+        ]}
+        ctaLabel="Start my first video"
+        ctaHref={CALENDLY_CANDIDATE}
+        secondary={{ label: "Or plan it yourself soon", href: "#waitlist" }}
+      />
 
-      {/* 5. What you get, in plain terms */}
       <GetStartedIncludes />
 
-      {/* 6. Proof — real spots, both sides */}
       <FunnelProof
         heading="Everything a first-time producer needs, and nothing they don't."
         items={[
@@ -64,7 +81,6 @@ export default function CandidatesPage() {
         ]}
       />
 
-      {/* 7. Close */}
       <BookingBanner headline="Book one call. Then get back out there." />
     </>
   );

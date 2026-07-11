@@ -1,47 +1,88 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
-import { Megaphone, FileText, HeartHandshake, Vote, Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Megaphone, FileText, HeartHandshake, Vote, Users, Landmark, type LucideIcon } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { Button } from "@/components/ui/Button";
-import { CALENDLY_CANDIDATE } from "@/lib/constants";
 
-// Candidate hero-journey centerpiece: the visitor picks their first move and
-// watches their whole campaign arc take shape — one video becomes a library.
-// Tailored to candidates ($599 this cycle, human editor, nothing upfront) so a
-// hesitant first-timer finds reassurance and an eager one feels the momentum.
+// Icon keys keep chapter config serializable, so Server Component pages can pass
+// it straight to this Client Component.
+const ICONS: Record<string, LucideIcon> = {
+  megaphone: Megaphone,
+  file: FileText,
+  heart: HeartHandshake,
+  vote: Vote,
+  users: Users,
+  landmark: Landmark,
+};
 
-const CHAPTERS = [
-  { id: "announce", label: "Introduce yourself", short: "Announcement", icon: Megaphone, accent: "#FF3366", line: "Voters meet you first — so every video after this has a face they trust." },
-  { id: "issue", label: "Explain an issue", short: "Issue explainer", icon: FileText, accent: "#8E5CF7", line: "Make your position clear and shareable, in your own words." },
-  { id: "raise", label: "Rally your donors", short: "Fundraising appeal", icon: HeartHandshake, accent: "#6A81FB", line: "Make the case for support right when it counts." },
-  { id: "gotv", label: "Get out the vote", short: "GOTV push", icon: Vote, accent: "#4D9FFF", line: "Turn the belief you've built into turnout in the final stretch." },
-];
+// The reusable hero-journey centerpiece for every /for/* page. The visitor picks
+// a starting point and watches their set of videos take shape, with the group's
+// price + reassurance + a tagged booking CTA built in. Config per group keeps it
+// a template, not five rewrites.
 
-export function CandidatePlanner() {
-  const [first, setFirst] = useState(CHAPTERS[0].id);
-  const startIdx = CHAPTERS.findIndex((c) => c.id === first);
-  const active = CHAPTERS[startIdx] ?? CHAPTERS[0];
+export interface PlannerChapter {
+  id: string;
+  label: string; // the pick-a-first-move chip
+  short: string; // the card title
+  icon: string; // key into ICONS
+  accent: string;
+  line: string; // shown when this chapter is the selected start
+}
+
+interface FunnelPlannerProps {
+  label: string;
+  labelColor?: "blue" | "crimson" | "verdant" | "gold" | "horizon";
+  heading: string;
+  sub: string;
+  chapters: PlannerChapter[];
+  followNote?: string; // "Then" (arc) or "Plus" (roster)
+  price: string;
+  priceNote: string;
+  priceIsNumber?: boolean;
+  bullets: string[];
+  ctaLabel: string;
+  ctaHref: string;
+  ctaVariant?: "patriot" | "verdant-outline";
+  secondary?: { label: string; href: string } | null;
+}
+
+export function FunnelPlanner({
+  label,
+  labelColor = "crimson",
+  heading,
+  sub,
+  chapters,
+  followNote = "Then",
+  price,
+  priceNote,
+  priceIsNumber = true,
+  bullets,
+  ctaLabel,
+  ctaHref,
+  ctaVariant = "patriot",
+  secondary = null,
+}: FunnelPlannerProps) {
+  const [first, setFirst] = useState(chapters[0].id);
+  const startIdx = chapters.findIndex((c) => c.id === first);
+  const active = chapters[startIdx] ?? chapters[0];
 
   return (
     <section className="bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1000px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <SectionLabel text="Your campaign, one video at a time" color="crimson" />
+          <SectionLabel text={label} color={labelColor} />
           <h2 className="mt-3 mb-4 font-heading text-3xl font-extrabold tracking-[-1px] text-regal-navy md:text-[40px] md:leading-tight">
-            Start with one video. Build a whole campaign.
+            {heading}
           </h2>
-          <p className="text-lg leading-relaxed text-granite">
-            Pick where you want to start. Watch how it grows into everything a race needs.
-          </p>
+          <p className="text-lg leading-relaxed text-granite">{sub}</p>
         </div>
 
-        {/* Pick your first move */}
         <div className="mb-8 flex flex-wrap justify-center gap-2">
-          {CHAPTERS.map((c) => {
+          {chapters.map((c) => {
             const on = c.id === first;
-            const CIcon = c.icon;
+            const CIcon = ICONS[c.icon];
             return (
               <button
                 key={c.id}
@@ -59,12 +100,11 @@ export function CandidatePlanner() {
           })}
         </div>
 
-        {/* The campaign arc — your first pick leads, the rest follow */}
         <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {CHAPTERS.map((c, i) => {
+          {chapters.map((c, i) => {
             const isStart = c.id === first;
-            const order = ((i - startIdx + CHAPTERS.length) % CHAPTERS.length) + 1;
-            const CIcon = c.icon;
+            const order = ((i - startIdx + chapters.length) % chapters.length) + 1;
+            const CIcon = ICONS[c.icon];
             return (
               <div
                 key={c.id}
@@ -78,7 +118,7 @@ export function CandidatePlanner() {
                     <CIcon className="h-4 w-4" style={{ color: isStart ? "#fff" : c.accent }} />
                   </span>
                   <span className={`text-[10px] font-bold uppercase tracking-wider ${isStart ? "text-beacon-white/70" : "text-slate"}`}>
-                    {isStart ? "Start here" : `Then · ${order}`}
+                    {isStart ? "Start here" : `${followNote} · ${order}`}
                   </span>
                 </div>
                 <p className={`font-heading text-sm font-bold ${isStart ? "text-beacon-white" : "text-regal-navy"}`}>{c.short}</p>
@@ -88,21 +128,16 @@ export function CandidatePlanner() {
           })}
         </div>
 
-        {/* The reassurance + booking card */}
         <div className="relative overflow-hidden rounded-3xl bg-regal-navy p-6 text-beacon-white shadow-xl sm:p-8">
           <AISparkle size={14} color="#7AB8FF" glow className="sparkle-twinkle absolute right-5 top-5" style={{ ["--dur"]: "2.8s" } as CSSProperties} />
           <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
             <div>
               <p className="font-heading text-2xl font-extrabold text-beacon-white">
-                <span className="patriot-gradient-text-bright">$599</span> per video, this cycle.
+                {priceIsNumber ? <span className="patriot-gradient-text-bright">{price}</span> : <span className="text-verdant">{price}</span>}{" "}
+                <span className="text-lg font-bold text-beacon-white/80">{priceNote}</span>
               </p>
               <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                {[
-                  "A real human editor finishes every one — no AI slop.",
-                  "Nothing charged upfront. You approve the cost first.",
-                  "Delivered 48 hours after you submit.",
-                  "You own it outright — no watermark, no fees.",
-                ].map((t) => (
+                {bullets.map((t) => (
                   <li key={t} className="flex items-start gap-2 text-sm text-beacon-white/85">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-freedom-blue" strokeWidth={3} />
                     {t}
@@ -111,12 +146,14 @@ export function CandidatePlanner() {
               </ul>
             </div>
             <div className="text-center">
-              <Button variant="patriot" href={CALENDLY_CANDIDATE} external className="w-full justify-center px-7 py-3 md:w-auto">
-                Start my first video
+              <Button variant={ctaVariant} href={ctaHref} external className={`w-full justify-center px-7 py-3 md:w-auto ${ctaVariant === "verdant-outline" ? "!text-beacon-white !border-beacon-white/50 hover:!bg-beacon-white hover:!text-regal-navy" : ""}`}>
+                {ctaLabel}
               </Button>
-              <a href="#waitlist" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-freedom-blue hover:underline">
-                Or plan it yourself soon <ArrowRight className="h-3 w-3" />
-              </a>
+              {secondary && (
+                <a href={secondary.href} className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-freedom-blue hover:underline">
+                  {secondary.label} <ArrowRight className="h-3 w-3" />
+                </a>
+              )}
             </div>
           </div>
         </div>
