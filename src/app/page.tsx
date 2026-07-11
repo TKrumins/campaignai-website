@@ -12,7 +12,6 @@ import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { FAQSection } from "@/components/sections/home/FAQSection";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
-import { RibbonDivider } from "@/components/ui/RibbonDivider";
 
 export default function HomePage() {
   return (
@@ -25,14 +24,11 @@ export default function HomePage() {
         <ProductDemoPreview />
         <ShowcaseSection />
         <SocialProofStrip />
-        <RibbonDivider className="py-0 bg-white" />
         <ProblemSection />
         <PricingSection />
-        <RibbonDivider className="py-0 bg-white" />
         <HowItWorksSection />
         <StorytellingSection />
         <AudienceSection />
-        <RibbonDivider className="py-0 bg-white" />
         <TrustSection />
         <EthicsSection />
         <FAQSection />
