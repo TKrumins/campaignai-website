@@ -52,7 +52,7 @@ export function MobileBottomNav() {
       {/* bottom-sheet menu — slides up from behind the bar */}
       <div
         className={`fixed bottom-16 left-0 right-0 z-[999] border-t border-white/10 bg-regal-navy transition-transform duration-300 ${
-          sheetShown ? "translate-y-0" : "pointer-events-none translate-y-full"
+          sheetShown ? "translate-y-0" : "pointer-events-none translate-y-[calc(100%+5rem)]"
         }`}
         aria-hidden={!sheetShown}
         inert={!sheetShown}
@@ -78,7 +78,7 @@ export function MobileBottomNav() {
 
       {/* the bar */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-[1000] border-t border-white/10 bg-regal-navy/95 backdrop-blur-[8px] transition-transform duration-300 ${
+        className={`fixed bottom-0 left-0 right-0 z-[1000] border-t border-white/10 bg-regal-navy/95 backdrop-blur-[8px] transition-transform duration-700 ${
           active ? "translate-y-0" : "translate-y-full"
         }`}
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}

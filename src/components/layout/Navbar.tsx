@@ -24,6 +24,11 @@ const navLinks = [
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // Mobile-only: solidify the homepage nav on scroll instead of waiting for the
+  // whole hero to exit. On a phone the hero isn't a pinned film stage, so a
+  // transparent bar just lets the reel and copy bleed through it — an opaque
+  // navy bar reads far cleaner, and it still slides to the bottom at hero exit.
+  const [mobileScrolled, setMobileScrolled] = useState(false);
   const pathname = usePathname();
   const { heroExited, moduleInView } = usePatriotViewport();
 
@@ -32,7 +37,7 @@ export function Navbar() {
   // transparent (darken + border deferred) until that whole sequence has
   // scrolled past — `heroExited` — instead of solidifying on the first few px.
   // Other dark-hero pages keep the simple scroll threshold.
-  const solidified = pathname === "/" ? heroExited : scrolled;
+  const solidified = pathname === "/" ? heroExited || mobileScrolled : scrolled;
   const isTransparent = !solidified && !mobileOpen && hasDarkHero;
 
   // Mobile viewport discipline (5.1): the nav CTA renders until the sticky
@@ -48,6 +53,7 @@ export function Navbar() {
   useEffect(() => {
     function handleScroll() {
       setScrolled(window.scrollY > 10);
+      setMobileScrolled(window.scrollY > 10 && window.innerWidth < 768);
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -80,7 +86,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed left-0 right-0 z-50 transition-[transform,background-color,border-color] duration-300 ease-in-out ${
+      className={`fixed left-0 right-0 z-50 transition-[transform,background-color,border-color] duration-700 ease-in-out ${
         bottomNavActive ? "max-md:-translate-y-full" : ""
       } ${navBg}`}
       style={{ top: "var(--announce-h, 0px)" }}

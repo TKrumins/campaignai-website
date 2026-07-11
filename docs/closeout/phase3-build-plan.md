@@ -14,6 +14,9 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - 🔒 **Non-founder client videos** — "soon." Hidden showcase shell built now, content dropped in later.
 - 🔒 **Second America 250 pricing** — ANSWERED: second video = standard rate by type ($599 candidate, $1,999 others, negotiated nonprofit). Communicate throughout.
 
+## Pre-close reconciliation (revisit before we wrap — Tom flagged 2026-07-10)
+- ☐ **Home product section: shown vs. delivered.** Confirm, per video type, exactly what the homepage Product section *displays/claims* vs. what a customer *actually receives* on their plan. Align the two before final sign-off so nothing on the page over- or under-states the deliverable.
+
 ## Sign-off gates (I propose, Tom ratifies — public commitments, not design)
 - 🔒 **Ethics "lines we won't cross"** — stress-test + propose up to 5 total, Tom approves wording before ship.
 - 🔒 **Ethics copy persona-challenge** — propose rewrites, not silent replacement.
@@ -62,6 +65,18 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ✅ The Problem: "Starting at / $599" line-broken to align with Agencies. Rapid Response "same-day" → "quick turnaround".
 - ✅ Mobile: top nav slides up ↔ bottom nav slides in on hero exit (logo / shrunk Get Started / bottom-sheet menu), replacing MobileCTA. Product four-type selector freezes (sticky) while the stage scrolls — desktop left column, mobile 2×2 bar under the ticker.
 - ⚠ Open/watch: deferred nav stays transparent (scrim) a bit into the product-section top before solidifying; MobileCTA.tsx + America250Module.tsx now orphaned (left in place).
+
+## REVIEW BATCH 2 (Tom's 2026-07-10 tranche notes)  ◐ (built local, awaiting push OK)
+- ✅ Hero: eyebrow line-breaks on mobile only ("Campaign-ready video, / at the speed of AI"); 3-line subline ("Book your onboarding call. / We scope… invoice you. / **Nothing is charged upfront.**" — last line emphasized); more top buffer on mobile (`pt-36`); more headline↔CTA gap on mobile (`mt-12`).
+- ✅ "Democracy shouldn't have a paywall" heading bumped larger (more prominent, per Tom).
+- ✅ Pricing reorder → **Candidate → Professional (orgs) → Nonprofit** (order utils, reveal cascade matched); Candidate keeps the lifted mission treatment.
+- ✅ The Problem: `$599` back to one line on desktop (break kept on mobile), now sits inline beside Agencies `$10,000`.
+- ✅ Policy Explainer: removed "One embeddable library…" caption.
+- ✅ **Campaign Arc redesigned** → content-calendar swimlanes: a lane per video type with planted stakes at each release + Announcement/GOTV **flags**, cadence labels (weekly / every other week / as news breaks / from the trail); legend removed (lanes self-label) → much lighter. "Beyond the Four" trimmed (shorter blurbs, 2 chips, tighter padding).
+- ✅ Sparkle-over-text audit: hero ambient sparkles moved to far gutters/margins; Problem-section sparkles pulled off the `$599`/heading.
+- ✅ **Mobile nav bug fixed** — the "HOW IT WORKS from the very beginning" was the bottom-*sheet* peeking (its `bottom-16` offset wasn't cleared by `translate-y-full`); now fully hidden. Top nav also **solidifies to navy on mobile scroll** (no more films/copy bleeding through the transparent bar) and the coordinated top-up ↔ bottom-in slide is **slower** (700ms).
+- ⏳ Flagged for Tom's review on preview: pricing hierarchy with Candidate now leftmost-and-lifted; Campaign Arc calendar treatment (first swing); mobile top-nav going solid-navy on scroll vs. staying transparent.
+- ⚑ Added pre-close reconciliation item (home product: shown vs. delivered) to the gates list above.
 
 ## BATCH 4 — About page
 - ☐ Founder titles off all-blue → non-partisan treatment.

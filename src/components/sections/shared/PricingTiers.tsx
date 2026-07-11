@@ -26,7 +26,8 @@ export function PricingTiers() {
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-[1100px] mx-auto">
         {/* ── Professional video · $1,999 flat rate ─────────────────── */}
-        <ScrollReveal delay={100}>
+        {/* Order: Candidate (mission) leads, then Professional, then Nonprofit. */}
+        <ScrollReveal delay={160} className="order-2">
           <div className="rounded-2xl bg-white shadow-md ring-1 ring-black/5 h-full flex flex-col overflow-hidden">
             <div className="h-1.5 multipartisan-gradient" />
             <div className="p-6 md:p-7 flex flex-col flex-1">
@@ -56,8 +57,8 @@ export function PricingTiers() {
           </div>
         </ScrollReveal>
 
-        {/* ── Candidate Campaigns · $599 (visual center + mission heart) ── */}
-        <ScrollReveal delay={160}>
+        {/* ── Candidate Campaigns · $599 (mission lead + heart) ── */}
+        <ScrollReveal delay={100} className="order-1">
           <div className="relative rounded-2xl bg-white shadow-2xl h-full flex flex-col overflow-hidden ring-2 ring-liberty-crimson/25 md:-translate-y-3">
             <div className="h-2 multipartisan-gradient" />
             {/* Mission banner — this is the work we care about most. */}
@@ -108,7 +109,7 @@ export function PricingTiers() {
         </ScrollReveal>
 
         {/* ── Nonprofit Organizations · framed by the work ──────────── */}
-        <ScrollReveal delay={220}>
+        <ScrollReveal delay={220} className="order-3">
           <div className="rounded-2xl bg-white shadow-md ring-1 ring-black/5 h-full flex flex-col overflow-hidden">
             <div className="h-1.5 multipartisan-gradient" />
             <div className="p-6 md:p-7 flex flex-col flex-1">

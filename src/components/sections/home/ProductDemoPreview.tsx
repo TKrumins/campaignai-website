@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera } from "lucide-react";
+import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Flag } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
@@ -270,15 +270,15 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             <BeyondCard
               icon={Zap}
               title="Rapid Response"
-              blurb="News breaks and the moment moves fast. Drop a quick-turn video in between your core content to answer an attack, seize a headline, or set the record straight, fast."
-              chips={["Quick turnaround", "Slots between core films", "On-message, on-brand"]}
+              blurb="When news breaks, drop a quick-turn video between your core films — answer an attack, seize a headline, set the record straight."
+              chips={["Quick turnaround", "On-message, on-brand"]}
               spark="#FF3366"
             />
             <BeyondCard
               icon={Camera}
               title="Authentic & Candid"
-              blurb="Not every moment should feel produced. Run raw, candid, from-the-trail videos alongside your polished films, so voters see both the campaign and the person."
-              chips={["Candid, hand-held feel", "Runs alongside produced", "Real moments, real voice"]}
+              blurb="Run raw, from-the-trail moments alongside your polished films, so voters see the person, not just the campaign."
+              chips={["Candid, hand-held feel", "Real moments, real voice"]}
               spark="#8E5CF7"
             />
           </div>
@@ -289,82 +289,86 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
 }
 
 function CampaignArc() {
-  // Bookended by Announcement and GOTV; fundraising + policy throughout;
-  // rapid response and candid dropped in sporadically.
-  const marks = [
-    { pos: 2, type: "announce", label: "Announcement" },
-    { pos: 15, type: "fund" },
-    { pos: 23, type: "rapid" },
-    { pos: 32, type: "policy" },
-    { pos: 43, type: "fund" },
-    { pos: 51, type: "candid" },
-    { pos: 60, type: "policy" },
-    { pos: 69, type: "fund" },
-    { pos: 77, type: "rapid" },
-    { pos: 86, type: "policy" },
-    { pos: 98, type: "gotv", label: "GOTV" },
-  ];
-  const style: Record<string, { color: string; r: number }> = {
-    announce: { color: "#FF3366", r: 9 },
-    gotv: { color: "#4D9FFF", r: 9 },
-    fund: { color: "#4D9FFF", r: 6 },
-    policy: { color: "#8E5CF7", r: 6 },
-    rapid: { color: "#FF3366", r: 4 },
-    candid: { color: "#94A3B8", r: 4 },
-  };
-  const legend = [
-    { label: "Announcement & GOTV (bookends)", color: "#FF3366" },
-    { label: "Fundraising appeals", color: "#4D9FFF" },
-    { label: "Policy explainers", color: "#8E5CF7" },
-    { label: "Rapid response", color: "#FF3366", small: true },
-    { label: "Candid footage", color: "#94A3B8", small: true },
+  // A campaign content calendar. Each video type gets a lane; a stake is
+  // planted along the timeline every time that type ships, so the cadence
+  // (weekly fundraising, bi-weekly policy, sporadic rapid response and candid)
+  // reads at a glance — bookended by the Announcement and GOTV flags. Lanes are
+  // self-labeling, so the old legend is gone and the whole block reads lighter.
+  const lanes: {
+    key: string;
+    label: string;
+    cadence: string;
+    color: string;
+    flag?: boolean;
+    marks: number[];
+  }[] = [
+    { key: "announce", label: "Announcement", cadence: "Launch day", color: "#FF3366", flag: true, marks: [4] },
+    { key: "fund", label: "Fundraising appeals", cadence: "Weekly", color: "#4D9FFF", marks: [12, 21, 30, 39, 48, 57, 66, 75, 84] },
+    { key: "policy", label: "Policy explainers", cadence: "Every other week", color: "#8E5CF7", marks: [16, 32, 48, 64, 80] },
+    { key: "rapid", label: "Rapid response", cadence: "As news breaks", color: "#FF6B8F", marks: [26, 44, 70, 88] },
+    { key: "candid", label: "Candid footage", cadence: "From the trail", color: "#94A3B8", marks: [19, 37, 55, 73, 91] },
+    { key: "gotv", label: "Get Out The Vote", cadence: "Final weekend", color: "#4D9FFF", flag: true, marks: [96] },
   ];
   return (
-    <div className="relative mt-24 overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-12 shadow-2xl">
+    <div className="relative mt-24 overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-10 shadow-2xl">
       {/* Stark stage change from the light product overview above: a navy band,
           topped by the Multi-Partisan ribbon strip. */}
       <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0" />
-      <div className="text-center max-w-[640px] mx-auto mb-8">
+      <div className="text-center max-w-[660px] mx-auto mb-10">
         <SectionLabel text="The Campaign Arc" color="horizon" />
         <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px] mt-3">
           One video isn&apos;t a campaign. This is.
         </h3>
         <p className="text-beacon-white/70 text-sm mt-3">
-          Announcement and GOTV bookend the cycle, with fundraising and policy
-          throughout, and rapid response and candid moments in between.
+          A full cycle, planned like a calendar — steady fundraising and policy,
+          candid moments and rapid response in between, bookended by your launch
+          and the final push.
         </p>
       </div>
 
-      <div className="relative mx-auto mt-14 mb-10 h-1 max-w-[900px] rounded-full bg-gradient-to-r from-liberty-crimson via-bridge-violet to-freedom-blue">
-        {marks.map((m, i) => {
-          const s = style[m.type];
-          return (
-            <div key={i} className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2" style={{ left: `${m.pos}%` }}>
-              <span
-                className="block rounded-full border-2 border-white shadow"
-                style={{ width: s.r * 2, height: s.r * 2, background: s.color }}
-              />
-              {m.label && (
-                <span className="absolute left-1/2 top-[-30px] -translate-x-1/2 whitespace-nowrap text-[11px] font-bold text-beacon-white">
-                  {m.label}
-                </span>
-              )}
-            </div>
-          );
-        })}
-        <span className="absolute left-0 top-5 text-[11px] font-medium text-beacon-white/50">Launch</span>
-        <span className="absolute right-0 top-5 text-[11px] font-medium text-beacon-white/50">Election Day</span>
-      </div>
+      <div className="mx-auto max-w-[880px]">
+        {/* bookend axis labels, aligned over the lane tracks */}
+        <div className="mb-2 flex items-center gap-3">
+          <div className="w-[104px] shrink-0 sm:w-[136px]" />
+          <div className="flex flex-1 justify-between text-[10px] font-bold uppercase tracking-[1.5px] text-beacon-white/50">
+            <span>Launch</span>
+            <span>Election Day</span>
+          </div>
+        </div>
 
-      <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-        {legend.map((l) => (
-          <span key={l.label} className="inline-flex items-center gap-1.5 text-xs text-beacon-white/80">
-            <span
-              className="rounded-full"
-              style={{ width: l.small ? 8 : 12, height: l.small ? 8 : 12, background: l.color }}
-            />
-            {l.label}
-          </span>
+        {lanes.map((lane) => (
+          <div key={lane.key} className="flex items-center gap-3 py-1.5">
+            <div className="w-[104px] shrink-0 text-right sm:w-[136px]">
+              <p className="font-heading text-[11px] font-bold leading-tight text-beacon-white sm:text-xs">
+                {lane.label}
+              </p>
+              <p className="text-[10px] leading-tight text-beacon-white/45">{lane.cadence}</p>
+            </div>
+            <div className="relative h-7 flex-1">
+              {/* lane baseline */}
+              <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/10" />
+              {lane.marks.map((pos, i) => (
+                <span
+                  key={i}
+                  className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: `${pos}%` }}
+                >
+                  {lane.flag ? (
+                    <Flag
+                      className="h-[18px] w-[18px] drop-shadow"
+                      style={{ color: lane.color, fill: lane.color } as CSSProperties}
+                      strokeWidth={1.5}
+                    />
+                  ) : (
+                    <span
+                      className="block h-4 w-[3px] rounded-full"
+                      style={{ background: lane.color }}
+                    />
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -419,9 +423,6 @@ function LibrarySpotlight() {
           </div>
         ))}
       </div>
-      <p className="mt-3 text-xs text-slate">
-        One embeddable library. Every explainer in one place, always on your site.
-      </p>
     </div>
   );
 }
@@ -440,7 +441,7 @@ function BeyondCard({
   spark: string;
 }) {
   return (
-    <div className="relative rounded-2xl bg-white p-7 shadow-md ring-1 ring-black/5">
+    <div className="relative rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5">
       <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 rounded-t-2xl" />
       <AISparkle
         size={16}

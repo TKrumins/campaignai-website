@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { AISparkle } from "@/components/ui/AISparkle";
-import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 import { ProofFilmGraphic } from "./ProofFilmGraphic";
 import { America250Popup } from "./America250Popup";
 
@@ -17,15 +17,16 @@ const PHRASES = [
 ];
 const WIDEST = "state & local parties.";
 
-// Ambient AI sparkles across the pinned hero background (Red / White / Blue).
+// Ambient AI sparkles (Red / White / Blue) kept to the far gutters, top and
+// bottom margins of the pinned hero — never over the headline, CTAs, or the
+// America 250 card, which live in the centered content column.
 const BG_SPARKS = [
-  { l: 8, t: 18, c: "#E8F4F8", s: 16 },
-  { l: 20, t: 72, c: "#FF3366", s: 13 },
-  { l: 45, t: 13, c: "#4D9FFF", s: 12 },
-  { l: 39, t: 84, c: "#E8F4F8", s: 14 },
-  { l: 61, t: 22, c: "#FF3366", s: 11 },
-  { l: 88, t: 12, c: "#4D9FFF", s: 15 },
-  { l: 94, t: 80, c: "#E8F4F8", s: 13 },
+  { l: 3, t: 14, c: "#E8F4F8", s: 16 },
+  { l: 5, t: 52, c: "#4D9FFF", s: 12 },
+  { l: 2, t: 86, c: "#FF3366", s: 13 },
+  { l: 92, t: 40, c: "#FF3366", s: 11 },
+  { l: 96, t: 12, c: "#4D9FFF", s: 15 },
+  { l: 97, t: 74, c: "#E8F4F8", s: 13 },
 ];
 
 /**
@@ -71,9 +72,9 @@ export function HeroComboB() {
           {/* Pin the column below the fixed nav (announce bar + h-24), so as the
               films scroll past, the left items never ride up under the header.
               A little extra top clearance keeps them off the darkened bar. */}
-          <div className="relative flex flex-col justify-center pt-24 pb-6 lg:sticky lg:top-[152px] lg:min-h-[calc(100vh-152px)] lg:py-0">
+          <div className="relative flex flex-col justify-center pt-36 pb-6 sm:pt-28 lg:sticky lg:top-[152px] lg:min-h-[calc(100vh-152px)] lg:py-0">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-beacon-white/60">
-              Campaign-ready video, at the speed of AI
+              Campaign-ready video,<br className="sm:hidden" /> at the speed of AI
             </p>
 
             <h1 className="font-heading text-[30px] font-extrabold leading-[1.1] tracking-[-0.5px] text-beacon-white sm:text-[44px] sm:leading-[1.04] sm:tracking-[-1px] lg:text-[56px] lg:tracking-[-1.5px]">
@@ -95,7 +96,7 @@ export function HeroComboB() {
               </span>
             </h1>
 
-            <div className="mt-9">
+            <div className="mt-12 sm:mt-9">
               <div className="flex flex-wrap items-center gap-4">
                 <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3.5 text-base">
                   {CTA_PRIMARY}
@@ -108,7 +109,13 @@ export function HeroComboB() {
                   <ArrowDown className="h-4 w-4" />
                 </a>
               </div>
-              <p className="mt-3 max-w-md text-sm text-beacon-white/60">{CTA_MICROCOPY}</p>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-beacon-white/60">
+                Book your onboarding call.
+                <br />
+                We scope your video together, then invoice you.
+                <br />
+                <span className="font-semibold text-beacon-white">Nothing is charged upfront.</span>
+              </p>
             </div>
 
             {/* America 250 special. On lg it rides the pinned column, below the CTA,

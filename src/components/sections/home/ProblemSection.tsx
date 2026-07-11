@@ -16,14 +16,15 @@ const stats = [
   { value: "85%", label: "Believe campaign costs keep good people from running", icon: Lock, color: "text-liberty-crimson" },
 ];
 
-// Red / White / Blue sparkles around the broken opening.
+// Red / White / Blue sparkles around the broken opening — kept to the sides so
+// they never sit over the "$599" reveal or the heading.
 const SPARKS = [
-  { l: 33, t: 33, c: "#FF3366", s: 16 },
-  { l: 67, t: 29, c: "#E8F4F8", s: 13 },
-  { l: 71, t: 62, c: "#4D9FFF", s: 18 },
-  { l: 29, t: 66, c: "#E8F4F8", s: 12 },
-  { l: 52, t: 20, c: "#4D9FFF", s: 12 },
-  { l: 50, t: 82, c: "#FF3366", s: 14 },
+  { l: 20, t: 33, c: "#FF3366", s: 16 },
+  { l: 80, t: 29, c: "#E8F4F8", s: 13 },
+  { l: 84, t: 62, c: "#4D9FFF", s: 18 },
+  { l: 16, t: 66, c: "#E8F4F8", s: 12 },
+  { l: 12, t: 22, c: "#4D9FFF", s: 12 },
+  { l: 88, t: 82, c: "#FF3366", s: 14 },
 ];
 
 const BW = 50;
@@ -148,7 +149,7 @@ function PaywallGraphic() {
 
   return (
     <div ref={ref} className="relative mx-auto w-full max-w-[440px]">
-      <p className="mb-4 text-center font-heading text-xl font-extrabold tracking-[-0.5px] text-regal-navy">
+      <p className="mb-5 text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
         Democracy shouldn&apos;t have a paywall.
       </p>
       <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal affordable pricing">
@@ -281,7 +282,7 @@ export function ProblemSection() {
                       Candidate pricing
                     </p>
                     <p className="font-heading text-2xl font-extrabold leading-tight text-regal-navy">
-                      Starting at<br />$599
+                      Starting at<br className="md:hidden" /> $599
                     </p>
                     <p className="mt-0.5 text-[11px] text-slate">Our commitment to the cause</p>
                   </div>
