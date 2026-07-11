@@ -66,7 +66,8 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ✅ Mobile: top nav slides up ↔ bottom nav slides in on hero exit (logo / shrunk Get Started / bottom-sheet menu), replacing MobileCTA. Product four-type selector freezes (sticky) while the stage scrolls — desktop left column, mobile 2×2 bar under the ticker.
 - ⚠ Open/watch: deferred nav stays transparent (scrim) a bit into the product-section top before solidifying; MobileCTA.tsx + America250Module.tsx now orphaned (left in place).
 
-## REVIEW BATCH 2 (Tom's 2026-07-10 tranche notes)  ◐ (built local, awaiting push OK)
+## REVIEW BATCH 2 (Tom's 2026-07-10 tranche notes)  ✅ (pushed e9c7760)
+- ✅ Post-preview tweaks: pricing reorder is now **mobile-only** (Candidate leads); on desktop Candidate is **centered + lifted**. Campaign Arc: bookend flags → **Bridge Violet** (non-partisan), **two heavy candid clusters**, and a **left→right playhead** that pops each beat as it passes (static under reduced-motion).
 - ✅ Hero: eyebrow line-breaks on mobile only ("Campaign-ready video, / at the speed of AI"); 3-line subline ("Book your onboarding call. / We scope… invoice you. / **Nothing is charged upfront.**" — last line emphasized); more top buffer on mobile (`pt-36`); more headline↔CTA gap on mobile (`mt-12`).
 - ✅ "Democracy shouldn't have a paywall" heading bumped larger (more prominent, per Tom).
 - ✅ Pricing reorder → **Candidate → Professional (orgs) → Nonprofit** (order utils, reveal cascade matched); Candidate keeps the lifted mission treatment.
