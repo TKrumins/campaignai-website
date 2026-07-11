@@ -27,10 +27,9 @@ export const navItems: NavItem[] = [
         description: "Your story to a finished ad, step by step.",
       },
       {
-        href: "#",
-        label: "Channel Guidance",
+        href: "/channels",
+        label: "Where to Share It",
         description: "Where to put your video once it's made.",
-        soon: true,
       },
       {
         href: "/verified-human",

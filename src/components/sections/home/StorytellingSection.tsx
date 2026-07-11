@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import { Tv, Antenna } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -244,6 +245,54 @@ export function StorytellingSection() {
         <ScrollReveal delay={200}>
           <Hub cx={450} cy={450} spokeLen={290} rectW={190} rectH={90} hubR={72} viewBox="60 60 780 780" idp="d-" className="w-full max-w-[900px] mx-auto hidden md:block" />
           <Hub cx={300} cy={300} spokeLen={185} rectW={160} rectH={76} hubR={52} viewBox="30 30 540 540" idp="m-" className="w-full md:hidden" />
+        </ScrollReveal>
+
+        {/* And, increasingly, the screen in the living room. */}
+        <ScrollReveal delay={100}>
+          <div className="mt-4 md:mt-8">
+            <p className="text-center font-heading font-bold text-xl text-regal-navy mb-6">
+              And, increasingly, onto the television screen.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2 max-w-[820px] mx-auto">
+              <div className="rounded-2xl border border-freedom-blue/25 bg-dawn-frost/50 p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-freedom-blue/12">
+                    <Tv className="h-5 w-5 text-freedom-blue" />
+                  </span>
+                  <div>
+                    <h3 className="font-heading font-bold text-lg text-regal-navy leading-tight">Connected TV</h3>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-pioneer-gold">Coming soon</span>
+                  </div>
+                </div>
+                <p className="text-granite text-sm leading-relaxed">
+                  Reach cord-cutters on Roku, Hulu, and YouTube TV with broadcast-style
+                  ads and precise targeting. We&apos;re building toward it.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-gray-200 bg-dawn-frost/50 p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-horizon-azure/15">
+                    <Antenna className="h-5 w-5 text-horizon-azure" />
+                  </span>
+                  <div>
+                    <h3 className="font-heading font-bold text-lg text-regal-navy leading-tight">Broadcast TV</h3>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-freedom-blue">Available now</span>
+                  </div>
+                </div>
+                <p className="text-granite text-sm leading-relaxed">
+                  Produced to broadcast quality, ready for the air. Stations set their
+                  own clearance and legal-review rules, and airtime is bought separately
+                  &mdash; confirm requirements and check with counsel before you air.
+                </p>
+              </div>
+            </div>
+            <p className="text-center mt-6">
+              <a href="/channels" className="inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold hover:underline">
+                See where to share your video &rarr;
+              </a>
+            </p>
+          </div>
         </ScrollReveal>
       </div>
     </section>
