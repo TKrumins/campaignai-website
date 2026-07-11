@@ -1,129 +1,129 @@
 // Shared model for the "Built to Grow With You" interactive widget on
-// /how-it-works. A visitor picks their own mix of videos (by type) — or a
-// preset — and both the conversation view (A) and the profile view (B) react to
-// the same input. Kept framework-free and pure so both views stay presentational
-// and the growth math lives in one place.
+// /how-it-works. The visitor builds up a campaign catalogue — a launch video,
+// plus any number of bios, fundraising appeals, and policy explainers — and both
+// views react: the profile fills in (gamified), and the AI's help drafting the
+// final GOTV ad gets richer and more specific. Pure + framework-free.
 
-export type VideoTypeKey = "bio" | "announcement" | "fundraiser" | "explainer";
+export type CounterKey = "bio" | "fundraiser" | "explainer";
+export type ContentKey = "launch" | CounterKey;
 
-export type Mix = Record<VideoTypeKey, number>;
-
-export interface VideoType {
-  key: VideoTypeKey;
-  label: string;
-  blurb: string; // what this piece teaches the platform, in plain terms
-  accent: string; // brand-token hex, red→violet→blue progression
-  max: number;
+export interface Mix {
+  launch: boolean; // the Launch / Announcement video — a standalone yes/no
+  bio: number;
+  fundraiser: number;
+  explainer: number;
 }
 
-// Red → Bridge Violet → Blue progression, all brand tokens (multi-partisan).
-export const VIDEO_TYPES: VideoType[] = [
-  { key: "bio", label: "Bio", blurb: "who you are", accent: "#FF3366", max: 1 },
-  { key: "announcement", label: "Announcement", blurb: "you're in the race", accent: "#FF6B8F", max: 3 },
-  { key: "fundraiser", label: "Fundraiser", blurb: "what you're fighting for", accent: "#8E5CF7", max: 6 },
-  { key: "explainer", label: "Policy explainer", blurb: "your whole platform", accent: "#4D9FFF", max: 8 },
+export const EMPTY_MIX: Mix = { launch: false, bio: 0, fundraiser: 0, explainer: 0 };
+export const MAX_COUNT = 99;
+
+// The Launch / Announcement video is its own thing (you have one, or you don't).
+export const LAUNCH = {
+  label: "Launch / Announcement Video",
+  blurb: "You're in the race",
+  accent: "#FF6B8F",
+};
+
+// The three that stack up over a campaign — each 0–99.
+export const COUNTER_TYPES: { key: CounterKey; label: string; blurb: string; accent: string }[] = [
+  { key: "bio", label: "Bio", blurb: "Who you are", accent: "#FF3366" },
+  { key: "fundraiser", label: "Fundraising Appeal", blurb: "What you're fighting for", accent: "#8E5CF7" },
+  { key: "explainer", label: "Policy Explainer", blurb: "Your platform", accent: "#4D9FFF" },
 ];
+
+export const TYPE_LABEL: Record<ContentKey, string> = {
+  launch: "launch video",
+  bio: "bio",
+  fundraiser: "fundraising appeals",
+  explainer: "policy explainers",
+};
 
 export const TRAITS = ["Voice", "Values", "Policies", "Brand", "Strategy"] as const;
 export type Trait = (typeof TRAITS)[number];
 
 export const TRAIT_COLOR: Record<Trait, string> = {
-  Voice: "#FF3366", // liberty-crimson
-  Values: "#FF6B8F", // victory-rose
-  Policies: "#8E5CF7", // bridge-violet
-  Brand: "#7AB8FF", // horizon-azure
-  Strategy: "#4D9FFF", // freedom-blue
+  Voice: "#FF3366",
+  Values: "#FF6B8F",
+  Policies: "#8E5CF7",
+  Brand: "#7AB8FF",
+  Strategy: "#4D9FFF",
 };
 
-// Points one video of each type adds to each trait (per Tom's direction: a bio
-// teaches Voice + Values a lot and Brand a little; a fundraiser adds Policies +
-// Voice; an explainer adds a lot of Policies plus Strategy + Brand). Summed
-// across the chosen mix and capped at 100 per trait.
-const CONTRIB: Record<VideoTypeKey, Partial<Record<Trait, number>>> = {
-  bio: { Voice: 34, Values: 34, Brand: 12 },
-  announcement: { Voice: 20, Values: 14, Brand: 22, Policies: 6, Strategy: 8 },
-  fundraiser: { Voice: 16, Values: 10, Policies: 22, Brand: 6, Strategy: 10 },
-  explainer: { Voice: 6, Values: 6, Policies: 22, Brand: 14, Strategy: 16 },
+// Points each content type adds to each trait. Summed across the catalogue, then
+// run through a saturating curve so every added video nudges the meter (gamified
+// growth) while it approaches but rarely maxes.
+const CONTRIB: Record<ContentKey, Partial<Record<Trait, number>>> = {
+  launch: { Voice: 22, Values: 14, Brand: 20 },
+  bio: { Voice: 30, Values: 30, Brand: 12 },
+  fundraiser: { Voice: 14, Policies: 22, Strategy: 12 },
+  explainer: { Voice: 6, Values: 6, Policies: 22, Brand: 14, Strategy: 18 },
 };
 
-export const EMPTY_MIX: Mix = { bio: 0, announcement: 0, fundraiser: 0, explainer: 0 };
+const SATURATION_K = 55;
+export const READY_THRESHOLD = 62; // overall completeness that unlocks GOTV readiness
 
-export interface Preset {
-  key: string;
-  label: string;
-  mix: Mix;
-  gotv: boolean;
+function counts(mix: Mix): Record<ContentKey, number> {
+  return { launch: mix.launch ? 1 : 0, bio: mix.bio, fundraiser: mix.fundraiser, explainer: mix.explainer };
 }
 
-export const PRESETS: Preset[] = [
-  { key: "start", label: "Just starting", mix: { ...EMPTY_MIX, bio: 1 }, gotv: false },
-  { key: "mid", label: "Mid-campaign", mix: { bio: 1, announcement: 1, fundraiser: 1, explainer: 1 }, gotv: false },
-  { key: "full", label: "Full cycle", mix: { bio: 1, announcement: 1, fundraiser: 2, explainer: 5 }, gotv: true },
-];
-
-export function totalVideos(mix: Mix): number {
-  return VIDEO_TYPES.reduce((sum, t) => sum + mix[t.key], 0);
+export function totalContent(mix: Mix): number {
+  const c = counts(mix);
+  return c.launch + c.bio + c.fundraiser + c.explainer;
 }
 
 export interface TraitState {
   trait: Trait;
   pct: number; // 0–100
-  boostedBy: VideoTypeKey[]; // types in the mix that feed this trait
+  boostedBy: ContentKey[];
 }
 
 export function computeTraits(mix: Mix): TraitState[] {
+  const c = counts(mix);
+  const keys: ContentKey[] = ["launch", "bio", "fundraiser", "explainer"];
   return TRAITS.map((trait) => {
-    let points = 0;
-    const boostedBy: VideoTypeKey[] = [];
-    for (const t of VIDEO_TYPES) {
-      const per = CONTRIB[t.key][trait] ?? 0;
-      const count = mix[t.key];
-      if (per > 0 && count > 0) {
-        points += per * count;
-        boostedBy.push(t.key);
+    let pts = 0;
+    const boostedBy: ContentKey[] = [];
+    for (const k of keys) {
+      const per = CONTRIB[k][trait] ?? 0;
+      if (per > 0 && c[k] > 0) {
+        pts += per * c[k];
+        boostedBy.push(k);
       }
     }
-    return { trait, pct: Math.min(100, Math.round(points)), boostedBy };
+    const pct = pts > 0 ? Math.round((100 * pts) / (pts + SATURATION_K)) : 0;
+    return { trait, pct, boostedBy };
   });
 }
 
-// Overall completeness — the average of the five traits. Drives the GOTV
-// readiness panel ("everything's pre-gathered").
 export function completeness(mix: Mix): number {
-  const traits = computeTraits(mix);
-  return Math.round(traits.reduce((s, t) => s + t.pct, 0) / traits.length);
+  const t = computeTraits(mix);
+  return Math.round(t.reduce((s, x) => s + x.pct, 0) / t.length);
 }
 
-export type Tier = "cold" | "early" | "mid" | "deep";
+// GOTV readiness is a real threshold the visitor unlocks: a launch video plus
+// enough of a catalogue that the profile is well-formed.
+export function gotvReady(mix: Mix): boolean {
+  return mix.launch && completeness(mix) >= READY_THRESHOLD;
+}
+
+export type Tier = "cold" | "early" | "building" | "deep";
 
 export function tierOf(mix: Mix): Tier {
-  const n = totalVideos(mix);
+  const n = totalContent(mix);
   if (n === 0) return "cold";
-  if (n <= 2) return "early";
-  if (n <= 4) return "mid";
-  return "deep"; // the fifth video and up — "knows your race"
+  if (n <= 3) return "early";
+  if (n <= 8) return "building";
+  return "deep";
 }
 
-// A plain-English list of the library so far, e.g. "your bio, two fundraisers,
-// and three policy explainers".
-const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
-
-function countWord(n: number): string {
-  return WORDS[n] ?? String(n);
-}
-
-export function describeMix(mix: Mix): string {
+// A qualitative list of what's in the catalogue — no counts (the visitor already
+// knows how many they made; what matters is what the AI can draw on).
+export function describeCatalogue(mix: Mix): string {
   const parts: string[] = [];
-  for (const t of VIDEO_TYPES) {
-    const n = mix[t.key];
-    if (n <= 0) continue;
-    if (t.key === "bio") {
-      parts.push("your bio");
-    } else {
-      const noun = t.label.toLowerCase();
-      parts.push(n === 1 ? `one ${noun}` : `${countWord(n)} ${noun}s`);
-    }
-  }
+  if (mix.launch) parts.push("your launch video");
+  if (mix.bio > 0) parts.push("your bio");
+  if (mix.fundraiser > 0) parts.push("your fundraising appeals");
+  if (mix.explainer > 0) parts.push("your policy explainers");
   if (parts.length === 0) return "nothing yet";
   if (parts.length === 1) return parts[0];
   return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
