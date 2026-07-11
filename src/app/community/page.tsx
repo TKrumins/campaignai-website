@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CommunityHero } from "@/components/sections/community/CommunityHero";
 import { WhatWereBuilding } from "@/components/sections/community/WhatWereBuilding";
 import { BuildingInPublic } from "@/components/sections/community/BuildingInPublic";
+import { CommunityWhyJoin } from "@/components/sections/community/CommunityWhyJoin";
 import { UpcomingContent } from "@/components/sections/community/UpcomingContent";
 import { CommunityFinalCTA } from "@/components/sections/community/CommunityFinalCTA";
 
@@ -16,6 +17,7 @@ export default function CommunityPage() {
     <>
       <CommunityHero />
       <BuildingInPublic />
+      <CommunityWhyJoin />
       <WhatWereBuilding />
       <UpcomingContent />
       <CommunityFinalCTA />

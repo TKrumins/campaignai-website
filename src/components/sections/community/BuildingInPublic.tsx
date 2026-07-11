@@ -87,6 +87,46 @@ function weave(pointHi: boolean): string {
   return d;
 }
 
+// Small branded, subtly-animated emblems for the three outcome cards. Motion
+// uses the reduced-motion-gated ga-* utilities, so they fall still when a viewer
+// prefers reduced motion.
+function OutcomeGraphic({ i }: { i: number }) {
+  if (i === 0) {
+    // Collaborative Research — connected nodes converging
+    return (
+      <svg viewBox="0 0 72 52" className="h-12 w-auto" aria-hidden="true">
+        <line x1="18" y1="38" x2="36" y2="14" stroke="#8E5CF7" strokeWidth="2" opacity="0.35" />
+        <line x1="54" y1="38" x2="36" y2="14" stroke="#8E5CF7" strokeWidth="2" opacity="0.35" />
+        <line x1="18" y1="38" x2="54" y2="38" stroke="#8E5CF7" strokeWidth="2" opacity="0.35" />
+        <circle cx="36" cy="14" r="7" fill="#FF3366" className="ga-glow" />
+        <circle cx="18" cy="38" r="6" fill="#8E5CF7" className="ga-ping" />
+        <circle cx="54" cy="38" r="6" fill="#4D9FFF" className="ga-ping" style={{ animationDelay: "0.7s" }} />
+      </svg>
+    );
+  }
+  if (i === 1) {
+    // User Feedback Loops — a loop with a signal traveling it
+    return (
+      <svg viewBox="0 0 72 52" className="h-12 w-auto" aria-hidden="true">
+        <path d="M40 12 a16 16 0 1 0 14 9" fill="none" stroke="#8E5CF7" strokeWidth="3" strokeLinecap="round" />
+        <path d="M40 12 l-9 -1 l4 8 z" fill="#8E5CF7" />
+        <circle cx="20" cy="26" r="4" fill="#4D9FFF" className="ga-ping" />
+        <circle cx="52" cy="34" r="3.5" fill="#FF6B8F" className="ga-ping" style={{ animationDelay: "0.6s" }} />
+      </svg>
+    );
+  }
+  // Transparent Decisions — an open panel, a check, rays of light
+  return (
+    <svg viewBox="0 0 72 52" className="h-12 w-auto" aria-hidden="true">
+      <line x1="36" y1="8" x2="36" y2="2" stroke="#FFB800" strokeWidth="2" strokeLinecap="round" className="ga-glow" />
+      <line x1="52" y1="12" x2="56" y2="8" stroke="#FFB800" strokeWidth="2" strokeLinecap="round" className="ga-glow" />
+      <line x1="20" y1="12" x2="16" y2="8" stroke="#FFB800" strokeWidth="2" strokeLinecap="round" className="ga-glow" />
+      <rect x="22" y="14" width="28" height="24" rx="3" fill="none" stroke="#4D9FFF" strokeWidth="2.5" />
+      <path d="M29 26 l5 5 10 -11" fill="none" stroke="#00D084" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="ga-glow" />
+    </svg>
+  );
+}
+
 export function BuildingInPublic() {
   return (
     <section className="py-20 md:py-28 bg-white overflow-hidden">
@@ -203,12 +243,10 @@ export function BuildingInPublic() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {outcomes.map(({ title, description }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
-              <div className="rounded-2xl overflow-hidden h-full">
-                <div className="h-1 multipartisan-gradient" />
-                <div className="bg-dawn-frost p-7 h-full">
-                  <h3 className="font-heading font-bold text-lg text-regal-navy mb-3">{title}</h3>
-                  <p className="text-slate text-sm leading-relaxed">{description}</p>
-                </div>
+              <div className="h-full rounded-2xl bg-white p-7 shadow-sm ring-1 ring-black/5">
+                <div className="mb-4"><OutcomeGraphic i={i} /></div>
+                <h3 className="font-heading font-bold text-lg text-regal-navy mb-3">{title}</h3>
+                <p className="text-slate text-sm leading-relaxed">{description}</p>
               </div>
             </ScrollReveal>
           ))}
