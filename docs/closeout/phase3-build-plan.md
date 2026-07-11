@@ -130,7 +130,7 @@ Original note: Tom loves the current aesthetics of both. Next: add **animation /
 - ☐ "Our Approach" graphic: reweave as interweaving ribbons among equal groups (not a hub absorbing from everyone — avoid the "AI steals" trope); replace the un-smooth patriot-gradient circles.
 - ☐ Review/adjust groups; no deletions; no partisan red/blue coloring.
 - ☐ Visualize each roadmap feature with "COMING SOON" labels.
-- ☐ Substack posts: add cover images, rebuild the layout (need 3 image URLs or files).
+- ◐ Substack posts: **Tom pivoted 2026-07-11 — NO cover images from Tom; instead branded animated SVG covers (part of the Fable pass).** DONE so far: (a) 25-topic article pipeline in `docs/closeout/substack-article-pipeline.csv` (Title/Subtitle/Description/Purpose/Audience/Topic Area + Flagship flag); (b) identified the **5 flagship thought-leadership pieces** (State of AI 2026 · Verified Human case · Lines We Won't Cross · 50-State Disclosure Maze · Deepfake defense plan) and built **5 branded animated SVG covers** for them (`src/components/preview/SubstackCovers.tsx`, reduced-motion-gated) viewable at hidden `/preview/substack-covers`. **Still to do:** covers for the 3 existing real posts, and wire covers into the Community page layout when Batch 7 builds (rebuild the Substack section around the animated covers). Full 25 kept for the content pipeline.
 - ☐ Living Glossary: visual boost + friendlier name.
 - ☐ Community final-CTA section: keep the MailerLite capture functional; lift surrounding aesthetics (ribbons/sparkles/community energy).
 
