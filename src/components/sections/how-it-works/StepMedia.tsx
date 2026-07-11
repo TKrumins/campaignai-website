@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { ReactNode } from "react";
 import Image from "next/image";
+import { StepAnimation } from "./StepAnimation";
 
 // Film-player frame — a rounded white-bordered still with a stacked backing
 // card, tilted so the reel zig-zags down the ribbon. Hoisted to module scope so
@@ -129,31 +130,13 @@ export function StepMedia({
     );
   }
 
-  /* Placeholder: exact-sized, duotone-styled, and designed to feel hopeful
-     rather than empty -- a sunrise scene, so the real walkthrough drops in
-     without any layout work. */
+  /* No real media yet: show the branded, animated stand-in for this step (built
+     from Tom's walkthrough clips during the Fable pass). A real clip/gif/still
+     dropped into public/assets/how-it-works/ still wins the checks above. */
   return (
     <PlayerFrame tilt={tilt}>
       {sceneChip}
-      {playDisc}
-      <svg viewBox="0 0 320 200" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <linearGradient id={`step-sky-${step}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0D1B3E" />
-            <stop offset="70%" stopColor="#23407E" />
-            <stop offset="100%" stopColor="#4D9FFF" />
-          </linearGradient>
-        </defs>
-        <rect width="320" height="200" fill={`url(#step-sky-${step})`} />
-        {/* Rising sun */}
-        <circle className="ga-glow" cx="160" cy="150" r="26" fill="#FFB800" opacity="0.9" />
-        {/* Hills */}
-        <path d="M0 158 Q80 126 160 150 T320 144 V200 H0 Z" fill="#4D9FFF" opacity="0.5" />
-        <path d="M0 176 Q96 148 192 170 T320 166 V200 H0 Z" fill="#0D1B3E" opacity="0.75" />
-        {/* Sparkle accents */}
-        <path className="ga-twinkle" d="M62 52l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#E8F4F8" opacity="0.9" />
-        <path className="ga-twinkle" d="M252 38l1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6z" fill="#E8F4F8" opacity="0.7" style={{ animationDelay: "700ms" }} />
-      </svg>
+      <StepAnimation step={step} />
     </PlayerFrame>
   );
 }
