@@ -1,6 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { GrowthGraphic } from "@/components/ui/GrowthGraphic";
+import { GrowthConversation } from "@/components/ui/GrowthConversation";
+import { GrowthProfile } from "@/components/ui/GrowthProfile";
 
 export function GrowthSection() {
   return (
@@ -29,7 +30,12 @@ export function GrowthSection() {
           </div>
         </ScrollReveal>
 
-        <GrowthGraphic />
+        {/* TEMP: two directions for Tom to compare — keep the pick, delete the other */}
+        <p className="text-center text-xs font-bold uppercase tracking-widest text-liberty-crimson mb-4">Option A — You &amp; the AI get sharper together</p>
+        <GrowthConversation />
+        <div className="my-16 border-t border-black/10" />
+        <p className="text-center text-xs font-bold uppercase tracking-widest text-freedom-blue mb-4">Option B — Your campaign profile fills in</p>
+        <GrowthProfile />
 
         <ScrollReveal delay={700}>
           <div className="max-w-2xl mx-auto mt-14 text-center">

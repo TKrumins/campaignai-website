@@ -28,7 +28,12 @@ export function VerificationSection() {
           {/* Copy */}
           <ScrollReveal>
             <div>
-              <SectionLabel text="Verified Human" />
+              <div className="flex items-center gap-3 flex-wrap">
+                <SectionLabel text="Verified Human" />
+                <span className="inline-flex items-center rounded-full bg-pioneer-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/30">
+                  Coming Soon
+                </span>
+              </div>
               <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-beacon-white tracking-[-0.5px] mt-3 mb-5">
                 Proof that your video is really yours.
               </h2>

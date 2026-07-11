@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
+import { Scissors, Wand2 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { StepMedia } from "@/components/sections/how-it-works/StepMedia";
+import { ReelCanvas } from "@/components/sections/how-it-works/ReelCanvas";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
 // Node colours walk the ribbon red -> violet -> blue, one per scene; each number
@@ -56,23 +58,6 @@ const steps = [
   },
 ];
 
-// Winding ribbon threads in the home-hero visual language: a continuous
-// Multi-Partisan (red -> violet -> blue) path with drifting colour stops and a
-// travelling white comet. Desktop weaves down the centre; mobile hugs the left.
-const RIBBON_STOPS = [
-  { offset: 0, color: "#FF3366" },
-  { offset: 0.25, color: "#D144A1" },
-  { offset: 0.5, color: "#8E5CF7" },
-  { offset: 0.75, color: "#6A81FB" },
-  { offset: 1, color: "#4D9FFF" },
-];
-const RIBBON_CYCLE_S = 9;
-
-const RIBBON_D_DESKTOP =
-  "M 50 0 C 90 27 90 55 50 83 C 10 138 10 194 50 250 C 90 306 90 361 50 417 C 10 472 10 528 50 583 C 90 639 90 694 50 750 C 10 806 10 861 50 917 C 90 945 90 972 50 1000";
-const RIBBON_D_MOBILE =
-  "M 20 0 C 32 70 8 140 20 220 C 32 300 8 380 20 470 C 32 560 8 640 20 730 C 32 820 8 900 20 1000";
-
 // RWB sparkles scattered down the reel, kept off the copy columns.
 const SPARKS = [
   { l: 6, t: 8, c: "#4D9FFF", s: 15 },
@@ -84,49 +69,52 @@ const SPARKS = [
   { l: 9, t: 90, c: "#4D9FFF", s: 12 },
 ];
 
-function RibbonThread({
-  d,
-  gradientId,
-  viewBox,
-  className,
-}: {
-  d: string;
-  gradientId: string;
-  viewBox: string;
-  className: string;
-}) {
+// A little "editing bay" strip for the human-editors path: a mini frame with an
+// edit timeline. Clip blocks in the Multi-Partisan hues.
+function EditingBayVisual() {
   return (
-    <svg
-      className={`ribbon-sway pointer-events-none absolute inset-y-0 h-full ${className}`}
-      viewBox={viewBox}
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id={gradientId} x1="0" y1="0" x2="0.35" y2="1">
-          {RIBBON_STOPS.map(({ offset, color }, i) => (
-            <stop
-              key={offset}
-              className="ribbon-stop"
-              offset={offset}
-              stopColor={color}
-              style={{ animationDelay: `${(i * RIBBON_CYCLE_S) / RIBBON_STOPS.length - RIBBON_CYCLE_S}s` }}
-            />
-          ))}
-        </linearGradient>
-      </defs>
-      <path d={d} fill="none" stroke={`url(#${gradientId})`} strokeWidth="7" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-      <path
-        className="ribbon-comet"
-        d={d}
-        fill="none"
-        stroke="#E8F4F8"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        vectorEffect="non-scaling-stroke"
-        opacity="0.9"
-      />
-    </svg>
+    <div className="relative mb-5 overflow-hidden rounded-xl bg-regal-navy p-3 ring-1 ring-black/10" aria-hidden="true">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-freedom-blue/20">
+          <Scissors className="h-3.5 w-3.5 text-freedom-blue" />
+        </span>
+        <span className="text-[11px] font-semibold text-beacon-white/80">Editing bay</span>
+        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-liberty-crimson" />
+      </div>
+      {/* preview frame */}
+      <div className="mb-2 h-10 rounded-md bg-gradient-to-br from-[#23407E] to-freedom-blue/70" />
+      {/* timeline */}
+      <div className="flex items-center gap-1">
+        <span className="h-3 flex-[3] rounded-sm bg-liberty-crimson/80" />
+        <span className="h-3 flex-[2] rounded-sm bg-bridge-violet/80" />
+        <span className="h-3 flex-[4] rounded-sm bg-freedom-blue/80" />
+        <span className="h-3 flex-[2] rounded-sm bg-horizon-azure/80" />
+      </div>
+    </div>
+  );
+}
+
+// A little "render" strip for the AI path: a mini frame with sparkles and a
+// progress bar mid-render.
+function RenderVisual() {
+  return (
+    <div className="relative mb-5 overflow-hidden rounded-xl bg-regal-navy p-3 ring-1 ring-bridge-violet/20" aria-hidden="true">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-bridge-violet/25">
+          <Wand2 className="h-3.5 w-3.5 text-bridge-violet" />
+        </span>
+        <span className="text-[11px] font-semibold text-beacon-white/80">AI render</span>
+        <AISparkle size={12} color="#E8F4F8" glow className="sparkle-twinkle ml-auto" style={{ ["--dur"]: "2.4s" } as CSSProperties} />
+      </div>
+      {/* preview frame */}
+      <div className="relative mb-2 h-10 rounded-md bg-gradient-to-br from-bridge-violet/50 to-freedom-blue/60">
+        <AISparkle size={12} color="#FFFFFF" glow className="sparkle-twinkle absolute right-2 top-1.5" style={{ ["--dur"]: "3s", animationDelay: "400ms" } as CSSProperties} />
+      </div>
+      {/* progress */}
+      <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+        <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-bridge-violet to-freedom-blue" />
+      </div>
+    </div>
   );
 }
 
@@ -148,22 +136,9 @@ export function ProcessTimeline() {
           </div>
         </ScrollReveal>
 
-        {/* The reel: film players threaded down a winding Multi-Partisan ribbon */}
-        <div className="relative">
-          {/* Winding ribbon — centred on desktop, left rail on mobile */}
-          <RibbonThread
-            d={RIBBON_D_DESKTOP}
-            gradientId="hiwRibbonDesktop"
-            viewBox="0 0 100 1000"
-            className="left-1/2 hidden w-[130px] -translate-x-1/2 md:block"
-          />
-          <RibbonThread
-            d={RIBBON_D_MOBILE}
-            gradientId="hiwRibbonMobile"
-            viewBox="0 0 40 1000"
-            className="left-0 w-[54px] md:hidden"
-          />
-
+        {/* The reel: film players threaded down a ribbon that runs through the
+            centre of every numbered node (measured live in ReelCanvas). */}
+        <ReelCanvas>
           {/* RWB sparkles */}
           {SPARKS.map((p, i) => (
             <AISparkle
@@ -182,9 +157,10 @@ export function ProcessTimeline() {
               return (
                 <ScrollReveal key={number} delay={i * 70}>
                   <div className="relative">
-                    {/* Number node — a bead on the ribbon */}
+                    {/* Number node — a bead the ribbon threads through */}
                     <div className="absolute z-30 left-[27px] top-4 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2">
                       <div
+                        data-reel-node
                         className="hiw-node-flash h-14 w-14 rounded-full p-[3px] shadow-md"
                         style={{ background: NODE_COLORS[i].ring, ["--node-glow"]: NODE_COLORS[i].glow, animationDelay: `${i * 0.45}s` } as CSSProperties}
                       >
@@ -212,7 +188,7 @@ export function ProcessTimeline() {
               );
             })}
           </div>
-        </div>
+        </ReelCanvas>
 
         {/* The fork: submit, and it splits into production */}
         <ScrollReveal>
@@ -258,6 +234,7 @@ export function ProcessTimeline() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[68px]">
                 {/* Path A — available now */}
                 <div className="rounded-2xl bg-white ring-1 ring-freedom-blue/20 shadow-md p-7 flex flex-col">
+                  <EditingBayVisual />
                   <span className="inline-flex w-fit items-center rounded-full bg-freedom-blue/10 text-freedom-blue text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
                     Available now
                   </span>
@@ -273,6 +250,7 @@ export function ProcessTimeline() {
 
                 {/* Path B — coming soon */}
                 <div className="rounded-2xl bg-dawn-frost ring-1 ring-bridge-violet/20 p-7 flex flex-col">
+                  <RenderVisual />
                   <span className="inline-flex w-fit items-center rounded-full bg-pioneer-gold/15 text-pioneer-gold text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
                     Coming soon
                   </span>
