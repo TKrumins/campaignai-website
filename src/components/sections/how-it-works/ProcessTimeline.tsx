@@ -49,7 +49,7 @@ const steps = [
   },
   {
     number: 5,
-    title: "Bring in your content",
+    title: "Select your content",
     body: "Fill each frame your way: pull from the CampaignAI asset library, upload your own photos and footage, drop a placeholder to add later, or get a “go film it” guide for a shot only you can capture. Prefer stock or AI-generated b-roll? Steer it with a reference of your own.",
   },
   {

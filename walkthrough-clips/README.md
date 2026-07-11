@@ -35,6 +35,6 @@ shown step:
 | 02 Create brief                  | 2 · Approve your brief |
 | 03 Generate + 04 Refine script   | 3 · Shape the script |
 | 05 Generate storyboard           | 4 · Storyboard it |
-| 06 + 06a + 07 (content/stock/b-roll) | 5 · Bring in your content |
+| 06 + 06a + 07 (content/stock/b-roll) | 5 · Select your content |
 | 08 Voiceover + 09 Music          | 6 · Direct the voice & music |
 | 10 Review & upload               | 7 · Review & submit |
