@@ -85,7 +85,7 @@ export function FoundersSection() {
                       </span>
                     )}
                   </div>
-                  <p className="text-freedom-blue text-sm font-semibold mb-1">{title}</p>
+                  <p className="text-bridge-violet text-sm font-semibold mb-1">{title}</p>
                   <p className="text-granite font-semibold mb-4">{tagline}</p>
                   <p className="text-granite leading-relaxed whitespace-pre-line">{bio}</p>
                   {/* Founder quote slot: drop-in ready */}

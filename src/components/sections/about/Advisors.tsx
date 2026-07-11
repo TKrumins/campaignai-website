@@ -23,7 +23,7 @@ const advisors: Advisor[] = [
 function AdvisorCard({ photo, name, credential, note, link }: Advisor) {
   const inner = (
     <div className="bg-dawn-frost rounded-2xl p-8 md:p-10 h-full flex flex-col sm:flex-row items-center gap-6">
-      <div className="shrink-0 w-[128px] h-[128px] rounded-full patriot-gradient p-[3px] shadow-sm">
+      <div className="shrink-0 w-[128px] h-[128px] rounded-full bg-regal-navy p-[3px] shadow-sm">
         <div className="w-full h-full rounded-full overflow-hidden bg-white">
           <Image
             src={photo}
@@ -35,11 +35,11 @@ function AdvisorCard({ photo, name, credential, note, link }: Advisor) {
         </div>
       </div>
       <div className="text-center sm:text-left">
-        <span className="inline-block text-freedom-blue text-[11px] font-bold uppercase tracking-widest mb-1">
+        <span className="inline-block text-bridge-violet text-[11px] font-bold uppercase tracking-widest mb-1">
           Strategic Advisor
         </span>
         <h3 className="font-heading font-bold text-xl text-regal-navy">{name}</h3>
-        <p className="text-freedom-blue text-sm font-semibold mb-2">{credential}</p>
+        <p className="text-bridge-violet text-sm font-semibold mb-2">{credential}</p>
         {note && <p className="text-slate text-sm leading-relaxed">{note}</p>}
       </div>
     </div>

@@ -100,14 +100,16 @@ export function TrustSection() {
             Strategic Advisors
           </h3>
           <div className="bg-dawn-frost rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
-            <div className="w-[140px] h-[140px] rounded-full overflow-hidden shrink-0">
-              <Image
-                src={advisor.photo}
-                alt={advisor.name}
-                width={140}
-                height={140}
-                className="w-full h-full object-cover"
-              />
+            <div className="shrink-0 w-[176px] h-[176px] rounded-full bg-regal-navy p-[3px] shadow-sm">
+              <div className="w-full h-full rounded-full overflow-hidden bg-white">
+                <Image
+                  src={advisor.photo}
+                  alt={advisor.name}
+                  width={176}
+                  height={176}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             <div className="text-center sm:text-left">
               <h3 className="font-heading font-bold text-lg text-regal-navy">

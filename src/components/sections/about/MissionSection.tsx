@@ -1,43 +1,45 @@
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import {
-  PURCHASE_URL,
-  CTA_PRIMARY,
-  CTA_MICROCOPY,
-  WAITLIST_SHORT,
-} from "@/lib/constants";
+import { PURCHASE_URL } from "@/lib/constants";
 
+/**
+ * About close. Ends on the mission and an invitation to go deeper (how it works
+ * / community) rather than jumping straight to the paywall — the purchase link
+ * stays available, but soft, so the page reads as a story, not a checkout.
+ */
 export function MissionSection() {
   return (
     <section className="py-20 md:py-28 bg-regal-navy">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <ScrollReveal>
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-beacon-white tracking-[-1px] mb-6 md:whitespace-nowrap">
-            Democracy shouldn&apos;t have a paywall.
+          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-beacon-white tracking-[-1px] mb-6">
+            Getting this right matters more than any one election.
           </h2>
           <p className="text-beacon-white/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            You have the story. You have the passion. You shouldn&apos;t need a
-            five-figure agency budget to share it with voters &mdash; from a
-            first-time sheriff&apos;s run to a statewide campaign.
+            A Republican, a Democrat, and an independent &mdash; building the
+            tools that shape modern campaigns so they&apos;re within reach of
+            everyone who runs, not just the campaigns with an agency budget.
+            We&apos;re doing it in the open, and we&apos;re only getting started.
           </p>
-          <div className="mb-4">
-            <Button
-              variant="patriot"
-              href={PURCHASE_URL}
-              className="px-8 py-3 text-base"
-            >
-              {CTA_PRIMARY}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button variant="patriot" href="/how-it-works" className="px-8 py-3 text-base">
+              See how it works &rarr;
             </Button>
-            <p className="text-beacon-white/60 text-sm mt-2">{CTA_MICROCOPY}</p>
-          </div>
-          <p className="text-sm">
-            <a
-              href="/get-started#waitlist"
-              className="text-beacon-white/70 underline underline-offset-4 hover:text-beacon-white transition-colors"
+            <Link
+              href="/community"
+              className="btn-hover inline-flex items-center justify-center rounded-full border-2 border-beacon-white/60 px-6 py-3 text-sm font-semibold text-beacon-white transition-colors hover:bg-beacon-white hover:text-regal-navy"
             >
-              Not ready to buy? Join the waitlist &rarr;
-            </a>{" "}
-            <span className="text-beacon-white/45">{WAITLIST_SHORT}</span>
+              Explore the community &rarr;
+            </Link>
+          </div>
+          <p className="mt-8 text-sm">
+            <Link
+              href={PURCHASE_URL}
+              className="text-beacon-white/70 underline underline-offset-4 transition-colors hover:text-beacon-white"
+            >
+              Ready to make your first video? Get started &rarr;
+            </Link>
           </p>
         </ScrollReveal>
       </div>

@@ -31,17 +31,18 @@ export function FounderCollage({
 
   return (
     <div className="group relative w-[190px] h-[190px] motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:rotate-[-3deg] motion-safe:hover:scale-[1.04]">
-      {/* Tilted tri-color backing cards: the collage's "stack of photos" */}
+      {/* Tilted backing cards: the collage's "stack of photos". Light-purple
+          (Bridge Violet) accent — non-partisan, no red/blue behind a founder. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 rounded-2xl bg-freedom-blue/20 rotate-[4deg] motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:rotate-[7deg]"
+        className="absolute inset-0 rounded-2xl bg-bridge-violet/25 rotate-[4deg] motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:rotate-[7deg]"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 rounded-2xl bg-liberty-crimson/15 -rotate-[3deg] motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:-rotate-[6deg]"
+        className="absolute inset-0 rounded-2xl bg-bridge-violet/12 -rotate-[3deg] motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:-rotate-[6deg]"
       />
-      {/* Photo card with a warm white border, like a print */}
-      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-md border-4 border-white bg-white">
+      {/* Photo card: white print border inside a solid regal-navy outer ring. */}
+      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-md border-4 border-white ring-2 ring-regal-navy bg-white">
         {photos.map((photo, i) => (
           <Image
             key={photo}
@@ -55,15 +56,6 @@ export function FounderCollage({
           />
         ))}
       </div>
-      {/* Logo mark peeking from the corner */}
-      <Image
-        src="/assets/logos/favicon-dark-circle.svg"
-        alt=""
-        width={34}
-        height={34}
-        aria-hidden="true"
-        className="absolute -top-2.5 -right-2.5 w-[34px] h-[34px] drop-shadow-md rotate-[8deg]"
-      />
     </div>
   );
 }

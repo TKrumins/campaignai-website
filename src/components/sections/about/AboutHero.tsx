@@ -1,11 +1,33 @@
+import type { CSSProperties } from "react";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { SOCIAL_SUBSTACK } from "@/lib/constants";
+
+// Ambient RWB sparkles kept to the side gutters, clear of the centered copy.
+const HERO_SPARKS = [
+  { l: 5, t: 32, c: "#4D9FFF", s: 15 },
+  { l: 9, t: 70, c: "#FF3366", s: 12 },
+  { l: 91, t: 26, c: "#E8F4F8", s: 14 },
+  { l: 95, t: 68, c: "#8E5CF7", s: 13 },
+];
 
 export function AboutHero() {
   return (
     <section
       data-hero
-      className="relative bg-regal-navy pt-40 pb-16"
+      className="relative overflow-hidden bg-regal-navy pt-40 pb-16"
     >
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        {HERO_SPARKS.map((p, i) => (
+          <AISparkle
+            key={i}
+            size={p.s}
+            color={p.c}
+            glow
+            className="sparkle-twinkle absolute"
+            style={{ left: `${p.l}%`, top: `${p.t}%`, ["--dur"]: `${3 + (i % 3)}s`, animationDelay: `${i * 0.4}s` } as CSSProperties}
+          />
+        ))}
+      </div>
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           About
