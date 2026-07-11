@@ -21,9 +21,11 @@ const WIDEST = "state & local parties.";
 // bottom margins of the pinned hero — never over the headline, CTAs, or the
 // America 250 card, which live in the centered content column.
 const BG_SPARKS = [
-  { l: 3, t: 14, c: "#E8F4F8", s: 16 },
-  { l: 5, t: 52, c: "#4D9FFF", s: 12 },
-  { l: 2, t: 86, c: "#FF3366", s: 13 },
+  // Left-column sparkles pulled tight to the very edge (per Tom: keep them off
+  // the eyebrow and the Get Started button).
+  { l: 1, t: 9, c: "#E8F4F8", s: 16 },
+  { l: 1.5, t: 62, c: "#4D9FFF", s: 12 },
+  { l: 1, t: 88, c: "#FF3366", s: 13 },
   { l: 92, t: 40, c: "#FF3366", s: 11 },
   { l: 96, t: 12, c: "#4D9FFF", s: 15 },
   { l: 97, t: 74, c: "#E8F4F8", s: 13 },
