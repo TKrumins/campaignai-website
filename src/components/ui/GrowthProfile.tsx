@@ -1,107 +1,178 @@
 import type { CSSProperties } from "react";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AISparkle } from "@/components/ui/AISparkle";
+import {
+  computeTraits,
+  completeness,
+  totalVideos,
+  TRAIT_COLOR,
+  VIDEO_TYPES,
+  type Mix,
+  type VideoTypeKey,
+} from "@/lib/growth";
 
-// Direction B — "Your campaign profile fills in." Each video adds another facet
-// the platform understands, so the picture of your candidate gets richer and the
-// next video comes back more tailored. A growing dossier, not a bar chart.
-const FACETS = ["Voice", "Values", "Policies", "Brand", "Strategy"];
-const FACET_COLOR = ["#FF3366", "#D144A1", "#8E5CF7", "#6A81FB", "#4D9FFF"];
+// Direction B — "Your campaign profile fills in." Each video the visitor adds
+// deepens specific traits (per Tom: a bio drives Voice + Values; a fundraiser
+// adds Policies + Voice; an explainer adds Policies + Strategy + Brand). The GOTV
+// sprint is broken out on its own: it doesn't teach a new trait, it shows that
+// everything's already assembled — "Your CampaignAI is ready."
 
-const steps = [
-  { video: "Your bio", accent: "#FF3366" },
-  { video: "Announcement", accent: "#D144A1" },
-  { video: "2 fundraisers", accent: "#8E5CF7" },
-  { video: "5 explainers", accent: "#6A81FB" },
-  { video: "A GOTV push", accent: "#4D9FFF", payoff: true },
-];
+const TYPE_LABEL: Record<VideoTypeKey, string> = Object.fromEntries(
+  VIDEO_TYPES.map((t) => [t.key, t.label]),
+) as Record<VideoTypeKey, string>;
 
-export function GrowthProfile() {
+const TYPE_ACCENT: Record<VideoTypeKey, string> = Object.fromEntries(
+  VIDEO_TYPES.map((t) => [t.key, t.accent]),
+) as Record<VideoTypeKey, string>;
+
+export function GrowthProfile({ mix, gotv }: { mix: Mix; gotv: boolean }) {
+  const traits = computeTraits(mix);
+  const overall = completeness(mix);
+  const n = totalVideos(mix);
+  const empty = n === 0;
+
+  const readyLabel = overall >= 75 ? "Ready to deploy" : overall >= 40 ? "Almost ready" : empty ? "Nothing gathered yet" : "Still gathering";
+
   return (
-    <div className="mx-auto w-full max-w-[960px]">
-      <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-5">
-        {steps.map((s, i) => {
-          const known = i + 1; // facets understood so far
-          const pct = Math.round((known / FACETS.length) * 100);
-          return (
-            <ScrollReveal key={s.video} delay={i * 120}>
-              <div
-                className={`relative flex h-full flex-col rounded-2xl bg-regal-navy p-4 shadow-lg ring-1 ${
-                  s.payoff ? "ring-2 ring-pioneer-gold/50" : "ring-white/10"
-                }`}
-                style={{ opacity: 0.55 + i * 0.11 }}
-              >
-                {s.payoff && (
-                  <AISparkle
-                    size={15}
-                    color="#FFB800"
-                    glow
-                    className="sparkle-twinkle absolute -right-1.5 -top-1.5"
-                    style={{ ["--dur"]: "2.6s" } as CSSProperties}
-                  />
-                )}
+    <div className="mx-auto w-full max-w-[900px]">
+      <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,320px)]">
+        {/* The profile card — traits light up and fill as videos are added */}
+        <div className="relative rounded-3xl bg-regal-navy p-6 shadow-lg ring-1 ring-white/10 sm:p-8">
+          <div className="mb-6 flex items-center gap-4">
+            {/* Portrait — the ring gains colour with overall completeness */}
+            <div
+              className="grid h-16 w-16 shrink-0 place-items-center rounded-full p-[3px] motion-safe:transition-all motion-safe:duration-700"
+              style={{ background: `conic-gradient(${empty ? "rgba(255,255,255,0.25)" : "#8E5CF7"} ${overall * 3.6}deg, rgba(255,255,255,0.08) 0deg)` }}
+            >
+              <div className="grid h-full w-full place-items-center rounded-full bg-[#16264f]">
+                <svg viewBox="0 0 24 24" className="h-8 w-8 fill-beacon-white/85" aria-hidden="true">
+                  <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p className="font-heading text-lg font-extrabold text-beacon-white">Your campaign profile</p>
+              <p className="text-sm text-beacon-white/60">
+                {empty ? "A blank page — for now." : `Built from ${n} ${n === 1 ? "video" : "videos"} so far.`}
+              </p>
+            </div>
+            <span className="ml-auto text-right">
+              <span className="block font-heading text-2xl font-extrabold text-beacon-white motion-safe:transition-all motion-safe:duration-700">{overall}%</span>
+              <span className="block text-[10px] font-semibold uppercase tracking-wider text-beacon-white/50">understood</span>
+            </span>
+          </div>
 
-                {/* Portrait — the ring gains your colour as the picture fills */}
-                <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full p-[3px]" style={{ background: s.accent }}>
-                  <div className="flex h-full w-full items-center justify-center rounded-full bg-[#16264f]">
-                    <svg viewBox="0 0 24 24" className="h-7 w-7 fill-beacon-white/85" aria-hidden="true">
-                      <path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6z" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Facets that light up as they're understood */}
-                <div className="mb-3 flex flex-col gap-1">
-                  {FACETS.map((f, fi) => {
-                    const on = fi < known;
-                    return (
-                      <div
-                        key={f}
-                        className="flex items-center gap-1.5 rounded px-1.5 py-0.5"
-                        style={{ background: on ? `${FACET_COLOR[fi]}22` : "rgba(255,255,255,0.04)" }}
-                      >
-                        <span
-                          className="h-1.5 w-1.5 shrink-0 rounded-full"
-                          style={{ background: on ? FACET_COLOR[fi] : "rgba(255,255,255,0.2)" }}
-                        />
-                        <span className={`text-[10px] font-semibold ${on ? "text-beacon-white/90" : "text-beacon-white/30"}`}>
-                          {f}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Completeness meter */}
-                <div className="mt-auto">
-                  <div className="mb-1 flex items-center justify-between">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-beacon-white/50">
-                      {s.payoff ? "Knows you" : "Learning"}
+          {/* Trait meters */}
+          <div className="space-y-3">
+            {traits.map((t) => (
+              <div key={t.trait}>
+                <div className="mb-1 flex items-baseline justify-between gap-2">
+                  <span className="flex items-center gap-1.5 text-sm font-semibold text-beacon-white/90">
+                    <span className="h-2 w-2 rounded-full" style={{ background: t.pct > 0 ? TRAIT_COLOR[t.trait] : "rgba(255,255,255,0.2)" }} />
+                    {t.trait}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    {t.boostedBy.length > 0 && (
+                      <span className="hidden text-[10px] text-beacon-white/45 sm:inline">
+                        from {t.boostedBy.map((k) => TYPE_LABEL[k].toLowerCase()).join(", ")}
+                      </span>
+                    )}
+                    <span className="w-9 text-right text-xs font-bold tabular-nums" style={{ color: t.pct > 0 ? TRAIT_COLOR[t.trait] : "rgba(232,244,248,0.4)" }}>
+                      {t.pct}%
                     </span>
-                    <span className="text-[10px] font-bold" style={{ color: s.accent }}>{pct}%</span>
-                  </div>
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                    <div className="h-full rounded-full" style={{ width: `${pct}%`, background: s.accent }} />
-                  </div>
-                  <p className={`mt-2 text-center font-heading text-xs ${s.payoff ? "font-extrabold text-beacon-white" : "font-bold text-beacon-white/80"}`}>
-                    {s.video}
-                  </p>
+                  </span>
+                </div>
+                <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                  <div
+                    className="h-full rounded-full motion-safe:transition-[width] motion-safe:duration-700 motion-safe:ease-out"
+                    style={{ width: `${t.pct}%`, background: TRAIT_COLOR[t.trait] }}
+                  />
                 </div>
               </div>
-            </ScrollReveal>
-          );
-        })}
+            ))}
+          </div>
+        </div>
+
+        {/* GOTV sprint — broken out. Not another trait: proof everything's assembled. */}
+        <div
+          className={`relative flex flex-col rounded-3xl p-6 shadow-lg motion-safe:transition-all motion-safe:duration-500 ${
+            gotv ? "bg-regal-navy ring-2 ring-pioneer-gold/60" : "bg-regal-navy/95 ring-1 ring-white/10"
+          }`}
+        >
+          {gotv && (
+            <AISparkle
+              size={16}
+              color="#FFB800"
+              glow
+              className="sparkle-twinkle absolute -right-1.5 -top-1.5"
+              style={{ ["--dur"]: "2.6s" } as CSSProperties}
+            />
+          )}
+          <span className={`text-[11px] font-bold uppercase tracking-wider ${gotv ? "text-pioneer-gold" : "text-beacon-white/45"}`}>
+            GOTV sprint
+          </span>
+          {gotv ? (
+            <>
+              <p className="mt-1 font-heading text-xl font-extrabold text-beacon-white">Your CampaignAI is ready.</p>
+              <p className="mt-1 text-sm text-beacon-white/70">
+                Nothing to spin up under deadline — the pieces are already gathered.
+              </p>
+              <ul className="mt-4 space-y-1.5">
+                {traits.map((t) => {
+                  const on = t.pct >= 50;
+                  return (
+                    <li key={t.trait} className="flex items-center gap-2 text-sm">
+                      <span
+                        className="grid h-4 w-4 place-items-center rounded-full text-[10px] font-bold text-regal-navy"
+                        style={{ background: on ? TRAIT_COLOR[t.trait] : "rgba(255,255,255,0.15)" }}
+                        aria-hidden="true"
+                      >
+                        {on ? "✓" : ""}
+                      </span>
+                      <span className={on ? "text-beacon-white/90" : "text-beacon-white/40"}>{t.trait} on file</span>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="mt-auto pt-4 text-xs font-semibold text-pioneer-gold">
+                {readyLabel} — a closing push in your voice, on demand.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="mt-1 font-heading text-xl font-extrabold text-beacon-white/85">The closer, pre-loaded.</p>
+              <p className="mt-2 text-sm text-beacon-white/60">
+                When the final stretch hits, there&apos;s no ramp-up. Everything you&apos;ve built is
+                already on file, ready to become a GOTV push in your voice.
+              </p>
+              <p className="mt-auto pt-4 text-xs font-semibold text-beacon-white/45">
+                Turn on the GOTV sprint above to see it assemble.
+              </p>
+            </>
+          )}
+        </div>
       </div>
 
-      <ScrollReveal delay={520}>
-        <p className="mx-auto mt-8 max-w-[540px] text-center text-sm text-slate">
-          Every video fills in another part of the picture.
-          <br />
-          <span className="font-semibold text-regal-navy">
-            By your fifth, the platform knows your candidate &mdash; and it shows in the work.
+      <p className="mx-auto mt-8 max-w-[560px] text-center text-sm text-slate">
+        Every video fills in another part of the picture.
+        <br />
+        <span className="font-semibold text-regal-navy">
+          {empty
+            ? "Add a video above and watch the profile come to life."
+            : overall >= 75
+              ? "The platform knows your candidate — and it shows in the work."
+              : "Keep going, and it starts to answer like it has worked for you all cycle."}
+        </span>
+      </p>
+
+      {/* Legend hint of which types are feeding the profile */}
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+        {VIDEO_TYPES.map((t) => (
+          <span key={t.key} className={`flex items-center gap-1.5 text-[11px] ${mix[t.key] > 0 ? "text-granite" : "text-silver-mist"}`}>
+            <span className="h-2 w-2 rounded-full" style={{ background: mix[t.key] > 0 ? TYPE_ACCENT[t.key] : "#D9DEE6" }} />
+            {t.label}
           </span>
-        </p>
-      </ScrollReveal>
+        ))}
+      </div>
     </div>
   );
 }
