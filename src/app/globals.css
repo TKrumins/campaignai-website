@@ -839,6 +839,12 @@ body { overflow-x: clip; }
   0%, 100% { box-shadow: 0 0 0 0 rgba(77, 159, 255, 0); }
   50% { box-shadow: 0 0 0 7px rgba(77, 159, 255, 0.12); }
 }
+/* Per-step number node flash — glows in that step's own red->violet->blue
+   colour (passed as --node-glow), staggered down the beam. */
+@keyframes hiwNodeFlash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  50% { box-shadow: 0 0 0 8px var(--node-glow, rgba(77, 159, 255, 0.12)); }
+}
 
 /* Growth graphic: a shimmer sweeps up the "it gets it now" bar, and a light
    travels the growth arrow. */
@@ -870,6 +876,7 @@ body { overflow-x: clip; }
 @media (prefers-reduced-motion: no-preference) {
   .hiw-spine-comet { animation: hiwSpineFlow 4.2s linear infinite; }
   .hiw-node-pulse { animation: hiwNodePulse 3.2s ease-in-out infinite; }
+  .hiw-node-flash { animation: hiwNodeFlash 3.2s ease-in-out infinite; }
   .grow-shimmer { animation: growShimmer 3s ease-in-out infinite; }
   .grow-arrow-comet { animation: growArrowComet 3.4s linear infinite; }
   .arc-playhead { animation: arcSweep 6s linear infinite; }

@@ -14,7 +14,7 @@ export function HIWHero() {
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
-          How It Works
+          Video Production Process
         </span>
         <h1 className="font-heading font-extrabold text-[32px] sm:text-[48px] md:text-[64px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
           Bring your story to life.

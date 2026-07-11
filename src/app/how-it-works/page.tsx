@@ -9,7 +9,7 @@ import { HIWFAQ } from "@/components/sections/how-it-works/HIWFAQ";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 
 export const metadata: Metadata = {
-  title: "How It Works - CampaignAI",
+  title: "Video Production Process - CampaignAI",
   description:
     "From your story to a finished campaign ad, delivered within 48 hours of submission. Learn how CampaignAI helps you produce professional campaign video with built-in compliance: state-specific AI disclosure labels, updated as rules change.",
 };

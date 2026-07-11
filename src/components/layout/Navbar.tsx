@@ -4,22 +4,15 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { PatriotPurchaseButton } from "@/components/ui/PatriotPurchaseButton";
 import { usePatriotViewport } from "@/lib/usePatriotViewport";
+import { navItems } from "@/lib/nav";
 
 // Pages with a DARK hero: the nav is transparent over the hero (light logo),
 // then solidifies to navy on scroll. Light-hero pages (e.g. /pricing) are left
 // off, so their nav stays solid navy — light logo, always legible, no swap.
 const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations", "/ethics", "/ai-in-campaigns", "/CampaignAIDisclosure"];
-
-const navLinks = [
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/ethics", label: "Ethics" },
-  { href: "/about", label: "About" },
-  { href: "/community", label: "Community" },
-];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -108,15 +101,59 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(href)}`}
-              >
-                {label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.children ? (
+                <div key={item.label} className="relative group">
+                  <Link
+                    href={item.href ?? "#"}
+                    className={`inline-flex items-center gap-1 transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(item.href ?? "")}`}
+                  >
+                    {item.label}
+                    <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" aria-hidden />
+                  </Link>
+                  {/* Dropdown panel — revealed on hover or keyboard focus. The
+                      pt-4 keeps a hover bridge between trigger and panel. */}
+                  <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="w-72 rounded-2xl border border-white/10 bg-regal-navy p-2 shadow-2xl">
+                      {item.children.map((c) =>
+                        c.soon ? (
+                          <span
+                            key={c.label}
+                            aria-disabled="true"
+                            className="flex cursor-default flex-col gap-0.5 rounded-xl px-3 py-2.5 opacity-55"
+                          >
+                            <span className="flex items-center gap-2 text-sm font-bold text-beacon-white/80">
+                              {c.label}
+                              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-beacon-white/60">
+                                Soon
+                              </span>
+                            </span>
+                            {c.description && <span className="text-xs text-beacon-white/45">{c.description}</span>}
+                          </span>
+                        ) : (
+                          <Link
+                            key={c.label}
+                            href={c.href}
+                            className="flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-white/10"
+                          >
+                            <span className="text-sm font-bold text-beacon-white">{c.label}</span>
+                            {c.description && <span className="text-xs text-beacon-white/55">{c.description}</span>}
+                          </Link>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href ?? "#"}
+                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(item.href ?? "")}`}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
             <PatriotPurchaseButton />
           </div>
 
@@ -145,15 +182,43 @@ export function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-regal-navy border-t border-white/10">
           <div className="px-4 py-4 flex flex-col gap-4">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(href)}`}
-                onClick={() => setMobileOpen(false)}
-              >
-                {label}
-              </Link>
+            {navItems.map((item) => (
+              <div key={item.label} className="flex flex-col gap-2">
+                <Link
+                  href={item.href ?? "#"}
+                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(item.href ?? "")}`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div className="ml-1 flex flex-col gap-2 border-l border-white/10 pl-3">
+                    {item.children.map((c) =>
+                      c.soon ? (
+                        <span
+                          key={c.label}
+                          aria-disabled="true"
+                          className="flex items-center gap-2 text-xs font-semibold text-beacon-white/40"
+                        >
+                          {c.label}
+                          <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider">
+                            Soon
+                          </span>
+                        </span>
+                      ) : (
+                        <Link
+                          key={c.label}
+                          href={c.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-xs font-semibold text-beacon-white/70 hover:text-beacon-white"
+                        >
+                          {c.label}
+                        </Link>
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>

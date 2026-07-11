@@ -1,7 +1,19 @@
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { StepMedia } from "@/components/sections/how-it-works/StepMedia";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
+
+// Node colours walk the beam red -> violet -> blue, one per step; each number
+// gently flashes in its own colour (glow passed to the CSS var --node-glow).
+const NODE_COLORS = [
+  { ring: "#FF3366", glow: "rgba(255,51,102,0.35)" },
+  { ring: "#B94FC4", glow: "rgba(185,79,196,0.32)" },
+  { ring: "#8E5CF7", glow: "rgba(142,92,247,0.32)" },
+  { ring: "#7E7BF0", glow: "rgba(126,123,240,0.30)" },
+  { ring: "#6398FA", glow: "rgba(99,152,250,0.30)" },
+  { ring: "#4D9FFF", glow: "rgba(77,159,255,0.34)" },
+];
 
 // The real production flow (6.3), in order. Titles are active — every step is
 // a decision the user makes; the AI only ever proposes.
@@ -61,8 +73,8 @@ export function ProcessTimeline() {
             className="absolute left-[27px] md:left-[35px] top-2 bottom-2 w-[3px] rounded-full overflow-hidden"
             aria-hidden="true"
           >
-            <div className="absolute inset-0 patriot-gradient opacity-25" />
-            <div className="hiw-spine-comet absolute left-0 w-full h-16 bg-gradient-to-b from-transparent via-freedom-blue to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-liberty-crimson via-bridge-violet to-freedom-blue opacity-30" />
+            <div className="hiw-spine-comet absolute left-0 w-full h-16 bg-gradient-to-b from-transparent via-beacon-white to-transparent" />
           </div>
 
           <div className="space-y-14 md:space-y-20">
@@ -71,7 +83,10 @@ export function ProcessTimeline() {
                 <div className="relative pl-20 md:pl-28">
                   {/* Number node on the spine */}
                   <div className="absolute left-0 md:left-1 top-0">
-                    <div className="hiw-node-pulse w-14 h-14 rounded-full patriot-gradient p-[3px] shadow-md">
+                    <div
+                      className="hiw-node-flash w-14 h-14 rounded-full p-[3px] shadow-md"
+                      style={{ background: NODE_COLORS[i].ring, ["--node-glow"]: NODE_COLORS[i].glow, animationDelay: `${i * 0.45}s` } as CSSProperties}
+                    >
                       <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
                         <span className="text-white font-heading font-extrabold text-lg">
                           {String(number).padStart(2, "0")}

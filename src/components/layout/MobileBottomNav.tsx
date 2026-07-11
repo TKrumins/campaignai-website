@@ -7,14 +7,7 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { PatriotPurchaseButton } from "@/components/ui/PatriotPurchaseButton";
 import { usePatriotViewport } from "@/lib/usePatriotViewport";
-
-const navLinks = [
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/ethics", label: "Ethics" },
-  { href: "/about", label: "About" },
-  { href: "/community", label: "Community" },
-];
+import { navItems } from "@/lib/nav";
 
 /**
  * Mobile bottom nav (5.1, revised). Once the page hero exits, the top Navbar
@@ -58,21 +51,46 @@ export function MobileBottomNav() {
         inert={!sheetShown}
       >
         <nav className="flex flex-col gap-1 px-4 py-3">
-          {navLinks.map(({ href, label }) => {
-            const isActive = pathname === href;
-            return (
+          {navItems.map((item) => (
+            <div key={item.label} className="flex flex-col">
               <Link
-                key={href}
-                href={href}
+                href={item.href ?? "#"}
                 onClick={() => setMenuOpen(false)}
                 className={`rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.5px] ${
-                  isActive ? "bg-white/10 text-beacon-white" : "text-beacon-white/70 hover:text-beacon-white"
+                  pathname === item.href ? "bg-white/10 text-beacon-white" : "text-beacon-white/70 hover:text-beacon-white"
                 }`}
               >
-                {label}
+                {item.label}
               </Link>
-            );
-          })}
+              {item.children && (
+                <div className="mb-1 ml-4 flex flex-col gap-1 border-l border-white/10 pl-3">
+                  {item.children.map((c) =>
+                    c.soon ? (
+                      <span
+                        key={c.label}
+                        aria-disabled="true"
+                        className="flex items-center gap-2 px-1 py-1 text-xs font-semibold text-beacon-white/40"
+                      >
+                        {c.label}
+                        <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider">
+                          Soon
+                        </span>
+                      </span>
+                    ) : (
+                      <Link
+                        key={c.label}
+                        href={c.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="px-1 py-1 text-xs font-semibold text-beacon-white/70 hover:text-beacon-white"
+                      >
+                        {c.label}
+                      </Link>
+                    )
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
         </nav>
       </div>
 
