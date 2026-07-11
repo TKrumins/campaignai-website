@@ -137,8 +137,8 @@ Original note: Tom loves the current aesthetics of both. Next: add **animation /
 - 🎨 Deepfake/likeness/avatar visuals — red lines AND good uses; "not released until vetted".
 - 🔒 New "lines we won't cross" (sign-off) + persona-challenged copy (sign-off).
 
-## BATCH 9 — Get Started (propose-first)
-- ☐ Reimagine around funnel value; how a user navigates it and truly "gets started" by the end. Bring Tom a written concept before building.
+## BATCH 9 — Get Started (propose-first)  ✅ DONE (built local, awaiting push OK)
+- ✅ Concept proposed + **Tom approved the "interactive guided setup" direction (2026-07-11)**, then built. Reimagined the page as a funnel: (1) interactive **"Let's make your first video"** setup (`GetStartedSetup`) — three light chip questions (who's this for / what should it do / when) assemble a live "Your starting point" card showing the rate that applies (candidate $599 this cycle · nonprofit "mission pricing, case by case" · party/PAC/advocacy + consultant $1,999 — pricing rules honored), the tailored first-video line, the 48h timing note, "nothing charged upfront", and a **Book-your-onboarding-call button that carries who/what/when to the team via utm_campaign/content/term**; secondary self-serve waitlist link. (2) **"What happens on the call"** (`GetStartedOnTheCall`) — demystifies the scoping call (scope together → approve full cost → set up to start) to kill booking friction. (3) tightened "every video includes" (kept). (4) self-serve waitlist (kept). (5) endcap. Dropped the redundant separate hero, full pricing grid, and 3-step block (`GetStartedValueProp`/`GetStartedBooking` now orphaned, left in place like the folder's other unused variants). Build clean (33 routes), lint held at 7, desktop+mobile + filled-state screenshots verified.
 
 ## BATCH 10 — Hidden client-video showcase shell
 - ☐ Hidden route (direct-URL only, not in nav/home): searchable, growing library; multi-partisan creative "own the narrative / better path" framing; ready to receive real client videos.
