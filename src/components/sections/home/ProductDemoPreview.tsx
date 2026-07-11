@@ -302,12 +302,15 @@ function CampaignArc() {
     flag?: boolean;
     marks: number[];
   }[] = [
-    { key: "announce", label: "Announcement", cadence: "Launch day", color: "#FF3366", flag: true, marks: [4] },
+    // Bookend flags are Bridge Violet (red+blue united), not a red vs. blue
+    // pair — keeps the launch/GOTV markers non-partisan. Candid runs two heavy
+    // clusters (e.g. two stretches on the trail) among sparser drop-ins.
+    { key: "announce", label: "Announcement", cadence: "Launch day", color: "#8E5CF7", flag: true, marks: [4] },
     { key: "fund", label: "Fundraising appeals", cadence: "Weekly", color: "#4D9FFF", marks: [12, 21, 30, 39, 48, 57, 66, 75, 84] },
     { key: "policy", label: "Policy explainers", cadence: "Every other week", color: "#8E5CF7", marks: [16, 32, 48, 64, 80] },
     { key: "rapid", label: "Rapid response", cadence: "As news breaks", color: "#FF6B8F", marks: [26, 44, 70, 88] },
-    { key: "candid", label: "Candid footage", cadence: "From the trail", color: "#94A3B8", marks: [19, 37, 55, 73, 91] },
-    { key: "gotv", label: "Get Out The Vote", cadence: "Final weekend", color: "#4D9FFF", flag: true, marks: [96] },
+    { key: "candid", label: "Candid footage", cadence: "From the trail", color: "#94A3B8", marks: [12, 28, 31, 34, 37, 40, 58, 68, 71, 74, 77, 80, 93] },
+    { key: "gotv", label: "Get Out The Vote", cadence: "Final weekend", color: "#8E5CF7", flag: true, marks: [96] },
   ];
   return (
     <div className="relative mt-24 overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-10 shadow-2xl">
@@ -336,40 +339,55 @@ function CampaignArc() {
           </div>
         </div>
 
-        {lanes.map((lane) => (
-          <div key={lane.key} className="flex items-center gap-3 py-1.5">
-            <div className="w-[104px] shrink-0 text-right sm:w-[136px]">
-              <p className="font-heading text-[11px] font-bold leading-tight text-beacon-white sm:text-xs">
-                {lane.label}
-              </p>
-              <p className="text-[10px] leading-tight text-beacon-white/45">{lane.cadence}</p>
-            </div>
-            <div className="relative h-7 flex-1">
-              {/* lane baseline */}
-              <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/10" />
-              {lane.marks.map((pos, i) => (
-                <span
-                  key={i}
-                  className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: `${pos}%` }}
-                >
-                  {lane.flag ? (
-                    <Flag
-                      className="h-[18px] w-[18px] drop-shadow"
-                      style={{ color: lane.color, fill: lane.color } as CSSProperties}
-                      strokeWidth={1.5}
-                    />
-                  ) : (
+        {/* lanes, with a playhead that sweeps launch -> election day and pops
+            each release beat as it passes (delay per-mark keeps them in sync). */}
+        <div className="relative">
+          {lanes.map((lane) => (
+            <div key={lane.key} className="flex items-center gap-3 py-1.5">
+              <div className="w-[104px] shrink-0 text-right sm:w-[136px]">
+                <p className="font-heading text-[11px] font-bold leading-tight text-beacon-white sm:text-xs">
+                  {lane.label}
+                </p>
+                <p className="text-[10px] leading-tight text-beacon-white/45">{lane.cadence}</p>
+              </div>
+              <div className="relative h-7 flex-1">
+                {/* lane baseline */}
+                <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/10" />
+                {lane.marks.map((pos, i) => {
+                  const delay = `${((pos / 100) * 6 - 0.3).toFixed(2)}s`;
+                  return (
                     <span
-                      className="block h-4 w-[3px] rounded-full"
-                      style={{ background: lane.color }}
-                    />
-                  )}
-                </span>
-              ))}
+                      key={i}
+                      className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
+                      style={{ left: `${pos}%` }}
+                    >
+                      {lane.flag ? (
+                        <Flag
+                          className="arc-beat h-[18px] w-[18px] drop-shadow"
+                          style={{ color: lane.color, fill: lane.color, animationDelay: delay } as CSSProperties}
+                          strokeWidth={1.5}
+                        />
+                      ) : (
+                        <span
+                          className="arc-beat block h-4 w-[3px] rounded-full"
+                          style={{ color: lane.color, background: "currentColor", animationDelay: delay } as CSSProperties}
+                        />
+                      )}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
+          ))}
+
+          {/* sweeping playhead over the track region (label col + gap offset) */}
+          <div
+            className="pointer-events-none absolute inset-y-0 left-[116px] right-0 z-20 overflow-hidden motion-reduce:hidden sm:left-[148px]"
+            aria-hidden
+          >
+            <span className="arc-playhead absolute inset-y-1 w-[2px] rounded bg-beacon-white/80 shadow-[0_0_12px_2px_rgba(232,244,248,0.5)]" />
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

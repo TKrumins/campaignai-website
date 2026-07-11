@@ -854,11 +854,26 @@ body { overflow-x: clip; }
   100% { left: 104%; opacity: 0; }
 }
 
+/* Campaign Arc calendar: a playhead sweeps launch -> election day, and each
+   release beat pops as the line passes it (delay set per-mark in JSX). */
+@keyframes arcSweep {
+  0% { left: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes arcBeat {
+  0%, 15%, 100% { transform: scale(1); filter: brightness(1); }
+  5% { transform: scale(1.8); filter: brightness(1.9); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hiw-spine-comet { animation: hiwSpineFlow 4.2s linear infinite; }
   .hiw-node-pulse { animation: hiwNodePulse 3.2s ease-in-out infinite; }
   .grow-shimmer { animation: growShimmer 3s ease-in-out infinite; }
   .grow-arrow-comet { animation: growArrowComet 3.4s linear infinite; }
+  .arc-playhead { animation: arcSweep 6s linear infinite; }
+  .arc-beat { animation: arcBeat 6s linear infinite; }
   .hero-sheen { animation: heroSheenPan 13s ease-in-out infinite; }
   .phrase-rotator .phrase {
     animation: heroPhraseCycle 15s infinite;
