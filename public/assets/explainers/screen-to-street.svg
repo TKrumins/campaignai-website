@@ -33,6 +33,10 @@
     </g>
   </g>
 
+  <!-- four-point AI sparkles (brand motif), varied sizes -->
+  <g transform="translate(402 52) scale(0.52)"><path d="M0 -12C0.8 -5.4 5.4 -0.8 12 0C5.4 0.8 0.8 5.4 0 12C-0.8 5.4 -5.4 0.8 -12 0C-5.4 -0.8 -0.8 -5.4 0 -12Z" fill="#4D9FFF"/></g>
+  <g transform="translate(300 40) scale(0.34)"><path d="M0 -12C0.8 -5.4 5.4 -0.8 12 0C5.4 0.8 0.8 5.4 0 12C-0.8 5.4 -5.4 0.8 -12 0C-5.4 -0.8 -0.8 -5.4 0 -12Z" fill="#FF3366"/></g>
+
   <defs>
     <linearGradient id="s2s-arc" x1="164" y1="90" x2="306" y2="90" gradientUnits="userSpaceOnUse">
       <stop stop-color="#FF3366"/>

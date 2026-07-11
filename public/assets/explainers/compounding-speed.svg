@@ -32,4 +32,17 @@
   </g>
   <text x="252" y="234" font-family="Inter, sans-serif" font-size="11" text-anchor="middle" fill="#666666">Video number</text>
   <text x="30" y="112" font-family="Inter, sans-serif" font-size="11" text-anchor="middle" fill="#666666" transform="rotate(-90 30 112)">Turnaround</text>
+
+  <!-- play marks so the bars read as videos, not a stock chart -->
+  <g fill="#E8F4F8" opacity="0.92">
+    <path d="M89 92 l9 5 -9 5 z"/>
+    <path d="M161 120 l9 5 -9 5 z"/>
+    <path d="M233 142 l9 5 -9 5 z"/>
+    <path d="M305 160 l8 5 -8 5 z"/>
+    <path d="M377 173 l7 4 -7 4 z"/>
+  </g>
+
+  <!-- four-point AI sparkles (brand motif) -->
+  <g transform="translate(118 42) scale(0.5)"><path d="M0 -12C0.8 -5.4 5.4 -0.8 12 0C5.4 0.8 0.8 5.4 0 12C-0.8 5.4 -5.4 0.8 -12 0C-5.4 -0.8 -0.8 -5.4 0 -12Z" fill="#FF3366"/></g>
+  <g transform="translate(432 58) scale(0.34)"><path d="M0 -12C0.8 -5.4 5.4 -0.8 12 0C5.4 0.8 0.8 5.4 0 12C-0.8 5.4 -5.4 0.8 -12 0C-5.4 -0.8 -0.8 -5.4 0 -12Z" fill="#4D9FFF"/></g>
 </svg>

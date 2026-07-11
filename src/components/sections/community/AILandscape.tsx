@@ -29,6 +29,10 @@ import {
   Calendar,
 } from "lucide-react";
 import { type LucideIcon } from "lucide-react";
+import type { CSSProperties } from "react";
+
+const EMBLEM_SPARK =
+  "M12 0 C12.8 6.6 17.4 11.2 24 12 C17.4 12.8 12.8 17.4 12 24 C11.2 17.4 6.6 12.8 0 12 C6.6 11.2 11.2 6.6 12 0 Z";
 
 interface AICapability {
   icon: LucideIcon;
@@ -234,24 +238,48 @@ export function AILandscape() {
           </div>
         </ScrollReveal>
 
-        {/* Central hub */}
+        {/* Central emblem — the four-point AI mark on a navy disc, ringed by a
+            rotating multi-partisan orbit. A bespoke brand mark, not a stock brain. */}
         <ScrollReveal>
-          <div className="flex justify-center my-10">
-            <div className="relative">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full patriot-gradient flex items-center justify-center shadow-lg shadow-freedom-blue/20">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center">
-                  <div className="text-center">
-                    <Brain className="w-8 h-8 md:w-10 md:h-10 text-regal-navy mx-auto mb-1" />
-                    <span className="text-regal-navy text-xs md:text-sm font-bold uppercase tracking-wider">
-                      AI
-                    </span>
-                  </div>
-                </div>
-              </div>
-              {/* Pulse rings */}
-              <div className="absolute inset-0 rounded-full border border-freedom-blue/15 animate-ping" style={{ animationDuration: "3s" }} />
-              <div className="absolute -inset-4 rounded-full border border-liberty-crimson/10 animate-ping" style={{ animationDuration: "4s", animationDelay: "1s" }} />
-            </div>
+          <div className="flex justify-center my-12">
+            <svg viewBox="0 0 160 160" className="h-32 w-32 md:h-40 md:w-40" role="img" aria-label="CampaignAI">
+              <defs>
+                <linearGradient id="ail-ring" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#FF3366" />
+                  <stop offset="0.5" stopColor="#8E5CF7" />
+                  <stop offset="1" stopColor="#4D9FFF" />
+                </linearGradient>
+                <linearGradient id="ail-spark" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#FF6B8F" />
+                  <stop offset="0.5" stopColor="#8E5CF7" />
+                  <stop offset="1" stopColor="#7AB8FF" />
+                </linearGradient>
+              </defs>
+              {/* rotating dashed multi-partisan orbit */}
+              <circle cx="80" cy="80" r="62" fill="none" stroke="url(#ail-ring)" strokeWidth="3" strokeDasharray="5 9" strokeLinecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 80 80" to="360 80 80" dur="28s" repeatCount="indefinite" />
+              </circle>
+              {/* navy disc */}
+              <circle cx="80" cy="80" r="46" fill="#0D1B3E" />
+              <circle cx="80" cy="80" r="46" fill="none" stroke="#4D9FFF" strokeOpacity="0.3" strokeWidth="1.5" />
+              {/* center AI sparkle */}
+              <g transform="translate(80 80) scale(2.5) translate(-12 -12)">
+                <path d={EMBLEM_SPARK} fill="url(#ail-spark)" className="ga-glow" />
+              </g>
+              {/* orbiting sparkles */}
+              {[
+                { x: 118, y: 52, s: 12, c: "#FF3366", d: 0 },
+                { x: 44, y: 110, s: 11, c: "#4D9FFF", d: 0.6 },
+                { x: 116, y: 116, s: 9, c: "#8E5CF7", d: 0.3 },
+              ].map((p, i) => {
+                const k = p.s / 24;
+                return (
+                  <g key={i} transform={`translate(${p.x} ${p.y}) scale(${k}) translate(-12 -12)`}>
+                    <path d={EMBLEM_SPARK} fill={p.c} className="sparkle-twinkle" style={{ ["--dur"]: `${2.6 + i * 0.4}s`, animationDelay: `${p.d}s` } as CSSProperties} />
+                  </g>
+                );
+              })}
+            </svg>
           </div>
         </ScrollReveal>
 
