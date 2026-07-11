@@ -56,8 +56,8 @@ function ChipRow<T extends { id: string; label: string }>({
 }) {
   return (
     <fieldset>
-      <legend className="mb-2.5 text-xs font-bold uppercase tracking-wider text-slate">{legend}</legend>
-      <div className="flex flex-wrap gap-2">
+      <legend className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-slate sm:mb-2.5 sm:text-xs">{legend}</legend>
+      <div className="grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap sm:gap-2">
         {items.map((it) => {
           const on = it.id === value;
           return (
@@ -66,7 +66,7 @@ function ChipRow<T extends { id: string; label: string }>({
               type="button"
               onClick={() => onChange(it.id)}
               aria-pressed={on}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue ${
+              className={`rounded-full border px-3 py-1.5 text-center text-[13px] font-semibold leading-tight transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue sm:px-4 sm:py-2 sm:text-left sm:text-sm ${
                 on ? "border-transparent bg-regal-navy text-white shadow-sm" : "border-gray-300 text-granite hover:border-regal-navy/50"
               }`}
             >
@@ -95,49 +95,48 @@ export function GetStartedSetup() {
   const bookHref = `${CALENDLY_PURCHASE}?${params.toString()}`;
 
   return (
-    <section className="bg-white pt-36 pb-16 md:pb-20">
+    <section className="bg-white pt-24 pb-12 md:pt-36 md:pb-20">
       <div className="mx-auto max-w-[1000px] px-4 sm:px-6">
-        <div className="mx-auto mb-10 max-w-2xl text-center">
-          <h1 className="font-heading text-4xl font-extrabold tracking-[-1px] text-regal-navy md:text-5xl">
+        <div className="mx-auto mb-5 max-w-2xl text-center md:mb-10">
+          <h1 className="font-heading text-[26px] font-extrabold leading-tight tracking-[-1px] text-regal-navy md:text-5xl">
             Let&apos;s make your first video.
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-granite md:text-xl">
-            You&apos;re three answers away from a plan. Nothing here is binding &mdash;
-            it just tailors what you&apos;ll see, and gives our team a head start.
+          <p className="mx-auto mt-2 hidden max-w-md text-sm leading-snug text-granite sm:block md:mt-4 md:max-w-none md:text-xl md:leading-relaxed">
+            Three quick answers and you&apos;ve got a plan. Nothing here is binding.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_360px] md:items-start">
+        <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_360px] md:items-start md:gap-6">
           {/* The three questions */}
-          <div className="space-y-6 rounded-3xl border border-gray-200 bg-dawn-frost/40 p-6 sm:p-8">
+          <div className="space-y-4 rounded-2xl border border-gray-200 bg-dawn-frost/40 p-4 sm:space-y-6 sm:p-6 md:rounded-3xl md:p-8">
             <ChipRow legend="Who's this for?" items={AUDIENCES} value={aud} onChange={setAud} />
             <ChipRow legend="What should your first video do?" items={GOALS} value={goal} onChange={setGoal} />
             <ChipRow legend="When do you need it?" items={TIMELINES} value={time} onChange={setTime} />
-            <p className="text-xs text-slate">Nothing you pick here leaves your browser until you book a call.</p>
+            <p className="hidden text-xs text-slate sm:block">Nothing you pick here leaves your browser until you book a call.</p>
           </div>
 
-          {/* The starting-point card */}
-          <div className="relative rounded-3xl bg-regal-navy p-6 text-beacon-white shadow-xl ring-1 ring-white/10 sm:p-7 md:sticky md:top-28">
+          {/* The starting-point card — compact on mobile so the whole picker fits one screen */}
+          <div className="relative rounded-2xl bg-regal-navy p-4 text-beacon-white shadow-xl ring-1 ring-white/10 sm:p-6 md:rounded-3xl md:p-7 md:sticky md:top-28">
             <AISparkle size={13} color="#7AB8FF" glow className="sparkle-twinkle absolute right-4 top-4" style={{ ["--dur"]: "2.8s" } as CSSProperties} />
-            <p className="text-[11px] font-bold uppercase tracking-widest text-horizon-azure">Your starting point</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-horizon-azure md:text-[11px]">Your starting point</p>
 
             {/* Price */}
-            <div className="mt-3 border-b border-white/10 pb-4">
+            <div className="mt-2 flex items-baseline gap-2 border-b border-white/10 pb-3 md:mt-3 md:block md:pb-4">
               {audience ? (
                 <>
-                  <p className="font-heading text-3xl font-extrabold text-beacon-white">{audience.price}</p>
-                  <p className="text-sm text-beacon-white/60">{audience.priceNote}</p>
+                  <p className="font-heading text-2xl font-extrabold text-beacon-white md:text-3xl">{audience.price}</p>
+                  <p className="text-xs text-beacon-white/60 md:text-sm">{audience.priceNote}</p>
                 </>
               ) : (
                 <>
-                  <p className="font-heading text-2xl font-extrabold text-beacon-white/70">Tell us who it&apos;s for</p>
-                  <p className="text-sm text-beacon-white/50">and we&apos;ll show your rate</p>
+                  <p className="font-heading text-xl font-extrabold text-beacon-white/70 md:text-2xl">Tell us who it&apos;s for</p>
+                  <p className="text-xs text-beacon-white/50 md:text-sm">&mdash; we&apos;ll show your rate</p>
                 </>
               )}
             </div>
 
-            {/* Assembled summary */}
-            <ul className="mt-4 space-y-2.5 text-sm">
+            {/* Assembled summary — full on desktop, hidden on mobile to fit one screen */}
+            <ul className="mt-4 hidden space-y-2.5 text-sm md:block">
               <li className="flex items-start gap-2.5">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-freedom-blue" strokeWidth={3} />
                 <span className="text-beacon-white/85">
@@ -156,16 +155,16 @@ export function GetStartedSetup() {
               </li>
             </ul>
 
-            <div className="mt-6">
-              <Button variant="patriot" href={bookHref} external className="w-full justify-center px-6 py-3">
+            <div className="mt-3 md:mt-6">
+              <Button variant="patriot" href={bookHref} external className="w-full justify-center px-6 py-2.5 md:py-3">
                 Book your onboarding call
               </Button>
-              <p className="mt-2 text-center text-xs text-beacon-white/55">
-                A 30-minute call to scope your video. No commitment.
+              <p className="mt-2 text-center text-[11px] text-beacon-white/55 md:text-xs">
+                A 30-min call to scope it. Nothing charged upfront.
               </p>
             </div>
 
-            <p className="mt-4 border-t border-white/10 pt-4 text-center text-xs text-beacon-white/60">
+            <p className="mt-3 hidden border-t border-white/10 pt-4 text-center text-xs text-beacon-white/60 md:block">
               Prefer to do it yourself later?{" "}
               <a href="#waitlist" className="inline-flex items-center gap-0.5 font-semibold text-freedom-blue hover:underline">
                 Join the waitlist <ArrowRight className="h-3 w-3" />
@@ -174,7 +173,7 @@ export function GetStartedSetup() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-sm text-slate">
+        <p className="mt-4 text-center text-xs text-slate md:mt-6 md:text-sm">
           Want the full breakdown first?{" "}
           <a href="/pricing" className="font-semibold text-freedom-blue hover:underline">See all pricing &rarr;</a>
         </p>
