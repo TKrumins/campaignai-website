@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { communityPosts } from "@/data/community-posts";
+import { PostCover } from "@/components/sections/community/PostCover";
 
 /**
  * Section 5 previews (6.1): STATIC cards built from the Substack post URLs
@@ -23,7 +24,11 @@ export function UpcomingContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {communityPosts.map(({ category, categoryColor, title, readTime, excerpt, url }, i) => (
             <ScrollReveal key={title} delay={i * 60}>
-              <div className="bg-dawn-frost rounded-2xl p-7 md:p-8 h-full flex flex-col">
+              <div className="bg-dawn-frost rounded-2xl h-full flex flex-col overflow-hidden">
+                <div className="aspect-[320/128] w-full">
+                  <PostCover index={i} />
+                </div>
+                <div className="p-7 md:p-8 flex flex-1 flex-col">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${categoryColor}`}>
                     {category}
@@ -44,6 +49,7 @@ export function UpcomingContent() {
                 >
                   Read on Substack &rarr;
                 </a>
+                </div>
               </div>
             </ScrollReveal>
           ))}
