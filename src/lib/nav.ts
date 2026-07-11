@@ -33,10 +33,9 @@ export const navItems: NavItem[] = [
         soon: true,
       },
       {
-        href: "#",
+        href: "/verified-human",
         label: "Verified Human",
         description: "Prove the campaign really made it.",
-        soon: true,
       },
     ],
   },

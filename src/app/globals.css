@@ -873,7 +873,22 @@ body { overflow-x: clip; }
   5% { transform: scale(1.8); filter: brightness(1.9); }
 }
 
+/* Verified Human lookup: a scan line sweeps a frame once when a sample is
+   checked, and the verdict readout settles in behind it. */
+@keyframes vhScan {
+  0% { top: 0; opacity: 0; }
+  12% { opacity: 0.95; }
+  88% { opacity: 0.95; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes vhSettle {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .vh-scan { animation: vhScan 1s ease-in-out 1; }
+  .vh-settle { animation: vhSettle 0.5s ease 0.15s both; }
   .hiw-spine-comet { animation: hiwSpineFlow 4.2s linear infinite; }
   .hiw-node-pulse { animation: hiwNodePulse 3.2s ease-in-out infinite; }
   .hiw-node-flash { animation: hiwNodeFlash 3.2s ease-in-out infinite; }
