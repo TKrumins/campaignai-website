@@ -79,7 +79,10 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - ⏳ Flagged for Tom's review on preview: pricing hierarchy with Candidate now leftmost-and-lifted; Campaign Arc calendar treatment (first swing); mobile top-nav going solid-navy on scroll vs. staying transparent.
 - ⚑ Added pre-close reconciliation item (home product: shown vs. delivered) to the gates list above.
 
-## BATCH 4 — About page
+## BATCH 4 — About page  ✅ (built ec6685b, local — awaiting push OK)
+- Done: founder titles + advisor credentials → Bridge Violet (non-partisan); FounderCollage light-purple backing + regal-navy outer ring + favicon mark removed; Advisors gradient ring → regal-navy; home Andrew Yang 140→176px + navy ring; OriginStory rebuilt as an interactive chapter timeline (node rail, red→violet→blue progress fill, crossfade card, prev/next); MissionSection close reworked off the paywall jump → mission + how-it-works/community CTAs; AboutHero ambient sparkles.
+- ⚠ Flag: founder/advisor photo PNGs have colored rings **baked into the image files** — a red/blue ring shows inside the new navy ring. Needs new founder photos (Tom owes) to be fully navy; or I can zoom-crop to hide the baked ring (risk: tighter face crops) — Tom's call.
+- ☐ Deferred: interactive-timeline treatment can iterate; deeper Fable SVG punch-up on IntersectionGraphic still available; founder pop-out pages still blocked on photos+bios.
 - ☐ Founder titles off all-blue → non-partisan treatment.
 - ☐ Profile-picture cards get light-purple accent.
 - ☐ Founder outer ring → dark blue (regal-navy), not gradient.
@@ -90,7 +93,9 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 - 🎨 About SVG punch-up.
 - 🔒 Founder pop-out pages (`/team/<name>` or modal) — pending photos+bios.
 
-## BATCH 5 — HOW IT WORKS (rename + dropdown + experiences)
+## BATCH 5 — HOW IT WORKS (rename + dropdown + experiences)  ◐ (part 1 built ebf89a6, local — awaiting push OK)
+- Done (part 1): nav dropdown via shared `src/lib/nav.ts` (desktop + mobile menu + bottom sheet) — "How It Works" → Video Production Process (live) + Channel Guidance / Verified Human as disabled "Soon" (Tom chose dropdown-now-with-placeholders); page renamed "Video Production Process" (eyebrow + title); ProcessTimeline beam → vertical red→violet→blue with white comet; numbered nodes ring + flash their own colour along the beam.
+- ☐ **Deferred to Batch 5b (focused creative pass):** full "unfolding story" rework (film players squiggling down a winding ribbon); "hit submit → production" visualization; "regulations are complicated" as user-as-hero; "your first video is great" graphic punch-up (self-serve coming-soon framing, larger thresholds, no-data-sale emphasis). When Batch 6 builds the two child pages, convert the "Soon" dropdown entries to live links.
 - ☐ Nav: HOW IT WORKS becomes a **dropdown**; page renamed (propose "Video Production Process").
 - ☐ Numbered-steps beam recolored red→purple→blue; each number gently flashes the matching color.
 - ☐ Rework as an unfolding "story" — film players squiggling down with a winding connecting ribbon (home-hero language). Make it an experience.
