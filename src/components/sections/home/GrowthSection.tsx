@@ -8,7 +8,12 @@ export function GrowthSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <SectionLabel text="Built to Grow With You" />
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <SectionLabel text="Built to Grow With You" />
+              <span className="inline-flex items-center rounded-full bg-pioneer-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-pioneer-gold">
+                Self-serve platform · Coming soon
+              </span>
+            </div>
             <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mt-3 mb-5">
               Your first video is great.
               <br />
@@ -35,6 +40,54 @@ export function GrowthSection() {
               and again, and turning every chapter into content that connects.
             </p>
           </div>
+        </ScrollReveal>
+
+        {/* The commitment underneath it all: this only works if the data you
+            share is safe. So it is — a promise, not a setting. */}
+        <ScrollReveal delay={200}>
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto">
+            <div className="rounded-2xl bg-white ring-1 ring-black/5 shadow-sm p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-verdant" aria-hidden="true">
+                  <path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z" />
+                </svg>
+                <h3 className="font-heading font-bold text-lg text-regal-navy">
+                  You own everything
+                </h3>
+              </div>
+              <p className="text-granite text-sm leading-relaxed">
+                Your story, your footage, your finished videos, your account.
+                What you build here is yours &mdash; to keep, download, and use
+                anywhere, with no watermark and no licensing fees.
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-white ring-1 ring-black/5 shadow-sm p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-verdant" aria-hidden="true">
+                  <path d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5l-9-4zm-1 15-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7z" />
+                </svg>
+                <h3 className="font-heading font-bold text-lg text-regal-navy">
+                  We never sell your data
+                </h3>
+              </div>
+              <p className="text-granite text-sm leading-relaxed">
+                Not to advertisers, not to anyone. What you share is used to make
+                your videos better &mdash; full stop. That&apos;s a standing
+                commitment, not a checkbox buried in settings.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={300}>
+          <p className="text-slate text-sm text-center max-w-[620px] mx-auto mt-8">
+            Soon, you&apos;ll run this whole process yourself in one self-serve
+            platform.{" "}
+            <span className="font-semibold text-regal-navy">
+              Until then, our team drives it with you.
+            </span>
+          </p>
         </ScrollReveal>
       </div>
     </section>

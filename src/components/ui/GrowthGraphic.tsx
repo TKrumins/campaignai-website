@@ -2,38 +2,42 @@
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
+// The content a campaign builds over a race — a bio, an announcement, two
+// fundraisers, five policy explainers, a GOTV push. Each one deepens what the
+// platform understands, until it knows the candidate. Larger, concrete
+// thresholds (per Tom) so the payoff reads as a real body of work.
 const milestones = [
   {
-    video: "Video 1",
-    label: "Your story",
+    content: "A bio",
+    label: "Who you are",
     layers: ["Voice"],
-    height: "h-[100px]",
+    height: "h-[110px]",
     opacity: "opacity-40",
   },
   {
-    video: "Video 2",
-    label: "Your message sharpens",
+    content: "1 announcement",
+    label: "You're in the race",
     layers: ["Voice", "Values"],
     height: "h-[160px]",
     opacity: "opacity-55",
   },
   {
-    video: "Video 3",
-    label: "Your brand takes shape",
+    content: "2 fundraisers",
+    label: "What you're fighting for",
     layers: ["Voice", "Values", "Policies"],
-    height: "h-[220px]",
+    height: "h-[215px]",
     opacity: "opacity-70",
   },
   {
-    video: "Video 4",
-    label: "Your presence builds",
+    content: "5 policy explainers",
+    label: "Your whole platform",
     layers: ["Voice", "Values", "Policies", "Brand"],
-    height: "h-[280px]",
+    height: "h-[275px]",
     opacity: "opacity-85",
   },
   {
-    video: "Video 5+",
-    label: "Knows your campaign like your best staffer",
+    content: "A GOTV push",
+    label: "Now we know the candidate",
     layers: ["Voice", "Values", "Policies", "Brand", "Strategy"],
     height: "h-[340px]",
     opacity: "opacity-100",
@@ -59,21 +63,22 @@ export function GrowthGraphic() {
     <div className="w-full max-w-[900px] mx-auto">
       {/* Rising bars */}
       <div className="flex items-end justify-center gap-2 sm:gap-5 md:gap-8 mb-8 overflow-x-auto">
-        {milestones.map(({ video, layers, height, opacity }, i) => {
+        {milestones.map(({ content, label, layers, height, opacity }, i) => {
           const isPayoff = i === milestones.length - 1;
           return (
-          <ScrollReveal key={video} delay={i * 120}>
+          <ScrollReveal key={content} delay={i * 120}>
             <div className="relative flex flex-col items-center">
-              {/* Sparkles on the payoff bar — the AI now "gets" the campaign */}
+              {/* Sparkles on the payoff bar — the platform now "gets" the campaign */}
               {isPayoff && (
                 <>
                   <span className="sparkle-twinkle absolute -top-1 right-0 text-pioneer-gold text-sm" aria-hidden="true">&#10022;</span>
                   <span className="sparkle-twinkle absolute top-4 -left-1 text-freedom-blue text-xs" style={{ animationDelay: "700ms" }} aria-hidden="true">&#10022;</span>
+                  <span className="sparkle-twinkle absolute top-10 right-1 text-liberty-crimson text-[10px]" style={{ animationDelay: "1100ms" }} aria-hidden="true">&#10022;</span>
                 </>
               )}
               {/* Bar */}
               <div
-                className={`w-12 sm:w-20 md:w-28 ${height} rounded-t-xl overflow-hidden relative shadow-lg transition-all duration-500`}
+                className={`w-14 sm:w-20 md:w-28 ${height} rounded-t-xl overflow-hidden relative shadow-lg transition-all duration-500 ${isPayoff ? "ring-2 ring-pioneer-gold/40" : ""}`}
               >
                 {/* Gradient fill */}
                 <div className={`absolute inset-0 bg-regal-navy ${opacity}`} />
@@ -96,14 +101,15 @@ export function GrowthGraphic() {
                 )}
               </div>
               {/* Label. No gradient here: the Patriot gradient is reserved for large,
-                  bold heading text on a dark background, and this is a text-xs caption
-                  on bg-dawn-frost. The on-light variant wouldn't rescue it either —
-                  violet on a light background at this size falls under the 4.5:1 contrast
-                  floor. The payoff bar is already the tallest and carries a shimmer, so
-                  weight alone is emphasis enough. */}
-              <div className="mt-3 text-center">
-                <p className={`font-heading text-xs sm:text-sm text-regal-navy ${isPayoff ? "font-extrabold" : "font-bold"}`}>
-                  {video}
+                  bold heading text on a dark background, and this is a tiny caption
+                  on bg-dawn-frost. The payoff bar is already the tallest, ringed, and
+                  carries a shimmer, so weight alone is emphasis enough. */}
+              <div className="mt-3 w-16 sm:w-20 md:w-28 text-center">
+                <p className={`font-heading text-xs sm:text-sm text-regal-navy leading-tight ${isPayoff ? "font-extrabold" : "font-bold"}`}>
+                  {content}
+                </p>
+                <p className={`mt-1 text-[10px] sm:text-[11px] leading-tight ${isPayoff ? "font-semibold text-freedom-blue" : "text-slate"}`}>
+                  {label}
                 </p>
               </div>
             </div>
@@ -121,7 +127,7 @@ export function GrowthGraphic() {
 
       {/* Bottom caption */}
       <ScrollReveal delay={600}>
-        <p className="text-center text-slate text-sm max-w-[500px] mx-auto">
+        <p className="text-center text-slate text-sm max-w-[520px] mx-auto">
           Every video deepens our understanding of your campaign.
           <br />
           <span className="font-semibold text-regal-navy">

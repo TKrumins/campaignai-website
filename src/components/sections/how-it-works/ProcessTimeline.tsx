@@ -1,10 +1,12 @@
 import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { StepMedia } from "@/components/sections/how-it-works/StepMedia";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
-// Node colours walk the beam red -> violet -> blue, one per step; each number
+// Node colours walk the ribbon red -> violet -> blue, one per scene; each number
 // gently flashes in its own colour (glow passed to the CSS var --node-glow).
 const NODE_COLORS = [
   { ring: "#FF3366", glow: "rgba(255,51,102,0.35)" },
@@ -14,6 +16,10 @@ const NODE_COLORS = [
   { ring: "#6398FA", glow: "rgba(99,152,250,0.30)" },
   { ring: "#4D9FFF", glow: "rgba(77,159,255,0.34)" },
 ];
+
+// Slight per-scene tilt so the film players zig-zag down the ribbon like the
+// home hero's reel. Alternates with the card's side.
+const TILT = [-2.5, 2.5, -2, 2, -2.5, 2];
 
 // The real production flow (6.3), in order. Titles are active — every step is
 // a decision the user makes; the AI only ever proposes.
@@ -50,72 +56,168 @@ const steps = [
   },
 ];
 
+// Winding ribbon threads in the home-hero visual language: a continuous
+// Multi-Partisan (red -> violet -> blue) path with drifting colour stops and a
+// travelling white comet. Desktop weaves down the centre; mobile hugs the left.
+const RIBBON_STOPS = [
+  { offset: 0, color: "#FF3366" },
+  { offset: 0.25, color: "#D144A1" },
+  { offset: 0.5, color: "#8E5CF7" },
+  { offset: 0.75, color: "#6A81FB" },
+  { offset: 1, color: "#4D9FFF" },
+];
+const RIBBON_CYCLE_S = 9;
+
+const RIBBON_D_DESKTOP =
+  "M 50 0 C 90 27 90 55 50 83 C 10 138 10 194 50 250 C 90 306 90 361 50 417 C 10 472 10 528 50 583 C 90 639 90 694 50 750 C 10 806 10 861 50 917 C 90 945 90 972 50 1000";
+const RIBBON_D_MOBILE =
+  "M 20 0 C 32 70 8 140 20 220 C 32 300 8 380 20 470 C 32 560 8 640 20 730 C 32 820 8 900 20 1000";
+
+// RWB sparkles scattered down the reel, kept off the copy columns.
+const SPARKS = [
+  { l: 6, t: 8, c: "#4D9FFF", s: 15 },
+  { l: 93, t: 18, c: "#FF3366", s: 13 },
+  { l: 50, t: 30, c: "#E8F4F8", s: 12 },
+  { l: 8, t: 52, c: "#E8F4F8", s: 13 },
+  { l: 92, t: 62, c: "#4D9FFF", s: 14 },
+  { l: 50, t: 76, c: "#FF3366", s: 12 },
+  { l: 9, t: 90, c: "#4D9FFF", s: 12 },
+];
+
+function RibbonThread({
+  d,
+  gradientId,
+  viewBox,
+  className,
+}: {
+  d: string;
+  gradientId: string;
+  viewBox: string;
+  className: string;
+}) {
+  return (
+    <svg
+      className={`ribbon-sway pointer-events-none absolute inset-y-0 h-full ${className}`}
+      viewBox={viewBox}
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0.35" y2="1">
+          {RIBBON_STOPS.map(({ offset, color }, i) => (
+            <stop
+              key={offset}
+              className="ribbon-stop"
+              offset={offset}
+              stopColor={color}
+              style={{ animationDelay: `${(i * RIBBON_CYCLE_S) / RIBBON_STOPS.length - RIBBON_CYCLE_S}s` }}
+            />
+          ))}
+        </linearGradient>
+      </defs>
+      <path d={d} fill="none" stroke={`url(#${gradientId})`} strokeWidth="7" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      <path
+        className="ribbon-comet"
+        d={d}
+        fill="none"
+        stroke="#E8F4F8"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+        opacity="0.9"
+      />
+    </svg>
+  );
+}
+
 export function ProcessTimeline() {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
-              Six steps. Every call is yours.
+            <SectionLabel text="The Process" />
+            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
+              Your story, unfolding one scene at a time.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
-              The AI does the heavy lifting. You steer at every step &mdash;
-              nothing moves forward until you say so.
+              Six scenes, from first conversation to finished film. The AI does
+              the heavy lifting &mdash; you direct every one, and nothing moves
+              forward until you say so.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Flowing timeline */}
+        {/* The reel: film players threaded down a winding Multi-Partisan ribbon */}
         <div className="relative">
-          {/* Vertical spine with a traveling light */}
-          <div
-            className="absolute left-[27px] md:left-[35px] top-2 bottom-2 w-[3px] rounded-full overflow-hidden"
-            aria-hidden="true"
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-liberty-crimson via-bridge-violet to-freedom-blue opacity-30" />
-            <div className="hiw-spine-comet absolute left-0 w-full h-16 bg-gradient-to-b from-transparent via-beacon-white to-transparent" />
-          </div>
+          {/* Winding ribbon — centred on desktop, left rail on mobile */}
+          <RibbonThread
+            d={RIBBON_D_DESKTOP}
+            gradientId="hiwRibbonDesktop"
+            viewBox="0 0 100 1000"
+            className="left-1/2 hidden w-[130px] -translate-x-1/2 md:block"
+          />
+          <RibbonThread
+            d={RIBBON_D_MOBILE}
+            gradientId="hiwRibbonMobile"
+            viewBox="0 0 40 1000"
+            className="left-0 w-[54px] md:hidden"
+          />
 
-          <div className="space-y-14 md:space-y-20">
-            {steps.map(({ number, title, body }, i) => (
-              <ScrollReveal key={number} delay={i * 60}>
-                <div className="relative pl-20 md:pl-28">
-                  {/* Number node on the spine */}
-                  <div className="absolute left-0 md:left-1 top-0">
-                    <div
-                      className="hiw-node-flash w-14 h-14 rounded-full p-[3px] shadow-md"
-                      style={{ background: NODE_COLORS[i].ring, ["--node-glow"]: NODE_COLORS[i].glow, animationDelay: `${i * 0.45}s` } as CSSProperties}
-                    >
-                      <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
-                        <span className="text-white font-heading font-extrabold text-lg">
-                          {String(number).padStart(2, "0")}
-                        </span>
+          {/* RWB sparkles */}
+          {SPARKS.map((p, i) => (
+            <AISparkle
+              key={i}
+              size={p.s}
+              color={p.c}
+              glow
+              className="sparkle-twinkle absolute z-10"
+              style={{ left: `${p.l}%`, top: `${p.t}%`, ["--dur"]: `${2.6 + (i % 3) * 0.5}s`, animationDelay: `${i * 0.35}s` } as CSSProperties}
+            />
+          ))}
+
+          <div className="relative z-10 space-y-16 md:space-y-24">
+            {steps.map(({ number, title, body }, i) => {
+              const cardLeft = i % 2 === 0;
+              return (
+                <ScrollReveal key={number} delay={i * 70}>
+                  <div className="relative">
+                    {/* Number node — a bead on the ribbon */}
+                    <div className="absolute z-30 left-[27px] top-4 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2">
+                      <div
+                        className="hiw-node-flash h-14 w-14 rounded-full p-[3px] shadow-md"
+                        style={{ background: NODE_COLORS[i].ring, ["--node-glow"]: NODE_COLORS[i].glow, animationDelay: `${i * 0.45}s` } as CSSProperties}
+                      >
+                        <div className="flex h-full w-full items-center justify-center rounded-full bg-regal-navy">
+                          <span className="font-heading text-lg font-extrabold text-white">
+                            {String(number).padStart(2, "0")}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pl-20 md:grid md:grid-cols-2 md:items-center md:gap-x-24 md:pl-0">
+                      <div className={cardLeft ? "md:order-1" : "md:order-2"}>
+                        <StepMedia step={number} title={title} tilt={TILT[i]} />
+                      </div>
+                      <div className={`mt-6 md:mt-0 ${cardLeft ? "md:order-2" : "md:order-1"}`}>
+                        <h3 className="font-heading font-bold text-2xl text-regal-navy leading-tight mb-3">
+                          {title}
+                        </h3>
+                        <p className="text-granite leading-relaxed">{body}</p>
                       </div>
                     </div>
                   </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
-                    <div>
-                      <h3 className="font-heading font-bold text-2xl text-regal-navy leading-tight mb-3">
-                        {title}
-                      </h3>
-                      <p className="text-granite leading-relaxed">{body}</p>
-                    </div>
-                    <div>
-                      <StepMedia step={number} title={title} />
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
 
-        {/* The fork: what happens after you submit */}
+        {/* The fork: submit, and it splits into production */}
         <ScrollReveal>
-          <div className="mt-20 max-w-[880px] mx-auto">
-            <div className="text-center mb-8">
+          <div className="mt-24 max-w-[920px] mx-auto">
+            <div className="text-center mb-10">
               <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy tracking-[-0.5px] mb-3">
                 Hit submit, and your video goes into production.
               </h3>
@@ -125,41 +227,70 @@ export function ProcessTimeline() {
                 still make every creative call either way.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Path A — available now */}
-              <div className="rounded-2xl bg-white ring-1 ring-black/5 shadow-md p-7 flex flex-col">
-                <span className="inline-flex w-fit items-center rounded-full bg-freedom-blue/10 text-freedom-blue text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
-                  Available now
-                </span>
-                <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">
-                  Our human editors
-                </h4>
-                <p className="text-granite text-sm leading-relaxed">
-                  Real editors take it from here &mdash; 3 revisions during
-                  development and 1 back-and-forth in post &mdash; and deliver
-                  your finished video within 48 hours of submission.
-                </p>
+
+            {/* Submit node forking into the two paths */}
+            <div className="relative">
+              <div className="relative flex justify-center">
+                <AISparkle size={14} color="#FF3366" glow className="sparkle-twinkle absolute -left-1 top-0 z-10" style={{ ["--dur"]: "2.4s" } as CSSProperties} />
+                <AISparkle size={12} color="#4D9FFF" glow className="sparkle-twinkle absolute -right-1 top-1 z-10" style={{ ["--dur"]: "2.8s", animationDelay: "500ms" } as CSSProperties} />
+                <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-regal-navy px-6 py-3 shadow-lg ring-1 ring-white/10">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-beacon-white" aria-hidden="true">
+                    <path d="M2 21l21-9L2 3v7l15 2-15 2z" />
+                  </svg>
+                  <span className="font-heading font-bold text-beacon-white">Submit</span>
+                </div>
               </div>
 
-              {/* Path B — coming soon */}
-              <div className="rounded-2xl bg-dawn-frost ring-1 ring-freedom-blue/20 p-7 flex flex-col">
-                <span className="inline-flex w-fit items-center rounded-full bg-pioneer-gold/15 text-pioneer-gold text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
-                  Coming soon
-                </span>
-                <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">
-                  AI post-production
-                </h4>
-                <p className="text-granite text-sm leading-relaxed mb-4 flex-1">
-                  Go from approved plan to finished cut faster and more
-                  affordably, with AI handling post &mdash; you still make every
-                  call. Be first in line when it launches.
-                </p>
-                <a
-                  href="/get-started#waitlist"
-                  className="inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold hover:underline"
-                >
-                  Join the waitlist &rarr;
-                </a>
+              {/* Y-fork: solid lit branch (now) + dashed branch (soon), with a
+                  signal flowing down each into production. */}
+              <svg
+                className="pointer-events-none absolute left-1/2 top-[46px] h-[60px] w-full max-w-[560px] -translate-x-1/2"
+                viewBox="0 0 560 60"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path d="M280 0 C280 34 140 26 140 60" fill="none" stroke="#4D9FFF" strokeWidth="3" strokeLinecap="round" />
+                <path d="M280 0 C280 34 420 26 420 60" fill="none" stroke="#8E5CF7" strokeWidth="3" strokeLinecap="round" strokeDasharray="5 7" opacity="0.6" />
+                <path className="proof-wave" d="M280 0 C280 34 140 26 140 60" fill="none" stroke="#E8F4F8" strokeWidth="2" strokeLinecap="round" opacity="0.8" />
+                <path className="proof-wave" d="M280 0 C280 34 420 26 420 60" fill="none" stroke="#E8F4F8" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+              </svg>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[68px]">
+                {/* Path A — available now */}
+                <div className="rounded-2xl bg-white ring-1 ring-freedom-blue/20 shadow-md p-7 flex flex-col">
+                  <span className="inline-flex w-fit items-center rounded-full bg-freedom-blue/10 text-freedom-blue text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
+                    Available now
+                  </span>
+                  <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">
+                    Our human editors
+                  </h4>
+                  <p className="text-granite text-sm leading-relaxed">
+                    Real editors take it from here &mdash; 3 revisions during
+                    development and 1 back-and-forth in post &mdash; and deliver
+                    your finished video within 48 hours of submission.
+                  </p>
+                </div>
+
+                {/* Path B — coming soon */}
+                <div className="rounded-2xl bg-dawn-frost ring-1 ring-bridge-violet/20 p-7 flex flex-col">
+                  <span className="inline-flex w-fit items-center rounded-full bg-pioneer-gold/15 text-pioneer-gold text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
+                    Coming soon
+                  </span>
+                  <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">
+                    AI post-production
+                  </h4>
+                  <p className="text-granite text-sm leading-relaxed mb-4 flex-1">
+                    Go from approved plan to finished cut faster and more
+                    affordably, with AI handling post &mdash; you still make every
+                    call. Be first in line when it launches.
+                  </p>
+                  <a
+                    href="/get-started#waitlist"
+                    className="inline-flex items-center gap-1 text-freedom-blue text-sm font-semibold hover:underline"
+                  >
+                    Join the waitlist &rarr;
+                  </a>
+                </div>
               </div>
             </div>
           </div>
