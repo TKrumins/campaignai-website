@@ -25,6 +25,7 @@ const FULL: Mix = { launch: true, bio: 1, fundraiser: 5, explainer: 6 };
 export function GrowthExplorer() {
   const [mix, setMix] = useState<Mix>({ ...DEFAULT });
   const [checked, setChecked] = useState<boolean>(false);
+  const [view, setView] = useState<"profile" | "chat">("profile");
 
   function setCount(key: CounterKey, next: number) {
     setMix((m) => ({ ...m, [key]: Math.max(0, Math.min(MAX_COUNT, next)) }));
@@ -131,25 +132,35 @@ export function GrowthExplorer() {
         </div>
       </div>
 
-      {/* Both views, driven by the same input */}
+      {/* One view at a time — a toggle keeps both without the visual bulk */}
       <div className="mt-12">
-        <p className="mb-5 text-center text-xs font-bold uppercase tracking-widest text-liberty-crimson">
-          Drafting your closing GOTV ad
-        </p>
-        <GrowthConversation mix={mix} />
-      </div>
+        <div className="mx-auto mb-8 flex w-fit items-center gap-1 rounded-full border border-gray-200 bg-dawn-frost/70 p-1">
+          {([
+            { key: "profile", label: "Your campaign profile" },
+            { key: "chat", label: "Draft your GOTV ad" },
+          ] as const).map((t) => {
+            const on = view === t.key;
+            return (
+              <button
+                key={t.key}
+                type="button"
+                onClick={() => setView(t.key)}
+                aria-pressed={on}
+                className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue ${
+                  on ? "bg-regal-navy text-beacon-white shadow-sm" : "text-slate hover:text-regal-navy"
+                }`}
+              >
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
 
-      <div className="my-14 flex items-center gap-4">
-        <span className="h-px flex-1 bg-black/10" />
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-slate">Same campaign, two views</span>
-        <span className="h-px flex-1 bg-black/10" />
-      </div>
-
-      <div>
-        <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-freedom-blue">
-          Your campaign profile
-        </p>
-        <GrowthProfile mix={mix} checked={checked} />
+        {view === "profile" ? (
+          <GrowthProfile mix={mix} checked={checked} />
+        ) : (
+          <GrowthConversation mix={mix} />
+        )}
       </div>
     </div>
   );
