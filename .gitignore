@@ -65,6 +65,10 @@ assets/jermaine-johnson-photos/
 /walkthrough-clips/*
 !/walkthrough-clips/README.md
 
+# Founder campaign graphics (posters, book covers, IG screenshots) split out of
+# the photo consolidation — kept for reference, never shipped.
+/founder-source-archive/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
