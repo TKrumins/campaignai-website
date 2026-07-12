@@ -27,7 +27,7 @@ Homepage overhaul (`2dfa48e`) is pushed to preview; Tom is reviewing in tranches
   - **SITEWIDE consistency flag** (same "a Republican, a Democrat, and an Independent" tagline lives OFF the About page — update together once scope confirmed): `TrustSection.tsx:45` (home), `CondensedPricingDisplay.tsx:25` (TRUST_LINE), `FounderGuideStrip.tsx:32` (/for), `HeroSection.tsx:89` (appears UNUSED — verify). `PartyPill.tsx` already has both Independent + Forward variants.
   - **KEEP (different meaning, not affiliation):** `AudienceSection.tsx:54` "Independent committees" (= independent-expenditure PACs).
 
-### Tranche 2 — 2026-07-12 (HOW IT WORKS pages)
+### Tranche 2 — 2026-07-12 (HOW IT WORKS pages) — ✅ BUILT + PUSHED `e7707f2` (all items below done; slug renamed, nav dropdown-only + relabeled, VPP copy + submit block + growth widget, home rotation). Remaining from this tranche: nothing. NOTE: nav relabel used Tranche-3 labels (Produce/Share/Stay Verified).
 
 **HOW IT WORKS — GENERAL**
 - ☐ **Nav "How It Works" should just open the dropdown, not navigate.** Today `navItems[0].href = "/how-it-works"` so clicking the label goes to the page. Remove the parent href (leave `children` only) so the label just activates the dropdown on desktop + toggles the submenu on mobile. (First child "Video Production Process" still links to the page.) Files: `src/lib/nav.ts`; verify `Navbar.tsx` (desktop label uses `item.href ?? "#"`) + mobile menu + `MobileBottomNav` handle a parentless item as a non-link/toggle.
