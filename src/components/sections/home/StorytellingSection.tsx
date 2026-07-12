@@ -312,11 +312,12 @@ export function StorytellingSection() {
           <div className="text-center max-w-[760px] mx-auto mb-12">
             <SectionLabel text="Take Your Message Everywhere" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-              Share your video far and wide.
+              Made to be shared, in real life.
             </h2>
             <p className="text-granite text-lg leading-relaxed mb-6">
-              Video is your most powerful tool on a campaign. Once produced, it
-              is ready to work hard wherever your audience spends their time.
+              Town halls and door knocks. Group chats and living rooms. Once your
+              video is produced, it does its best work in the hands of the people
+              who believe in you — passed along, wherever your audience already is.
             </p>
             <p className="font-heading font-bold text-xl text-regal-navy">
               Post it. Share it. Run it. Repeat.

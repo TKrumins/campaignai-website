@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HIWHero } from "@/components/sections/how-it-works/HIWHero";
 import { ProcessTimeline } from "@/components/sections/how-it-works/ProcessTimeline";
+import { CampaignArcSection } from "@/components/sections/home/CampaignArc";
 import { GrowthSection } from "@/components/sections/home/GrowthSection";
 import { VerificationSection } from "@/components/sections/how-it-works/VerificationSection";
 import { ComplianceBridge } from "@/components/sections/how-it-works/ComplianceBridge";
@@ -19,6 +20,7 @@ export default function HowItWorksPage() {
     <>
       <HIWHero />
       <ProcessTimeline />
+      <CampaignArcSection />
       <GrowthSection />
       <VerificationSection />
       <ComplianceBridge />

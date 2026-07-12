@@ -2,7 +2,8 @@
 
 import { Fragment, useEffect, useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Flag, Lock } from "lucide-react";
+import Link from "next/link";
+import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
@@ -345,8 +346,26 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
           </div>
         </div>
 
-        {/* Campaign arc: how the types play out over a cycle */}
-        <CampaignArc />
+        {/* Campaign arc — teased here; the full animated calendar lives on the
+            Video Production Process page so the home page stays lighter. */}
+        <div className="mt-16 text-center">
+          <SectionLabel text="The Campaign Arc" />
+          <h3 className="mx-auto mt-3 max-w-[640px] font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
+            A campaign is a series of stories, told in new and exciting ways.
+          </h3>
+          <p className="mx-auto mt-3 max-w-[620px] text-granite leading-relaxed">
+            Every video is a chapter — your launch, your asks, the policies you
+            fight for, the candid moments, the closing push. No single film is
+            your campaign. Told together, over a race, they are.
+          </p>
+          <Link
+            href="/how-it-works#campaign-arc"
+            className="mt-5 inline-flex items-center gap-1.5 font-semibold text-freedom-blue hover:underline"
+          >
+            See how they play out across a campaign
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -460,122 +479,6 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
       <p className="mt-3 text-xs text-slate">
         On the roadmap: simple trimming and captions so your own clips are quick to post.
       </p>
-    </div>
-  );
-}
-
-function CampaignArc() {
-  // A campaign content calendar. Each video type gets a lane; a stake is
-  // planted along the timeline every time that type ships, so the cadence
-  // (weekly fundraising, bi-weekly policy, sporadic rapid response and candid)
-  // reads at a glance — bookended by the Announcement and GOTV flags. Lanes are
-  // self-labeling, so the old legend is gone and the whole block reads lighter.
-  const lanes: {
-    key: string;
-    label: string;
-    cadence: string;
-    color: string;
-    flag?: boolean;
-    marks: number[];
-  }[] = [
-    // Bookend flags are Bridge Violet (red+blue united), not a red vs. blue
-    // pair — keeps the launch/GOTV markers non-partisan. Candid runs two heavy
-    // clusters (e.g. two stretches on the trail) among sparser drop-ins.
-    { key: "announce", label: "Announcement", cadence: "Launch day", color: "#8E5CF7", flag: true, marks: [4] },
-    { key: "fund", label: "Fundraising appeals", cadence: "Weekly", color: "#4D9FFF", marks: [12, 21, 30, 39, 48, 57, 66, 75, 84] },
-    { key: "policy", label: "Policy explainers", cadence: "Every other week", color: "#8E5CF7", marks: [16, 32, 48, 64, 80] },
-    { key: "rapid", label: "Rapid response", cadence: "As news breaks", color: "#FF6B8F", marks: [26, 44, 70, 88] },
-    { key: "candid", label: "Candid footage", cadence: "From the trail", color: "#94A3B8", marks: [12, 28, 31, 34, 37, 40, 58, 68, 71, 74, 77, 80, 93] },
-    { key: "gotv", label: "Get Out The Vote", cadence: "Final weekend", color: "#8E5CF7", flag: true, marks: [96] },
-  ];
-  return (
-    <div className="mt-16 md:mt-24">
-      {/* Light-bg lead-in: a labeled break BEFORE the navy card so on mobile the
-          arc reads as its own subsection, not a continuation of whichever video
-          type is selected in the sticky picker above (same bg blurred them). */}
-      <div className="mb-6 flex flex-col items-center gap-3 text-center">
-        <span className="h-8 w-px bg-gradient-to-b from-transparent to-regal-navy/25" aria-hidden />
-        <SectionLabel text="The Campaign Arc" />
-      </div>
-
-      <div className="relative overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-10 shadow-2xl">
-      {/* Stark stage change from the light product overview above: a navy band,
-          topped by the Multi-Partisan ribbon strip. */}
-      <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0" />
-      <div className="text-center max-w-[660px] mx-auto mb-10">
-        <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px]">
-          A campaign is a series of stories,
-          <br />
-          told in new and exciting ways.
-        </h3>
-        <p className="text-beacon-white/70 text-sm mt-3">
-          Every video is a chapter — your launch, your asks, the policies you
-          fight for, the candid moments, the closing push. No single film is your
-          campaign. Told together, over a race, they are.
-        </p>
-      </div>
-
-      <div className="mx-auto max-w-[880px]">
-        {/* bookend axis labels, aligned over the lane tracks */}
-        <div className="mb-2 flex items-center gap-3">
-          <div className="w-[104px] shrink-0 sm:w-[136px]" />
-          <div className="flex flex-1 justify-between text-[10px] font-bold uppercase tracking-[1.5px] text-beacon-white/50">
-            <span>Launch</span>
-            <span>Election Day</span>
-          </div>
-        </div>
-
-        {/* lanes, with a playhead that sweeps launch -> election day and pops
-            each release beat as it passes (delay per-mark keeps them in sync). */}
-        <div className="relative">
-          {lanes.map((lane) => (
-            <div key={lane.key} className="flex items-center gap-3 py-1.5">
-              <div className="w-[104px] shrink-0 text-right sm:w-[136px]">
-                <p className="font-heading text-[11px] font-bold leading-tight text-beacon-white sm:text-xs">
-                  {lane.label}
-                </p>
-                <p className="text-[10px] leading-tight text-beacon-white/45">{lane.cadence}</p>
-              </div>
-              <div className="relative h-7 flex-1">
-                {/* lane baseline */}
-                <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-white/10" />
-                {lane.marks.map((pos, i) => {
-                  const delay = `${((pos / 100) * 6 - 0.3).toFixed(2)}s`;
-                  return (
-                    <span
-                      key={i}
-                      className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
-                      style={{ left: `${pos}%` }}
-                    >
-                      {lane.flag ? (
-                        <Flag
-                          className="arc-beat h-[18px] w-[18px] drop-shadow"
-                          style={{ color: lane.color, fill: lane.color, animationDelay: delay } as CSSProperties}
-                          strokeWidth={1.5}
-                        />
-                      ) : (
-                        <span
-                          className="arc-beat block h-4 w-[3px] rounded-full"
-                          style={{ color: lane.color, background: "currentColor", animationDelay: delay } as CSSProperties}
-                        />
-                      )}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-
-          {/* sweeping playhead over the track region (label col + gap offset) */}
-          <div
-            className="pointer-events-none absolute inset-y-0 left-[116px] right-0 z-20 overflow-hidden motion-reduce:hidden sm:left-[148px]"
-            aria-hidden
-          >
-            <span className="arc-playhead absolute inset-y-1 w-[2px] rounded bg-beacon-white/80 shadow-[0_0_12px_2px_rgba(232,244,248,0.5)]" />
-          </div>
-        </div>
-      </div>
-      </div>
     </div>
   );
 }

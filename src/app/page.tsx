@@ -12,7 +12,7 @@ import { EthicsSection } from "@/components/sections/home/EthicsSection";
 import { FAQSection } from "@/components/sections/home/FAQSection";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
-import { HumanityTeam, HumanityField } from "@/components/sections/home/HumanitySection";
+import { HumanityTeam } from "@/components/sections/home/HumanitySection";
 
 export default function HomePage() {
   return (
@@ -26,15 +26,14 @@ export default function HomePage() {
             boundary (the white Product section's top) meets the nav's bottom. */}
         <div data-nav-switch aria-hidden />
         <ProductDemoPreview />
+        <ProblemSection />
+        <PricingSection />
         <ShowcaseSection />
         <HumanityTeam />
         <SocialProofStrip />
-        <ProblemSection />
-        <PricingSection />
         <HowItWorksSection />
-        <StorytellingSection />
         <AudienceSection />
-        <HumanityField />
+        <StorytellingSection />
         <TrustSection />
         <EthicsSection />
         <FAQSection />
