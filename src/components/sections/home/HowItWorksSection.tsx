@@ -90,7 +90,7 @@ export function HowItWorksSection() {
 
         <ScrollReveal>
           <div className="text-center mt-12">
-            <Button variant="blue-outline" href="/how-it-works">
+            <Button variant="blue-outline" href="/video-production-process">
               See the full process &rarr;
             </Button>
           </div>

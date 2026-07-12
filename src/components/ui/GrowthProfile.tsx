@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { AISparkle } from "@/components/ui/AISparkle";
 import {
   computeTraits,
-  completeness,
+  readinessPct,
   gotvReady,
   totalContent,
   TRAIT_COLOR,
@@ -33,7 +33,7 @@ const LEGEND: { key: ContentKey; label: string }[] = [
 
 export function GrowthProfile({ mix, checked }: { mix: Mix; checked: boolean }) {
   const traits = computeTraits(mix);
-  const overall = completeness(mix);
+  const overall = readinessPct(mix);
   const ready = gotvReady(mix);
   const empty = totalContent(mix) === 0;
   const present: Record<ContentKey, boolean> = {
@@ -68,7 +68,7 @@ export function GrowthProfile({ mix, checked }: { mix: Mix; checked: boolean }) 
             </div>
             <span className="ml-auto text-right">
               <span className="block font-heading text-2xl font-extrabold text-beacon-white motion-safe:transition-all motion-safe:duration-700">{overall}%</span>
-              <span className="block text-[10px] font-semibold uppercase tracking-wider text-beacon-white/50">understood</span>
+              <span className="block text-[10px] font-semibold uppercase tracking-wider text-beacon-white/50">to GOTV ready</span>
             </span>
           </div>
 

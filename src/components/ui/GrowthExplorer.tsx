@@ -132,9 +132,13 @@ export function GrowthExplorer() {
         </div>
       </div>
 
-      {/* One view at a time — a toggle keeps both without the visual bulk */}
+      {/* One view at a time — a prominent toggle so the second view (Draft your
+          GOTV ad) is clearly there to be explored, not easy to miss. */}
       <div className="mt-12">
-        <div className="mx-auto mb-8 flex w-fit items-center gap-1 rounded-full border border-gray-200 bg-dawn-frost/70 p-1">
+        <p className="mb-3 text-center text-xs font-bold uppercase tracking-wider text-slate">
+          Two ways to see it &mdash; switch anytime
+        </p>
+        <div className="mx-auto mb-8 flex w-fit items-center gap-1.5 rounded-full border-2 border-regal-navy/15 bg-white p-1.5 shadow-sm">
           {([
             { key: "profile", label: "Your campaign profile" },
             { key: "chat", label: "Draft your GOTV ad" },
@@ -146,8 +150,8 @@ export function GrowthExplorer() {
                 type="button"
                 onClick={() => setView(t.key)}
                 aria-pressed={on}
-                className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue ${
-                  on ? "bg-regal-navy text-beacon-white shadow-sm" : "text-slate hover:text-regal-navy"
+                className={`rounded-full px-5 py-2.5 text-sm font-bold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue ${
+                  on ? "bg-regal-navy text-beacon-white shadow" : "text-regal-navy/55 hover:text-regal-navy"
                 }`}
               >
                 {t.label}

@@ -11,7 +11,7 @@ import {
 } from "@/lib/constants";
 
 const siteLinks = [
-  { href: "/how-it-works", label: "How It Works" },
+  { href: "/video-production-process", label: "How It Works" },
   { href: "/pricing", label: "Pricing" },
   { href: "/#our-work", label: "Our Work" },
   { href: "/about", label: "About" },

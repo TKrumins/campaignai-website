@@ -20,10 +20,9 @@ export function HIWHero() {
           Bring your story to life.
         </h1>
         <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-          You bring the story only you can tell. Our guided process helps you and
-          your team shape it into something authentically yours &mdash; you make
-          every creative decision, verified by CampaignAI. This isn&apos;t handing
-          your story to a black box. It&apos;s AI built to put you in charge.
+          Our guided process helps you craft and shape your story into a video
+          that is authentically yours. You make every creative decision,
+          guaranteed.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3 text-base">

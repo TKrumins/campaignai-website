@@ -21,7 +21,7 @@ export function ChannelsCTA() {
           <p className="mt-3 text-sm text-slate">{CTA_MICROCOPY}</p>
           <p className="mt-6 text-sm text-slate">
             Want to see how the video gets made?{" "}
-            <a href="/how-it-works" className="font-semibold text-freedom-blue hover:underline">
+            <a href="/video-production-process" className="font-semibold text-freedom-blue hover:underline">
               See the production process &rarr;
             </a>
           </p>

@@ -28,7 +28,7 @@ export function NewsletterEndcap({
             <EmailCapture purpose="newsletter" buttonLabel="Subscribe →" compact />
           </div>
           <Link
-            href="/how-it-works"
+            href="/video-production-process"
             className="inline-flex items-center gap-1 mt-6 text-freedom-blue font-semibold text-sm hover:underline"
           >
             See how we make video &rarr;

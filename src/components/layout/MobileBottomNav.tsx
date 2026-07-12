@@ -53,15 +53,21 @@ export function MobileBottomNav() {
         <nav className="flex flex-col gap-1 px-4 py-3">
           {navItems.map((item) => (
             <div key={item.label} className="flex flex-col">
-              <Link
-                href={item.href ?? "#"}
-                onClick={() => setMenuOpen(false)}
-                className={`rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.5px] ${
-                  pathname === item.href ? "bg-white/10 text-beacon-white" : "text-beacon-white/70 hover:text-beacon-white"
-                }`}
-              >
-                {item.label}
-              </Link>
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.5px] ${
+                    pathname === item.href ? "bg-white/10 text-beacon-white" : "text-beacon-white/70 hover:text-beacon-white"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.5px] text-beacon-white/50">
+                  {item.label}
+                </span>
+              )}
               {item.children && (
                 <div className="mb-1 ml-4 flex flex-col gap-1 border-l border-white/10 pl-3">
                   {item.children.map((c) =>

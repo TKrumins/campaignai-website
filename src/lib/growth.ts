@@ -106,6 +106,14 @@ export function gotvReady(mix: Mix): boolean {
   return mix.launch && completeness(mix) >= READY_THRESHOLD;
 }
 
+// "% to GOTV ready" — progress toward the readiness threshold, shaped so a small
+// catalogue climbs to ~60% quickly, then slows through the final stretch (a low
+// bar to be broadly "understood", a hard climb to fully GOTV-ready).
+export function readinessPct(mix: Mix): number {
+  const x = Math.min(1, completeness(mix) / READY_THRESHOLD);
+  return Math.round(100 * (1 - Math.pow(1 - x, 1.4)));
+}
+
 export type Tier = "cold" | "early" | "building" | "deep";
 
 export function tierOf(mix: Mix): Tier {

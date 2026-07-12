@@ -22,7 +22,7 @@ export function VerifiedHumanCTA() {
             <p className="mt-3 text-sm text-beacon-white/60">{CTA_MICROCOPY}</p>
             <p className="mt-6 text-sm text-beacon-white/60">
               Curious how the videos get made?{" "}
-              <a href="/how-it-works" className="font-semibold text-freedom-blue hover:underline">
+              <a href="/video-production-process" className="font-semibold text-freedom-blue hover:underline">
                 See the production process &rarr;
               </a>
             </p>

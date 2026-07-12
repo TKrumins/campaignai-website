@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
 import Link from "next/link";
 import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, ArrowRight } from "lucide-react";
@@ -149,26 +149,45 @@ const STAGE_SPARKS = [
  * /preview/product route. The homepage must never render it.
  */
 export function ProductDemoPreview({ internal = false }: { internal?: boolean }) {
-  // Open on Announcement (the arc's first beat) and auto-rotate through the four
-  // core types every 4s so the section previews the whole product on its own.
-  // The moment a visitor picks a type, the rotation stops for good — they're
-  // driving now — until the page is refreshed.
+  // Open on Announcement (the arc's first beat). Once the visitor reaches the
+  // section, auto-rotate through the four core types every 5s (crossfading) so it
+  // previews the whole product on its own. The moment they pick a type, the
+  // rotation stops for good — they're driving now — until the page is refreshed.
   const [active, setActive] = useState(0);
   const [userPicked, setUserPicked] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const t = TYPES[active];
 
+  // Only start the rotation once the visitor actually reaches the section.
   useEffect(() => {
-    if (userPicked) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (userPicked || !inView) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => {
       setActive((prev) => {
         const at = CORE_INDICES.indexOf(prev);
         return CORE_INDICES[(at + 1) % CORE_INDICES.length];
       });
-    }, 4000);
+    }, 5000);
     return () => clearInterval(id);
-  }, [userPicked]);
+  }, [userPicked, inView]);
 
   function select(i: number) {
     setActive(i);
@@ -177,7 +196,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
   }
 
   return (
-    <section className="py-16 md:py-24 bg-dawn-frost">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-dawn-frost">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {internal && (
           <div className="mb-8 rounded-xl border border-bridge-violet/30 bg-bridge-violet/5 px-5 py-3 text-center text-sm text-regal-navy">
@@ -277,6 +296,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                 />
               ))}
               <div className="relative z-10 aspect-video w-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 bg-regal-navy">
+              <div key={active} className="stage-in h-full w-full">
               {t.video && playing ? (
                 <video
                   src={t.video.src}
@@ -306,6 +326,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               ) : (
                 <PlaceholderStage title={t.title} spark={t.spark} />
               )}
+              </div>
               </div>
             </div>
 
@@ -359,7 +380,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             your campaign. Told together, over a race, they are.
           </p>
           <Link
-            href="/how-it-works#campaign-arc"
+            href="/video-production-process#campaign-arc"
             className="mt-5 inline-flex items-center gap-1.5 font-semibold text-freedom-blue hover:underline"
           >
             See how they play out across a campaign

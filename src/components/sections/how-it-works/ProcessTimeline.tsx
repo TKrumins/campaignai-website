@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Scissors, Wand2 } from "lucide-react";
+import { Scissors, Wand2, MousePointerClick, Music } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
@@ -26,41 +26,43 @@ const TILT = [-2.5, 2.5, -2, 2, -2.5, 2, -2];
 
 // The real production flow (6.3), in order. Titles are active — every step is
 // a decision the user makes; the AI only ever proposes.
+// Bodies are Tom's copy verbatim; "\n" starts a new line, a leading "*" marks a
+// footnote. Titles are short, active labels — every step is your decision.
 const steps = [
   {
     number: 1,
-    title: "Talk it through",
-    body: "It starts as a conversation. A guided intake interview asks about the core pieces of your video, offering context and suggestions as you describe what you want to make — so you never start from a blank page.",
+    title: "Start with a conversation",
+    body: "Our guided intake interview asks about your vision for the video, offering context and suggestions as needed. No more “starting from a blank page.”",
   },
   {
     number: 2,
     title: "Approve your brief",
-    body: "The AI turns that conversation into a clear production brief — the blueprint for your video. You review it, adjust anything that's off, and approve it before a single frame gets built.",
+    body: "Receive a clear, structured production brief for your video. Review it, adjust anything that is off, and approve it to start production.",
   },
   {
     number: 3,
-    title: "Shape the script, in your words",
-    body: "A script is written in real time, broken into frames that pair what the narrator says with what the viewer sees. Edit any line directly, or lean on an AI refinement panel — every final word is yours.",
+    title: "Shape the script",
+    body: "A script is drafted in real time, broken into frames that pair what the viewer sees and hears. Edit any line directly or use our AI refinement tools. You decide what goes in every line.",
   },
   {
     number: 4,
-    title: "Storyboard it, frame by frame",
-    body: "The AI sketches your storyboard as you watch — low-fidelity frames appearing before your eyes — so you can see the shape of the video and shape it, one frame at a time.",
+    title: "Build the storyboard",
+    body: "Navigate your visual storyboard, using simple sketches to inspire ideas for how you want the video to look and feel to the audience.",
   },
   {
     number: 5,
-    title: "Select your content",
-    body: "Fill each frame your way: pull from the CampaignAI asset library, upload your own photos and footage, drop a placeholder to add later, or get a “go film it” guide for a shot only you can capture. Prefer stock or AI-generated b-roll? Steer it with a reference of your own.",
+    title: "Bring in your content",
+    body: "Bring in your content from the CampaignAI asset library, upload your own photos and footage, set a reminder to add later, or get a “Go Film It” guide for a shot only you can capture.\nPrefer stock footage or AI-generated footage? Provide guidance for our editors to achieve your vision.",
   },
   {
     number: 6,
-    title: "Direct the voice and music",
-    body: "Choose the voiceover that carries your script — clear styles like Authoritative or Warm, in a male or female voice — then fine-tune it, or upload your own. Do the same for the score: an AI-made track you guide, your own recording, or none at all.",
+    title: "Direct voice & music",
+    body: "Set the direction for your voiceover with starting examples and fine-tuning, or upload your own. Do the same for the score: guide an AI-made track, upload your own recording, or none at all.",
   },
   {
     number: 7,
-    title: "Review, approve, and submit",
-    body: "Add anything still outstanding, look over the whole thing, and submit. That's the hand-off to post-production — polish, stitching, compliance checks, and quality assurance — and the only step where you hand off the wheel.",
+    title: "Review and submit",
+    body: "Upload anything else you want to see in the video, look over the whole thing, and submit.\nThis starts the hand-off to post-production — stitching, polish, compliance checks, and quality assurance — and the only step where you hand over the wheel.\n*Video packages start with 1–2 revisions, with additional revisions available for purchase.",
   },
 ];
 
@@ -75,8 +77,8 @@ const SPARKS = [
   { l: 9, t: 90, c: "#4D9FFF", s: 12 },
 ];
 
-// A little "editing bay" strip for the human-editors path: a mini frame with an
-// edit timeline. Clip blocks in the Multi-Partisan hues.
+// The human-editors path: a live editing bay — a playhead scrubs the frame, clips
+// get trimmed and moved on the timeline, a note gets scored in, a polish sparkle.
 function EditingBayVisual() {
   return (
     <div className="relative mb-5 overflow-hidden rounded-xl bg-regal-navy p-3 ring-1 ring-black/10" aria-hidden="true">
@@ -85,23 +87,26 @@ function EditingBayVisual() {
           <Scissors className="h-3.5 w-3.5 text-freedom-blue" />
         </span>
         <span className="text-[11px] font-semibold text-beacon-white/80">Editing bay</span>
-        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-liberty-crimson" />
+        <Music className="ml-auto h-3.5 w-3.5 text-horizon-azure ga-slide" />
       </div>
-      {/* preview frame */}
-      <div className="mb-2 h-10 rounded-md bg-gradient-to-br from-[#23407E] to-freedom-blue/70" />
-      {/* timeline */}
+      {/* preview frame — a playhead scrubs across, a polish sparkle twinkles */}
+      <div className="relative mb-2 h-10 overflow-hidden rounded-md bg-gradient-to-br from-[#23407E] to-freedom-blue/70">
+        <span className="hiw-scrub absolute top-0 h-full w-px bg-beacon-white/80" />
+        <AISparkle size={10} color="#FFFFFF" glow className="sparkle-twinkle absolute right-1.5 top-1" style={{ ["--dur"]: "2.2s" } as CSSProperties} />
+      </div>
+      {/* timeline — clips trimmed (scaleX), moved (slide), added (pulse) */}
       <div className="flex items-center gap-1">
-        <span className="h-3 flex-[3] rounded-sm bg-liberty-crimson/80" />
-        <span className="h-3 flex-[2] rounded-sm bg-bridge-violet/80" />
-        <span className="h-3 flex-[4] rounded-sm bg-freedom-blue/80" />
-        <span className="h-3 flex-[2] rounded-sm bg-horizon-azure/80" />
+        <span className="hiw-trim h-3 flex-[3] rounded-sm bg-liberty-crimson/80" />
+        <span className="ga-slide h-3 flex-[2] rounded-sm bg-bridge-violet/80" />
+        <span className="hiw-trim h-3 flex-[4] rounded-sm bg-freedom-blue/80" style={{ animationDelay: "0.9s" }} />
+        <span className="ga-blink h-3 flex-[2] rounded-sm bg-horizon-azure/80" />
       </div>
     </div>
   );
 }
 
-// A little "render" strip for the AI path: a mini frame with sparkles and a
-// progress bar mid-render.
+// The AI path: the same bay, but the machine is doing it — a generative shimmer
+// sweeps the frame, sparkles bloom, and the render bar fills on its own.
 function RenderVisual() {
   return (
     <div className="relative mb-5 overflow-hidden rounded-xl bg-regal-navy p-3 ring-1 ring-bridge-violet/20" aria-hidden="true">
@@ -112,13 +117,14 @@ function RenderVisual() {
         <span className="text-[11px] font-semibold text-beacon-white/80">AI render</span>
         <AISparkle size={12} color="#E8F4F8" glow className="sparkle-twinkle ml-auto" style={{ ["--dur"]: "2.4s" } as CSSProperties} />
       </div>
-      {/* preview frame */}
-      <div className="relative mb-2 h-10 rounded-md bg-gradient-to-br from-bridge-violet/50 to-freedom-blue/60">
+      {/* preview frame — generative shimmer + blooming sparkles */}
+      <div className="sheen-sweep relative mb-2 h-10 overflow-hidden rounded-md bg-gradient-to-br from-bridge-violet/50 to-freedom-blue/60">
         <AISparkle size={12} color="#FFFFFF" glow className="sparkle-twinkle absolute right-2 top-1.5" style={{ ["--dur"]: "3s", animationDelay: "400ms" } as CSSProperties} />
+        <AISparkle size={8} color="#FF6B8F" glow className="sparkle-twinkle absolute bottom-1 left-2" style={{ ["--dur"]: "2.2s", animationDelay: "800ms" } as CSSProperties} />
       </div>
-      {/* progress */}
+      {/* progress fills as it renders */}
       <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
-        <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-bridge-violet to-freedom-blue" />
+        <div className="hiw-fill h-full rounded-full bg-gradient-to-r from-bridge-violet to-freedom-blue" />
       </div>
     </div>
   );
@@ -135,9 +141,8 @@ export function ProcessTimeline() {
               Your story, unfolding one scene at a time.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
-              Seven steps, from first conversation to finished film. The AI does
-              the heavy lifting &mdash; you direct every one, and nothing moves
-              forward until you say so.
+              Seven steps, from first conversation to finished film. You direct
+              every one &mdash; nothing moves forward until you say so.
             </p>
           </div>
         </ScrollReveal>
@@ -186,7 +191,15 @@ export function ProcessTimeline() {
                         <h3 className="font-heading font-bold text-2xl text-regal-navy leading-tight mb-3">
                           {title}
                         </h3>
-                        <p className="text-granite leading-relaxed">{body}</p>
+                        <div className="space-y-2 text-granite leading-relaxed">
+                          {body.split("\n").map((line, j) =>
+                            line.startsWith("*") ? (
+                              <p key={j} className="text-xs text-slate">{line.slice(1)}</p>
+                            ) : (
+                              <p key={j}>{line}</p>
+                            )
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -204,29 +217,35 @@ export function ProcessTimeline() {
                 Hit submit, and your video goes into production.
               </h3>
               <p className="text-granite leading-relaxed max-w-[620px] mx-auto">
-                Today, every project is finished by our human editors. Soon,
-                you&apos;ll be able to choose your path &mdash; and you&apos;ll
-                still make every creative call either way.
+                Right now, real people on our team take it from there and finish
+                every video by hand. Soon, you&apos;ll be able to choose your path
+                &mdash; and either way, every creative call stays yours.
               </p>
             </div>
 
             {/* Submit node forking into the two paths */}
             <div className="relative">
-              <div className="relative flex justify-center">
-                <AISparkle size={14} color="#FF3366" glow className="sparkle-twinkle absolute -left-1 top-0 z-10" style={{ ["--dur"]: "2.4s" } as CSSProperties} />
-                <AISparkle size={12} color="#4D9FFF" glow className="sparkle-twinkle absolute -right-1 top-1 z-10" style={{ ["--dur"]: "2.8s", animationDelay: "500ms" } as CSSProperties} />
-                <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-regal-navy px-6 py-3 shadow-lg ring-1 ring-white/10">
-                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-beacon-white" aria-hidden="true">
+              <div className="relative flex flex-col items-center">
+                <AISparkle size={14} color="#FF3366" glow className="sparkle-twinkle absolute left-[calc(50%-64px)] top-0 z-10" style={{ ["--dur"]: "2.4s" } as CSSProperties} />
+                <AISparkle size={12} color="#4D9FFF" glow className="sparkle-twinkle absolute left-[calc(50%+52px)] top-1 z-10" style={{ ["--dur"]: "2.8s", animationDelay: "500ms" } as CSSProperties} />
+                {/* Illustration of the moment you submit — deliberately NOT a real
+                    button: dashed outline + a cursor tapping it + a caption. */}
+                <div className="relative z-10 inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-regal-navy/35 bg-white px-6 py-3">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-regal-navy" aria-hidden="true">
                     <path d="M2 21l21-9L2 3v7l15 2-15 2z" />
                   </svg>
-                  <span className="font-heading font-bold text-beacon-white">Submit</span>
+                  <span className="font-heading font-bold text-regal-navy">Submit</span>
+                  <MousePointerClick className="hiw-tap h-5 w-5 text-freedom-blue" aria-hidden="true" />
                 </div>
+                <span className="mt-2 text-[11px] font-medium uppercase tracking-wider text-slate">
+                  The one moment you press go
+                </span>
               </div>
 
               {/* Y-fork: solid lit branch (now) + dashed branch (soon), with a
                   signal flowing down each into production. */}
               <svg
-                className="pointer-events-none absolute left-1/2 top-[46px] h-[60px] w-full max-w-[560px] -translate-x-1/2"
+                className="pointer-events-none absolute left-1/2 top-[86px] h-[60px] w-full max-w-[560px] -translate-x-1/2"
                 viewBox="0 0 560 60"
                 preserveAspectRatio="none"
                 aria-hidden="true"
@@ -237,30 +256,30 @@ export function ProcessTimeline() {
                 <path className="proof-wave" d="M280 0 C280 34 420 26 420 60" fill="none" stroke="#E8F4F8" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
               </svg>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-[68px]">
+              <div className="grid grid-cols-2 gap-3 md:gap-6 mt-[76px]">
                 {/* Path A — available now */}
-                <div className="rounded-2xl bg-white ring-1 ring-freedom-blue/20 shadow-md p-7 flex flex-col">
+                <div className="rounded-2xl bg-white ring-1 ring-freedom-blue/20 shadow-md p-4 sm:p-7 flex flex-col">
                   <EditingBayVisual />
-                  <span className="inline-flex w-fit items-center rounded-full bg-freedom-blue/10 text-freedom-blue text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
+                  <span className="inline-flex w-fit items-center rounded-full bg-freedom-blue/10 text-freedom-blue text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 mb-4">
                     Available now
                   </span>
-                  <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">
-                    Our human editors
+                  <h4 className="font-heading font-bold text-lg sm:text-xl text-regal-navy mb-2">
+                    Hand-finished by our editors
                   </h4>
                   <p className="text-granite text-sm leading-relaxed">
-                    Real editors take it from here &mdash; 3 revisions during
-                    development and 1 back-and-forth in post &mdash; and deliver
-                    your finished video within 48 hours of submission.
+                    Real people on our team take it from here &mdash; 3 revisions
+                    during development and 1 in post &mdash; and deliver your
+                    finished video within 48 hours of submission.
                   </p>
                 </div>
 
                 {/* Path B — coming soon */}
-                <div className="rounded-2xl bg-dawn-frost ring-1 ring-bridge-violet/20 p-7 flex flex-col">
+                <div className="rounded-2xl bg-dawn-frost ring-1 ring-bridge-violet/20 p-4 sm:p-7 flex flex-col">
                   <RenderVisual />
-                  <span className="inline-flex w-fit items-center rounded-full bg-pioneer-gold/15 text-pioneer-gold text-xs font-bold uppercase tracking-wider px-3 py-1 mb-4">
+                  <span className="inline-flex w-fit items-center rounded-full bg-pioneer-gold/15 text-pioneer-gold text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 mb-4">
                     Coming soon
                   </span>
-                  <h4 className="font-heading font-bold text-xl text-regal-navy mb-2">
+                  <h4 className="font-heading font-bold text-lg sm:text-xl text-regal-navy mb-2">
                     AI post-production
                   </h4>
                   <p className="text-granite text-sm leading-relaxed mb-4 flex-1">

@@ -8,16 +8,9 @@ export function GrowthSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="flex items-center justify-center gap-3 flex-wrap">
-              <SectionLabel text="Built to Grow With You" />
-              <span className="inline-flex items-center rounded-full bg-pioneer-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-pioneer-gold">
-                Self-serve platform · Coming soon
-              </span>
-            </div>
+            <SectionLabel text="Built to Grow With You" />
             <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mt-3 mb-5">
-              Your first video is great.
-              <br />
-              Your fifth knows your campaign like your best staffer.
+              Storytelling that gets better with every video.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
               Every video, every conversation, every piece of context you share
@@ -82,10 +75,10 @@ export function GrowthSection() {
 
         <ScrollReveal delay={300}>
           <p className="text-slate text-sm text-center max-w-[620px] mx-auto mt-8">
-            Soon, you&apos;ll run this whole process yourself in one self-serve
-            platform.{" "}
+            The more videos we make together, the better our team understands
+            your campaign.{" "}
             <span className="font-semibold text-regal-navy">
-              Until then, our team drives it with you.
+              Every next one is sharper than the last.
             </span>
           </p>
         </ScrollReveal>

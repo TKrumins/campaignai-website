@@ -12,7 +12,7 @@ import { navItems } from "@/lib/nav";
 // Pages with a DARK hero: the nav is transparent over the hero (light logo),
 // then solidifies to navy on scroll. Light-hero pages (e.g. /pricing) are left
 // off, so their nav stays solid navy — light logo, always legible, no swap.
-const darkHeroPages = ["/", "/how-it-works", "/about", "/compliance", "/community", "/regulations", "/ethics", "/ai-in-campaigns", "/CampaignAIDisclosure"];
+const darkHeroPages = ["/", "/video-production-process", "/about", "/compliance", "/community", "/regulations", "/ethics", "/ai-in-campaigns", "/CampaignAIDisclosure"];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -106,13 +106,24 @@ export function Navbar() {
             {navItems.map((item) =>
               item.children ? (
                 <div key={item.label} className="relative group">
-                  <Link
-                    href={item.href ?? "#"}
-                    className={`inline-flex items-center gap-1 transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(item.href ?? "")}`}
-                  >
-                    {item.label}
-                    <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" aria-hidden />
-                  </Link>
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className={`inline-flex items-center gap-1 transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getLinkClasses(item.href)}`}
+                    >
+                      {item.label}
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" aria-hidden />
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      className="inline-flex cursor-default items-center gap-1 text-sm font-semibold uppercase tracking-[0.5px] text-beacon-white/70 transition-colors group-hover:text-beacon-white"
+                    >
+                      {item.label}
+                      <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" aria-hidden />
+                    </button>
+                  )}
                   {/* Dropdown panel — revealed on hover or keyboard focus. The
                       pt-4 keeps a hover bridge between trigger and panel. */}
                   <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
@@ -186,13 +197,19 @@ export function Navbar() {
           <div className="px-4 py-4 flex flex-col gap-4">
             {navItems.map((item) => (
               <div key={item.label} className="flex flex-col gap-2">
-                <Link
-                  href={item.href ?? "#"}
-                  className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(item.href ?? "")}`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className={`transition-colors text-sm font-semibold uppercase tracking-[0.5px] ${getMobileLinkClasses(item.href)}`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="text-sm font-semibold uppercase tracking-[0.5px] text-beacon-white/50">
+                    {item.label}
+                  </span>
+                )}
                 {item.children && (
                   <div className="ml-1 flex flex-col gap-2 border-l border-white/10 pl-3">
                     {item.children.map((c) =>

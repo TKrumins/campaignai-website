@@ -23,7 +23,7 @@ export function MissionSection() {
             We&apos;re doing it in the open, and we&apos;re only getting started.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="patriot" href="/how-it-works" className="px-8 py-3 text-base">
+            <Button variant="patriot" href="/video-production-process" className="px-8 py-3 text-base">
               See how it works &rarr;
             </Button>
             <Link
