@@ -8,6 +8,54 @@ Legend: ☐ todo · ◐ in progress · ✅ done · 🔒 blocked on content/sign-
 
 ---
 
+## POST-OVERHAUL REVIEW NOTES — Tom's tranches (LOG ONLY; do NOT act until Tom gives explicit go)
+
+Homepage overhaul (`2dfa48e`) is pushed to preview; Tom is reviewing in tranches. Standing instruction: **"Continue logging until I give explicit permission to take action."** Everything below is captured, NOT built.
+
+### Tranche 1 — 2026-07-11
+
+**HOME**
+- ☐ **Product auto-rotation** (nearly there): (a) DELAY the rotation timer until the user first REACHES the Product section (start on first view, not on page load — IntersectionObserver gate). (b) Interval → every **5 seconds** (not 4). (c) Video thumbnails should **crossfade** smoothly into each other (creative license granted).
+- ☐ **Pricing is too far down** (~8th section) — want faster conversion; page is getting dense. Tom asked for RECOMMENDATIONS to (i) reshuffle the home page and (ii) move content to other new/existing pages. Recommendations delivered in chat 2026-07-11 (get Pricing to ~pos 5 by moving Problem→Pricing up right after Product; relocate Campaign Arc → a product/how-it-works page, slim Who We Serve → a chip router with tiers on a /for index or /get-started, slim Take-Your-Message → teaser linking /channels, consolidate to one humanity beat). AWAITING his pick.
+- ☐ **"In the Field" section** — Tom doesn't get the vision. Explained in chat (off-screen/real-life sharing + human warmth); it overlaps "Take Your Message Everywhere" and is placeholder-only, so likely repurpose to pure humanity, merge into the channels teaser, or cut. AWAITING his call.
+
+**ABOUT**
+- ☐ **"Principles we can all agree on" graphic** = `IntersectionGraphic.tsx` (the 3-stream Republican / Independent / Democrat convergence to a common node). Replace **"Independent" → "Forward"**, AND imply we support **other parties as well as full independents** — so broaden beyond 3 fixed streams. Redesign the flow is in scope (Tom's seed ideas: web of supports, a foundation, hub-and-spoke). Net: a coalition (multiple parties + true independents) converging on shared principles, not a fixed Rep/Ind/Dem trio.
+- ☐ **Whole About page: replace "Independent" → "Forward"** everywhere it denotes affiliation, EXCEPT where it clearly means "unaffiliated with ANY party" (keep lowercase "independent" there). Occurrences catalogued:
+  - `about/page.tsx:12` (meta description) · `IntersectionGraphic.tsx:16` (stream label) + `:7` (comment) · `IntersectionSection.tsx:17` · `OriginStory.tsx:42` ("an Independent campaign operative") · `MissionSection.tsx:20` · `AboutHero.tsx:40`.
+  - **My read (CONFIRM w/ Tom):** the "Independent" founder = Tom, now identifying **Forward** → all founder-affiliation mentions become "Forward".
+  - **SITEWIDE consistency flag** (same "a Republican, a Democrat, and an Independent" tagline lives OFF the About page — update together once scope confirmed): `TrustSection.tsx:45` (home), `CondensedPricingDisplay.tsx:25` (TRUST_LINE), `FounderGuideStrip.tsx:32` (/for), `HeroSection.tsx:89` (appears UNUSED — verify). `PartyPill.tsx` already has both Independent + Forward variants.
+  - **KEEP (different meaning, not affiliation):** `AudienceSection.tsx:54` "Independent committees" (= independent-expenditure PACs).
+
+### Tranche 2 — 2026-07-12 (HOW IT WORKS pages)
+
+**HOW IT WORKS — GENERAL**
+- ☐ **Nav "How It Works" should just open the dropdown, not navigate.** Today `navItems[0].href = "/how-it-works"` so clicking the label goes to the page. Remove the parent href (leave `children` only) so the label just activates the dropdown on desktop + toggles the submenu on mobile. (First child "Video Production Process" still links to the page.) Files: `src/lib/nav.ts`; verify `Navbar.tsx` (desktop label uses `item.href ?? "#"`) + mobile menu + `MobileBottomNav` handle a parentless item as a non-link/toggle.
+- ☐ **Trim text 25–30%** across the How-It-Works pages (people skim, esp. mobile).
+- ☐ **De-jargon:** check for overly technical language, adjust for approachability.
+
+**VIDEO PRODUCTION PROCESS PAGE** (component map: hero=`HIWHero`, steps=`ProcessTimeline` + `StepMedia`/`StepAnimation`, submit→production block + growth=`GrowthSection`/`GrowthProfile`/`GrowthConversation`/`GrowthExplorer` w/ model in `src/lib/growth.ts`, teasers=`VerificationSection`+`ComplianceBridge`)
+- ☐ **Subtitle copy (verbatim):** "Our guided process helps you craft and shape your story into a video that is authentically yours. You make every creative decision, guaranteed."
+- ☐ **Per-step copy (verbatim; 7 steps):**
+  - 01 — "Start with a conversation. Our guided intake interview asks about your vision for the video, offering context and suggestions as needed. No more \"starting from a blank page.\""
+  - 02 — "Receive a clear, structured production brief for your video. Review it, adjust anything that is off, and approve it to start production."
+  - 03 — "A script is drafted in real time, broken into frames that pair what the viewer sees and hears. Edit any line directly or use our AI refinement tools. You decide what goes in every line."
+  - 04 — "Navigate your visual storyboard, using simple sketches to inspire ideas for how you want the video to look and feel to the audience."
+  - 05 — "Bring in your content from the CampaignAI asset library, upload your own photos and footage, set a reminder to add later, or get a \"Go Film It\" guide for a shot only you can capture.<br>Prefer stock footage or AI-generated footage? Provide guidance for our editors to achieve your vision."
+  - 06 — "Set the direction for your voiceover with starting examples and fine-tuning, or upload your own. Do the same for the score: guide an AI-made track, upload your own recording, or none at all."
+  - 07 — "Upload anything else you want to see in the video, look over the whole thing, and submit.<br>This starts that hand-off to post-production - stitching, polish, compliance checks, and quality assurance - and the only step where you hand over the wheel.<br>*Video packages start with 1-2 revisions, with additional revisions available for purchase."
+- ☐ **Submit→production block ("Hit submit and your video goes into production"):**
+  - MOBILE bug: the two cards (human editors / AI post-production) STACK on mobile, which defeats the side-by-side intent — keep them paired/comparative on mobile.
+  - Copy: the section feels "creepy/tech-centric"; "Our human editors" reads off. Convey that the agency's editors are real people, reworded more warmly (NOT "Our human editors").
+  - Animation: animate the "editing bay" + "AI render" graphics. Human side = show parts of the video being added / trimmed / moved / polished / scored (editing gestures). AI side = same style but with creative flair implying AI is doing it (not humans).
+  - The "Submit" button LOOKS like a real clickable button — misleading. Communicate "you hit submit here" WITHOUT a real-looking button.
+- ☐ **BUILT TO GROW WITH YOU:** (i) Header → "Storytelling that gets better with every video." (ii) REMOVE the "SELF-SERVE PLATFORM · COMING SOON" tag — this framing is about our AGENCY model (we get better the more we work with you), not a future self-serve product. (iii) The "Draft your GOTV ad" toggle is not very visible — make it more prominent.
+- ☐ **"Your Campaign profile" widget numbers:** reframe the "percentage understood" as **"percentage to GOTV ready."** Lower the threshold so videos push "understood" up to ~60% much faster (campaign understood quickly), then the existing slow-down in the FINAL percentages stays (that mechanism is correct). Model lives in `src/lib/growth.ts`.
+- ☐ **URL slug: `/how-it-works` → `/video-production-process`.** Rename `src/app/how-it-works/` → `src/app/video-production-process/` and update refs: `nav.ts` (parent href being removed anyway + child href), `Footer.tsx:14`, `Navbar.tsx` darkHeroPages:15, `HowItWorksSection.tsx:93` (home teaser btn), `ProductDemoPreview.tsx:362` (`#campaign-arc` link), `VerifiedHumanCTA.tsx:25`, `ChannelsCTA.tsx:24`, `MissionSection.tsx:26`, `NewsletterEndcap.tsx:31`, `sitemap.ts:11`, growth.ts comment. NOTE: static export (output: export) has no server redirects — old `/how-it-works` URL will 404 unless we ship a client-side redirect stub; decide whether that matters pre-relaunch. (Asset folder `public/assets/how-it-works/` is internal, referenced by StepMedia — can stay or rename separately.)
+- ☐ **Fable-animate the VERIFIED HUMAN + COMPLIANCE visuals.** CLARIFICATION (prior decision): we already TRIMMED these to teasers on How-It-Works and moved the FULL depth to dedicated pages — `/verified-human` (interactive `VerificationDemo`) and `/compliance` (interactive `ComplianceClearance`), both already animated/interactive. So: animate/polish on THOSE pages (per Tom's "animate them there"). Confirm w/ Tom whether he wants a further Fable-craft pass on the dedicated pages, or animation added to the How-It-Works teasers too.
+
+---
+
 ## Content Tom still owes (nothing else waits on these)
 - 🔒 **Founder photos + bios** — several photos each into `public/assets/founders/{tom,jermaine,brandon}/`, bios as text. Blocks the founder pop-out pages only.
 - 🔒 **Four legal Markdown files** (`src/content/legal/*.md`) — privacy, terms, eula, ai-disclosure. Remind near close.
