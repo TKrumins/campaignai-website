@@ -80,7 +80,6 @@ export function HeroCarousel() {
 
   return (
     <div className="relative">
-      <AISparkle size={15} color="#4D9FFF" glow className="sparkle-twinkle absolute -left-3 top-2 z-20" style={{ ["--dur"]: "3s" } as CSSProperties} />
       <AISparkle size={13} color="#FF3366" glow className="sparkle-twinkle absolute -right-2 bottom-8 z-20" style={{ ["--dur"]: "2.6s" } as CSSProperties} />
 
       <div ref={vpRef} className="overflow-hidden">
@@ -111,7 +110,7 @@ export function HeroCarousel() {
               >
                 <div className="h-1 rounded-t-xl multipartisan-gradient" />
                 <div className="relative aspect-video w-full overflow-hidden">
-                  <Image src={v.posters[0]} alt={v.title} fill sizes="480px" className="object-cover" />
+                  <Image src={v.heroPoster} alt={v.title} fill sizes="480px" className="object-cover" />
                   <span
                     className="absolute left-3 top-3 rounded px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide"
                     style={{ backgroundColor: v.partyColor, color: v.partyTextColor }}

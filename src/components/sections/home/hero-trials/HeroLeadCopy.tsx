@@ -2,11 +2,11 @@ import type { CSSProperties } from "react";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
-import { HeroPriceTease } from "./HeroPriceTease";
 
 // The original hero voice, restored per Tom: fixed eyebrow + the rotating
-// audience headline + the "nothing charged upfront" microcopy, now followed by
-// the pricing transition. Shared by every hero trial so only the visual differs.
+// audience headline + the "nothing charged upfront" microcopy. The pricing
+// (HeroPriceTease) is rendered separately by the shell so it can drop below the
+// films on mobile. Shared by every hero trial so only the visual differs.
 const PHRASES = [
   "candidates.",
   "advocacy groups.",
@@ -63,8 +63,6 @@ export function HeroLeadCopy() {
         <br />
         <span className="font-semibold text-beacon-white">Nothing is charged upfront.</span>
       </p>
-
-      <HeroPriceTease />
     </div>
   );
 }

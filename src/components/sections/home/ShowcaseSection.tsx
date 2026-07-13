@@ -199,6 +199,9 @@ export const showcaseVideos = [
     title: "The Resiliency Act",
     credit: "Produced by co-founder Jermaine Johnson",
     src: VIDEO_RESILIENCY_ACT,
+    // Caption-free stitched thumbnail (factory · Jermaine · the land) used only
+    // by the home-hero carousel; the OUR WORK cards keep the posters below.
+    heroPoster: "/assets/videos/posters/resiliency-stitch.jpg",
     posters: [
       "/assets/videos/posters/the-resiliency-act.jpg",
       "/assets/videos/posters/the-resiliency-act-2.jpg",
@@ -215,6 +218,7 @@ export const showcaseVideos = [
     title: "The Stop Harm from Addictive Social Media (SHASM) Act",
     credit: "Produced by co-founder Brandon Guffey",
     src: VIDEO_SHASM_ACT,
+    heroPoster: "/assets/videos/posters/shasm-stitch.jpg",
     posters: [
       "/assets/videos/posters/shasm-act.jpg",
       "/assets/videos/posters/shasm-act-2.jpg",

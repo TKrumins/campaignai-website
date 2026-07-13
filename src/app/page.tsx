@@ -1,4 +1,4 @@
-import { HeroComboB } from "@/components/sections/home/hero-trials/HeroComboB";
+import { HomeHero } from "@/components/sections/home/HomeHero";
 import { TrustBarSection } from "@/components/sections/home/TrustBarSection";
 import { SocialProofStrip } from "@/components/sections/home/SocialProofStrip";
 import { ProductDemoPreview } from "@/components/sections/home/ProductDemoPreview";
@@ -17,9 +17,7 @@ import { HumanityTeam } from "@/components/sections/home/HumanitySection";
 export default function HomePage() {
   return (
     <>
-      <HeroComboB />
-      {/* Lift everything after the hero above the hero's pinned (sticky)
-          background, whose -mb-[100vh] otherwise leaks over these sections. */}
+      <HomeHero />
       <div className="relative z-10 bg-white">
         <TrustBarSection />
         {/* Mobile nav-swap line: the top→bottom nav switch fires when this

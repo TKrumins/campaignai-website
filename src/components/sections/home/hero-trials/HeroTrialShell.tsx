@@ -1,12 +1,18 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { HeroLeadCopy } from "./HeroLeadCopy";
+import { HeroPriceTease } from "./HeroPriceTease";
 import { HeroSparkleField, HeroSparkleSpread } from "./HeroSparkleField";
 
 /**
- * Shared chrome for the hero trials: the dimmed waving-flag backdrop + sheen,
- * the one-screen grid, and the restored lead copy on the left. Each trial just
- * passes its own right-side `visual`, so we compare visuals, not boilerplate.
+ * Shared chrome for the hero: the dimmed waving-flag backdrop + sheen, the
+ * one-screen grid, the restored lead copy, and the pricing block. Each variant
+ * passes its own `visual`.
+ *
+ * Layout: on mobile the three blocks stack in reading order — copy, then the
+ * films, then pricing (Tom: pricing sits below the videos). On lg the copy and
+ * pricing share the left column (copy above, pricing below) while the films fill
+ * the right column, vertically centered across both rows.
  */
 export function HeroTrialShell({
   visual,
@@ -29,11 +35,21 @@ export function HeroTrialShell({
 
       <HeroSparkleSpread />
 
-      <div className="mx-auto grid min-h-[calc(100svh-var(--announce-h))] max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-12 pt-28 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:pt-24">
-        <HeroLeadCopy />
-        <div className="relative">
+      <div className="mx-auto grid min-h-[calc(100svh-var(--announce-h))] max-w-7xl grid-cols-1 content-center gap-8 px-4 pb-12 pt-36 sm:px-6 sm:pt-28 lg:grid-cols-2 lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-14 lg:gap-y-6 lg:px-8 lg:pt-24">
+        {/* copy — mobile first; lg top-left */}
+        <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
+          <HeroLeadCopy />
+        </div>
+
+        {/* films — mobile middle; lg right column, centered across both rows */}
+        <div className="relative lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center">
           <HeroSparkleField />
           <div className="relative z-10">{visual}</div>
+        </div>
+
+        {/* pricing — mobile last (below the films); lg bottom-left */}
+        <div className="lg:col-start-1 lg:row-start-2 lg:self-start">
+          <HeroPriceTease />
         </div>
       </div>
     </section>

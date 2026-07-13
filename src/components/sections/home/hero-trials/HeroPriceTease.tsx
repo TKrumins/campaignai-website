@@ -8,13 +8,13 @@ import { ArrowRight } from "lucide-react";
  * starting rate. Directly beneath it sits a quiet callout that keeps the
  * candidate-campaign mission discount available (part of the America 250
  * Special) without letting it upstage the anchor — the way SaaS keeps a
- * nonprofit/education rate visible but never leads with it. Nonprofit/mission
- * pricing is deliberately absent here; it stays on the pricing and For
- * Nonprofits pages.
+ * nonprofit/education rate visible but never leads with it. Both boxes share the
+ * same subtle surface for legibility; the "2026 Cycle" sticker is the only pop.
+ * Nonprofit/mission pricing is deliberately absent here.
  */
 export function HeroPriceTease() {
   return (
-    <div className="mt-8 w-full max-w-sm space-y-3">
+    <div className="w-full max-w-sm space-y-3">
       {/* the anchor — one number, nothing else competing with it */}
       <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-5">
         <p className="text-[11px] font-semibold uppercase tracking-wider text-beacon-white/45">
@@ -28,22 +28,15 @@ export function HeroPriceTease() {
         </div>
       </div>
 
-      {/* candidate mission-discount callout — its own box, kept quiet below */}
-      <div
-        className="rounded-2xl border-2 border-transparent p-4"
-        style={{
-          background:
-            "linear-gradient(rgba(13,27,62,0.72), rgba(13,27,62,0.72)) padding-box, linear-gradient(135deg, #FF6B8F 0%, #E8F4F8 50%, #7AB8FF 100%) border-box",
-        }}
-      >
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="font-heading text-base font-bold text-beacon-white">
-            Running for office?
-          </h3>
-          <span className="shrink-0 rounded-full bg-liberty-crimson/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-liberty-crimson">
-            2026 cycle
-          </span>
-        </div>
+      {/* candidate mission-discount callout — same surface as the anchor for
+          readability; the angled sticker carries the accent */}
+      <div className="relative rounded-2xl border border-white/12 bg-white/[0.04] p-4">
+        <span
+          className="absolute -right-2.5 -top-3 rotate-[8deg] rounded-md bg-liberty-crimson px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-white shadow-lg ring-1 ring-white/40"
+        >
+          2026 Cycle
+        </span>
+        <h3 className="font-heading text-base font-bold text-beacon-white">Running for office?</h3>
         <p className="mt-1.5 text-xs leading-snug text-beacon-white/70">
           Candidate campaigns receive a mission discount this cycle — part of our
           America&nbsp;250 Special.
