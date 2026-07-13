@@ -10,6 +10,8 @@ to take over the CampaignAI marketing site with full context. Read in order:
    placement, index status, and current state.
 3. **[PAGE-COPY.md](./PAGE-COPY.md)** — the full copy deck: every user-visible
    string, organized by page → section, quoted verbatim, for copy review.
+4. **[DRAFT-PAGES.md](./DRAFT-PAGES.md)** — the convention for building pages now
+   and keeping them dark until launch, plus the current draft/pending routes.
 
 _Maintained on branch `feat/content-pages`. Last updated 2026-07-13._
 

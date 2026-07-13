@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { HeroLeadCopy } from "./HeroLeadCopy";
+import { HeroSparkleField, HeroSparkleSpread } from "./HeroSparkleField";
 
 /**
  * Shared chrome for the hero trials: the dimmed waving-flag backdrop + sheen,
@@ -26,9 +27,14 @@ export function HeroTrialShell({
         <div className="absolute inset-0 bg-gradient-to-t from-regal-navy via-transparent to-regal-navy/40" />
       </div>
 
+      <HeroSparkleSpread />
+
       <div className="mx-auto grid min-h-[calc(100svh-var(--announce-h))] max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-12 pt-28 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:pt-24">
         <HeroLeadCopy />
-        <div className="relative">{visual}</div>
+        <div className="relative">
+          <HeroSparkleField />
+          <div className="relative z-10">{visual}</div>
+        </div>
       </div>
     </section>
   );

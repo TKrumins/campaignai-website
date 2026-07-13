@@ -346,7 +346,6 @@ export function StorytellingSection() {
                     </span>
                     <div>
                       <h3 className="font-heading font-bold text-lg text-regal-navy leading-tight">Connected TV (CTV)</h3>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-pioneer-gold">Coming soon</span>
                     </div>
                   </div>
                   <p className="text-granite text-sm leading-relaxed">

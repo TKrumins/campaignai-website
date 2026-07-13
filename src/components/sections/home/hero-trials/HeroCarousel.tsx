@@ -10,7 +10,7 @@ import { showcaseVideos } from "@/components/sections/home/ShowcaseSection";
 /**
  * Trial visual D (rework): a rotating carousel of our films that ALWAYS advances
  * in the same direction. The current card is centered with the next peeking in;
- * every 6s it steps forward, the outgoing card fading transparently. To keep the
+ * every 8s it steps forward, the outgoing card fading transparently. To keep the
  * direction consistent with only two films today, the first card is cloned onto
  * the end — the track advances past the last real card onto the clone, then
  * snaps back to the start with animation off, so it reads as one continuous
@@ -20,7 +20,7 @@ import { showcaseVideos } from "@/components/sections/home/ShowcaseSection";
  */
 const CARD_FRACTION = 0.84; // card width as a share of the viewport (~16% peek)
 const GAP = 16;
-const STEP_MS = 6000;
+const STEP_MS = 8000;
 
 export function HeroCarousel() {
   const vpRef = useRef<HTMLDivElement>(null);
@@ -98,8 +98,14 @@ export function HeroCarousel() {
               <Link
                 key={`${v.id}-${i}`}
                 href="/#our-work"
-                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15 transition-opacity duration-700"
-                style={{ width: vw ? `${cardW}px` : `${CARD_FRACTION * 100}%`, opacity: isActive ? 1 : 0.32 }}
+                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15"
+                style={{
+                  width: vw ? `${cardW}px` : `${CARD_FRACTION * 100}%`,
+                  opacity: isActive ? 1 : 0.32,
+                  // Fade with the slide, but hold opacity instant during the
+                  // snap-back frame (animate=false) so card one never flashes.
+                  transition: animate ? "opacity 700ms cubic-bezier(0.4,0,0.2,1)" : "none",
+                }}
                 aria-hidden={!isActive}
                 tabIndex={isActive ? 0 : -1}
               >
