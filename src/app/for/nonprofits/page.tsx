@@ -4,6 +4,7 @@ import { FunnelProblem } from "@/components/sections/funnel/FunnelProblem";
 import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStrip";
 import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
+import { FunnelFAQ } from "@/components/sections/funnel/FunnelFAQ";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import {
@@ -15,11 +16,11 @@ import {
 export const metadata: Metadata = {
   title: "For Nonprofits & Advocacy - CampaignAI",
   description:
-    "Professional video for advocacy organizations, nonprofits, ballot initiatives, and issue campaigns. Explainers, calls to action, testimonials, and appeals, priced case by case so budget never decides whether your message moves.",
+    "Professional video for advocacy organizations, nonprofits, ballot initiatives, and issue campaigns. A real editor finishes every one. Explainers, calls to action, testimonials, and appeals, priced case by case so budget never decides whether your message moves.",
   openGraph: {
     title: "For Nonprofits & Advocacy | CampaignAI",
     description:
-      "The mission is clear. Make sure everyone sees it. Mission pricing so budget never decides whether your message moves.",
+      "The mission is clear. Make sure everyone sees it. A real editor finishes every video, priced case by case so budget never decides whether your message moves.",
   },
 };
 
@@ -27,11 +28,12 @@ export default function NonprofitsPage() {
   return (
     <>
       <FunnelHero
+        photoPlaceholder
         h1="The mission is clear. Make sure everyone sees it."
-        subtitle="Professional video for advocacy organizations, nonprofits, ballot initiatives, and issue campaigns. Explainers, calls to action, testimonials, and fundraising appeals, priced case by case so budget never decides whether your message moves."
+        subtitle="Professional video for nonprofits, advocacy groups, ballot initiatives, and issue campaigns — explainers, calls to action, testimonials, and fundraising appeals. A real editor finishes every one. Priced case by case, so budget never decides whether your message moves."
       />
 
-      <FunnelProblem body="You're up against noise, apathy, and opposition messaging with a bigger budget. The people who would care about your issue scroll past a hundred videos a day, and a wall of text doesn't stop the scroll. Your team knows this work better than any agency ever could. What you need is a way to turn that knowledge into video that carries the message — without pulling anyone off the mission to make it." />
+      <FunnelProblem body="You're up against noise, apathy, and opposition messaging with a bigger budget. The people who would care scroll past a hundred videos a day, and a wall of text doesn't stop the scroll. Your team knows this work better than any agency ever could — what's missing is a way to turn that knowledge into video that carries the message, without pulling anyone off the mission to make it." />
 
       <FounderGuideStrip
         heading="Built by people who've had to do more with less."
@@ -40,7 +42,7 @@ export default function NonprofitsPage() {
 
       <FunnelPlanner
         label="Video for the whole mission"
-        labelColor="blue"
+        labelColor="verdant"
         heading="Meet the moment, whatever it calls for."
         sub="Pick what your next video needs to do. See how it fits the whole mission."
         followNote="Plus"
@@ -54,10 +56,10 @@ export default function NonprofitsPage() {
         priceNote="case by case — we'll find the fit"
         priceIsNumber={false}
         bullets={[
-          "A real human reviews every video.",
+          "A real editor finishes every video.",
           "Mission pricing — case by case, never a coupon.",
+          "You own everything, free and clear — no licensing surprises.",
           "Delivered 48 hours after you submit.",
-          "Full ownership, no licensing surprises.",
         ]}
         ctaLabel="Talk to our team"
         ctaHref={CALENDLY_DEMO}
@@ -67,7 +69,7 @@ export default function NonprofitsPage() {
       <GetStartedIncludes />
 
       <FunnelProof
-        heading="Video for the whole mission, priced for it too."
+        heading="Made for the mission — and made to be trusted with it."
         items={[
           {
             title: "Video for the whole mission.",
@@ -78,8 +80,36 @@ export default function NonprofitsPage() {
             body: "We built this on the conviction that budget should never decide whose story gets told. Mission pricing is how we keep that promise for advocacy and nonprofit work.",
           },
           {
-            title: "Human-reviewed, and fully yours.",
-            body: "Every video gets human review, and full ownership with no licensing surprises for grant-funded work.",
+            title: "Human-finished, disclosed, and fully yours.",
+            body: "A real editor finishes every video, so it meets the standard your donors and board expect. Where the law requires it, we add state-specific AI-disclosure labels — provenance you can stand behind. And you own every deliverable outright, no licensing surprises, which matters when the work is grant-funded.",
+          },
+        ]}
+      />
+
+      <FunnelFAQ
+        label="Before you book"
+        labelColor="verdant"
+        heading="The questions comms teams ask first."
+        items={[
+          {
+            q: "Do we have to pay to talk to you?",
+            a: "No. The call is 30 minutes, nothing is charged, and any cost is agreed together on the call.",
+          },
+          {
+            q: "Is this just AI video?",
+            a: "No. AI does the heavy lifting, but a real editor finishes every video before it's yours — so it meets the standard your donors and board expect.",
+          },
+          {
+            q: "How much of my team's time does this take?",
+            a: "A short brief. You know the work better than any agency; we turn that knowledge into video without pulling anyone off the mission.",
+          },
+          {
+            q: "What does “mission pricing” actually mean?",
+            a: "Case by case, never a coupon. We price mission work on its merits, so budget never decides whose story gets told.",
+          },
+          {
+            q: "Do we own the final video for grant reporting?",
+            a: "Yes — full ownership, no licensing surprises, which matters when the work is grant-funded.",
           },
         ]}
       />
