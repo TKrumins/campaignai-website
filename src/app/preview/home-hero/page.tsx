@@ -2,19 +2,18 @@ import type { Metadata } from "next";
 import { HeroTrialShell } from "@/components/sections/home/hero-trials/HeroTrialShell";
 import { HeroOurWork } from "@/components/sections/home/hero-trials/HeroOurWork";
 import { HeroFloatingFrames } from "@/components/sections/home/hero-trials/HeroFloatingFrames";
-import { HeroWeb } from "@/components/sections/home/hero-trials/HeroWeb";
-import { HeroSpotlight } from "@/components/sections/home/hero-trials/HeroSpotlight";
+import { HeroCarousel } from "@/components/sections/home/hero-trials/HeroCarousel";
 import { HeroTrialLabel } from "@/components/sections/home/hero-trials/HeroTrialLabel";
 import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
 import { PricingSection } from "@/components/sections/home/PricingSection";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 
 /**
- * Hero comparison page. Four candidate heroes stacked, each with the original
+ * Hero comparison page. Three candidate heroes stacked, each with the original
  * eyebrow + rotating headline + "nothing charged upfront" copy and the same
- * pricing transition ($1,999 → $599 candidate, visualized); only the visual
- * differs. The real Our Work + Pricing sections follow, so the transition pays
- * off. Excluded from nav, footer, sitemap; noindex below.
+ * pricing transition (starting $1,999, swinging to the $599 candidate rate —
+ * nonprofit/mission pricing left to the section below); only the visual differs.
+ * The real Our Work + Pricing sections follow. Excluded from nav/sitemap; noindex.
  */
 export const metadata: Metadata = {
   title: "Home Hero Trials",
@@ -28,28 +27,21 @@ export default function HomeHeroPreviewPage() {
       <HeroTrialLabel
         n={1}
         title="Our Work, up top"
-        note="Lead with the films our own team ships — two real, playable videos · original headline + pricing transition"
+        note="Two real, playable films — fixed opening frames, a strip of each film's other frames, sparkles all around"
       />
 
       <HeroTrialShell visual={<HeroFloatingFrames />} />
       <HeroTrialLabel
         n={2}
-        title="Floating frames + AI sparkles"
-        note="Film frames from our work drifting in a field of sparkles"
+        title="Floating frames + weaving ribbon"
+        note="Produced-video cues (play + timecode), both co-founders on screen, a Multi-Partisan ribbon weaving through every 6s"
       />
 
-      <HeroTrialShell visual={<HeroWeb />} />
+      <HeroTrialShell visual={<HeroCarousel />} dim={80} />
       <HeroTrialLabel
         n={3}
-        title="Constellation web + gradient ribbon"
-        note="Frames wired into a network, a Multi-Partisan ribbon winding through"
-      />
-
-      <HeroTrialShell visual={<HeroSpotlight />} dim={80} />
-      <HeroTrialLabel
-        n={4}
-        title="Spotlight reel"
-        note="One featured film under a spotlight, a filmstrip of the rest beneath"
+        title="Rotating reel carousel"
+        note="The current film centered, the next peeking in and fading as it rotates every 6s — built to grow past two videos"
       />
 
       <div className="relative z-10 bg-white">

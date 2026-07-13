@@ -715,6 +715,27 @@ body { overflow-x: clip; }
   50%      { transform: translateY(-9px); }
 }
 
+/* V2 ribbon: a Multi-Partisan ribbon sweeps in from off-screen, weaves through
+   the floating frames, and exits — then waits out the rest of a ~6s loop.
+   translateX only (vertical centering is handled by positioning) so it doesn't
+   fight a transform. */
+@keyframes ribbonSweep {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  7%   { opacity: 1; }
+  40%  { transform: translateX(155%); opacity: 1; }
+  50%  { opacity: 0; }
+  100% { transform: translateX(155%); opacity: 0; }
+}
+
+/* Price "swing": the arc from the starting price down to the candidate price
+   draws itself in, holds, then clears — a repeating swing gesture. */
+@keyframes heroSwingDraw {
+  0%   { stroke-dashoffset: 100; }
+  32%  { stroke-dashoffset: 0; }
+  78%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+
 /* "Time with voters" bar: waits, then slowly fills. Patriot gradient
    (no navy); green stays reserved for ethics. */
 .bar-patriot {
@@ -923,6 +944,8 @@ body { overflow-x: clip; }
   .arc-beat { animation: arcBeat 6s linear infinite; }
   .hero-sheen { animation: heroSheenPan 13s ease-in-out infinite; }
   .hero-float { animation: heroFloat var(--fdur, 6s) ease-in-out infinite; animation-delay: var(--fdelay, 0s); }
+  .ribbon-sweep { animation: ribbonSweep 6s ease-in-out infinite; }
+  .hero-swing-draw { animation: heroSwingDraw 3.4s ease-in-out infinite; }
   .phrase-rotator .phrase {
     animation: heroPhraseCycle 15s infinite;
     animation-delay: calc(var(--p) * 2.5s);

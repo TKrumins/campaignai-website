@@ -1,0 +1,108 @@
+"use client";
+
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Play } from "lucide-react";
+import { AISparkle } from "@/components/ui/AISparkle";
+import { showcaseVideos } from "@/components/sections/home/ShowcaseSection";
+
+/**
+ * Trial visual D (rework): a rotating carousel of our films. The current card is
+ * centered with the next peeking in at the right; every 6s it advances, the
+ * outgoing card fading transparently as the next slides to center. Built for a
+ * growing reel — today it's the two films, and more drop in without code change.
+ * Width is measured so the peek/step is exact; reduced-motion holds on card one.
+ */
+const CARD_FRACTION = 0.82; // card width as a share of the viewport (18% peek)
+const GAP = 16;
+
+export function HeroCarousel() {
+  const vpRef = useRef<HTMLDivElement>(null);
+  const [vw, setVw] = useState(0);
+  const [index, setIndex] = useState(0);
+
+  // Measure the viewport (initial ResizeObserver callback sets it — no
+  // synchronous setState in the effect body).
+  useEffect(() => {
+    const el = vpRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setVw(el.clientWidth));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Auto-advance every 6s unless the visitor prefers reduced motion.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = setInterval(() => setIndex((i) => (i + 1) % showcaseVideos.length), 6000);
+    return () => clearInterval(t);
+  }, []);
+
+  const cardW = vw ? vw * CARD_FRACTION : 0;
+  const step = cardW + GAP;
+
+  return (
+    <div className="relative">
+      <AISparkle size={15} color="#4D9FFF" glow className="sparkle-twinkle absolute -left-3 top-2 z-20" style={{ ["--dur"]: "3s" } as CSSProperties} />
+      <AISparkle size={13} color="#FF3366" glow className="sparkle-twinkle absolute -right-2 bottom-6 z-20" style={{ ["--dur"]: "2.6s" } as CSSProperties} />
+
+      <div ref={vpRef} className="overflow-hidden">
+        <div
+          className="flex"
+          style={{
+            gap: `${GAP}px`,
+            transform: vw ? `translateX(${-index * step}px)` : undefined,
+            transition: "transform 700ms cubic-bezier(0.4,0,0.2,1)",
+          }}
+        >
+          {showcaseVideos.map((v, i) => {
+            const isActive = i === index;
+            return (
+              <Link
+                key={v.id}
+                href="/#our-work"
+                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15 transition-opacity duration-700"
+                style={{ width: vw ? `${cardW}px` : `${CARD_FRACTION * 100}%`, opacity: isActive ? 1 : 0.32 }}
+                aria-hidden={!isActive}
+                tabIndex={isActive ? 0 : -1}
+              >
+                <div className="h-1 rounded-t-xl multipartisan-gradient" />
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image src={v.posters[0]} alt={v.title} fill sizes="480px" className="object-cover" />
+                  <span
+                    className="absolute left-3 top-3 rounded px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide"
+                    style={{ backgroundColor: v.partyColor, color: v.partyTextColor }}
+                  >
+                    {v.party}
+                  </span>
+                  <span className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-14 w-14 place-items-center rounded-full bg-white/20 ring-1 ring-white/40 backdrop-blur-sm">
+                      <Play className="ml-0.5 h-6 w-6 fill-beacon-white text-beacon-white" />
+                    </span>
+                  </span>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-heading text-base font-bold leading-snug text-beacon-white">{v.title}</h3>
+                  <p className="mt-1 text-sm text-horizon-azure">{v.credit}</p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* progress dots */}
+      <div className="mt-4 flex items-center gap-2">
+        {showcaseVideos.map((v, i) => (
+          <span
+            key={v.id}
+            className="h-1.5 rounded-full transition-all duration-500"
+            style={{ width: i === index ? 22 : 8, backgroundColor: i === index ? "#7AB8FF" : "rgba(232,244,248,0.3)" }}
+          />
+        ))}
+        <span className="ml-auto text-xs text-beacon-white/50">More films dropping soon</span>
+      </div>
+    </div>
+  );
+}

@@ -1,54 +1,71 @@
-import { ArrowRight } from "lucide-react";
-
 /**
- * In-hero pricing transition. States the $1,999 standard rate and the $599
- * candidate rate side by side, and *visualizes* the cut with two bars — the
- * candidate bar runs to ~30% of the standard (599/1999), so the reduction is
- * felt, not just read. Nonprofits/mission pricing is deliberately left to the
- * pricing section below (one downward link), per Tom. Navy + Multi-Partisan
- * only — no red-vs-blue on a pricing surface.
+ * In-hero pricing transition. Leads with the starting price ($1,999 — never
+ * called "standard") and swings down to the candidate rate ($599), with the
+ * drop shown hard: the $1,999 struck through beside it and a bold "70% off this
+ * cycle" badge. The "swing" is an arc that draws from one price to the other.
+ * Nonprofit/mission pricing is left to the section below. Navy + Multi-Partisan
+ * only; the crimson discount accent matches the candidate pricing card.
  */
 export function HeroPriceTease() {
   return (
     <div className="mt-8 max-w-md rounded-2xl border border-white/12 bg-white/[0.04] p-4">
-      <div className="flex items-center gap-4">
-        <div className="flex-1">
+      <div className="flex items-center justify-between gap-2">
+        {/* starting price */}
+        <div>
           <p className="text-[10px] font-semibold uppercase tracking-wider text-beacon-white/45">
-            Standard
+            Finished video, from
           </p>
-          <p className="font-heading text-xl font-extrabold leading-none text-beacon-white">
+          <p className="font-heading text-2xl font-extrabold leading-none text-beacon-white sm:text-[26px]">
             $1,999
-            <span className="text-xs font-semibold text-beacon-white/45"> / video</span>
           </p>
+          <p className="text-[10px] text-beacon-white/40">per video</p>
         </div>
-        <ArrowRight className="h-4 w-4 shrink-0 text-beacon-white/35" aria-hidden />
-        <div className="flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-horizon-azure">
-            Candidates · 2026
+
+        {/* the swing */}
+        <svg viewBox="0 0 64 30" className="h-8 w-16 shrink-0" aria-hidden fill="none">
+          <defs>
+            <linearGradient id="heroSwingArc" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#E8F4F8" />
+              <stop offset="1" stopColor="#FF3366" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M3 7 C 22 6, 30 24, 55 23"
+            stroke="url(#heroSwingArc)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            pathLength={100}
+            strokeDasharray="100"
+            className="hero-swing-draw"
+          />
+          <path d="M55 23 l-7 -3 M55 23 l-4 6" stroke="#FF3366" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+
+        {/* candidate price */}
+        <div className="text-right">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-liberty-crimson">
+            2026 candidates
           </p>
-          <p className="font-heading text-xl font-extrabold leading-none text-beacon-white">
-            $599
-            <span className="text-xs font-semibold text-beacon-white/45"> / video</span>
+          <p className="flex items-baseline justify-end gap-1.5 leading-none">
+            <span className="font-heading text-sm font-bold text-beacon-white/45 line-through decoration-liberty-crimson">
+              $1,999
+            </span>
+            <span className="font-heading text-2xl font-extrabold text-beacon-white sm:text-[26px]">
+              $599
+            </span>
           </p>
+          <p className="text-[10px] text-beacon-white/40">per video</p>
         </div>
       </div>
 
-      {/* visualized cut: standard bar full, candidate bar ~30% */}
-      <div className="mt-3 space-y-2">
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-          <div className="h-full w-full rounded-full bg-beacon-white/35" />
-        </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-          <div className="multipartisan-gradient h-full rounded-full" style={{ width: "30%" }} />
-        </div>
-      </div>
-
-      <p className="mt-2.5 text-[11px] leading-snug text-beacon-white/45">
-        Nonprofits &amp; causes — mission pricing.{" "}
-        <a href="#pricing" className="font-semibold text-horizon-azure hover:underline">
-          See below&nbsp;&darr;
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <span className="rounded-full bg-liberty-crimson/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-liberty-crimson">
+          70% off this cycle
+        </span>
+        <a href="#pricing" className="text-[11px] font-semibold text-horizon-azure hover:underline">
+          Nonprofits &amp; causes&nbsp;&darr;
         </a>
-      </p>
+      </div>
     </div>
   );
 }
