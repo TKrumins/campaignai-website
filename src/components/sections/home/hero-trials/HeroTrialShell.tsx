@@ -16,7 +16,7 @@ export function HeroTrialShell({
   dim?: number;
 }) {
   return (
-    <section data-hero className="relative isolate overflow-hidden bg-regal-navy">
+    <section data-hero className="relative isolate bg-regal-navy">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-[-6%] animate-flag-wave-strong">
           <Image src="/assets/images/hero-bg.png" alt="" fill priority sizes="100vw" className="object-cover object-center" />
