@@ -27,7 +27,7 @@ interface VideoCardProps {
   onPlay: () => void;
 }
 
-function VideoCard({
+export function VideoCard({
   party,
   partyColor,
   partyTextColor,
@@ -186,6 +186,43 @@ function VideoCard({
   );
 }
 
+// The two real films, as data so the hero trials can reuse the exact same
+// cards (same posters, party pills, credits) without duplicating config.
+export const showcaseVideos = [
+  {
+    id: "resiliency",
+    party: "Democratic" as const,
+    partyColor: "#4D9FFF",
+    partyTextColor: "#0D1B3E",
+    typePill: "Policy Explainer",
+    levelPill: "Gubernatorial",
+    title: "The Resiliency Act",
+    credit: "Produced by co-founder Jermaine Johnson",
+    src: VIDEO_RESILIENCY_ACT,
+    posters: [
+      "/assets/videos/posters/the-resiliency-act.jpg",
+      "/assets/videos/posters/the-resiliency-act-2.jpg",
+      "/assets/videos/posters/the-resiliency-act-3.jpg",
+    ],
+  },
+  {
+    id: "shasm",
+    party: "Republican" as const,
+    partyColor: "#FF3366",
+    partyTextColor: "#FFFFFF",
+    typePill: "Policy Explainer",
+    levelPill: "State House",
+    title: "The Stop Harm from Addictive Social Media (SHASM) Act",
+    credit: "Produced by co-founder Brandon Guffey",
+    src: VIDEO_SHASM_ACT,
+    posters: [
+      "/assets/videos/posters/shasm-act.jpg",
+      "/assets/videos/posters/shasm-act-2.jpg",
+      "/assets/videos/posters/shasm-act-3.jpg",
+    ],
+  },
+];
+
 export function ShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
@@ -207,40 +244,14 @@ export function ShowcaseSection() {
 
         <ScrollReveal delay={100}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            <VideoCard
-              party="Democratic"
-              partyColor="#4D9FFF"
-              partyTextColor="#0D1B3E"
-              typePill="Policy Explainer"
-              levelPill="Gubernatorial"
-              title="The Resiliency Act"
-              credit="Produced by co-founder Jermaine Johnson"
-              src={VIDEO_RESILIENCY_ACT}
-              posters={[
-                "/assets/videos/posters/the-resiliency-act.jpg",
-                "/assets/videos/posters/the-resiliency-act-2.jpg",
-                "/assets/videos/posters/the-resiliency-act-3.jpg",
-              ]}
-              isPlaying={activeVideo === "resiliency"}
-              onPlay={() => setActiveVideo("resiliency")}
-            />
-            <VideoCard
-              party="Republican"
-              partyColor="#FF3366"
-              partyTextColor="#FFFFFF"
-              typePill="Policy Explainer"
-              levelPill="State House"
-              title="The Stop Harm from Addictive Social Media (SHASM) Act"
-              credit="Produced by co-founder Brandon Guffey"
-              src={VIDEO_SHASM_ACT}
-              posters={[
-                "/assets/videos/posters/shasm-act.jpg",
-                "/assets/videos/posters/shasm-act-2.jpg",
-                "/assets/videos/posters/shasm-act-3.jpg",
-              ]}
-              isPlaying={activeVideo === "shasm"}
-              onPlay={() => setActiveVideo("shasm")}
-            />
+            {showcaseVideos.map(({ id, ...v }) => (
+              <VideoCard
+                key={id}
+                {...v}
+                isPlaying={activeVideo === id}
+                onPlay={() => setActiveVideo(id)}
+              />
+            ))}
           </div>
         </ScrollReveal>
 

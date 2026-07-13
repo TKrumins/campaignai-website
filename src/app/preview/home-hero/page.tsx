@@ -1,35 +1,59 @@
 import type { Metadata } from "next";
-import { HeroGalleryWall } from "@/components/sections/home/hero-trials/HeroGalleryWall";
+import { HeroTrialShell } from "@/components/sections/home/hero-trials/HeroTrialShell";
+import { HeroOurWork } from "@/components/sections/home/hero-trials/HeroOurWork";
+import { HeroFloatingFrames } from "@/components/sections/home/hero-trials/HeroFloatingFrames";
+import { HeroWeb } from "@/components/sections/home/hero-trials/HeroWeb";
+import { HeroSpotlight } from "@/components/sections/home/hero-trials/HeroSpotlight";
 import { HeroTrialLabel } from "@/components/sections/home/hero-trials/HeroTrialLabel";
-import { TrustBarSection } from "@/components/sections/home/TrustBarSection";
+import { ShowcaseSection } from "@/components/sections/home/ShowcaseSection";
 import { PricingSection } from "@/components/sections/home/PricingSection";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 
 /**
- * Mirror of the homepage that swaps the scrolling proof reel for the one-screen
- * "gallery wall" hero, so Tom can compare the two side by side without touching
- * the live home page. Excluded from nav, footer, and sitemap; noindex below.
- *
- * Only a couple of the real sections follow the hero (the navy trust seal that
- * closes it, the pricing that pays off the $1,999 anchor, and the booking
- * banner) — enough to feel like the real page while scrolling, unchanged.
+ * Hero comparison page. Four candidate heroes stacked, each with the original
+ * eyebrow + rotating headline + "nothing charged upfront" copy and the same
+ * pricing transition ($1,999 → $599 candidate, visualized); only the visual
+ * differs. The real Our Work + Pricing sections follow, so the transition pays
+ * off. Excluded from nav, footer, sitemap; noindex below.
  */
 export const metadata: Metadata = {
-  title: "Home Hero Preview — Gallery Wall",
+  title: "Home Hero Trials",
   robots: { index: false, follow: false },
 };
 
 export default function HomeHeroPreviewPage() {
   return (
     <>
-      <HeroGalleryWall />
+      <HeroTrialShell visual={<HeroOurWork />} dim={80} />
+      <HeroTrialLabel
+        n={1}
+        title="Our Work, up top"
+        note="Lead with the films our own team ships — two real, playable videos · original headline + pricing transition"
+      />
+
+      <HeroTrialShell visual={<HeroFloatingFrames />} />
       <HeroTrialLabel
         n={2}
-        title="Gallery Wall (one screen, no scroll)"
-        note="All seven stills at once · framed as film, not a player · $1,999 anchored · America 250 lives in the top bar"
+        title="Floating frames + AI sparkles"
+        note="Film frames from our work drifting in a field of sparkles"
       />
+
+      <HeroTrialShell visual={<HeroWeb />} />
+      <HeroTrialLabel
+        n={3}
+        title="Constellation web + gradient ribbon"
+        note="Frames wired into a network, a Multi-Partisan ribbon winding through"
+      />
+
+      <HeroTrialShell visual={<HeroSpotlight />} dim={80} />
+      <HeroTrialLabel
+        n={4}
+        title="Spotlight reel"
+        note="One featured film under a spotlight, a filmstrip of the rest beneath"
+      />
+
       <div className="relative z-10 bg-white">
-        <TrustBarSection />
+        <ShowcaseSection />
         <PricingSection />
         <BookingBanner showDemo />
       </div>

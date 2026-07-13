@@ -708,6 +708,13 @@ body { overflow-x: clip; }
   100%  { opacity: 0; transform: translateY(-0.5em); }
 }
 
+/* Gentle bob for floating hero frames/nodes (rotation lives on a parent so it
+   isn't overwritten). Duration + delay set per element via --fdur / --fdelay. */
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
 /* "Time with voters" bar: waits, then slowly fills. Patriot gradient
    (no navy); green stays reserved for ethics. */
 .bar-patriot {
@@ -915,6 +922,7 @@ body { overflow-x: clip; }
   .arc-playhead { animation: arcSweep 6s linear infinite; }
   .arc-beat { animation: arcBeat 6s linear infinite; }
   .hero-sheen { animation: heroSheenPan 13s ease-in-out infinite; }
+  .hero-float { animation: heroFloat var(--fdur, 6s) ease-in-out infinite; animation-delay: var(--fdelay, 0s); }
   .phrase-rotator .phrase {
     animation: heroPhraseCycle 15s infinite;
     animation-delay: calc(var(--p) * 2.5s);
