@@ -63,13 +63,14 @@ export function FunnelFAQ({
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
+                    aria-controls={`funnel-faq-panel-${i}`}
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue md:px-6 md:py-5"
                   >
                     <span className="font-heading text-base font-bold text-regal-navy md:text-lg">
                       {item.q}
                     </span>
                     <span
-                      className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-regal-navy/5 text-regal-navy transition-transform duration-300 ${
+                      className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-regal-navy/5 text-regal-navy transition-transform duration-300 motion-reduce:transition-none ${
                         isOpen ? "rotate-45" : ""
                       }`}
                       aria-hidden
@@ -78,7 +79,10 @@ export function FunnelFAQ({
                     </span>
                   </button>
                   <div
-                    className="grid transition-all duration-300 ease-in-out"
+                    id={`funnel-faq-panel-${i}`}
+                    role="region"
+                    aria-hidden={!isOpen}
+                    className="grid transition-all duration-300 ease-in-out motion-reduce:transition-none"
                     style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                   >
                     <div className="overflow-hidden">

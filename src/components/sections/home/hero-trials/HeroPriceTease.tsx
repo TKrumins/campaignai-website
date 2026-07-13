@@ -16,6 +16,14 @@ import { ArrowRight, X } from "lucide-react";
 export function HeroPriceTease() {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // Return focus to the trigger on every close path so keyboard users are not
+  // dropped to <body> when the dialog dismisses.
+  const close = () => {
+    setOpen(false);
+    triggerRef.current?.focus();
+  };
 
   // Close on click-outside / Escape while the popover is open.
   useEffect(() => {
@@ -24,7 +32,7 @@ export function HeroPriceTease() {
       if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     };
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
@@ -51,9 +59,11 @@ export function HeroPriceTease() {
         </p>
 
         <button
+          ref={triggerRef}
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
+          aria-haspopup="dialog"
           className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-horizon-azure transition-colors hover:text-beacon-white"
         >
           Running for office?
@@ -74,7 +84,7 @@ export function HeroPriceTease() {
         >
           <button
             type="button"
-            onClick={() => setOpen(false)}
+            onClick={close}
             aria-label="Close"
             className="absolute right-2.5 top-2.5 text-beacon-white/50 hover:text-beacon-white"
           >

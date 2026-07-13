@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Play } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { showcaseVideos } from "@/components/sections/home/ShowcaseSection";
 
@@ -27,6 +27,7 @@ export function HeroCarousel() {
   const [vw, setVw] = useState(0);
   const [index, setIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
+  const [paused, setPaused] = useState(false);
 
   const N = showcaseVideos.length;
   const cards = [...showcaseVideos, showcaseVideos[0]]; // clone first onto the end
@@ -39,12 +40,14 @@ export function HeroCarousel() {
     return () => ro.disconnect();
   }, []);
 
-  // Auto-advance forward every STEP_MS (skip when reduced motion is preferred).
+  // Auto-advance forward every STEP_MS (skip when reduced motion is preferred or
+  // the viewer has paused the rotation — WCAG 2.2.2, moving content over 5s).
   useEffect(() => {
+    if (paused) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(() => setIndex((i) => i + 1), STEP_MS);
     return () => clearInterval(t);
-  }, []);
+  }, [paused]);
 
   // When we land on the cloned card (index === N), let the slide finish, then
   // snap back to the real first card with animation disabled for one frame.
@@ -127,6 +130,15 @@ export function HeroCarousel() {
 
       {/* progress dots */}
       <div className="mt-4 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-pressed={paused}
+          aria-label={paused ? "Play film rotation" : "Pause film rotation"}
+          className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/10 text-beacon-white/80 ring-1 ring-white/20 transition-colors hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-freedom-blue"
+        >
+          {paused ? <Play className="ml-0.5 h-3 w-3 fill-current" /> : <Pause className="h-3 w-3 fill-current" />}
+        </button>
         {showcaseVideos.map((v, i) => (
           <span
             key={v.id}
