@@ -6,6 +6,7 @@ import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStri
 import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
 import { FunnelFAQ } from "@/components/sections/funnel/FunnelFAQ";
+import { FunnelReach } from "@/components/sections/funnel/FunnelReach";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { America250Popup } from "@/components/sections/home/hero-trials/America250Popup";
@@ -97,6 +98,12 @@ export default function CandidatesPage() {
       </section>
 
       <GetStartedIncludes />
+
+      <FunnelReach
+        label="Then take it everywhere"
+        labelColor="crimson"
+        heading="One video, every place voters already are."
+      />
 
       <FunnelProof
         heading="The parts that scare first-timers, already handled."

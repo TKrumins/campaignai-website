@@ -5,6 +5,7 @@ import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStri
 import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
 import { FunnelFAQ } from "@/components/sections/funnel/FunnelFAQ";
+import { FunnelReach } from "@/components/sections/funnel/FunnelReach";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import {
@@ -67,6 +68,14 @@ export default function NonprofitsPage() {
       />
 
       <GetStartedIncludes />
+
+      <FunnelReach
+        label="Reach the whole base"
+        labelColor="verdant"
+        heading="One story, everywhere your supporters gather."
+        lightColors={["#00D084", "#4D9FFF", "#7AB8FF"]}
+        ringColors={["#00D084", "#4D9FFF", "#7AB8FF"]}
+      />
 
       <FunnelProof
         heading="Made for the mission — and made to be trusted with it."

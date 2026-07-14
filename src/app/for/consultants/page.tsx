@@ -6,6 +6,7 @@ import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStri
 import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
 import { FunnelFAQ } from "@/components/sections/funnel/FunnelFAQ";
+import { FunnelReach } from "@/components/sections/funnel/FunnelReach";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { CALENDLY_PROFESSIONAL } from "@/lib/constants";
@@ -76,6 +77,12 @@ export default function ConsultantsPage() {
       />
 
       <GetStartedIncludes />
+
+      <FunnelReach
+        label="Reach across the book"
+        labelColor="blue"
+        heading="One deliverable, every channel your clients need."
+      />
 
       <FunnelProof
         heading="A production line that pays you back on every client."

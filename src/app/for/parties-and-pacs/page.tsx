@@ -6,6 +6,7 @@ import { FounderGuideStrip } from "@/components/sections/funnel/FounderGuideStri
 import { FunnelPlanner } from "@/components/sections/funnel/FunnelPlanner";
 import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
 import { FunnelFAQ } from "@/components/sections/funnel/FunnelFAQ";
+import { FunnelReach } from "@/components/sections/funnel/FunnelReach";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { CALENDLY_PROFESSIONAL } from "@/lib/constants";
@@ -76,6 +77,12 @@ export default function PartiesAndPacsPage() {
       />
 
       <GetStartedIncludes />
+
+      <FunnelReach
+        label="Reach across the ballot"
+        labelColor="blue"
+        heading="One video, every screen across the slate."
+      />
 
       <FunnelProof
         heading="Built to run many races at once — safely."
