@@ -8,6 +8,7 @@ import { FunnelProof } from "@/components/sections/funnel/FunnelProof";
 import { FunnelFAQ } from "@/components/sections/funnel/FunnelFAQ";
 import { GetStartedIncludes } from "@/components/sections/get-started/GetStartedIncludes";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
+import { America250Popup } from "@/components/sections/home/hero-trials/America250Popup";
 import { CALENDLY_CANDIDATE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -78,6 +79,22 @@ export default function CandidatesPage() {
         ctaHref={CALENDLY_CANDIDATE}
         secondary={{ label: "Or plan it yourself soon", href: "#waitlist" }}
       />
+
+      {/* America 250 launch offer — moved here from the home hero, at the
+          candidate rate (second video billed at $599, not $1,999). */}
+      <section className="bg-dawn-frost py-14 md:py-16">
+        <div className="mx-auto max-w-xl px-4 text-center">
+          <p className="text-xs font-bold uppercase tracking-[3px] text-liberty-crimson">
+            Launch offer
+          </p>
+          <h2 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
+            Running more than one video this cycle?
+          </h2>
+          <div className="mt-7 flex justify-center">
+            <America250Popup secondRate="$599" />
+          </div>
+        </div>
+      </section>
 
       <GetStartedIncludes />
 

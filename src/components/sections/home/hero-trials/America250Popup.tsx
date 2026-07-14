@@ -29,7 +29,14 @@ const STARS = [
 
 const STAR_D = "M12 1.6l3.1 6.9 7.5.9-5.6 5 1.6 7.4L12 18l-6.6 3.8 1.6-7.4-5.6-5 7.5-.9z";
 
-export function America250Popup({ className = "" }: { className?: string }) {
+export function America250Popup({
+  className = "",
+  secondRate = "the full $1,999",
+}: {
+  className?: string;
+  /** What the second video is billed at — "$599" on the candidates page. */
+  secondRate?: string;
+}) {
   return (
     <div
       className={`a250-popup group relative w-[264px] select-none rounded-2xl border-2 border-transparent shadow-2xl ${className}`}
@@ -93,7 +100,7 @@ export function America250Popup({ className = "" }: { className?: string }) {
           <span className="text-horizon-azure">$250</span>.
         </p>
         <p className="mt-1.5 text-[11px] leading-snug text-beacon-white/70">
-          Your second is billed at the full $1,999.
+          Your second is billed at {secondRate}.
         </p>
 
         <Button
