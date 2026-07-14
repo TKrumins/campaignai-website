@@ -10,17 +10,21 @@ import { showcaseVideos } from "@/components/sections/home/ShowcaseSection";
 /**
  * Trial visual D (rework): a rotating carousel of our films that ALWAYS advances
  * in the same direction. The current card is centered with the next peeking in;
- * every 8s it steps forward, the outgoing card fading transparently. To keep the
+ * every 7s it steps forward, the outgoing card fading transparently. To keep the
  * direction consistent with only two films today, the first card is cloned onto
  * the end — the track advances past the last real card onto the clone, then
  * snaps back to the start with animation off, so it reads as one continuous
  * forward loop. Drops in more films with no code change. Same horizontal effect
  * on every breakpoint (no stacked cards on mobile), so pricing stays close.
- * Reduced-motion holds on card one.
+ *
+ * On load it starts on a RANDOM film (so we never favour one party over another)
+ * and holds off-screen for ~1s before the first film scrolls in from the right.
+ * Reduced-motion holds still, on that random film.
  */
 const CARD_FRACTION = 0.84; // card width as a share of the viewport (~16% peek)
 const GAP = 16;
-const STEP_MS = 8000;
+const STEP_MS = 7000;
+const INTRO_MS = 1000; // hold blank this long, then the first film scrolls in
 
 export function HeroCarousel() {
   const vpRef = useRef<HTMLDivElement>(null);
@@ -28,6 +32,7 @@ export function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const N = showcaseVideos.length;
   const cards = [...showcaseVideos, showcaseVideos[0]]; // clone first onto the end
@@ -40,14 +45,27 @@ export function HeroCarousel() {
     return () => ro.disconnect();
   }, []);
 
-  // Auto-advance forward every STEP_MS (skip when reduced motion is preferred or
-  // the viewer has paused the rotation — WCAG 2.2.2, moving content over 5s).
+  // Pick a random starting film (post-mount, so no hydration mismatch and no
+  // party favoured), then reveal after the intro delay. setState lives in async
+  // callbacks (rAF/timeout), never synchronously in the effect body.
   useEffect(() => {
-    if (paused) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const raf = requestAnimationFrame(() => setIndex(Math.floor(Math.random() * N)));
+    const t = setTimeout(() => setRevealed(true), reduced ? 0 : INTRO_MS);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, [N]);
+
+  // Auto-advance forward every STEP_MS once revealed (skip when reduced motion is
+  // preferred or the viewer paused — WCAG 2.2.2, moving content over 5s).
+  useEffect(() => {
+    if (!revealed || paused) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(() => setIndex((i) => i + 1), STEP_MS);
     return () => clearInterval(t);
-  }, [paused]);
+  }, [revealed, paused]);
 
   // When we land on the cloned card (index === N), let the slide finish, then
   // snap back to the real first card with animation disabled for one frame.
@@ -77,6 +95,9 @@ export function HeroCarousel() {
   const cardW = vw ? vw * CARD_FRACTION : 0;
   const step = cardW + GAP;
   const activeDot = index % N;
+  // Before reveal, push the whole reel one viewport to the right so the frame is
+  // blank; on reveal it slides back to 0 and the first film scrolls in.
+  const introOffset = revealed ? 0 : vw || 2000;
 
   return (
     <div className="relative">
@@ -84,11 +105,13 @@ export function HeroCarousel() {
 
       <div ref={vpRef} className="overflow-hidden">
         <div
-          className="flex"
+          className="flex transition-transform duration-700 ease-out motion-reduce:transition-none"
           style={{
             gap: `${GAP}px`,
-            transform: vw ? `translateX(${-index * step}px)` : undefined,
-            transition: animate ? "transform 700ms cubic-bezier(0.4,0,0.2,1)" : "none",
+            transform: `translateX(${-index * step + introOffset}px)`,
+            // Inline "none" wins for the snap-back frame; otherwise the class
+            // controls it, so motion-reduce still disables the transition.
+            transition: animate ? undefined : "none",
           }}
         >
           {cards.map((v, i) => {
@@ -97,13 +120,13 @@ export function HeroCarousel() {
               <Link
                 key={`${v.id}-${i}`}
                 href="/#our-work"
-                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15"
+                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ease-out motion-reduce:transition-none"
                 style={{
                   width: vw ? `${cardW}px` : `${CARD_FRACTION * 100}%`,
                   opacity: isActive ? 1 : 0.32,
-                  // Fade with the slide, but hold opacity instant during the
-                  // snap-back frame (animate=false) so card one never flashes.
-                  transition: animate ? "opacity 700ms cubic-bezier(0.4,0,0.2,1)" : "none",
+                  // Hold opacity instant during the snap-back frame so card one
+                  // never flashes; the class otherwise fades it with the slide.
+                  transition: animate ? undefined : "none",
                 }}
                 aria-hidden={!isActive}
                 tabIndex={isActive ? 0 : -1}
@@ -148,7 +171,12 @@ export function HeroCarousel() {
           <span
             key={v.id}
             className="h-1.5 rounded-full transition-all duration-500"
-            style={{ width: i === activeDot ? 22 : 8, backgroundColor: i === activeDot ? "#7AB8FF" : "rgba(232,244,248,0.3)" }}
+            style={{
+              width: i === activeDot ? 22 : 8,
+              // Active pill takes the current film's party colour (matches the
+              // party tag on the card); scales automatically as films are added.
+              backgroundColor: i === activeDot ? v.partyColor : "rgba(232,244,248,0.3)",
+            }}
           />
         ))}
         <span className="ml-auto text-xs text-beacon-white/50">More films dropping soon</span>

@@ -237,11 +237,12 @@ export function ShowcaseSection() {
           <div className="text-center mb-12">
             <SectionLabel text="Our Work" color="horizon" />
             <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mt-3 mb-4">
-              Yes, we use this tool ourselves. Take a look.
+              Our public showcase is coming soon.
             </h2>
             <p className="font-body font-semibold text-lg text-beacon-white/90 max-w-[720px] mx-auto leading-relaxed">
-              Our founding team uses CampaignAI for our own missions. Here are
-              several stories we&apos;ve told about issues that matter to us.
+              Our founding team uses CampaignAI for our own campaigns, and we&apos;re
+              building a dedicated showcase of the work. For now, here are a couple
+              of the films we&apos;ve made.
             </p>
           </div>
         </ScrollReveal>

@@ -35,7 +35,7 @@ export function HeroTrialShell({
 
       <HeroSparkleSpread />
 
-      <div className="mx-auto grid min-h-[calc(100svh-var(--announce-h))] max-w-7xl grid-cols-1 content-center gap-8 px-4 pb-12 pt-36 sm:px-6 sm:pt-28 lg:grid-cols-2 lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-14 lg:gap-y-6 lg:px-8 lg:pt-24">
+      <div className="mx-auto grid min-h-[calc(100svh-var(--announce-h))] max-w-7xl grid-cols-1 content-center gap-8 px-4 pb-12 pt-44 sm:px-6 sm:pt-40 lg:grid-cols-2 lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-14 lg:gap-y-6 lg:px-8 lg:pt-40">
         {/* copy — mobile first; lg top-left */}
         <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
           <HeroLeadCopy />

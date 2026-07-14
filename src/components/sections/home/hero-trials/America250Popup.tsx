@@ -93,7 +93,7 @@ export function America250Popup({ className = "" }: { className?: string }) {
           <span className="text-horizon-azure">$250</span>.
         </p>
         <p className="mt-1.5 text-[11px] leading-snug text-beacon-white/70">
-          Your second is billed at your standard rate.
+          Your second is billed at the full $1,999.
         </p>
 
         <Button
