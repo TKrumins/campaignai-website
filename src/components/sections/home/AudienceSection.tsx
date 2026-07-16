@@ -1,50 +1,21 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
-import { Landmark, Briefcase, Users, Megaphone, Flag, ArrowRight } from "lucide-react";
+import { Landmark, Briefcase, Users, Megaphone, Flag } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { Button } from "@/components/ui/Button";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
-// A compact router: one card per Who-We-Serve destination. The depth for each
-// audience lives on its own /for page, so the home page just points the way.
+// A non-interactive spectrum of who we serve — candidates, consultants, parties,
+// nonprofits, grassroots — strung along one multi-partisan rail. It shows the
+// breadth at a glance and sends everyone to the single Get Started path (the
+// dedicated per-audience pages are frozen as a future project).
 const roles = [
-  { title: "Candidates", icon: Landmark, intent: "I'm running for office", href: "/for/candidates", accent: "#FF3366" },
-  { title: "Consultants", icon: Briefcase, intent: "I advise campaigns", href: "/for/consultants", accent: "#8E5CF7" },
-  { title: "Parties & PACs", icon: Users, intent: "I support a slate", href: "/for/parties-and-pacs", accent: "#4D9FFF" },
-  { title: "Nonprofits", icon: Megaphone, intent: "I'm advancing a cause", href: "/for/nonprofits", accent: "#FF3366" },
-  { title: "Grassroots", icon: Flag, intent: "I'm organizing people", href: "/for/grassroots", accent: "#8E5CF7" },
+  { title: "Candidates", icon: Landmark, intent: "Running for office", accent: "#FF3366" },
+  { title: "Consultants", icon: Briefcase, intent: "Advising campaigns", accent: "#8E5CF7" },
+  { title: "Parties & PACs", icon: Users, intent: "Backing a slate", accent: "#4D9FFF" },
+  { title: "Nonprofits", icon: Megaphone, intent: "Advancing a cause", accent: "#FF3366" },
+  { title: "Grassroots", icon: Flag, intent: "Organizing people", accent: "#8E5CF7" },
 ];
-
-function RoleCard({
-  title,
-  icon: Icon,
-  intent,
-  href,
-  accent,
-}: {
-  title: string;
-  icon: React.ComponentType<{ className?: string }>;
-  intent: string;
-  href: string;
-  accent: string;
-}) {
-  return (
-    <Link href={href} className="card-hover group relative block overflow-hidden rounded-2xl bg-white p-5 shadow-md ring-1 ring-black/5">
-      <span className="absolute inset-x-0 top-0 h-1.5 multipartisan-gradient" />
-      <div className="mb-3 mt-1 h-10 w-10 rounded-full patriot-gradient p-[2px]">
-        <div className="flex h-full w-full items-center justify-center rounded-full bg-regal-navy">
-          <Icon className="h-4 w-4 text-beacon-white" />
-        </div>
-      </div>
-      <h4 className="font-heading text-base font-bold leading-tight text-regal-navy">{title}</h4>
-      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold" style={{ color: accent }}>
-        {intent}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </span>
-    </Link>
-  );
-}
 
 export function AudienceSection() {
   return (
@@ -54,36 +25,48 @@ export function AudienceSection() {
 
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="mx-auto mb-4 block h-1 w-20 rounded-full multipartisan-gradient" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
               Video built for your race.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
-              Find your role for the videos, pricing, and playbook built around it.
+              From school board to Senate, a ballot measure to a movement of your
+              own — we build the videos your campaign needs.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {roles.map((r, i) => (
-            <ScrollReveal key={r.title} delay={i * 70}>
-              <RoleCard {...r} />
-            </ScrollReveal>
-          ))}
-        </div>
-
+        {/* Who-we-serve spectrum — one rail, five audiences, no links. */}
         <ScrollReveal>
-          <p className="mt-6 text-center text-sm text-slate">
-            Something else — a ballot initiative, a business, a movement of your own?{" "}
-            <Link href="/get-started" className="font-semibold text-freedom-blue hover:underline">
-              Tell us what you&apos;re working on &rarr;
-            </Link>
-          </p>
+          <div className="relative mx-auto max-w-[860px]">
+            {/* connecting rail behind the emblems (desktop only) */}
+            <span
+              aria-hidden
+              className="absolute inset-x-8 top-[38px] hidden h-1.5 rounded-full multipartisan-gradient opacity-80 sm:block"
+            />
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-5 sm:gap-x-2">
+              {roles.map(({ title, icon: Icon, intent, accent }) => (
+                <li key={title} className="relative flex flex-col items-center text-center">
+                  <span className="h-[76px] w-[76px] rounded-full patriot-gradient p-[3px] shadow-md ring-4 ring-dawn-frost">
+                    <span className="flex h-full w-full items-center justify-center rounded-full bg-regal-navy">
+                      <Icon className="h-7 w-7 text-beacon-white" />
+                    </span>
+                  </span>
+                  <h4 className="mt-4 font-heading text-base font-bold leading-tight text-regal-navy">
+                    {title}
+                  </h4>
+                  <span className="mt-1 text-sm font-semibold" style={{ color: accent }}>
+                    {intent}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="text-center mt-12">
+          <div className="text-center mt-14">
             <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3 text-base">
               {CTA_PRIMARY}
             </Button>

@@ -65,14 +65,9 @@ export const ELECTION_TARGET = "2026-11-03T00:01:00-05:00";
 export const PRIVACY_MICROCOPY =
   "We'll never share your information or use it to train major models.";
 
-// Funnel + experience routing (Commit 7-8, Section 2)
-export const FUNNEL_ROUTES = [
-  "/for/candidates",
-  "/for/consultants",
-  "/for/parties-and-pacs",
-  "/for/nonprofits",
-  "/for/grassroots",
-];
+// Experience routing (Commit 7-8, Section 2). The five "/for/*" audience funnels
+// that used to live alongside these are frozen as a future standalone project —
+// their routes are removed and redirected to /get-started in vercel.json.
 export const EXPERIENCE_ROUTES = [
   "/voters-eyes",
   "/day-on-the-trail",

@@ -230,6 +230,9 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             {TYPES.map(({ key, title, icon: Icon, tagline, variant, statusLabel }, i) => {
               const on = i === active;
               const support = variant === "support";
+              // The two roadmap formats carry the branded orange status tag; the
+              // "your own footage" candid format stays neutral.
+              const roadmap = key === "rapid" || key === "contrast";
               const firstSupport = support && TYPES[i - 1]?.variant !== "support";
               return (
                 <Fragment key={key}>
@@ -238,7 +241,8 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                       {/* Mobile strip: a slim vertical rule separates the core films
                           from the supporting formats. Desktop column: the label. */}
                       <span aria-hidden className="mx-1 h-9 w-px shrink-0 self-center bg-gray-200 lg:hidden" />
-                      <p className="hidden px-1 text-[10px] font-bold uppercase tracking-wider text-slate lg:block lg:mt-3 lg:border-t lg:border-gray-200 lg:pt-3">
+                      <p className="hidden items-center gap-1.5 px-1 text-[10px] font-bold uppercase tracking-wider text-[#C2410C] lg:mt-3 lg:flex lg:border-t lg:border-gray-200 lg:pt-3">
+                        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
                         On the Roadmap
                       </p>
                     </>
@@ -268,10 +272,17 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                         </p>
                         {support && statusLabel ? (
                           <span
-                            className={`mt-0.5 inline-block rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:text-[10px] ${
-                              on ? "bg-white/15 text-beacon-white/80" : "bg-regal-navy/5 text-slate"
+                            className={`mt-0.5 inline-flex items-center gap-1 rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:text-[10px] ${
+                              roadmap
+                                ? on
+                                  ? "bg-alert-amber/25 text-alert-amber"
+                                  : "bg-alert-amber/15 text-[#C2410C] ring-1 ring-alert-amber/30"
+                                : on
+                                  ? "bg-white/15 text-beacon-white/80"
+                                  : "bg-regal-navy/5 text-slate"
                             }`}
                           >
+                            {roadmap && <span aria-hidden className="h-1 w-1 rounded-full bg-alert-amber" />}
                             {statusLabel}
                           </span>
                         ) : (
@@ -341,12 +352,15 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                 <h3 className="font-heading font-bold text-2xl text-regal-navy">{t.title}</h3>
                 {t.variant === "support" && t.statusLabel && (
                   <span
-                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider ${
-                      t.key === "rapid"
-                        ? "bg-liberty-crimson/10 text-liberty-crimson"
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider ${
+                      t.key === "rapid" || t.key === "contrast"
+                        ? "bg-alert-amber/15 text-[#C2410C] ring-1 ring-alert-amber/30"
                         : "bg-bridge-violet/10 text-bridge-violet"
                     }`}
                   >
+                    {(t.key === "rapid" || t.key === "contrast") && (
+                      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
+                    )}
                     {t.statusLabel}
                   </span>
                 )}
@@ -377,6 +391,12 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
 function SupportStage({ typeKey }: { typeKey: string }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
+      {/* Rapid Response + Contrast Ad are the two roadmap formats — stamped
+          "Coming Fall 2026". Authentic & Candid is your own footage (available
+          now), so it carries no coming-soon stamp. */}
+      {typeKey !== "candid" && (
+        <StatusBadge label="Coming Fall 2026" tone="dark" className="absolute right-3 top-3 z-10" />
+      )}
       <svg viewBox="0 0 320 180" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
         {typeKey === "rapid" ? (
           <>
@@ -484,7 +504,10 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
             <div className="h-full w-2/5 rounded-full multipartisan-gradient" />
           </div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">On the roadmap</span>
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#C2410C]">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
+            On the roadmap
+          </span>
         </div>
       </div>
     );
@@ -525,7 +548,10 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
             <div className="h-full w-1/3 rounded-full multipartisan-gradient" />
           </div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">On the roadmap</span>
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#C2410C]">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
+            On the roadmap
+          </span>
         </div>
       </div>
     );
@@ -669,8 +695,6 @@ function LibrarySpotlight() {
 function PlaceholderStage({ title, spark }: { title: string; spark: string }) {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
-      {/* status stamp — sample films are in production */}
-      <StatusBadge label="Coming Fall 2026" tone="dark" className="absolute right-3 top-3 z-10" />
       {/* film-frame perforations */}
       <div className="absolute inset-y-0 left-0 flex w-6 flex-col justify-around">
         {Array.from({ length: 6 }).map((_, i) => (

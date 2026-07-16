@@ -31,7 +31,7 @@ export function HeroPriceTease() {
       {/* two ways to pay less */}
       <div className="mt-4 space-y-0.5 border-t border-white/10 pt-3">
         <Link
-          href="/for/candidates"
+          href="/pricing"
           className="group -mx-2 flex items-center gap-2.5 rounded-lg px-2 py-1.5 transition-colors hover:bg-white/[0.05]"
         >
           <Flag className="h-4 w-4 shrink-0 text-horizon-azure" />

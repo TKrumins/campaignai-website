@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -152,9 +151,6 @@ function PaywallGraphic() {
 
   return (
     <div ref={ref} className="relative mx-auto w-full max-w-[440px]">
-      <p className="mb-5 text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
-        Feel like democracy has a paywall?
-      </p>
       <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal the CampaignAI logo">
         <defs>
           <radialGradient id="holeGlow" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
@@ -162,17 +158,6 @@ function PaywallGraphic() {
             <stop offset="0.5" stopColor="#EBEAFB" stopOpacity="0.45" />
             <stop offset="1" stopColor="#EBEAFB" stopOpacity="0" />
           </radialGradient>
-          {/* Knocks the opaque white background out of the logo raster so the
-              mark reveals cleanly on the light glow (alpha = 1 − luminance). */}
-          <filter id="logoKnockout" colorInterpolationFilters="sRGB">
-            <feColorMatrix
-              type="matrix"
-              values="1 0 0 0 0
-                      0 1 0 0 0
-                      0 0 1 0 0
-                      -0.2126 -0.7152 -0.0722 0 1"
-            />
-          </filter>
         </defs>
 
         {/* light streaming through the opening — red / purple / blue */}
@@ -222,13 +207,12 @@ function PaywallGraphic() {
             open to reveal us on the other side. */}
         <g style={contentStyle("0.5s")}>
           <image
-            href="/assets/logos/logo-light-background.svg"
-            x={CX - 78}
-            y={CY - 78}
-            width="156"
-            height="156"
+            href="/assets/logos/logo-transparent-light.png"
+            x={CX - 80}
+            y={CY - 80}
+            width="160"
+            height="160"
             preserveAspectRatio="xMidYMid meet"
-            filter="url(#logoKnockout)"
           />
         </g>
 
@@ -271,64 +255,39 @@ export function ProblemSection() {
   return (
     <section className="overflow-hidden bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
-        {/* lead-in: the paywall breaks on the question, revealing us */}
+        {/* Merged lead: the question + the answer on the left, the paywall
+            breaking open on the right. */}
         <ScrollReveal>
-          <div className="mx-auto mb-14 max-w-[460px]">
-            <PaywallGraphic />
-          </div>
-        </ScrollReveal>
-
-        {/* the answer + a short Q&A */}
-        <ScrollReveal>
-          <div className="mx-auto max-w-[880px] text-center">
-            <h2 className="font-heading text-4xl font-extrabold tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
-              Don&apos;t spend your whole budget on one ad.
-            </h2>
-
-            <div className="mt-9 grid gap-5 text-left sm:grid-cols-2">
-              <div className="rounded-2xl border border-gray-200 bg-dawn-frost p-6">
-                <p className="font-heading text-lg font-bold text-regal-navy">
-                  Do I need one big, expensive ad to be taken seriously?
-                </p>
-                <p className="mt-3 leading-relaxed text-granite">
-                  No. A campaign is a season of stories, not a single spot. For
-                  decades, one professional ad could eat your whole video budget
-                  &mdash; we help you make many, across your whole race, instead.
-                </p>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div className="text-left">
+              <h2 className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
+                Feel like democracy has a paywall?
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-granite md:text-xl">
+                <span className="font-semibold text-regal-navy">
+                  Don&apos;t spend your whole budget on one ad.
+                </span>{" "}
+                Craft the ads you need at every stage of your campaign.
+              </p>
+              <div className="mt-8">
+                <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
+                  {CTA_PRIMARY}
+                </Button>
+                <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
               </div>
-              <div className="rounded-2xl border border-gray-200 bg-dawn-frost p-6">
-                <p className="font-heading text-lg font-bold text-regal-navy">
-                  So what does it actually cost?
-                </p>
-                <p className="mt-3 leading-relaxed text-granite">
-                  A fraction of one agency ad. Candidates start at{" "}
-                  <span className="font-semibold text-regal-navy">$599</span> this
-                  cycle, organizations at{" "}
-                  <span className="font-semibold text-regal-navy">$1,999</span>, and
-                  nonprofits get mission-based pricing.{" "}
-                  <Link href="#pricing" className="font-semibold text-freedom-blue hover:underline">
-                    See what applies to you &rarr;
-                  </Link>
-                </p>
-              </div>
+            </div>
+            <div className="lg:pl-4">
+              <PaywallGraphic />
             </div>
           </div>
         </ScrollReveal>
 
         {/* Campaign Arc — the season of stories, visualized (graphic only) */}
         <ScrollReveal delay={100}>
-          <div className="mt-12">
+          <div className="mt-16 md:mt-20">
             <CampaignArc showHeader={false} />
           </div>
         </ScrollReveal>
-
-        {/* CTA */}
-        <div className="mt-10 text-center">
-          <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
-            {CTA_PRIMARY}
-          </Button>
-          <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
-        </div>
 
         {/* integrated stat band */}
         <ScrollReveal>

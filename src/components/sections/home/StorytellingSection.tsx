@@ -4,8 +4,7 @@ import { ChannelExplorer } from "@/components/sections/home/ChannelExplorer";
 /**
  * "Take your message everywhere": the interactive channels hub. Eight clickable
  * destinations — the six digital channels plus Connected TV and Broadcast TV —
- * each opening a detail card with a quick branded animation. The /for/* funnels
- * keep the lighter non-interactive Hub + TelevisionReach via FunnelReach.
+ * each opening a detail card with a quick branded animation.
  */
 export function StorytellingSection() {
   return (

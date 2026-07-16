@@ -17,11 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/community`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/ai-in-campaigns`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/get-started`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/for/candidates`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/consultants`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/parties-and-pacs`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/nonprofits`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/grassroots`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    // The five audience "/for/*" funnel pages (candidates, consultants,
+    // parties-and-pacs, nonprofits, grassroots) are frozen as a future
+    // standalone project: their routes are removed and redirected to
+    // /get-started (see vercel.json). Re-add here when they relaunch.
     // The five interactive "CampaignAI Experience" pages (voters-eyes,
     // day-on-the-trail, campaign-machine, story-arc-builder, disclosure-labels)
     // are deferred as a future standalone build: their routes still render but

@@ -166,12 +166,12 @@ export function Hub({
       ))}
 
       {/* destination nodes (flash the color of whatever light just arrived) */}
-      {nodes.map(({ label, desc, nx, ny, idx }) => {
+      {nodes.map(({ label, nx, ny, idx }) => {
         const labelLines = label.split("\n");
-        const descLines = desc.split("\n");
-        const labelBlockH = labelLines.length * 15;
-        const totalH = labelBlockH + 4 + descLines.length * 12;
-        const startY = ny - totalH / 2;
+        const lineH = 20;
+        // No sub-text now — the destination name fills the node on its own, so
+        // center the (possibly multi-line) label vertically.
+        const startY = ny - ((labelLines.length - 1) * lineH) / 2;
         const interactive = !!onSelect;
         const selected = selectedIdx === idx;
         const textFill = selected ? "#E8F4F8" : "#0D1B3E";
@@ -232,12 +232,7 @@ export function Hub({
               </rect>
             ))}
             {labelLines.map((line, j) => (
-              <text key={`t-${j}`} x={nx} y={startY + j * 15 + 8} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="13" fontWeight="700" pointerEvents="none">
-                {line}
-              </text>
-            ))}
-            {descLines.map((line, j) => (
-              <text key={`d-${j}`} x={nx} y={startY + labelBlockH + 6 + j * 12 + 6} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="9.5" fontWeight="400" opacity="0.7" pointerEvents="none">
+              <text key={`t-${j}`} x={nx} y={startY + j * lineH} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="17" fontWeight="700" pointerEvents="none">
                 {line}
               </text>
             ))}

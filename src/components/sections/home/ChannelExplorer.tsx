@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { Share2, Globe, Mail, Users, HandCoins, Presentation, Tv, Antenna, AlertTriangle } from "lucide-react";
+import { Share2, Globe, Mail, Users, HandCoins, Presentation, Tv, Antenna, AlertTriangle, MousePointerClick } from "lucide-react";
 import { Hub } from "@/components/ui/DistributionHub";
 import { AISparkle } from "@/components/ui/AISparkle";
 
@@ -183,15 +183,13 @@ function ChannelArt({ channel }: { channel: Channel }) {
 }
 
 export function ChannelExplorer() {
-  const [selected, setSelected] = useState(0);
-  const channel = CHANNELS[selected];
+  // No channel is selected on load — the card shows the prompt until the
+  // visitor taps a destination in the hub.
+  const [selected, setSelected] = useState<number | null>(null);
+  const channel = selected === null ? null : CHANNELS[selected];
 
   return (
     <div>
-      <p className="mb-4 text-center text-sm text-slate">
-        Tap any destination to see how your video shows up there.
-      </p>
-
       {/* hub + detail card side by side on laptop (both visible in one screen),
           stacked compactly on mobile */}
       <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
@@ -200,62 +198,81 @@ export function ChannelExplorer() {
             cx={450}
             cy={450}
             spokeLen={300}
-            rectW={176}
-            rectH={86}
+            rectW={182}
+            rectH={88}
             hubR={70}
             viewBox="40 40 820 820"
             idp="ce-d-"
             channels={HUB_CHANNELS}
             onSelect={setSelected}
-            selectedIdx={selected}
-            className="mx-auto hidden w-full max-w-[500px] lg:block"
+            selectedIdx={selected ?? undefined}
+            className="mx-auto hidden w-full max-w-[560px] lg:block"
           />
       <Hub
         cx={300}
         cy={300}
-        spokeLen={196}
-        rectW={150}
-        rectH={72}
+        spokeLen={198}
+        rectW={158}
+        rectH={74}
         hubR={50}
         viewBox="20 20 560 560"
         idp="ce-m-"
         channels={HUB_CHANNELS}
         onSelect={setSelected}
-        selectedIdx={selected}
-        className="mx-auto w-full max-w-[300px] lg:hidden"
+        selectedIdx={selected ?? undefined}
+        className="mx-auto w-full max-w-[340px] lg:hidden"
       />
         </div>
 
-        {/* detail card for the selected channel */}
-        <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-2xl border border-freedom-blue/25 bg-white shadow-sm">
-          <ChannelArt channel={channel} />
-          <div className="p-5">
-          <div className="mb-3 flex flex-wrap items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl" style={{ backgroundColor: `${channel.accent}1F` }}>
-              <channel.icon className="h-5 w-5" />
-            </span>
-            <h3 className="font-heading text-lg font-bold leading-tight text-regal-navy">{channel.title}</h3>
-            {channel.status && (
-              <span
-                className={`rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${
-                  channel.statusTone === "live"
-                    ? "bg-freedom-blue/12 text-freedom-blue"
-                    : "bg-pioneer-gold/15 text-pioneer-gold ring-1 ring-pioneer-gold/30"
-                }`}
-              >
-                {channel.status}
-              </span>
-            )}
-          </div>
-          <p className="text-sm leading-relaxed text-granite">{channel.desc}</p>
+        {/* detail card — shows the prompt until a destination is picked, then
+            swaps in that channel's art + specifics */}
+        <div className="mx-auto flex min-h-[360px] w-full max-w-[440px] flex-col overflow-hidden rounded-2xl border border-freedom-blue/25 bg-white shadow-sm">
+          {channel ? (
+            <>
+              <ChannelArt channel={channel} />
+              <div className="p-5">
+                <div className="mb-3 flex flex-wrap items-center gap-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl" style={{ backgroundColor: `${channel.accent}1F` }}>
+                    <channel.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-heading text-lg font-bold leading-tight text-regal-navy">{channel.title}</h3>
+                  {channel.status && (
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${
+                        channel.statusTone === "live"
+                          ? "bg-freedom-blue/12 text-freedom-blue"
+                          : "bg-alert-amber/15 text-[#C2410C] ring-1 ring-alert-amber/30"
+                      }`}
+                    >
+                      {channel.statusTone !== "live" && <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />}
+                      {channel.status}
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm leading-relaxed text-granite">{channel.desc}</p>
 
-          {channel.callout && (
-            <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-liberty-crimson/25 bg-liberty-crimson/[0.05] p-3.5">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-liberty-crimson" />
-              <p className="text-xs leading-relaxed text-regal-navy">{channel.callout}</p>
+                {channel.callout && (
+                  <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-liberty-crimson/25 bg-liberty-crimson/[0.05] p-3.5">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-liberty-crimson" />
+                    <p className="text-xs leading-relaxed text-regal-navy">{channel.callout}</p>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center">
+              <span className="relative grid h-16 w-16 place-items-center rounded-2xl bg-freedom-blue/10">
+                <MousePointerClick className="h-7 w-7 text-freedom-blue" />
+                <AISparkle size={14} color="#FF3366" glow className="sparkle-twinkle absolute -right-1.5 -top-1.5" style={{ ["--dur"]: "2.6s" } as CSSProperties} />
+              </span>
+              <div>
+                <p className="font-heading text-lg font-bold text-regal-navy">Tap any destination</p>
+                <p className="mt-1 text-sm leading-relaxed text-granite">
+                  See how your video shows up there — pick a channel from the hub.
+                </p>
+              </div>
             </div>
           )}
-        </div>
         </div>
       </div>
 
