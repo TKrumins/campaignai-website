@@ -6,7 +6,7 @@ import { AISparkle } from "@/components/ui/AISparkle";
 // The cost-of-campaign-video stat band, relocated here (just above the FAQ) from
 // the retired Problem section.
 const stats = [
-  { value: "$10,000+", label: "What a single agency ad can run — and fees range from $3,000 to $100,000+ with the race.", icon: DollarSign, color: "text-liberty-crimson" },
+  { value: "$10,000+", label: "Common starting cost for a launch video. Fees may differ based on race type, size, and location.", icon: DollarSign, color: "text-liberty-crimson" },
   { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle", icon: TrendingUp, color: "text-freedom-blue" },
   { value: "95%", label: "Of local candidates priced out of professional video", icon: UserX, color: "text-liberty-crimson" },
   { value: "85%", label: "Believe campaign costs keep good people from running", icon: Lock, color: "text-freedom-blue" },
@@ -30,6 +30,12 @@ export function CostStatBand() {
               </div>
             ))}
           </div>
+        </ScrollReveal>
+        <ScrollReveal delay={120}>
+          <h2 className="mx-auto mt-10 max-w-[820px] text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
+            <span className="block">Democracy has a paywall.</span>
+            <span className="block">Don&apos;t let the high costs stop your campaign.</span>
+          </h2>
         </ScrollReveal>
       </div>
     </section>

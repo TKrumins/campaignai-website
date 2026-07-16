@@ -26,9 +26,9 @@ export function SectionLabel({ text, color = "blue", favicon = false, onDark = f
         <Image
           src={onDark ? "/assets/logos/favicon-mark-ondark.png" : "/assets/logos/favicon-mark.png"}
           alt=""
-          width={18}
-          height={18}
-          className="h-[18px] w-[18px]"
+          width={26}
+          height={26}
+          className="h-[26px] w-[26px]"
           aria-hidden
         />
       )}

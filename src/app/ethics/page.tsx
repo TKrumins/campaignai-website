@@ -227,7 +227,7 @@ export default function EthicsPage() {
           <ScrollReveal>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button variant="verdant-outline" href="/compliance">
-                See how we handle compliance &rarr;
+                How we handle 50-state compliance &rarr;
               </Button>
             </div>
           </ScrollReveal>

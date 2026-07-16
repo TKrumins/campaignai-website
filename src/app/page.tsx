@@ -37,6 +37,7 @@ export default function HomePage() {
           showDemo
           subline="Choose your plan and book your onboarding call. We scope your video together, then invoice you — nothing is charged upfront."
           showMicrocopy={false}
+          showEthicsLine={false}
         />
       </div>
     </>

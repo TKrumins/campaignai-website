@@ -8,7 +8,7 @@ now, and the exact steps to bring it back to life.
 See also `DRAFT-PAGES.md` for the general "build now, launch later" convention
 (unlinked + out of sitemap + noindex).
 
-_Last updated 2026-07-15 · branch `feat/content-pages`._
+_Last updated 2026-07-16 · branch `feat/content-pages`._
 
 ---
 
@@ -83,6 +83,22 @@ grassroots, plus a funnel component suite.
   drop it into the rebuilt pages when the time comes.
 - **How to hone it:** use Claude chat to redesign each of the five funnels
   (positioning, story, copy) before rebuilding in Claude Code.
+
+## 5. The Compliance / 50-state page (`/compliance`)
+
+The "how we handle 50-state compliance" page.
+
+- **State:** **needs extra support — split off as its own post-launch project
+  (flagged 2026-07-16).** At launch, the home Ethics section no longer links to
+  it; the single entry point is now the Ethics page (`/ethics` → "How we handle
+  50-state compliance →"). The page renders, but the compliance content
+  (state-by-state disclosure rules, the interactive clearance tool) needs a
+  dedicated legal/accuracy pass before it should carry marketing weight.
+- **Where it lives:** `src/app/compliance/page.tsx` plus the interactive
+  `ComplianceClearance` component.
+- **To hone it:** treat compliance copy as sensitive — it must stay "guidance,
+  not legal advice." Do a full accuracy review of the state rules and disclosure
+  labels with counsel before promoting the page or re-linking it broadly.
 
 ---
 

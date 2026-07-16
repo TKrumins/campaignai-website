@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, Globe, Share2, Users, MapPin, Scale, ChevronsRight } from "lucide-react";
+import { Megaphone, HandCoins, FileText, Vote, Play, Zap, Camera, Lock, Globe, Share2, Users, MapPin, Scale, ChevronsRight } from "lucide-react";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -196,7 +196,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
           </div>
         )}
 
-        <div className="text-center max-w-[760px] mx-auto mb-12">
+        <div className="text-center max-w-[760px] mx-auto mb-10">
           <div className="mb-4">
             <SectionLabel text="The Product" favicon />
           </div>
@@ -207,10 +207,13 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             Create the video you need when you need it. Fast intake. 48-hour
             delivery. Centered around YOU.
           </p>
-          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-regal-navy/5 px-4 py-2 text-sm font-medium text-regal-navy">
-            <Check className="h-4 w-4 shrink-0 text-verdant" />
-            Every video ships with human editorial review and full ownership. No watermark.
-          </p>
+        </div>
+
+        {/* The Campaign Arc — the many-videos-across-a-race view (graphic only).
+            It sits right under the intro to set up "bigger than one video"
+            before the visitor explores each type below. */}
+        <div className="mb-12 md:mb-16">
+          <CampaignArc showHeader={false} />
         </div>
 
         {/* Mobile swipe cue — the strip auto-rotation is off on phones, so nudge
@@ -352,7 +355,9 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               </div>
             </div>
 
-            <div className="mt-6">
+            {/* Fixed floor so the section height stays put as the visitor
+                switches types (the per-type detail cards vary in height). */}
+            <div className="mt-6 lg:min-h-[440px]">
               <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                 <h3 className="font-heading font-bold text-2xl text-regal-navy">{t.title}</h3>
                 {t.variant === "support" && t.statusLabel && (
@@ -377,13 +382,6 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               )}
             </div>
           </div>
-        </div>
-
-        {/* The Campaign Arc — the many-videos-across-a-race view, relocated
-            here from the retired Problem section (it illustrates exactly why a
-            campaign is bigger than one video). */}
-        <div className="mt-16 md:mt-20">
-          <CampaignArc />
         </div>
       </div>
     </section>
