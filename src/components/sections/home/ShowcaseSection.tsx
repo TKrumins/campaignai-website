@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Play } from "lucide-react";
 import {
   PURCHASE_URL,
@@ -230,15 +231,13 @@ export function ShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <section id="our-work" className="py-20 md:py-28 bg-gradient-to-b from-[#091026] via-regal-navy to-[#091026]">
+    <section id="our-work" className="relative py-20 md:py-28 bg-gradient-to-b from-[#091026] via-regal-navy to-[#091026]">
+      <StatusBadge label="Coming Soon" tone="dark" tilt className="absolute right-4 top-6 z-10 sm:right-8 sm:top-8" />
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12">
             <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mb-4">
               Showcase
-              <span className="ml-3 inline-flex translate-y-[-6px] items-center rounded-full bg-pioneer-gold/15 px-3 py-1 align-middle text-[11px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/30">
-                Coming Soon
-              </span>
             </h2>
             <p className="font-body font-semibold text-lg text-beacon-white/90 max-w-[720px] mx-auto leading-relaxed">
               Our founding team uses CampaignAI for our own campaigns, and a

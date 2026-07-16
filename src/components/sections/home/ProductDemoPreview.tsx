@@ -2,8 +2,9 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, Globe, Share2, Users, MapPin, Scale } from "lucide-react";
+import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, Globe, Share2, Users, MapPin, Scale, ChevronsRight } from "lucide-react";
 import { AISparkle } from "@/components/ui/AISparkle";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 
 type VideoType = {
   key: string;
@@ -74,7 +75,7 @@ const TYPES: VideoType[] = [
     title: "Rapid Response",
     icon: Zap,
     variant: "support",
-    statusLabel: "Coming soon",
+    statusLabel: "On the roadmap",
     tagline: "When news breaks.",
     blurb:
       "A quick-turn video you drop between your core films to answer an attack, seize a headline, or set the record straight.",
@@ -87,7 +88,7 @@ const TYPES: VideoType[] = [
     title: "Contrast Ad",
     icon: Scale,
     variant: "support",
-    statusLabel: "Coming soon",
+    statusLabel: "On the roadmap",
     tagline: "You vs. the alternative.",
     blurb:
       "A side-by-side that draws the clear line between your record and your opponent's — sharp, factual, and squarely on message.",
@@ -165,6 +166,9 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
   useEffect(() => {
     if (userPicked || !inView) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Mobile (below lg, the swipe-strip layout): do NOT auto-rotate — the visitor
+    // drives it by swiping/tapping. Auto-rotate only on the desktop column.
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
     const id = setInterval(() => {
       setActive((prev) => {
         const at = CORE_INDICES.indexOf(prev);
@@ -192,19 +196,27 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
 
         <div className="text-center max-w-[760px] mx-auto mb-12">
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
-            One team. Every video your campaign runs.
+            Your campaign is bigger than one video. Tell the full story.
           </h2>
           <p className="text-granite text-lg leading-[1.7]">
-            We&apos;re a tech-assisted video agency: our team produces each of
-            these for you today, with a self-serve platform on the way. Explore
-            each type below, or jump to the one you need — same story-first
-            process, same 48-hour delivery, whatever the moment calls for.
+            Create the video you need when you need it. Fast intake. 48-hour
+            delivery. Centered around YOU.
           </p>
           <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-regal-navy/5 px-4 py-2 text-sm font-medium text-regal-navy">
             <Check className="h-4 w-4 shrink-0 text-verdant" />
             Every video ships with human editorial review and full ownership. No watermark.
           </p>
         </div>
+
+        {/* Mobile swipe cue — the strip auto-rotation is off on phones, so nudge
+            the visitor to swipe. Fades once they pick a type. */}
+        {!userPicked && (
+          <div className="mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-slate lg:hidden">
+            <AISparkle size={12} color="#FF3366" glow className="sparkle-twinkle" style={{ ["--dur"]: "2.2s" } as CSSProperties} />
+            Swipe to explore each type
+            <ChevronsRight className="h-4 w-4 animate-pulse text-freedom-blue" />
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 items-start">
           {/* left: selectable type list. On mobile it freezes as a compact
@@ -227,7 +239,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                           from the supporting formats. Desktop column: the label. */}
                       <span aria-hidden className="mx-1 h-9 w-px shrink-0 self-center bg-gray-200 lg:hidden" />
                       <p className="hidden px-1 text-[10px] font-bold uppercase tracking-wider text-slate lg:block lg:mt-3 lg:border-t lg:border-gray-200 lg:pt-3">
-                        Coming Soon
+                        On the Roadmap
                       </p>
                     </>
                   )}
@@ -256,7 +268,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                         </p>
                         {support && statusLabel ? (
                           <span
-                            className={`mt-0.5 hidden rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:inline-block lg:text-[10px] ${
+                            className={`mt-0.5 inline-block rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:text-[10px] ${
                               on ? "bg-white/15 text-beacon-white/80" : "bg-regal-navy/5 text-slate"
                             }`}
                           >
@@ -472,7 +484,7 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
             <div className="h-full w-2/5 rounded-full multipartisan-gradient" />
           </div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">Coming soon</span>
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">On the roadmap</span>
         </div>
       </div>
     );
@@ -513,7 +525,7 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
           <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
             <div className="h-full w-1/3 rounded-full multipartisan-gradient" />
           </div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">Coming soon</span>
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">On the roadmap</span>
         </div>
       </div>
     );
@@ -657,10 +669,8 @@ function LibrarySpotlight() {
 function PlaceholderStage({ title, spark }: { title: string; spark: string }) {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
-      {/* coming-soon tag — sample films are in production */}
-      <span className="absolute right-3 top-3 z-10 rounded-full bg-pioneer-gold/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/40">
-        Coming Soon
-      </span>
+      {/* status stamp — sample films are in production */}
+      <StatusBadge label="Coming Fall 2026" tone="dark" className="absolute right-3 top-3 z-10" />
       {/* film-frame perforations */}
       <div className="absolute inset-y-0 left-0 flex w-6 flex-col justify-around">
         {Array.from({ length: 6 }).map((_, i) => (

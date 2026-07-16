@@ -6,8 +6,9 @@ import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { AISparkle } from "@/components/ui/AISparkle";
-import { DollarSign, UserX, Lock, TrendingUp, Play } from "lucide-react";
+import { DollarSign, UserX, Lock, TrendingUp } from "lucide-react";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
+import { CampaignArc } from "./CampaignArc";
 
 // The $10,000 reference moves into this band (no longer the lead line up top),
 // with the honest range spelled out beneath it.
@@ -17,51 +18,6 @@ const stats = [
   { value: "95%", label: "Of local candidates priced out of professional video", icon: UserX, color: "text-liberty-crimson" },
   { value: "85%", label: "Believe campaign costs keep good people from running", icon: Lock, color: "text-freedom-blue" },
 ];
-
-// One-vs-many: a single big-budget ad set against the library of videos a
-// campaign can make with us instead. We're not the budget option — we're a
-// different way to run a campaign, telling many stories over the race.
-function OneVsManyGraphic() {
-  const tileAccents = [
-    "#FF3366", "#8E5CF7", "#4D9FFF", "#FF3366",
-    "#4D9FFF", "#8E5CF7", "#FF3366", "#4D9FFF",
-  ];
-  return (
-    <div className="mt-7 rounded-2xl border border-gray-200 bg-dawn-frost p-5">
-      <div className="flex items-center gap-4">
-        {/* one big ad */}
-        <div className="shrink-0 text-center">
-          <div className="grid h-[86px] w-[72px] place-items-center rounded-lg bg-slate/10 ring-1 ring-slate/25 sm:w-[84px]">
-            <span className="font-heading text-2xl font-extrabold text-slate">$$$</span>
-          </div>
-          <p className="mt-2 max-w-[84px] text-[11px] font-semibold leading-tight text-slate">
-            One big&nbsp;ad
-          </p>
-        </div>
-
-        <span className="font-heading text-2xl font-bold text-regal-navy">&rarr;</span>
-
-        {/* a whole season of video */}
-        <div className="min-w-0 flex-1">
-          <div className="grid grid-cols-4 gap-1.5">
-            {tileAccents.map((c, i) => (
-              <div
-                key={i}
-                className="relative flex aspect-video items-center justify-center rounded-md ring-1 ring-black/5"
-                style={{ backgroundColor: `${c}1A` }}
-              >
-                <Play className="h-2.5 w-2.5" style={{ color: c }} fill={c} />
-              </div>
-            ))}
-          </div>
-          <p className="mt-2 text-[11px] font-semibold leading-tight text-regal-navy">
-            A whole season of video with CampaignAI
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // Red / White / Blue sparkles around the broken opening — kept to the sides so
 // they never sit over the "$599" reveal or the heading.
@@ -197,7 +153,7 @@ function PaywallGraphic() {
   return (
     <div ref={ref} className="relative mx-auto w-full max-w-[440px]">
       <p className="mb-5 text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
-        Democracy shouldn&apos;t have a paywall.
+        Feel like democracy has a paywall?
       </p>
       <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal the CampaignAI logo">
         <defs>
@@ -206,6 +162,17 @@ function PaywallGraphic() {
             <stop offset="0.5" stopColor="#EBEAFB" stopOpacity="0.45" />
             <stop offset="1" stopColor="#EBEAFB" stopOpacity="0" />
           </radialGradient>
+          {/* Knocks the opaque white background out of the logo raster so the
+              mark reveals cleanly on the light glow (alpha = 1 − luminance). */}
+          <filter id="logoKnockout" colorInterpolationFilters="sRGB">
+            <feColorMatrix
+              type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      -0.2126 -0.7152 -0.0722 0 1"
+            />
+          </filter>
         </defs>
 
         {/* light streaming through the opening — red / purple / blue */}
@@ -261,6 +228,7 @@ function PaywallGraphic() {
             width="156"
             height="156"
             preserveAspectRatio="xMidYMid meet"
+            filter="url(#logoKnockout)"
           />
         </g>
 
@@ -303,46 +271,63 @@ export function ProblemSection() {
   return (
     <section className="overflow-hidden bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* copy */}
-          <ScrollReveal>
-            <div>
-              <h2 className="font-heading text-4xl font-extrabold tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
-                Don&apos;t spend your whole budget on one ad.
-              </h2>
-              <p className="mt-5 max-w-md text-lg leading-relaxed text-granite">
-                A campaign is a season of stories, not a single spot. Instead of
-                pouring everything into one expensive ad, produce a whole library
-                of videos across your race &mdash; for a fraction of what one
-                agency ad costs.
-              </p>
+        {/* lead-in: the paywall breaks on the question, revealing us */}
+        <ScrollReveal>
+          <div className="mx-auto mb-14 max-w-[460px]">
+            <PaywallGraphic />
+          </div>
+        </ScrollReveal>
 
-              <OneVsManyGraphic />
+        {/* the answer + a short Q&A */}
+        <ScrollReveal>
+          <div className="mx-auto max-w-[880px] text-center">
+            <h2 className="font-heading text-4xl font-extrabold tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
+              Don&apos;t spend your whole budget on one ad.
+            </h2>
 
-              {/* Honest range so a non-candidate visitor isn't anchored on the
-                  candidate rate before the pricing section below. */}
-              <p className="mt-6 max-w-md text-sm leading-relaxed text-slate">
-                Candidates start at <span className="font-semibold text-regal-navy">$599</span> this
-                cycle, organizations at <span className="font-semibold text-regal-navy">$1,999</span>,
-                and nonprofits get mission-based pricing.{" "}
-                <Link href="#pricing" className="font-semibold text-freedom-blue hover:underline">
-                  See what applies to you &rarr;
-                </Link>
-              </p>
-
-              <div className="mt-8">
-                <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
-                  {CTA_PRIMARY}
-                </Button>
-                <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
+            <div className="mt-9 grid gap-5 text-left sm:grid-cols-2">
+              <div className="rounded-2xl border border-gray-200 bg-dawn-frost p-6">
+                <p className="font-heading text-lg font-bold text-regal-navy">
+                  Do I need one big, expensive ad to be taken seriously?
+                </p>
+                <p className="mt-3 leading-relaxed text-granite">
+                  No. A campaign is a season of stories, not a single spot. For
+                  decades, one professional ad could eat your whole video budget
+                  &mdash; we help you make many, across your whole race, instead.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-gray-200 bg-dawn-frost p-6">
+                <p className="font-heading text-lg font-bold text-regal-navy">
+                  So what does it actually cost?
+                </p>
+                <p className="mt-3 leading-relaxed text-granite">
+                  A fraction of one agency ad. Candidates start at{" "}
+                  <span className="font-semibold text-regal-navy">$599</span> this
+                  cycle, organizations at{" "}
+                  <span className="font-semibold text-regal-navy">$1,999</span>, and
+                  nonprofits get mission-based pricing.{" "}
+                  <Link href="#pricing" className="font-semibold text-freedom-blue hover:underline">
+                    See what applies to you &rarr;
+                  </Link>
+                </p>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
+        </ScrollReveal>
 
-          {/* graphic */}
-          <ScrollReveal delay={150}>
-            <PaywallGraphic />
-          </ScrollReveal>
+        {/* Campaign Arc — the season of stories, visualized (graphic only) */}
+        <ScrollReveal delay={100}>
+          <div className="mt-12">
+            <CampaignArc showHeader={false} />
+          </div>
+        </ScrollReveal>
+
+        {/* CTA */}
+        <div className="mt-10 text-center">
+          <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
+            {CTA_PRIMARY}
+          </Button>
+          <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
         </div>
 
         {/* integrated stat band */}

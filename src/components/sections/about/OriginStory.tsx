@@ -58,9 +58,12 @@ export function OriginStory() {
               Three local leaders. One shared mission.
             </h2>
             <p className="text-granite text-lg leading-relaxed max-w-[680px] mx-auto">
-              CampaignAI wasn&apos;t born in Silicon Valley. It started with a
-              simple question in South Carolina: why do the candidates closest
-              to their communities have the fewest tools to reach them?
+              This all started with a series of questions out of South Carolina.{" "}
+              <span className="italic text-regal-navy">
+                Why is it so hard to tell my campaign&apos;s story? Why does it
+                feel like democracy has a paywall? Why aren&apos;t we preparing
+                for the coming AI wave?
+              </span>
             </p>
           </div>
         </ScrollReveal>
@@ -119,7 +122,7 @@ export function OriginStory() {
             key={active}
             className="animate-fade-in-up rounded-2xl bg-white p-7 shadow-md ring-1 ring-black/5 md:p-8"
           >
-            <span className="text-xs font-bold uppercase tracking-wider text-bridge-violet">{item.year}</span>
+            <span className="text-sm font-extrabold uppercase tracking-wider patriot-gradient-text-bright">{item.year}</span>
             <h3 className="mt-1 mb-3 font-heading text-xl font-bold text-regal-navy md:text-2xl">{item.title}</h3>
             <p className="text-granite leading-relaxed">{item.body}</p>
           </div>

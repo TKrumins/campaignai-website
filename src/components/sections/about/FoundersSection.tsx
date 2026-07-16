@@ -35,6 +35,15 @@ const founders = [
   },
 ];
 
+// Subheading (title) color matches each founder's party label.
+const partyTextColor: Record<string, string> = {
+  Republican: "text-liberty-crimson",
+  Democrat: "text-freedom-blue",
+  Democratic: "text-freedom-blue",
+  Forward: "text-bridge-violet",
+  Independent: "text-bridge-violet",
+};
+
 // Candid folders (6.4): public/assets/founders/{first-name}/01.jpg... The
 // collage cycles whatever lands there; until then the portrait renders.
 function founderPhotos(firstName: string, fallback: string): string[] {
@@ -85,7 +94,7 @@ export function FoundersSection() {
                       </span>
                     )}
                   </div>
-                  <p className="text-bridge-violet text-sm font-semibold mb-1">{title}</p>
+                  <p className={`${partyTextColor[party] ?? "text-bridge-violet"} text-sm font-semibold mb-1`}>{title}</p>
                   <p className="text-granite font-semibold mb-4">{tagline}</p>
                   <p className="text-granite leading-relaxed whitespace-pre-line">{bio}</p>
                   {/* Founder quote slot: drop-in ready */}

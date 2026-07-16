@@ -12,7 +12,6 @@ const founders = [
     title: "SC Forward Party Founding Member.",
     description: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
     party: "Forward",
-    candids: ["/assets/founders/tom/08.jpg", "/assets/founders/tom/09.jpg"],
   },
   {
     photo: "/assets/profile-pictures/Jermaine-Johnson.png",
@@ -20,7 +19,6 @@ const founders = [
     title: "SC State Representative. Gubernatorial Candidate.",
     description: "Deacon. Educator. A true grassroots leader.",
     party: "Democrat",
-    candids: ["/assets/founders/jermaine/04.jpg", "/assets/founders/jermaine/10.jpg"],
   },
   {
     photo: "/assets/profile-pictures/Brandon-Guffey.png",
@@ -28,7 +26,6 @@ const founders = [
     title: "SC State Representative",
     description: "Child safety advocate. Business owner. Father on a mission.",
     party: "Republican",
-    candids: ["/assets/founders/brandon/05.jpg", "/assets/founders/brandon/08.jpg"],
   },
 ];
 
@@ -49,7 +46,7 @@ export function TrustSection() {
           <div className="text-center max-w-4xl mx-auto mb-14">
             <span className="mx-auto mb-4 block h-1 w-20 rounded-full multipartisan-gradient" />
             <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mb-5">
-              Republican. Democrat. Independent.
+              Republican. Democrat. Forwardist.
             </h2>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px] mx-auto">
               We&apos;re not a faceless platform. CampaignAI was founded by
@@ -69,9 +66,9 @@ export function TrustSection() {
           </h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {founders.map(({ photo, name, title, description, party, candids }, i) => (
+          {founders.map(({ photo, name, title, description, party }, i) => (
             <ScrollReveal key={name} delay={i * 100}>
-              <div className="card-hover text-center rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 h-full">
+              <div className="card-hover flex flex-col text-center rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 h-full">
                 <div className="relative w-[168px] h-[168px] mx-auto mb-5">
                   <div className="w-full h-full rounded-full p-[3px] bg-regal-navy shadow-sm">
                     <div className="w-full h-full rounded-full overflow-hidden bg-white">
@@ -92,20 +89,14 @@ export function TrustSection() {
                 <h3 className="font-heading font-bold text-lg text-regal-navy">
                   {name}
                 </h3>
-                <p className="text-regal-navy text-sm font-semibold mb-2">
+                {/* min-height aligns the description start across all three
+                    cards on laptop, even when titles run different lengths */}
+                <p className="text-regal-navy text-sm font-semibold mb-2 md:min-h-[2.75rem]">
                   {title}
                 </p>
                 <p className="text-slate text-sm leading-relaxed">
                   {description}
                 </p>
-                {/* candids from the trail — the real, unpolished side of the team */}
-                <div className="mt-5 grid grid-cols-2 gap-2">
-                  {candids.map((src) => (
-                    <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-black/10">
-                      <Image src={src} alt={`${name} on the trail`} fill sizes="200px" className="object-cover" />
-                    </div>
-                  ))}
-                </div>
               </div>
             </ScrollReveal>
           ))}

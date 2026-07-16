@@ -33,13 +33,12 @@ export function AboutHero() {
           About
         </span>
         <h1 className="font-heading font-extrabold text-[32px] sm:text-[48px] md:text-[56px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
-          Built by people who&apos;ve been in the arena.
+          Built by people who are in the arena.
         </h1>
         <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-          CampaignAI was founded by a multi-partisan team &mdash; Republican,
-          Democrat, and independent &mdash; who believe getting this technology
-          right matters more than any single election. We build for the next
-          generation, not the next news cycle.
+          CampaignAI was founded by a multi-partisan team committed to humane
+          technology. Republican. Democrat. Forwardist. We&apos;re building for
+          the next generation, not the next news cycle.
         </p>
         <a
           href={SOCIAL_SUBSTACK}

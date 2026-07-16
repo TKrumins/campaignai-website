@@ -37,10 +37,13 @@ export function PricingTiers() {
                 One finished video
               </span>
               <p className="text-granite text-sm leading-relaxed mb-5 min-h-[72px]">
-                Full production for the teams producing at scale &mdash;
-                consultancies, party committees, PACs, and organizations. One
-                flat rate for a finished video, with any add-ons priced on your
-                onboarding call.
+                <span className="font-bold text-regal-navy">For the modern storyteller.</span>
+                <br />
+                Whether you&apos;re supporting a candidate, a campaign, or a cause,
+                you know the power of a good video. We produce each one to a
+                professional standard at one flat rate &mdash; so you can build a
+                whole library, not bet everything on a single spot. Bundle
+                discounts available.
               </p>
               <div className="mb-6 flex-1" />
               <Button variant="patriot" href={PURCHASE_URL} className="w-full">
@@ -88,10 +91,12 @@ export function PricingTiers() {
                 </span>
               </div>
               <p className="text-granite text-sm leading-relaxed mb-5 min-h-[72px]">
-                School board to U.S. Senate. We cut the rate for the 2026 cycle
-                because every campaign deserves a fair shot at professional
-                video &mdash; not just the ones with an agency budget. This is
-                the work we care about most.
+                <span className="font-bold text-regal-navy">From school board to Senate.</span>
+                <br />
+                We&apos;re offering our services at a discount for the 2026 cycle
+                because every campaign deserves a fair shot at telling their
+                story. This is the first true &ldquo;AI election,&rdquo; and
+                we&apos;re committed to demonstrating a better way.
               </p>
               <div className="mb-6 flex-1" />
               <Button variant="patriot" href={PURCHASE_URL} className="w-full">
@@ -151,10 +156,10 @@ export function PricingTiers() {
                 Add-ons, priced on your call
               </p>
               <p className="text-granite text-sm leading-relaxed">
-                Need custom footage, extra concepts, more videos, additional
-                languages, or rush delivery? We walk through the options and
-                price them on your onboarding call, so you approve the full cost
-                before anything goes into production.
+                Need extra revisions, multiple cuts, additional languages, or
+                rush delivery? We walk through the options on your onboarding
+                call. You approve the full cost before anything goes into
+                production.
               </p>
             </div>
           </div>

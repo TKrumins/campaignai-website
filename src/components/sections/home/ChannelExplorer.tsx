@@ -188,24 +188,28 @@ export function ChannelExplorer() {
 
   return (
     <div>
-      <p className="mb-5 text-center text-sm text-slate">
+      <p className="mb-4 text-center text-sm text-slate">
         Tap any destination to see how your video shows up there.
       </p>
 
-      <Hub
-        cx={450}
-        cy={450}
-        spokeLen={300}
-        rectW={176}
-        rectH={86}
-        hubR={70}
-        viewBox="40 40 820 820"
-        idp="ce-d-"
-        channels={HUB_CHANNELS}
-        onSelect={setSelected}
-        selectedIdx={selected}
-        className="mx-auto hidden w-full max-w-[760px] md:block"
-      />
+      {/* hub + detail card side by side on laptop (both visible in one screen),
+          stacked compactly on mobile */}
+      <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
+        <div>
+          <Hub
+            cx={450}
+            cy={450}
+            spokeLen={300}
+            rectW={176}
+            rectH={86}
+            hubR={70}
+            viewBox="40 40 820 820"
+            idp="ce-d-"
+            channels={HUB_CHANNELS}
+            onSelect={setSelected}
+            selectedIdx={selected}
+            className="mx-auto hidden w-full max-w-[500px] lg:block"
+          />
       <Hub
         cx={300}
         cy={300}
@@ -218,13 +222,14 @@ export function ChannelExplorer() {
         channels={HUB_CHANNELS}
         onSelect={setSelected}
         selectedIdx={selected}
-        className="w-full md:hidden"
+        className="mx-auto w-full max-w-[300px] lg:hidden"
       />
+        </div>
 
-      {/* detail card for the selected channel */}
-      <div className="mx-auto mt-6 max-w-[720px] overflow-hidden rounded-2xl border border-freedom-blue/25 bg-white shadow-sm">
-        <ChannelArt channel={channel} />
-        <div className="p-6">
+        {/* detail card for the selected channel */}
+        <div className="mx-auto w-full max-w-[440px] overflow-hidden rounded-2xl border border-freedom-blue/25 bg-white shadow-sm">
+          <ChannelArt channel={channel} />
+          <div className="p-5">
           <div className="mb-3 flex flex-wrap items-center gap-3">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl" style={{ backgroundColor: `${channel.accent}1F` }}>
               <channel.icon className="h-5 w-5" />
@@ -251,9 +256,10 @@ export function ChannelExplorer() {
             </div>
           )}
         </div>
+        </div>
       </div>
 
-      <p className="mt-6 text-center">
+      <p className="mt-5 text-center">
         <a href="/channels" className="inline-flex items-center gap-1 text-sm font-semibold text-freedom-blue hover:underline">
           See where to share your video &rarr;
         </a>

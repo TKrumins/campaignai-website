@@ -8,7 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * Video Production Process page, where the "how your videos add up across a
  * campaign" story belongs. All the playhead / arc-beat animation is preserved.
  */
-export function CampaignArc() {
+export function CampaignArc({ showHeader = true }: { showHeader?: boolean } = {}) {
   const lanes: {
     key: string;
     label: string;
@@ -29,17 +29,19 @@ export function CampaignArc() {
   ];
   return (
     <div>
-      <div className="mb-6 flex flex-col items-center gap-3 text-center">
-        <SectionLabel text="The Campaign Arc" />
-        <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy tracking-[-0.5px]">
-          A campaign is a series of stories, told in new and exciting ways.
-        </h3>
-        <p className="max-w-[640px] text-granite">
-          Every video is a chapter — your launch, your asks, the policies you
-          fight for, the candid moments, the closing push. No single film is your
-          campaign. Told together, over a race, they are.
-        </p>
-      </div>
+      {showHeader && (
+        <div className="mb-6 flex flex-col items-center gap-3 text-center">
+          <SectionLabel text="The Campaign Arc" />
+          <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy tracking-[-0.5px]">
+            A campaign is a series of stories, told in new and exciting ways.
+          </h3>
+          <p className="max-w-[640px] text-granite">
+            Every video is a chapter — your launch, your asks, the policies you
+            fight for, the candid moments, the closing push. No single film is your
+            campaign. Told together, over a race, they are.
+          </p>
+        </div>
+      )}
 
       <div className="relative overflow-hidden rounded-3xl bg-regal-navy p-6 md:p-10 shadow-2xl">
         <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0" />

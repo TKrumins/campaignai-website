@@ -17,10 +17,13 @@ export function MissionSection() {
             Getting this right matters more than any one election.
           </h2>
           <p className="text-beacon-white/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
-            A Republican, a Democrat, and an independent &mdash; building the
-            tools that shape modern campaigns so they&apos;re within reach of
-            everyone who runs, not just the campaigns with an agency budget.
-            We&apos;re doing it in the open, and we&apos;re only getting started.
+            Our democracy and government function on stories and information. AI
+            is set to disrupt how we communicate with each other. Here at
+            CampaignAI, we want that disruption to help us communicate better.
+            Technology can bring us together, or it can divide us. That&apos;s why
+            we&apos;re building the tools to empower modern campaigns of all shapes
+            and sizes. We&apos;re building in the open&hellip; and we&apos;re only
+            getting started.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button variant="patriot" href="/video-production-process" className="px-8 py-3 text-base">
