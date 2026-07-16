@@ -1,5 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 export function HIWCTA() {
   return (
@@ -10,15 +11,13 @@ export function HIWCTA() {
             Ready to tell your story?
           </h2>
           <p className="text-granite text-lg leading-relaxed mb-8">
-            Join the waitlist. Professional campaign video without the agency
-            price tag.
+            Professional campaign video without the agency price tag.
           </p>
-          <Button variant="crimson" href="/get-started">
-            Tell your story &rarr;
+          <Button variant="patriot" href={PURCHASE_URL}>
+            {CTA_PRIMARY}
           </Button>
-          <p className="mt-6 text-slate text-sm">
-            Agencies and consultants charge $10,000+ per ad. Make one for a
-            10th the cost.
+          <p className="mt-2 text-slate text-sm">
+            Book a 30-minute call to get started.
           </p>
         </ScrollReveal>
       </div>

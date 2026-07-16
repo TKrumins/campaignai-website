@@ -1,56 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
-const STATES = [
-  "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
-  "Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa",
-  "Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan",
-  "Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire",
-  "New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio",
-  "Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota",
-  "Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia",
-  "Wisconsin","Wyoming","District of Columbia",
-  "Puerto Rico","Guam","U.S. Virgin Islands","American Samoa","Northern Mariana Islands",
-];
-
-const ROLES = [
-  "Candidate",
-  "Campaign Staff",
-  "Consultant",
-  "Party",
-  "PAC",
-  "Nonprofit/Advocacy",
-  "Grassroots Movement",
-  "Other",
-];
-
-const VOLUME_OPTIONS = [
-  "Just 1 to start",
-  "2-5 videos",
-  "6-15 videos",
-  "15+ videos or ongoing production",
-  "Not sure yet",
-];
-
-interface WaitlistFormProps {
-  prefillEmail?: string;
-  variant?: "default" | "compact";
-}
-
-export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistFormProps) {
+export function WaitlistForm() {
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (prefillEmail) {
-      setEmail(prefillEmail);
-      setTimeout(() => nameRef.current?.focus(), 100);
-    }
-  }, [prefillEmail]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -98,10 +55,8 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
           You&apos;re on the list.
         </h3>
         <p className="text-slate text-sm max-w-md mx-auto">
-          You&apos;ll receive product intro emails beginning at sign-up. Once
-          the waitlist clears, we&apos;ll send you a personal email with
-          everything you need to produce your first video, including pricing
-          tailored to your campaign.
+          We&apos;ll let you know the moment you can create videos end to end on
+          your own &mdash; plus the occasional product update along the way.
         </p>
       </div>
     );
@@ -120,32 +75,18 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
         </div>
       )}
 
-      <div className={variant === "compact" ? "grid grid-cols-1 sm:grid-cols-2 gap-4" : "grid grid-cols-1 sm:grid-cols-2 gap-4"}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="waitlist-first-name" className={labelBase}>
-            First Name *
+          <label htmlFor="waitlist-name" className={labelBase}>
+            Name *
           </label>
           <input
             ref={nameRef}
-            id="waitlist-first-name"
-            name="first_name"
+            id="waitlist-name"
+            name="name"
             type="text"
             required
-            placeholder="First name"
-            className={inputBase}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="waitlist-last-name" className={labelBase}>
-            Last Name *
-          </label>
-          <input
-            id="waitlist-last-name"
-            name="last_name"
-            type="text"
-            required
-            placeholder="Last name"
+            placeholder="Your name"
             className={inputBase}
           />
         </div>
@@ -165,71 +106,6 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
             className={inputBase}
           />
         </div>
-
-        <div>
-          <label htmlFor="waitlist-state" className={labelBase}>
-            State *
-          </label>
-          <select
-            id="waitlist-state"
-            name="state"
-            required
-            className={`${inputBase} appearance-none`}
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select your state
-            </option>
-            {STATES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="waitlist-role" className={labelBase}>
-            Role *
-          </label>
-          <select
-            id="waitlist-role"
-            name="role"
-            required
-            className={`${inputBase} appearance-none`}
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select your role
-            </option>
-            {ROLES.map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="waitlist-volume" className={labelBase}>
-          How many videos are you thinking about?
-        </label>
-        <select
-          id="waitlist-volume"
-          name="volume"
-          className={`${inputBase} appearance-none`}
-          defaultValue=""
-        >
-          <option value="" disabled>
-            Select an option (optional)
-          </option>
-          {VOLUME_OPTIONS.map((v) => (
-            <option key={v} value={v}>
-              {v}
-            </option>
-          ))}
-        </select>
       </div>
 
       <Button
@@ -244,7 +120,7 @@ export function WaitlistForm({ prefillEmail, variant = "default" }: WaitlistForm
             Submitting...
           </>
         ) : (
-          "Join the waitlist \u2192"
+          "Join the waitlist →"
         )}
       </Button>
 

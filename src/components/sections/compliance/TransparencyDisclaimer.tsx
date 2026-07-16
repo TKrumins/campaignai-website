@@ -31,10 +31,10 @@ export function TransparencyDisclaimer() {
                 If you become aware of a regulatory change that we haven&apos;t
                 yet reflected, we want to hear about it. Contact us at{" "}
                 <a
-                  href="mailto:compliance@campaignai.com"
+                  href="mailto:info@campaignai.us"
                   className="text-liberty-crimson font-semibold hover:underline"
                 >
-                  compliance@campaignai.com
+                  info@campaignai.us
                 </a>
                 .
               </p>

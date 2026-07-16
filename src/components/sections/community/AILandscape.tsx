@@ -2,7 +2,6 @@
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { SubstackCapture } from "@/components/forms/SubstackCapture";
 import {
   Brain,
   FileText,
@@ -30,6 +29,10 @@ import {
   Calendar,
 } from "lucide-react";
 import { type LucideIcon } from "lucide-react";
+import type { CSSProperties } from "react";
+
+const EMBLEM_SPARK =
+  "M12 0 C12.8 6.6 17.4 11.2 24 12 C17.4 12.8 12.8 17.4 12 24 C11.2 17.4 6.6 12.8 0 12 C6.6 11.2 11.2 6.6 12 0 Z";
 
 interface AICapability {
   icon: LucideIcon;
@@ -165,7 +168,7 @@ const categories: Category[] = [
   },
   {
     name: "Agents & Automation",
-    tagColor: "bg-verdant/10 text-verdant border-verdant/20",
+    tagColor: "bg-bridge-violet/10 text-bridge-violet border-bridge-violet/20",
     capabilities: [
       {
         icon: Bot,
@@ -206,7 +209,7 @@ const categoryAccentBorders: Record<string, string> = {
   "Data & Analytics": "border-l-freedom-blue",
   "Algorithmic Targeting & Amplification": "border-l-pioneer-gold",
   "Deepfakes & Cloning": "border-l-critical-scarlet",
-  "Agents & Automation": "border-l-verdant",
+  "Agents & Automation": "border-l-bridge-violet",
 };
 
 const categoryIconColors: Record<string, string> = {
@@ -214,18 +217,18 @@ const categoryIconColors: Record<string, string> = {
   "Data & Analytics": "text-freedom-blue",
   "Algorithmic Targeting & Amplification": "text-pioneer-gold",
   "Deepfakes & Cloning": "text-critical-scarlet",
-  "Agents & Automation": "text-verdant",
+  "Agents & Automation": "text-bridge-violet",
 };
 
 export function AILandscape() {
   return (
-    <section className="py-20 md:py-28 bg-white overflow-hidden">
+    <section className="py-20 md:py-28 bg-dawn-frost overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-6">
             <SectionLabel text="The AI Landscape" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-4">
-              AI is already reshaping campaigns.
+              What AI can do in a campaign today.
             </h2>
             <p className="text-granite text-lg leading-relaxed max-w-[680px] mx-auto">
               From voter analysis to synthetic media, artificial intelligence is
@@ -235,24 +238,48 @@ export function AILandscape() {
           </div>
         </ScrollReveal>
 
-        {/* Central hub */}
+        {/* Central emblem — the four-point AI mark on a navy disc, ringed by a
+            rotating multi-partisan orbit. A bespoke brand mark, not a stock brain. */}
         <ScrollReveal>
-          <div className="flex justify-center my-10">
-            <div className="relative">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full patriot-gradient flex items-center justify-center shadow-lg shadow-freedom-blue/20">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center">
-                  <div className="text-center">
-                    <Brain className="w-8 h-8 md:w-10 md:h-10 text-regal-navy mx-auto mb-1" />
-                    <span className="text-regal-navy text-xs md:text-sm font-bold uppercase tracking-wider">
-                      AI
-                    </span>
-                  </div>
-                </div>
-              </div>
-              {/* Pulse rings */}
-              <div className="absolute inset-0 rounded-full border border-freedom-blue/15 animate-ping" style={{ animationDuration: "3s" }} />
-              <div className="absolute -inset-4 rounded-full border border-liberty-crimson/10 animate-ping" style={{ animationDuration: "4s", animationDelay: "1s" }} />
-            </div>
+          <div className="flex justify-center my-12">
+            <svg viewBox="0 0 160 160" className="h-32 w-32 md:h-40 md:w-40" role="img" aria-label="CampaignAI">
+              <defs>
+                <linearGradient id="ail-ring" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#FF3366" />
+                  <stop offset="0.5" stopColor="#8E5CF7" />
+                  <stop offset="1" stopColor="#4D9FFF" />
+                </linearGradient>
+                <linearGradient id="ail-spark" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#FF6B8F" />
+                  <stop offset="0.5" stopColor="#8E5CF7" />
+                  <stop offset="1" stopColor="#7AB8FF" />
+                </linearGradient>
+              </defs>
+              {/* rotating dashed multi-partisan orbit */}
+              <circle cx="80" cy="80" r="62" fill="none" stroke="url(#ail-ring)" strokeWidth="3" strokeDasharray="5 9" strokeLinecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 80 80" to="360 80 80" dur="28s" repeatCount="indefinite" />
+              </circle>
+              {/* navy disc */}
+              <circle cx="80" cy="80" r="46" fill="#0D1B3E" />
+              <circle cx="80" cy="80" r="46" fill="none" stroke="#4D9FFF" strokeOpacity="0.3" strokeWidth="1.5" />
+              {/* center AI sparkle */}
+              <g transform="translate(80 80) scale(2.5) translate(-12 -12)">
+                <path d={EMBLEM_SPARK} fill="url(#ail-spark)" className="ga-glow" />
+              </g>
+              {/* orbiting sparkles */}
+              {[
+                { x: 118, y: 52, s: 12, c: "#FF3366", d: 0 },
+                { x: 44, y: 110, s: 11, c: "#4D9FFF", d: 0.6 },
+                { x: 116, y: 116, s: 9, c: "#8E5CF7", d: 0.3 },
+              ].map((p, i) => {
+                const k = p.s / 24;
+                return (
+                  <g key={i} transform={`translate(${p.x} ${p.y}) scale(${k}) translate(-12 -12)`}>
+                    <path d={EMBLEM_SPARK} fill={p.c} className="sparkle-twinkle" style={{ ["--dur"]: `${2.6 + i * 0.4}s`, animationDelay: `${p.d}s` } as CSSProperties} />
+                  </g>
+                );
+              })}
+            </svg>
           </div>
         </ScrollReveal>
 
@@ -278,7 +305,7 @@ export function AILandscape() {
                 {caps.map(({ icon: Icon, title, description }, i) => (
                   <ScrollReveal key={title} delay={i * 50}>
                     <div
-                      className={`group rounded-xl border border-gray-100 border-l-[3px] ${categoryAccentBorders[name]} bg-dawn-frost/50 p-5 h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]`}
+                      className={`group rounded-xl border border-gray-100 border-l-[3px] ${categoryAccentBorders[name]} bg-white p-5 h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]`}
                     >
                       <div className="flex items-start gap-4">
                         <div className="shrink-0 w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center">
@@ -312,8 +339,13 @@ export function AILandscape() {
                 It&apos;s whether we shape how it&apos;s used, together.
               </span>
             </p>
-            <div className="max-w-md mx-auto mt-8">
-              <SubstackCapture variant="light" buttonText="Subscribe" />
+            <div className="mt-8">
+              <a
+                href="/community"
+                className="btn-hover inline-flex items-center justify-center text-center rounded-full bg-regal-navy px-6 py-3 text-white text-sm font-semibold"
+              >
+                Join the conversation &rarr;
+              </a>
             </div>
           </div>
         </ScrollReveal>

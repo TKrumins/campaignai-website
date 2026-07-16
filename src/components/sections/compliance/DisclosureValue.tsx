@@ -11,7 +11,7 @@ const threats = [
   {
     icon: Users,
     label: "Public backlash",
-    description: "Voters punish campaigns that hide AI use. Transparency earns trust.",
+    description: "Undisclosed AI can become the opponent's talking point. Disclosing first keeps the story yours.",
   },
   {
     icon: Newspaper,
@@ -29,7 +29,7 @@ const benefits = [
   "Builds voter trust before it becomes a requirement",
   "Eliminates the risk of mid-campaign compliance surprises",
   "Protects your reputation from opposition research",
-  "Future-proofs every ad against incoming regulations",
+  "Keeps every ad ready for the disclosure rules taking shape now",
 ];
 
 export function DisclosureValue() {
@@ -102,8 +102,8 @@ export function DisclosureValue() {
               </ul>
               <p className="text-beacon-white/50 text-xs mt-6">
                 Every video includes the correct labels for your state. When
-                requirements change, we update automatically. You never have
-                to think about it.
+                requirements change, we update the labels, so you never have to
+                track it yourself.
               </p>
             </div>
           </div>

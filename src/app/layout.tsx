@@ -3,8 +3,10 @@ import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CookieConsent } from "@/components/layout/CookieConsent";
-import { MobileCTA } from "@/components/layout/MobileCTA";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { Analytics } from "@/components/layout/Analytics";
+import { A250_KEY } from "@/lib/constants";
 
 const manrope = Manrope({
   variable: "--font-heading",
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   description:
     "Create professional campaign videos at a fraction of the cost. CampaignAI helps political campaigns and organizations tell their stories with AI-powered video production.",
   icons: {
-    icon: "/Logos/favicon-dark-background.svg",
+    icon: "/assets/logos/favicon-dark-background.svg",
   },
   openGraph: {
     type: "website",
@@ -36,10 +38,10 @@ export const metadata: Metadata = {
     siteName: "CampaignAI",
     title: "CampaignAI - Professional Campaign Video for Political Campaigns",
     description:
-      "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with human-edited quality, built-in compliance, and 48-hour delivery.",
+      "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with human-edited quality, built-in compliance through state-specific AI disclosure labels, and 48-hour post-production delivery once you submit.",
     images: [
       {
-        url: "/hero-bg.png",
+        url: "/assets/images/hero-bg.png",
         width: 1200,
         height: 630,
         alt: "CampaignAI - Campaign-ready video production",
@@ -50,11 +52,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CampaignAI - Professional Campaign Video for Political Campaigns",
     description:
-      "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with built-in compliance.",
-    images: ["/hero-bg.png"],
+      "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with built-in compliance: state-specific AI disclosure labels, updated as rules change.",
+    images: ["/assets/images/hero-bg.png"],
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://campaignai.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://campaignai.us"
   ),
 };
 
@@ -65,7 +67,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <head />
+      <head>
+        {/* Collapse the announcement bar pre-paint when dismissed this session */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem(${JSON.stringify(
+              A250_KEY
+            )})==="dismissed"){document.documentElement.dataset.a250="dismissed"}}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         {/* Global SVG gradient for icons */}
         <svg className="absolute w-0 h-0" aria-hidden="true">
@@ -83,11 +94,18 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <AnnouncementBar />
         <Navbar />
-        <main id="main-content" className="flex-1">{children}</main>
+        <main
+          id="main-content"
+          className="flex-1"
+          style={{ paddingTop: "var(--announce-h, 0px)" }}
+        >
+          {children}
+        </main>
         <Footer />
-        <MobileCTA />
-        <CookieConsent />
+        <MobileBottomNav />
+        <Analytics />
       </body>
     </html>
   );

@@ -1,89 +1,111 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { StepAnimation } from "@/components/sections/how-it-works/StepAnimation";
+import { SlidersHorizontal, UserCheck, Send, Sparkles } from "lucide-react";
 
-const steps = [
+// Condensed to three phases for the homepage; the full seven-step walkthrough
+// lives on /how-it-works, so this primes and funnels rather than duplicates.
+// Each card borrows one of the process page's branded StepAnimation scenes so
+// the teaser feels like the same world — kept deliberately high-level here.
+const phases = [
   {
     number: "01",
-    title: "Tell your story",
+    icon: SlidersHorizontal,
+    visual: 3,
+    title: "You direct every decision",
     description:
-      "Share what drives your campaign: your background, your values, and the message you want voters to hear.",
+      "Your story, your script, your storyboard, your narration and music. You make every creative call. Nothing goes in that you didn't choose.",
+    chips: ["Story", "Script", "Storyboard", "Voice & music"],
   },
   {
     number: "02",
-    title: "Shape your script",
+    icon: UserCheck,
+    visual: 6,
+    title: "A human editor polishes every frame",
     description:
-      "We walk you through drafting your script step by step. You choose the words, the tone, and the message. Nothing goes in that you didn't decide.",
+      "Your video goes to our production team. Real editors review, refine, and finalize the whole thing before it ever reaches you.",
+    chips: ["Human editorial review"],
   },
   {
     number: "03",
-    title: "Build your storyboard",
+    icon: Send,
+    visual: 7,
+    title: "You download and deploy",
     description:
-      "Select your visuals, set the pacing, and design the look and feel of your ad. You make every creative decision with ease.",
-  },
-  {
-    number: "04",
-    title: "Set your narration and music",
-    description:
-      "Choose the voice, tone, and soundtrack that bring your video to life. Every element reflects your campaign, not a template.",
-  },
-  {
-    number: "05",
-    title: "A human editor polishes every frame",
-    description:
-      "Your video goes through our production team. Real editors review, refine, and finalize your ad before it reaches you.",
-  },
-  {
-    number: "06",
-    title: "Download and deploy",
-    description:
-      "Your finished video arrives within 48 hours, with disclosure labels built in. Ready for social media, email, your website, and other digital advertising.",
+      "Your finished ad arrives within 48 hours with disclosure labels built in. Ready for social, email, your website, and digital ads.",
+    chips: ["48-hour delivery", "Disclosure built in"],
   },
 ];
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 md:py-28 bg-beacon-white">
+    <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <SectionLabel text="How It Works" />
-            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-              From your story to a finished ad. Here&apos;s how.
+            <div className="mb-4">
+              <SectionLabel text="How It Works" favicon />
+            </div>
+            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
+              Guide your video from start to finish.
             </h2>
+            <p className="text-granite text-lg leading-relaxed">
+              You stay in the director&apos;s chair the whole way. Here is the
+              shape of it, start to finish.
+            </p>
           </div>
         </ScrollReveal>
 
-        {/* Timeline */}
-        <div className="max-w-2xl mx-auto">
-          {steps.map(({ number, title, description }, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {phases.map(({ number, icon: Icon, visual, title, description, chips }, i) => (
             <ScrollReveal key={number} delay={i * 100}>
-              <div className={`flex gap-6 mb-10 last:mb-0 ${i > 0 ? "mt-10" : ""}`}>
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full patriot-gradient p-[3px] shrink-0 opacity-80">
-                    <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
-                      <span className="font-heading font-bold text-sm text-white">{number}</span>
-                    </div>
-                  </div>
-                  {i < steps.length - 1 && (
-                    <div className="w-[2px] flex-1 patriot-gradient opacity-30 mt-2" />
-                  )}
+              <div className="relative h-full overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5">
+                <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 z-10" />
+                {/* process-page-style animated scene */}
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <StepAnimation step={visual} />
+                  <span className="absolute left-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-regal-navy/85 font-heading text-xs font-bold text-white ring-1 ring-white/20">
+                    {number}
+                  </span>
                 </div>
-                <div className="pb-2">
-                  <h3 className="font-heading font-bold text-xl text-regal-navy mb-1">
-                    {title}
-                  </h3>
-                  <p className="text-granite leading-relaxed">{description}</p>
+                <div className="p-6">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-regal-navy/5">
+                      <Icon className="h-4 w-4 text-regal-navy" />
+                    </span>
+                    <h3 className="font-heading font-bold text-xl text-regal-navy">{title}</h3>
+                  </div>
+                  <p className="text-granite text-sm leading-relaxed mb-4">{description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {chips.map((c) => (
+                      <span key={c} className="rounded-full bg-regal-navy/5 px-3 py-1 text-xs font-medium text-regal-navy">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
 
+        {/* AI disclaimer — moved below the three cards so it applies to the
+            whole process, not just step one. */}
+        <ScrollReveal>
+          <div className="mx-auto mt-8 flex max-w-[760px] items-start gap-3 rounded-xl bg-freedom-blue/[0.07] px-5 py-4 ring-1 ring-freedom-blue/15">
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-freedom-blue" />
+            <p className="text-sm font-medium leading-relaxed text-regal-navy">
+              Use as much or as little AI as you want. Bring your own footage,
+              voiceover, and photos, and we build the ad around them.
+            </p>
+          </div>
+        </ScrollReveal>
+
         <ScrollReveal>
           <div className="text-center mt-12">
-            <Button variant="blue-outline" href="/how-it-works">
-              Learn more about our process &rarr;
+            <Button variant="blue-outline" href="/video-production-process">
+              See the full process &rarr;
             </Button>
           </div>
         </ScrollReveal>

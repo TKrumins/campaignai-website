@@ -6,17 +6,17 @@ const faqs = [
   {
     question: "How much does a video cost?",
     answer:
-      "We work with every campaign individually to find a price point that matches your scale, your type of race, and your budget. A statewide race producing a full season of content has different needs and resources than a first-time school board candidate producing a single announcement video. We believe both deserve professional tools, and we price accordingly. Join the waitlist and our team will work with you to build pricing before you produce your first video.",
+      "Professional video starts at $1,999, and candidate campaigns start at $599 this cycle, from school board to U.S. Senate. Nonprofits and advocacy groups get mission pricing, case by case. Every rate is a flat starting price with add-ons quoted upfront, so you know the full cost before you book.",
   },
   {
     question: "How long does it take to get my video?",
     answer:
-      "We offer a 48-hour turnaround time to ensure our human editors can meet demand and guarantee quality.",
+      "Most videos come back within 48 hours of the moment you finish the guided process and submit. Complex projects with custom footage can take a little longer.",
   },
   {
     question: "Do I need any production experience?",
     answer:
-      "None. What matters most is your story. We interview you to produce a script and develop a storyboard. If you have footage or graphics you want to use, great! We'll let you know when to bring those in. If you want to record part of the script on camera, great! We'll provide guidance to film exactly what you need. If you want to use stock footage or clearly marked b-roll, great! We'll help you find or produce what you need. We meet you where you are to tell your story.",
+      "None. What matters is your story. We interview you, build the script and storyboard, and guide every step. Have footage to include, or want to film part yourself? We'll tell you exactly what to shoot and when to send it.",
   },
   {
     question: "What if I'm not satisfied with my video?",
@@ -64,7 +64,9 @@ export function HIWFAQ() {
           <div className="text-center mb-10">
             <SectionLabel text="Questions We Hear" />
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-regal-navy mt-3">
-              This is new and powerful technology. Every campaign has questions!
+              This is new and powerful technology.
+              <br />
+              Every campaign has questions!
             </h2>
           </div>
         </ScrollReveal>

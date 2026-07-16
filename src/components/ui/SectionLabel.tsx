@@ -1,6 +1,12 @@
+import Image from "next/image";
+
 interface SectionLabelProps {
   text: string;
-  color?: "blue" | "crimson" | "verdant" | "gold";
+  color?: "blue" | "crimson" | "verdant" | "gold" | "horizon";
+  /** Show the CampaignAI mark to the left of the label (branded home eyebrows). */
+  favicon?: boolean;
+  /** Use the light-on-dark mark variant when the section sits on a dark background. */
+  onDark?: boolean;
 }
 
 const colorMap = {
@@ -8,13 +14,24 @@ const colorMap = {
   crimson: "text-liberty-crimson",
   verdant: "text-verdant",
   gold: "text-pioneer-gold",
+  horizon: "text-horizon-azure",
 };
 
-export function SectionLabel({ text, color = "blue" }: SectionLabelProps) {
+export function SectionLabel({ text, color = "blue", favicon = false, onDark = false }: SectionLabelProps) {
   return (
     <span
-      className={`inline-block text-xs font-semibold uppercase tracking-widest ${colorMap[color]}`}
+      className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest ${colorMap[color]}`}
     >
+      {favicon && (
+        <Image
+          src={onDark ? "/assets/logos/favicon-mark-ondark.png" : "/assets/logos/favicon-mark.png"}
+          alt=""
+          width={26}
+          height={26}
+          className="h-[26px] w-[26px]"
+          aria-hidden
+        />
+      )}
       {text}
     </span>
   );

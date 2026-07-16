@@ -1,6 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 export function SocialProofSection() {
   return (
@@ -17,9 +18,12 @@ export function SocialProofSection() {
               back soon for real stories from real races. Or better yet, be one
               of them.
             </p>
-            <Button variant="crimson" href="#waitlist-form">
-              Tell your story &rarr;
+            <Button variant="patriot" href={PURCHASE_URL}>
+              {CTA_PRIMARY}
             </Button>
+            <p className="text-granite text-sm mt-2">
+              Book a 30-minute call to get started.
+            </p>
           </div>
         </ScrollReveal>
       </div>

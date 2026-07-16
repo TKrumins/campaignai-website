@@ -12,13 +12,14 @@ export function RegulatoryLandscape() {
           </h2>
           <div className="text-granite text-lg leading-[1.7] max-w-[760px] space-y-5">
             <p>
-              Legislators across the country are writing new rules about AI in
-              political advertising every session. Some states now require
-              disclosure labels on AI-generated content. Others are considering
-              outright restrictions on synthetic media in political ads. Federal
-              guidance from the FEC continues to evolve. And the rules you need
-              to follow in Michigan aren&apos;t the same rules you need in
-              Texas, and both have changed since last cycle.
+              Legislators are writing new AI advertising rules every session.
+              Some states now require disclosure labels; others are weighing
+              limits on synthetic media in political ads.
+            </p>
+            <p>
+              The rules in Michigan aren&apos;t the rules in Texas, and both have
+              shifted since last cycle. Federal FEC guidance keeps evolving on
+              top of that.
             </p>
             <p>
               For a campaign focused on voters, doors, and fundraising, staying

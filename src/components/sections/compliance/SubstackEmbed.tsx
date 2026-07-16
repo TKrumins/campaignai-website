@@ -1,5 +1,5 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SubstackCapture } from "@/components/forms/SubstackCapture";
+import { SOCIAL_SUBSTACK } from "@/lib/constants";
 
 export function SubstackEmbed() {
   return (
@@ -13,7 +13,14 @@ export function SubstackEmbed() {
             Subscribe for updates on AI compliance, campaign technology, and
             CampaignAI product news.
           </p>
-          <SubstackCapture buttonText="Subscribe" />
+          <a
+            href={SOCIAL_SUBSTACK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-hover inline-flex items-center justify-center text-center rounded-full bg-regal-navy px-6 py-3 text-white text-sm font-semibold"
+          >
+            Subscribe on Substack &rarr;
+          </a>
         </ScrollReveal>
       </div>
     </section>

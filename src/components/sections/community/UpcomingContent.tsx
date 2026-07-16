@@ -1,70 +1,36 @@
+import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { communityPosts } from "@/data/community-posts";
+import { PostCover } from "@/components/sections/community/PostCover";
 
-const articles = [
-  {
-    category: "Ethics",
-    categoryColor: "bg-verdant/15 text-verdant",
-    title: "Building Trust: Ethical AI Use in Campaign Communications",
-    readTime: "10 min read",
-    description:
-      "How to use AI-assisted tools without sacrificing the authenticity voters are looking for. A practical framework for candidates and campaign teams.",
-  },
-  {
-    category: "Compliance",
-    categoryColor: "bg-freedom-blue/15 text-freedom-blue",
-    title: "When to Disclose (Hint: Always)",
-    readTime: "6 min read",
-    description:
-      "A plain-language breakdown of AI disclosure requirements across the states. What's required, what's recommended, and why we think over-disclosing is always the right call.",
-  },
-  {
-    category: "Strategy",
-    categoryColor: "bg-liberty-crimson/15 text-liberty-crimson",
-    title: "Fundamentals of a Policy Explainer Video",
-    readTime: "12 min read",
-    description:
-      "How to turn a complex policy position into a 60-second shareable video that actually moves voters. Step by step, with examples.",
-  },
-  {
-    category: "Resource",
-    categoryColor: "bg-pioneer-gold/15 text-pioneer-gold",
-    title: "A Glossary of AI Technologies for Campaigns",
-    readTime: "8 min read",
-    description:
-      "Jargon-free definitions of the AI terms candidates and campaign teams actually need to understand. No hype, no fear. Just clarity.",
-  },
-  {
-    category: "Research",
-    categoryColor: "bg-freedom-blue/15 text-freedom-blue",
-    title: "The 50-State AI Disclosure Landscape: Where Things Stand in 2026",
-    readTime: "15 min read",
-    description:
-      "A comprehensive guide to AI disclosure requirements in every state, updated for the 2026 midterm cycle. Which states require disclosure? Which are considering it? What does the federal preemption debate mean for your campaign?",
-  },
-];
-
+/**
+ * Section 5 previews (6.1): STATIC cards built from the Substack post URLs
+ * in src/data/community-posts.ts. No iframes; each card links out.
+ */
 export function UpcomingContent() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-24 md:py-32 bg-white">
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="text-center mb-14">
-            <SectionLabel text="What's Coming" />
+          <div className="text-center mb-16">
+            <SectionLabel text="From Our Substack" />
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-regal-navy tracking-[-1px] mt-3">
-              On the Substack now and coming soon.
+              Read what we&apos;re writing. Then argue with us.
             </h2>
           </div>
         </ScrollReveal>
 
-        <div className="space-y-6">
-          {articles.map(({ category, categoryColor, title, readTime, description }, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {communityPosts.map(({ category, categoryColor, title, readTime, excerpt, url }, i) => (
             <ScrollReveal key={title} delay={i * 60}>
-              <div className="bg-dawn-frost rounded-2xl p-6 md:p-8">
+              <div className="bg-dawn-frost rounded-2xl h-full flex flex-col overflow-hidden">
+                <div className="aspect-[320/128] w-full">
+                  <PostCover index={i} />
+                </div>
+                <div className="p-7 md:p-8 flex flex-1 flex-col">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span
-                    className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${categoryColor}`}
-                  >
+                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${categoryColor}`}>
                     {category}
                   </span>
                   <span className="text-slate text-xs">{readTime}</span>
@@ -72,13 +38,45 @@ export function UpcomingContent() {
                 <h3 className="font-heading font-bold text-xl text-regal-navy mb-2">
                   {title}
                 </h3>
-                <p className="text-granite text-base leading-relaxed">
-                  {description}
+                <p className="text-granite text-base leading-relaxed mb-5 flex-1">
+                  {excerpt}
                 </p>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-freedom-blue text-sm font-semibold hover:underline w-fit"
+                >
+                  Read on Substack &rarr;
+                </a>
+                </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
+
+        {/* Cross-link to the Living Glossary */}
+        <ScrollReveal delay={200}>
+          <div className="mt-12 rounded-2xl bg-regal-navy p-8 md:p-10 text-center">
+            <span className="inline-block text-freedom-blue text-xs font-bold uppercase tracking-widest mb-3">
+              The Living Glossary
+            </span>
+            <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px] mb-3">
+              AI is already in every campaign &mdash; and has been for years.
+            </h3>
+            <p className="text-beacon-white/80 text-base leading-relaxed mb-6 max-w-[600px] mx-auto">
+              From voter modeling to synthetic media, it&apos;s already shaping how
+              races are run. Our Living Glossary explains every term in plain
+              language: what it is, why it matters, and how to spot it.
+            </p>
+            <Link
+              href="/ai-in-campaigns"
+              className="btn-hover inline-flex items-center justify-center rounded-full bg-freedom-blue px-6 py-3 text-white text-sm font-semibold"
+            >
+              Explore the Living Glossary &rarr;
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

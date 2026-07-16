@@ -7,7 +7,7 @@ const cards = [
     title: "50-State Tracking",
     icon: Map,
     top: "We monitor AI disclosure legislation, campaign advertising rules, and political communication regulations across all 50 states, D.C., and territories.",
-    bottom: "Our team reviews pending bills, newly signed laws, attorney general guidance, and enforcement actions. When rules change, your next video reflects it automatically.",
+    bottom: "Our team reviews pending bills, newly signed laws, attorney general guidance, and enforcement actions. When rules change, we update so your next video reflects the current guidance we have.",
   },
   {
     title: "Federal Compliance",
@@ -31,7 +31,7 @@ export function WhatWeTrack() {
           <div className="mb-12">
             <SectionLabel text="What We Monitor" color="verdant" />
             <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy tracking-[-1px] mt-3">
-              Automated AND Crowdsourced Regulatory Tracking
+              We watch the rules so your video doesn&apos;t have to guess.
             </h2>
           </div>
         </ScrollReveal>

@@ -1,14 +1,24 @@
 import Image from "next/image";
-import { HeroEmailCapture } from "@/components/forms/HeroEmailCapture";
+import Link from "next/link";
 import { ArrowDown } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import {
+  CALENDLY_PURCHASE,
+  CTA_PRIMARY,
+  CTA_MICROCOPY,
+  WAITLIST_SHORT,
+} from "@/lib/constants";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center pt-24 overflow-hidden">
+    <section
+      data-hero
+      className="relative min-h-[85vh] flex items-center justify-center pt-24 overflow-hidden"
+    >
       {/* Background: American flag image with navy overlay */}
       <div className="absolute inset-[-5%] animate-flag-wave">
         <Image
-          src="/hero-bg.png"
+          src="/assets/images/hero-bg.png"
           alt=""
           fill
           priority
@@ -18,27 +28,74 @@ export function HeroSection() {
       </div>
       <div className="absolute inset-0 bg-regal-navy/50" />
 
-      {/* Content */}
+      {/* Content: poster staging (E.8) — headline, badge, one primary action */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-20">
-        <h1 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
-          <span className="md:whitespace-nowrap">Every campaign<span className="sm:hidden"><br /></span> has a story.</span>
-          <br />
-          Tell yours today.
-        </h1>
-
-        <p className="text-beacon-white/90 text-lg md:text-2xl font-medium leading-relaxed max-w-[780px] mx-auto mb-12">
-          Professional video, strategic messaging, and compliance support for
-          local and underfunded candidates and mission-driven campaigns.
+        {/* Eyebrow */}
+        <p className="font-body text-sm md:text-base text-beacon-white/80 uppercase tracking-widest mb-4">
+          Campaign-Ready Video Production at the Speed of AI
         </p>
 
-        <HeroEmailCapture />
+        {/* America 250 badge */}
+        <div
+          className="inline-block rounded-xl px-5 py-3 mb-8 mx-auto"
+          style={{
+            border: "1.5px solid #FF3366",
+            backgroundColor: "rgba(255,51,102,.08)",
+          }}
+        >
+          <p className="font-heading font-bold text-[15px] md:text-base" style={{ color: "#FF3366" }}>
+            America 250 Special: buy two videos, get your first for just $250!
+          </p>
+          <p className="text-beacon-white/80 text-sm mt-1">
+            Available for first 250 customers. Offer ends Nov 3, 2026.
+          </p>
+        </div>
+
+        <h1 className="font-heading font-extrabold text-[36px] sm:text-[48px] md:text-[72px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6 max-w-[18ch] mx-auto">
+          Every campaign has a story. Tell yours today.
+        </h1>
+
+        {/* Subheadline */}
+        <p className="font-body font-medium text-lg md:text-2xl text-beacon-white/90 leading-relaxed max-w-[720px] mx-auto mb-8">
+          Professional campaign videos in days, not weeks. AI-powered, human-finished, and built so any campaign can compete online.
+        </p>
+
+        {/* Primary CTA — the one primary action in this viewport */}
+        <div className="mb-6">
+          <Button
+            variant="patriot"
+            href={CALENDLY_PURCHASE}
+            external
+            className="px-8 py-3 text-base"
+          >
+            {CTA_PRIMARY}
+          </Button>
+          <p className="text-beacon-white/70 text-sm mt-2">{CTA_MICROCOPY}</p>
+        </div>
+
+        {/* Secondary action, visually quiet (E.5) */}
+        <p className="mb-8 text-sm">
+          <Link
+            href="/get-started#waitlist"
+            className="text-beacon-white/70 underline underline-offset-4 hover:text-beacon-white transition-colors"
+          >
+            Join the waitlist
+          </Link>{" "}
+          <span className="text-beacon-white/50">{WAITLIST_SHORT}</span>
+        </p>
+
+        {/* Founders' credibility line */}
+        <p className="text-beacon-white/60 text-sm max-w-lg mx-auto">
+          <span className="font-semibold">Built by a Republican, a Democrat, and an Independent.</span>{" "}
+          Because every campaign deserves a fair shot.
+        </p>
 
         <a
-          href="#product"
-          className="inline-flex items-center gap-2 mt-4 text-freedom-blue hover:underline transition-colors text-base font-medium"
+          href="#pricing"
+          className="inline-flex items-center gap-2 mt-6 text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
         >
-          See how it works
-          <ArrowDown className="w-4 h-4 animate-bounce" />
+          See pricing
+          <ArrowDown className="w-4 h-4" />
         </a>
       </div>
     </section>

@@ -46,8 +46,40 @@ Thumbs.db
 # raw assets (not deployed)
 assets/jermaine-johnson-photos/
 
+# working scratch — bloats the static export, never ship
+/public/OLD/
+/public/Founder Photos/
+/complete-brand-kit-updated.html
+/Screenshot*.png
+
+# showcase source video — hosted off-repo, see docs/closeout/video-hosting.md
+/public/assets/videos/*.mp4
+
+# video masters awaiting encode (scripts/encode-media.mjs). Never committed.
+/media-src/*
+!/media-src/README.md
+
+# How-It-Works walkthrough clips (Fable-pass source reference). Raw app captures:
+# never ship on the public GitHub Pages repo, and they bloat the export. The
+# README (naming convention + mapping) is committed; the clips are not.
+/walkthrough-clips/*
+!/walkthrough-clips/README.md
+
+# Founder campaign graphics (posters, book covers, IG screenshots) split out of
+# the photo consolidation — kept for reference, never shipped.
+/founder-source-archive/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 .vercel
+
+# claude local settings
+.claude/settings.local.json
+
+# hidden disclosure page plaintext (encrypted copy ships instead)
+src/content/disclosure/content.json
+
+.vercel
+.env*

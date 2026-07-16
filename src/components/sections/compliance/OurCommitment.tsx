@@ -1,4 +1,5 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ETHICS_LINE } from "@/lib/constants";
 
 export function OurCommitment() {
   return (
@@ -12,10 +13,10 @@ export function OurCommitment() {
             <div className="text-granite text-lg leading-[1.7] space-y-5 max-w-[760px]">
               <p>
                 CampaignAI was founded by people who have run campaigns and
-                served in office. We know that compliance failures don&apos;t
-                just create legal risk. They create political risk. An opponent
-                pointing to a missing disclosure label can turn a production
-                mistake into a news cycle.
+                served in office. We know a compliance failure isn&apos;t just
+                legal risk, it&apos;s political risk. An opponent pointing to a
+                missing disclosure label can turn a production mistake into a
+                news cycle.
               </p>
               <p>
                 We take on the regulatory complexity because we believe the
@@ -35,8 +36,7 @@ export function OurCommitment() {
 
         <ScrollReveal delay={100}>
           <p className="font-heading font-bold text-2xl text-freedom-blue text-center mt-10">
-            &ldquo;We take on the hard stuff so you can focus on the work only
-            you can do.&rdquo;
+            &ldquo;{ETHICS_LINE}&rdquo;
           </p>
         </ScrollReveal>
       </div>

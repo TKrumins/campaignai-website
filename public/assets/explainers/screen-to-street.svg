@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 220" fill="none" role="img" aria-label="A campaign moving from behind a screen out to real doors and a handshake">
+  <title>More doors, fewer screens</title>
+  <!-- Left: the screen -->
+  <g>
+    <rect x="34" y="46" width="120" height="120" rx="14" fill="#0D1B3E"/>
+    <rect x="34" y="46" width="120" height="120" rx="14" stroke="#4D9FFF" stroke-width="2" opacity="0.4"/>
+    <rect x="50" y="64" width="88" height="10" rx="5" fill="#4D9FFF" opacity="0.55"/>
+    <rect x="50" y="82" width="64" height="8" rx="4" fill="#E8F4F8" opacity="0.35"/>
+    <rect x="50" y="98" width="72" height="8" rx="4" fill="#E8F4F8" opacity="0.25"/>
+    <rect x="50" y="120" width="88" height="30" rx="6" fill="#FF3366" opacity="0.85"/>
+    <circle cx="64" cy="135" r="5" fill="#E8F4F8"/>
+    <rect x="76" y="131" width="50" height="8" rx="4" fill="#E8F4F8" opacity="0.85"/>
+  </g>
+
+  <!-- Tri-color transition arc: red -> violet -> blue -->
+  <path d="M164 110 C 210 70, 260 70, 306 110" stroke="url(#s2s-arc)" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M300 100 L312 111 L299 121" stroke="#4D9FFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- sparkle accent -->
+  <path d="M232 66 l4 8 8 4 -8 4 -4 8 -4 -8 -8 -4 8 -4 z" fill="#00D084"/>
+
+  <!-- Right: door + knock + handshake -->
+  <g>
+    <rect x="322" y="40" width="92" height="132" rx="8" fill="#E8F4F8"/>
+    <rect x="322" y="40" width="92" height="132" rx="8" stroke="#0D1B3E" stroke-width="3"/>
+    <rect x="336" y="56" width="64" height="46" rx="4" fill="#7AB8FF" opacity="0.35"/>
+    <circle cx="402" cy="112" r="4" fill="#FFB800"/>
+    <!-- doorstep -->
+    <rect x="306" y="172" width="140" height="10" rx="3" fill="#0D1B3E" opacity="0.85"/>
+    <!-- handshake mark -->
+    <g transform="translate(360 128)">
+      <path d="M-18 8 l14 -8 10 6 8 -5 12 7" stroke="#FF3366" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M-4 0 l8 5" stroke="#4D9FFF" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </g>
+  </g>
+
+  <!-- four-point AI sparkles (brand motif), varied sizes -->
+  <g transform="translate(402 52) scale(0.52)"><path d="M0 -12C0.8 -5.4 5.4 -0.8 12 0C5.4 0.8 0.8 5.4 0 12C-0.8 5.4 -5.4 0.8 -12 0C-5.4 -0.8 -0.8 -5.4 0 -12Z" fill="#4D9FFF"/></g>
+  <g transform="translate(300 40) scale(0.34)"><path d="M0 -12C0.8 -5.4 5.4 -0.8 12 0C5.4 0.8 0.8 5.4 0 12C-0.8 5.4 -5.4 0.8 -12 0C-5.4 -0.8 -0.8 -5.4 0 -12Z" fill="#FF3366"/></g>
+
+  <defs>
+    <linearGradient id="s2s-arc" x1="164" y1="90" x2="306" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF3366"/>
+      <stop offset="0.5" stop-color="#8E5CF7"/>
+      <stop offset="1" stop-color="#4D9FFF"/>
+    </linearGradient>
+  </defs>
+</svg>

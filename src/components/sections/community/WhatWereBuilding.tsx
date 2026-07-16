@@ -49,7 +49,7 @@ export function WhatWereBuilding() {
           {pillars.map(({ title, description, topics }, i) => (
             <ScrollReveal key={title} delay={i * 80}>
               <div className="rounded-2xl shadow-sm overflow-hidden h-full">
-                <div className="h-1 patriot-gradient" />
+                <div className="h-1 multipartisan-gradient" />
                 <div className="bg-white p-8 h-full">
                   <h3 className="font-heading font-bold text-2xl text-regal-navy mb-4">
                     {title}

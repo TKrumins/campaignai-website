@@ -17,6 +17,9 @@
   --color-slate: #666666;
   --color-silver-mist: #B8B8B8;
 
+  /* Multi-partisan Bridge */
+  --color-bridge-violet: #8E5CF7;
+
   /* Accent Colors — Impact Collection */
   --color-pioneer-gold: #FFB800;
   --color-verdant: #00D084;
@@ -30,13 +33,13 @@
 
 /* Gradient utilities — Patriot Gradient */
 /* 45% red / 10% white / 45% blue diagonal */
+/* Patriot gradient — real Red / White / Blue. NEVER includes navy. */
 @utility patriot-gradient {
-  background: linear-gradient(135deg, #FF3366 0%, #FF3366 40%, #E8F4F8 47%, #E8F4F8 53%, #4D9FFF 60%, #0D1B3E 100%);
+  background: linear-gradient(135deg, #FF3366 0%, #FF3366 36%, #E8F4F8 50%, #4D9FFF 64%, #4D9FFF 100%);
 }
 
-/* No-white variant — text on light backgrounds */
 @utility patriot-gradient-text {
-  background: linear-gradient(135deg, #FF3366 0%, #FF3366 40%, #E8F4F8 47%, #E8F4F8 53%, #4D9FFF 60%, #0D1B3E 100%);
+  background: linear-gradient(135deg, #FF3366 0%, #FF3366 36%, #E8F4F8 50%, #4D9FFF 64%, #4D9FFF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -45,6 +48,14 @@
 /* Patriot gradient background for icon containers */
 @utility patriot-gradient-soft {
   background: linear-gradient(135deg, rgba(255,51,102,0.12) 0%, rgba(232,244,248,0.10) 50%, rgba(77,159,255,0.12) 100%);
+}
+
+/* Card-topper strip — Multi-Partisan (red → Bridge Violet → blue, NO white).
+   Replaces the literal Red/White/Blue `patriot-gradient` line on card tops,
+   which read as an airline livery. The violet middle bridges the two poles
+   instead of dividing them. See reference_brand_color_rules. */
+@utility multipartisan-gradient {
+  background: linear-gradient(90deg, #FF3366 0%, #8E5CF7 50%, #4D9FFF 100%);
 }
 
 /* Patriot gradient on Lucide icons — reference SVG defs in layout */
@@ -69,6 +80,280 @@
     transform: rotate(-0.5deg);
   }
 }
+
+/* ── Patriot purchase button (5.1) ─────────────────────────────── */
+/* Sweep implemented as a conic-gradient rotation via CSS @property
+   where supported; linear background-position sweep as the fallback. */
+@property --pp-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ppSweepConic {
+  from { --pp-angle: 0deg; }
+  to { --pp-angle: 360deg; }
+}
+
+@keyframes ppSweepLinear {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
+}
+
+@keyframes ppPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.patriot-purchase {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 3px;
+  /* Balanced red → purple → blue swirl (blue/purple weighted, not red-heavy). */
+  background-image: linear-gradient(115deg, #FF3366 0%, #FF6B8F 15%, #8E5CF7 42%, #7AB8FF 70%, #4D9FFF 100%);
+}
+
+.patriot-purchase .pp-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 9999px;
+  background: #E8F4F8; /* Beacon White fill */
+  color: #0D1B3E; /* Regal Navy text */
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.patriot-purchase.pp-linear {
+  background-size: 250% 250%;
+  background-position: 0% 0%;
+}
+
+.patriot-purchase.pp-conic {
+  background-image: conic-gradient(
+    from calc(115deg + var(--pp-angle)),
+    #4D9FFF 0%,
+    #7AB8FF 14%,
+    #8E5CF7 36%,
+    #FF6B8F 50%,
+    #8E5CF7 64%,
+    #7AB8FF 86%,
+    #4D9FFF 100%
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .patriot-purchase {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  /* Hover AND keyboard focus: sweep + lift + soft navy shadow */
+  .patriot-purchase:hover,
+  .patriot-purchase:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 27, 62, 0.35);
+  }
+
+  .patriot-purchase.pp-conic:hover,
+  .patriot-purchase.pp-conic:focus-within {
+    animation: ppSweepConic 1.1s ease;
+  }
+
+  .patriot-purchase.pp-linear:hover,
+  .patriot-purchase.pp-linear:focus-within {
+    animation: ppSweepLinear 1.1s ease;
+  }
+
+  /* Once per page load, ~5s after load: sweep + gentle scale pulse */
+  .patriot-purchase.pp-conic.pp-load-sweep {
+    animation: ppSweepConic 1.1s ease, ppPulse 1.1s ease;
+  }
+
+  .patriot-purchase.pp-linear.pp-load-sweep {
+    animation: ppSweepLinear 1.1s ease, ppPulse 1.1s ease;
+  }
+}
+
+/* ── Primary "Get Started" CTA (Batch 2) ───────────────────────── */
+/* An animated Patriot-gradient ring around a light Beacon-White fill with
+   navy text — legible through the gradient's near-white middle (a solid
+   patriot-gradient fill with white text vanishes there), and matched to the
+   nav / America 250 button so the primary CTA reads as one treatment across
+   the site. Calm at rest; the gradient sweeps and the button lifts on
+   hover/focus. The nav keeps the once-per-load pulse; body CTAs do not, so a
+   page with several of them stays quiet. */
+@utility patriot-cta {
+  color: #0D1B3E;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#E8F4F8, #E8F4F8) padding-box,
+    linear-gradient(115deg, #FF3366 0%, #FF6B8F 18%, #8E5CF7 45%, #7AB8FF 72%, #4D9FFF 100%) border-box;
+  background-size: 100% 100%, 250% 250%;
+  background-position: 0 0, 0% 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .patriot-cta {
+    transition: background-position 0.6s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .patriot-cta:hover,
+  .patriot-cta:focus-visible {
+    background-position: 0 0, 100% 50%;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 27, 62, 0.35);
+  }
+}
+
+/* ── AnnouncementBar (5.11, amended 7-8 doc 0.1) ───────────────── */
+/* Height reserved via CSS var so the fixed nav and page content
+   offset without layout shift; collapsed pre-paint when dismissed. */
+:root {
+  --announce-h: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --announce-h: 2.5rem;
+  }
+}
+
+html[data-a250="dismissed"] {
+  --announce-h: 0px;
+}
+
+html[data-a250="dismissed"] .announcement-bar {
+  display: none;
+}
+
+@keyframes announceGradientSlide {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.announce-underline {
+  background-image: linear-gradient(135deg, #FF3366 0%, #E8F4F8 40%, #4D9FFF 80%, #0D1B3E 100%);
+  background-size: 300% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .announce-underline {
+    animation: announceGradientSlide 8s ease infinite;
+  }
+}
+
+/* ── America 250 module animated border (5.12) ─────────────────── */
+@keyframes a250BorderSweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.a250-border {
+  background-image: linear-gradient(135deg, #FF3366 0%, #E8F4F8 40%, #4D9FFF 80%, #0D1B3E 100%);
+  background-size: 300% 300%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .a250-border.a250-animate {
+    animation: a250BorderSweep 6s ease infinite;
+  }
+}
+
+/* ── Living Glossary micro-animation icons (6.2) ───────────────── */
+@keyframes gaWave {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes gaScan {
+  0%, 100% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+}
+
+@keyframes gaBlink {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@keyframes gaPing {
+  0%, 100% { transform: scale(0.8); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.5; }
+}
+
+@keyframes gaType {
+  0% { stroke-dashoffset: 24; }
+  60%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes gaDraw {
+  0% { stroke-dashoffset: 80; }
+  70%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes gaFadeSwap {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0.3; }
+}
+
+@keyframes gaRipple {
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes gaSlide {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-2px); opacity: 0.7; }
+}
+
+@keyframes gaGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes gaTick {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(45deg); }
+}
+
+@keyframes gaTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes gaMorphA {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ga-wave { animation: gaWave 1.6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .ga-scan { animation: gaScan 3s ease-in-out infinite; }
+  .ga-blink { animation: gaBlink 1.8s ease-in-out infinite; }
+  .ga-ping { animation: gaPing 2s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .ga-type { stroke-dasharray: 24; animation: gaType 2.8s ease infinite; }
+  .ga-draw { stroke-dasharray: 80; animation: gaDraw 3s ease infinite; }
+  .ga-fade-a { animation: gaFadeSwap 2.6s ease-in-out infinite; }
+  .ga-fade-b { animation: gaFadeSwap 2.6s ease-in-out infinite reverse; }
+  .ga-ripple { animation: gaRipple 2.2s ease-out infinite; }
+  .ga-slide { animation: gaSlide 2.4s ease-in-out infinite; transform-box: fill-box; }
+  .ga-glow { animation: gaGlow 2s ease-in-out infinite; }
+  .ga-tick { animation: gaTick 4s ease-in-out infinite; }
+  .ga-twinkle { animation: gaTwinkle 2s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .ga-morph-a { animation: gaMorphA 2.6s ease-in-out infinite; }
+  .ga-morph-b { animation: gaMorphA 2.6s ease-in-out infinite reverse; }
+  .ga-flicker { animation: gaBlink 2.4s ease-in-out infinite; }
+  .ga-dash { animation: gaBlink 2s ease-in-out infinite; }
+}
+
+/* Interactive channel-hub nodes (home ChannelExplorer) */
+.hub-node { outline: none; transition: opacity 0.2s ease; }
+.hub-node:hover { opacity: 0.82; }
+.hub-node:focus-visible rect:first-of-type { stroke: #4D9FFF; stroke-width: 3.5px; }
 
 /* Base styles */
 html {
@@ -167,4 +452,545 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-flag-wave {
   animation: flagWave 12s ease-in-out infinite;
+}
+
+/* Sheen sweep for coming-soon cards */
+@keyframes sheenSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.sheen-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  animation: sheenSweep 4s ease-in-out infinite;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-bounce-in,
+  .animate-flag-wave {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sheen-sweep::after {
+    animation: none !important;
+    display: none;
+  }
+
+  .animate-ping {
+    animation: none !important;
+  }
+}
+
+/* ── Campaign Machine (4.3) ───────────────────────────────────── */
+@keyframes machineSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes machineSpinRev {
+  to { transform: rotate(-360deg); }
+}
+@keyframes machineTimeSavedPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.72; }
+}
+
+.machine-gear {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .machine-gear.spinning {
+    animation: machineSpin var(--gear-dur, 8s) linear infinite;
+  }
+  .machine-gear.spinning.rev {
+    animation-name: machineSpinRev;
+  }
+}
+/* Stepped states only under reduced motion; gears hold still, copy carries it */
+@media (prefers-reduced-motion: reduce) {
+  .machine-gear.spinning { animation: none !important; }
+}
+
+/* Output leaving the machine mis-registers when human review is removed */
+.machine-output-degraded {
+  transform: rotate(-2.5deg) translateY(2px);
+  filter: saturate(0.6);
+}
+
+/* Connected machine: conveyor belt drift + items flowing through stations */
+@keyframes machineBelt {
+  to { stroke-dashoffset: -28; }
+}
+@keyframes machineFlow {
+  0% { transform: translateX(0); opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { transform: translateX(560px); opacity: 0; }
+}
+@keyframes machineDrop {
+  0% { transform: translateY(-14px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(22px); opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .machine-belt.spinning { animation: machineBelt 0.9s linear infinite; }
+  .machine-flow.spinning { animation: machineFlow 5.5s linear infinite; }
+  .machine-drop.spinning { animation: machineDrop 2.4s ease-in infinite; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO TRIALS (temporary) — 5 candidate homepage heroes for review.
+   Remove the losers + this block once a direction is chosen.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Patriot gradient on text, tuned for DARK backgrounds (no navy tail). */
+@utility patriot-gradient-text-bright {
+  background: linear-gradient(120deg, #FF3366 0%, #FF6B8F 26%, #E8F4F8 50%, #7AB8FF 74%, #4D9FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Patriot gradient on text for LIGHT backgrounds — mirrors the header's
+   bright gradient but drops the near-white middle (invisible on white) and
+   the navy tail, so keywords read the same on light sections. */
+@utility patriot-gradient-text-onlight {
+  background: linear-gradient(120deg, #FF3366 0%, #FF6B8F 28%, #8E5CF7 60%, #4D9FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Real RWB patriot gradient text on a LIGHT bg, kept legible through the
+   near-white middle by a faint navy under-shadow that defines each glyph. */
+@utility patriot-gradient-text-shadowed {
+  background: linear-gradient(120deg, #FF3366 0%, #FF6B8F 26%, #E8F4F8 50%, #7AB8FF 74%, #4D9FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 1px 1px rgba(13, 27, 62, 0.45));
+}
+
+/* Flippable product cards */
+.flip-card { perspective: 1200px; }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back { transform: rotateY(180deg); }
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .flip-card-inner { transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+}
+
+/* Safety net: off-screen elements (badge tooltips, decorative art) never
+   create a horizontal scrollbar. `clip` (not `hidden`) so position: sticky
+   in the hero keeps working. */
+html,
+body { overflow-x: clip; }
+
+/* V4 — kinetic slanted patriot gradient band */
+.hero-kinetic-bg {
+  background: linear-gradient(115deg, #0D1B3E 0%, #FF3366 30%, #8E5CF7 50%, #4D9FFF 70%, #0D1B3E 100%);
+  background-size: 300% 300%;
+  background-position: 0% 50%;
+}
+
+/* V4 — rotating word: stacked words, one visible at a time */
+.hero-word-rotator { position: relative; display: inline-block; }
+.hero-word-rotator .hero-word-sizer { visibility: hidden; }
+.hero-word-rotator .hero-word {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+}
+.hero-word-rotator .hero-word:first-of-type { opacity: 1; } /* reduced-motion + no-JS fallback */
+
+@keyframes heroKineticPan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes heroWordCycle {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(0.35em); }
+  4%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  21%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  25%  { opacity: 0; transform: translateX(-50%) translateY(-0.35em); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-0.35em); }
+}
+@keyframes heroSlowFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-kinetic-bg { animation: heroKineticPan 16s ease-in-out infinite; }
+  .hero-word-rotator .hero-word {
+    animation: heroWordCycle 8s infinite;
+    animation-delay: calc(var(--w) * 2s);
+  }
+  .hero-word-rotator .hero-word:first-of-type { opacity: 0; } /* animation takes over */
+  .hero-float { animation: heroSlowFloat 7s ease-in-out infinite; }
+}
+
+/* ── HERO COMBOS A/B (temporary, for review) ───────────────────── */
+
+/* Stronger flag-in-the-wind wave for the combo backgrounds. */
+@keyframes flagWaveStrong {
+  0%, 100% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1.06); }
+  25%      { transform: translate3d(-1.3%, 0.7%, 0) skewX(-1.6deg) scale(1.09); }
+  50%      { transform: translate3d(0.4%, -0.9%, 0) skewX(0.9deg) scale(1.07); }
+  75%      { transform: translate3d(1.3%, 0.5%, 0) skewX(1.4deg) scale(1.09); }
+}
+.animate-flag-wave-strong {
+  animation: flagWaveStrong 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Red → blue → red gradient sheen, panning across the flag. */
+.hero-sheen {
+  background: linear-gradient(
+    115deg,
+    rgba(255, 51, 102, 0) 0%,
+    rgba(255, 51, 102, 0.38) 22%,
+    rgba(77, 159, 255, 0.42) 50%,
+    rgba(255, 51, 102, 0.38) 78%,
+    rgba(255, 51, 102, 0) 100%
+  );
+  background-size: 280% 280%;
+  background-position: 0% 50%;
+  mix-blend-mode: overlay;
+}
+@keyframes heroSheenPan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Left-aligned 6-phrase audience cycler. */
+.phrase-rotator { position: relative; display: inline-block; }
+.phrase-rotator .phrase-sizer { visibility: hidden; }
+.phrase-rotator .phrase {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+}
+.phrase-rotator .phrase:first-of-type { opacity: 1; } /* reduced-motion fallback */
+/* Mobile: let the rotating hero phrase wrap instead of overflowing.
+   Placed after the base nowrap rule so it wins the cascade. */
+@media (max-width: 639px) {
+  .phrase-rotator .phrase,
+  .phrase-rotator .phrase-sizer { white-space: normal; }
+}
+@keyframes heroPhraseCycle {
+  0%    { opacity: 0; transform: translateY(0.5em); }
+  1.6%  { opacity: 1; transform: translateY(0); }
+  14%   { opacity: 1; transform: translateY(0); }
+  16.6% { opacity: 0; transform: translateY(-0.5em); }
+  100%  { opacity: 0; transform: translateY(-0.5em); }
+}
+
+/* Gentle bob for floating hero frames/nodes (rotation lives on a parent so it
+   isn't overwritten). Duration + delay set per element via --fdur / --fdelay. */
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+/* V2 ribbon: a Multi-Partisan ribbon sweeps in from off-screen, weaves through
+   the floating frames, and exits — then waits out the rest of a ~6s loop.
+   translateX only (vertical centering is handled by positioning) so it doesn't
+   fight a transform. */
+@keyframes ribbonSweep {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  7%   { opacity: 1; }
+  40%  { transform: translateX(155%); opacity: 1; }
+  50%  { opacity: 0; }
+  100% { transform: translateX(155%); opacity: 0; }
+}
+
+/* Price "swing": the arc from the starting price down to the candidate price
+   draws itself in, holds, then clears — a repeating swing gesture. */
+@keyframes heroSwingDraw {
+  0%   { stroke-dashoffset: 100; }
+  32%  { stroke-dashoffset: 0; }
+  78%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+
+/* "Time with voters" bar: waits, then slowly fills. Patriot gradient
+   (no navy); green stays reserved for ethics. */
+.bar-patriot {
+  background: linear-gradient(115deg, #FF3366 0%, #FF3366 24%, #E8F4F8 50%, #4D9FFF 76%, #4D9FFF 100%);
+}
+@keyframes ratioFill { from { width: 12%; } to { width: 78%; } }
+@keyframes ratioFade { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Woven filmstrip proof graphic */
+.filmstrip-ribbon {
+  position: absolute;
+  background: #0b1633;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-image: linear-gradient(90deg, #FF3366, #8E5CF7, #4D9FFF, #8E5CF7, #FF3366) 1;
+  overflow: hidden;
+}
+.filmstrip-ribbon::before,
+.filmstrip-ribbon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background: repeating-linear-gradient(90deg, #E8F4F8 0 9px, transparent 9px 21px);
+  opacity: 0.8;
+}
+.filmstrip-ribbon::before { top: 6px; }
+.filmstrip-ribbon::after { bottom: 6px; }
+.filmstrip-flow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #FF3366, #8E5CF7, #4D9FFF, #8E5CF7, #FF3366);
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+@keyframes filmstripFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Vertical weaving ribbon: gentle sway + a pulse where it meets each still. */
+@keyframes ribbonSway {
+  0%, 100% { transform: translateX(-1.8%); }
+  50% { transform: translateX(1.8%); }
+}
+@keyframes ribbonPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+/* AI sparkle twinkle — used across motion graphics. */
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.65) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.1) rotate(35deg); }
+}
+.sparkle-twinkle {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* The Problem — broken paywall graphic */
+@keyframes paywallPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+@keyframes paywallRay { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.5; } }
+@keyframes paywallReveal {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* America 250 pop-up: tilt + entrance + hover shine. */
+.a250-popup { transform: rotate(3deg); }
+/* Thirteen horizontal stripes, barely-there. Sits under the content, above the
+   navy. Kept faint on purpose: the flag should be felt, not saluted. */
+.a250-stripes {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 51, 102, 0.07) 0 7.69%,
+    transparent 7.69% 15.38%
+  );
+}
+.a250-shine { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
+.a250-shine::before {
+  content: "";
+  position: absolute; top: 0; left: -70%;
+  width: 45%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-18deg);
+  opacity: 0;
+}
+@keyframes a250Pop {
+  0%   { transform: rotate(3deg) scale(0.6); opacity: 0; }
+  70%  { transform: rotate(3deg) scale(1.06); opacity: 1; }
+  100% { transform: rotate(3deg) scale(1); opacity: 1; }
+}
+@keyframes a250Sweep { from { left: -70%; opacity: 0.9; } to { left: 130%; opacity: 0.9; } }
+@keyframes a250Sparkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.8) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1.15) rotate(25deg); }
+}
+
+/* Proof film graphic: tri-color patriot wave motion. */
+@keyframes proofWaveDash { to { stroke-dashoffset: -320; } }
+@keyframes proofRingSpin { to { transform: rotate(360deg); } }
+/* Solid ribbon with a light "comet" traveling it (not dotted). */
+@keyframes ribbonComet { to { stroke-dashoffset: -1426; } }
+/* Multi-Partisan cycle: each gradient stop walks red -> violet -> blue -> red.
+   Staggering the stops' delays down the ribbon makes the colour travel
+   top-to-bottom. stop-color is a real CSS property, so this needs no SMIL and
+   stays inert under prefers-reduced-motion. */
+@keyframes ribbonCycle {
+  0%   { stop-color: #FF3366; }
+  33%  { stop-color: #8E5CF7; }
+  66%  { stop-color: #4D9FFF; }
+  100% { stop-color: #FF3366; }
+}
+
+/* How It Works timeline: a light travels down the vertical spine, and each
+   step node breathes a soft ring as you scroll the process. */
+@keyframes hiwSpineFlow {
+  0% { top: -14%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 108%; opacity: 0; }
+}
+@keyframes hiwNodePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(77, 159, 255, 0); }
+  50% { box-shadow: 0 0 0 7px rgba(77, 159, 255, 0.12); }
+}
+/* Per-step number node flash — glows in that step's own red->violet->blue
+   colour (passed as --node-glow), staggered down the beam. */
+@keyframes hiwNodeFlash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  50% { box-shadow: 0 0 0 8px var(--node-glow, rgba(77, 159, 255, 0.12)); }
+}
+
+/* Growth graphic: a shimmer sweeps up the "it gets it now" bar, and a light
+   travels the growth arrow. */
+@keyframes growShimmer {
+  0% { transform: translateY(110%); opacity: 0; }
+  30%, 70% { opacity: 1; }
+  100% { transform: translateY(-110%); opacity: 0; }
+}
+@keyframes growArrowComet {
+  0% { left: -6%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 104%; opacity: 0; }
+}
+
+/* Campaign Arc calendar: a playhead sweeps launch -> election day, and each
+   release beat pops as the line passes it (delay set per-mark in JSX). */
+@keyframes arcSweep {
+  0% { left: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes arcBeat {
+  0%, 15%, 100% { transform: scale(1); filter: brightness(1); }
+  5% { transform: scale(1.8); filter: brightness(1.9); }
+}
+
+/* Verified Human lookup: a scan line sweeps a frame once when a sample is
+   checked, and the verdict readout settles in behind it. */
+@keyframes vhScan {
+  0% { top: 0; opacity: 0; }
+  12% { opacity: 0.95; }
+  88% { opacity: 0.95; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes vhSettle {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Video Production Process: submit-block editing bay / AI render, and the "you
+   press submit" cursor tap. */
+@keyframes hiwTap { 0%, 70%, 100% { transform: scale(1); } 80% { transform: scale(0.78); } 90% { transform: scale(1); } }
+@keyframes hiwScrub { 0%, 100% { left: 4%; } 50% { left: 92%; } }
+@keyframes hiwTrim { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.55); } }
+@keyframes hiwFill { 0% { width: 15%; } 55% { width: 85%; } 100% { width: 15%; } }
+
+/* Home Product stage crossfade between auto-rotating types. */
+@keyframes stageIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hiw-tap { animation: hiwTap 2.4s ease-in-out infinite; }
+  .hiw-scrub { animation: hiwScrub 3.4s ease-in-out infinite; }
+  .hiw-trim { animation: hiwTrim 2.6s ease-in-out infinite; transform-origin: left; }
+  .hiw-fill { animation: hiwFill 3s ease-in-out infinite; }
+  .stage-in { animation: stageIn 0.5s ease; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vh-scan { animation: vhScan 1s ease-in-out 1; }
+  .vh-settle { animation: vhSettle 0.5s ease 0.15s both; }
+  .hiw-spine-comet { animation: hiwSpineFlow 4.2s linear infinite; }
+  .hiw-node-pulse { animation: hiwNodePulse 3.2s ease-in-out infinite; }
+  .hiw-node-flash { animation: hiwNodeFlash 3.2s ease-in-out infinite; }
+  .grow-shimmer { animation: growShimmer 3s ease-in-out infinite; }
+  .grow-arrow-comet { animation: growArrowComet 3.4s linear infinite; }
+  .arc-playhead { animation: arcSweep 6s linear infinite; }
+  .arc-beat { animation: arcBeat 6s linear infinite; }
+  .hero-sheen { animation: heroSheenPan 13s ease-in-out infinite; }
+  .hero-float { animation: heroFloat var(--fdur, 6s) ease-in-out infinite; animation-delay: var(--fdelay, 0s); }
+  .ribbon-sweep { animation: ribbonSweep 6s ease-in-out infinite; }
+  .hero-swing-draw { animation: heroSwingDraw 3.4s ease-in-out infinite; }
+  .phrase-rotator .phrase {
+    animation: heroPhraseCycle 15s infinite;
+    animation-delay: calc(var(--p) * 2.5s);
+  }
+  .phrase-rotator .phrase:first-of-type { opacity: 0; }
+  .ratio-fill { animation: ratioFill 2.8s cubic-bezier(0.33, 0.9, 0.4, 1) 2s both; }
+  .ratio-decoy { animation: ratioFade 4.4s ease-out both; }
+  .filmstrip-flow { animation: filmstripFlow 9s linear infinite; }
+  .a250-popup { animation: a250Pop 0.6s ease-out 0.35s both; }
+  .a250-popup:hover { transform: rotate(0deg) scale(1.04); transition: transform 0.25s ease; }
+  .a250-popup:hover .a250-shine::before { animation: a250Sweep 0.8s ease forwards; }
+  .a250-sparkle { animation: a250Sparkle 2.2s ease-in-out infinite; }
+  .proof-wave { stroke-dasharray: 14 12; animation: proofWaveDash 7s linear infinite; }
+  .proof-ring { transform-origin: center; animation: proofRingSpin 26s linear infinite; }
+  .ribbon-comet { stroke-dasharray: 26 1400; animation: ribbonComet 3.6s linear infinite; }
+  .ribbon-stop { animation: ribbonCycle 9s linear infinite; }
+  .ribbon-sway { animation: ribbonSway 7s ease-in-out infinite; }
+  .ribbon-pulse { animation: ribbonPulse 2.4s ease-in-out infinite; }
+  .sparkle-twinkle { animation: sparkleTwinkle var(--dur, 3s) ease-in-out infinite; }
+  .paywall-rim { animation: paywallPulse 3s ease-in-out infinite; }
+  .paywall-ray { animation: paywallRay 4s ease-in-out infinite; }
+  .paywall-reveal { animation: paywallReveal 0.8s ease-out both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ratio-fill { width: 78%; }
+  .ratio-decoy { opacity: 0; }
+}
+
+/* Tri-color ribbon divider (C.1: red → Bridge Violet → blue) */
+.ribbon-divider {
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #FF3366 0%, #FF3366 33%,
+    #8E5CF7 33%, #8E5CF7 66%,
+    #4D9FFF 66%, #4D9FFF 100%
+  );
+  border-radius: 3px;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q150 0 300 4 T600 4 T900 4 T1200 4' stroke='black' stroke-width='8' fill='none'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q150 0 300 4 T600 4 T900 4 T1200 4' stroke='black' stroke-width='8' fill='none'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
 }

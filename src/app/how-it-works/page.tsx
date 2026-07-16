@@ -1,27 +1,32 @@
-import type { Metadata } from "next";
-import { HIWHero } from "@/components/sections/how-it-works/HIWHero";
-import { ProcessTimeline } from "@/components/sections/how-it-works/ProcessTimeline";
-import { GrowthSection } from "@/components/sections/home/GrowthSection";
-import { ComplianceBridge } from "@/components/sections/how-it-works/ComplianceBridge";
+"use client";
 
-import { HIWFAQ } from "@/components/sections/how-it-works/HIWFAQ";
-import { FinalCTASection } from "@/components/sections/home/FinalCTASection";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "How It Works - CampaignAI",
-  description:
-    "From your story to a finished campaign ad in 48 hours. Learn how CampaignAI helps you produce professional campaign video with built-in compliance.",
-};
+// The Video Production Process moved to /video-production-process. This stub
+// keeps the old /how-it-works URL working on the static export (no server
+// redirects) by bouncing visitors to the new address.
+export default function HowItWorksMoved() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/video-production-process");
+  }, [router]);
 
-export default function HowItWorksPage() {
   return (
     <>
-      <HIWHero />
-      <ProcessTimeline />
-      <GrowthSection />
-      <ComplianceBridge />
-      <HIWFAQ />
-      <FinalCTASection />
+      <meta httpEquiv="refresh" content="0; url=/video-production-process" />
+      <main className="grid min-h-screen place-items-center bg-regal-navy px-6 text-center">
+        <div>
+          <p className="text-beacon-white/80">This page has moved.</p>
+          <Link
+            href="/video-production-process"
+            className="mt-3 inline-block font-semibold text-freedom-blue hover:underline"
+          >
+            Go to the Video Production Process &rarr;
+          </Link>
+        </div>
+      </main>
     </>
   );
 }
