@@ -350,6 +350,11 @@ html[data-a250="dismissed"] .announcement-bar {
   .ga-dash { animation: gaBlink 2s ease-in-out infinite; }
 }
 
+/* Interactive channel-hub nodes (home ChannelExplorer) */
+.hub-node { outline: none; transition: opacity 0.2s ease; }
+.hub-node:hover { opacity: 0.82; }
+.hub-node:focus-visible rect:first-of-type { stroke: #4D9FFF; stroke-width: 3.5px; }
+
 /* Base styles */
 html {
   scroll-behavior: smooth;

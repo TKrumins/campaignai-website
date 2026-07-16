@@ -5,8 +5,6 @@ import { GlossaryGrid } from "@/components/sections/glossary/GlossaryGrid";
 import { SuggestEntry } from "@/components/sections/glossary/SuggestEntry";
 import { ScriptDemo } from "@/components/sections/how-it-works/ScriptDemo";
 import { AILandscape } from "@/components/sections/community/AILandscape";
-import { ExperiencesRow } from "@/components/sections/experiences/ExperiencesRow";
-import { EXPERIENCE_ROUTES } from "@/lib/constants";
 
 // This page is the site's organic search asset: real attention on title/meta.
 export const metadata: Metadata = {
@@ -50,14 +48,6 @@ export default function AiInCampaignsPage() {
           <GlossaryGrid />
         </div>
       </section>
-
-      {/* Go deeper: the interactive experiences (soft CTA row) */}
-      <ExperiencesRow
-        routes={["#script-step", ...EXPERIENCE_ROUTES]}
-        heading="Go deeper. See it, don't just read it."
-        subhead="Short, interactive tools that show how AI actually shows up in campaigns, and where the human stays in charge."
-        tone="white"
-      />
 
       {/* Suggest an entry */}
       <section className="py-14 md:py-20 bg-dawn-frost">

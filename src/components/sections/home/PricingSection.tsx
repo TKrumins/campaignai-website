@@ -1,5 +1,4 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PricingTiers } from "@/components/sections/shared/PricingTiers";
 
 export function PricingSection() {
@@ -9,8 +8,7 @@ export function PricingSection() {
         {/* Header */}
         <ScrollReveal>
           <div className="text-center mb-10">
-            <SectionLabel text="Pricing" />
-            <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-regal-navy tracking-[-1.5px] mt-3 mb-5">
+            <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-regal-navy tracking-[-1.5px] mb-5">
               Professional video, priced for campaigns like yours.
             </h2>
             <p className="font-body font-semibold text-lg text-granite max-w-[660px] mx-auto leading-relaxed">

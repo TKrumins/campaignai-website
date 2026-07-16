@@ -1,8 +1,7 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { StepAnimation } from "@/components/sections/how-it-works/StepAnimation";
-import { SlidersHorizontal, UserCheck, Send } from "lucide-react";
+import { SlidersHorizontal, UserCheck, Send, Sparkles } from "lucide-react";
 
 // Condensed to three phases for the homepage; the full seven-step walkthrough
 // lives on /how-it-works, so this primes and funnels rather than duplicates.
@@ -16,6 +15,8 @@ const phases = [
     title: "You direct every decision",
     description:
       "Your story, your script, your storyboard, your narration and music. You make every creative call. Nothing goes in that you didn't choose.",
+    highlight:
+      "Use as much — or as little — AI as you want. Bring your own footage, voiceover, and photos, and we build the ad around them.",
     chips: ["Story", "Script", "Storyboard", "Voice & music"],
   },
   {
@@ -44,8 +45,7 @@ export function HowItWorksSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <SectionLabel text="How It Works" />
-            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
+            <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
               From your story to a finished ad.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
@@ -56,7 +56,7 @@ export function HowItWorksSection() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {phases.map(({ number, icon: Icon, visual, title, description, chips }, i) => (
+          {phases.map(({ number, icon: Icon, visual, title, description, highlight, chips }, i) => (
             <ScrollReveal key={number} delay={i * 100}>
               <div className="relative h-full overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5">
                 <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 z-10" />
@@ -75,6 +75,12 @@ export function HowItWorksSection() {
                     <h3 className="font-heading font-bold text-xl text-regal-navy">{title}</h3>
                   </div>
                   <p className="text-granite text-sm leading-relaxed mb-4">{description}</p>
+                  {highlight && (
+                    <div className="mb-4 flex items-start gap-2 rounded-xl bg-freedom-blue/[0.07] px-3 py-2.5 ring-1 ring-freedom-blue/15">
+                      <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-freedom-blue" />
+                      <p className="text-xs font-medium leading-relaxed text-regal-navy">{highlight}</p>
+                    </div>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     {chips.map((c) => (
                       <span key={c} className="rounded-full bg-regal-navy/5 px-3 py-1 text-xs font-medium text-regal-navy">

@@ -10,7 +10,11 @@ import type { CSSProperties } from "react";
  * the travelling lights + arrival flashes, `ringColors` the rotating hub ring.
  * Both default to the Multi-Partisan set, so existing callers render unchanged.
  */
-const channels = [
+export type HubChannel = { label: string; desc: string; angle: number };
+
+// Default six-channel set — used by the /for/* funnels (FunnelReach) unchanged.
+// Callers (e.g. the home ChannelExplorer) can pass their own `channels` array.
+export const DEFAULT_CHANNELS: HubChannel[] = [
   { label: "Social Media", desc: "Facebook · TikTok · Instagram\nX/Twitter · LinkedIn · BlueSky", angle: 0 },
   { label: "Campaign Website", desc: "Build trust with visitors\nright on your homepage", angle: 60 },
   { label: "Email &\nNewsletters", desc: "Update supporters with\nengaging content", angle: 120 },
@@ -25,7 +29,7 @@ const DEFAULT_RING: [string, string, string] = ["#FF3366", "#8E5CF7", "#4D9FFF"]
 const SPARKLE_D =
   "M12 0 C12.8 6.6 17.4 11.2 24 12 C17.4 12.8 12.8 17.4 12 24 C11.2 17.4 6.6 12.8 0 12 C6.6 11.2 11.2 6.6 12 0 Z";
 
-function makeNodes(cx: number, cy: number, spokeLen: number) {
+function makeNodes(channels: HubChannel[], cx: number, cy: number, spokeLen: number) {
   return channels.map(({ label, desc, angle }, i) => {
     const rad = (angle - 90) * (Math.PI / 180);
     return {
@@ -76,8 +80,11 @@ export function Hub({
   viewBox,
   idp,
   className,
+  channels = DEFAULT_CHANNELS,
   lightColors = MULTIPARTISAN_LIGHTS,
   ringColors = DEFAULT_RING,
+  onSelect,
+  selectedIdx,
 }: {
   cx: number;
   cy: number;
@@ -88,12 +95,18 @@ export function Hub({
   viewBox: string;
   idp: string;
   className: string;
+  /** Channel set to render (defaults to the six-channel funnel set). */
+  channels?: HubChannel[];
   /** Travelling-light + arrival-flash colours (need at least 3). */
   lightColors?: string[];
   /** Rotating hub-ring gradient stops. */
   ringColors?: [string, string, string];
+  /** When provided, each destination node becomes a clickable button. */
+  onSelect?: (idx: number) => void;
+  /** Index of the currently-selected node (inverted styling). */
+  selectedIdx?: number;
 }) {
-  const nodes = makeNodes(cx, cy, spokeLen);
+  const nodes = makeNodes(channels, cx, cy, spokeLen);
 
   // Three lights per line, each a colour / speed / start offset, so all six
   // lines carry the palette with no fixed rhythm. Deterministic (no
@@ -159,9 +172,40 @@ export function Hub({
         const labelBlockH = labelLines.length * 15;
         const totalH = labelBlockH + 4 + descLines.length * 12;
         const startY = ny - totalH / 2;
+        const interactive = !!onSelect;
+        const selected = selectedIdx === idx;
+        const textFill = selected ? "#E8F4F8" : "#0D1B3E";
         return (
-          <g key={`node-${label}`}>
-            <rect x={nx - rectW / 2} y={ny - rectH / 2} width={rectW} height={rectH} rx="14" fill="white" stroke="#0D1B3E" strokeWidth="2" />
+          <g
+            key={`node-${label}`}
+            onClick={interactive ? () => onSelect?.(idx) : undefined}
+            onKeyDown={
+              interactive
+                ? (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      onSelect?.(idx);
+                    }
+                  }
+                : undefined
+            }
+            role={interactive ? "button" : undefined}
+            tabIndex={interactive ? 0 : undefined}
+            aria-pressed={interactive ? selected : undefined}
+            aria-label={interactive ? label.replace(/\n/g, " ") : undefined}
+            style={interactive ? { cursor: "pointer" } : undefined}
+            className={interactive ? "hub-node" : undefined}
+          >
+            <rect
+              x={nx - rectW / 2}
+              y={ny - rectH / 2}
+              width={rectW}
+              height={rectH}
+              rx="14"
+              fill={selected ? "#0D1B3E" : "white"}
+              stroke={selected ? "#4D9FFF" : "#0D1B3E"}
+              strokeWidth={selected ? 3.5 : 2}
+            />
             {/* per-light arrival flashes — the border flashes the dot's color */}
             {dotConfigs[idx].map((d, k) => (
               <rect
@@ -188,12 +232,12 @@ export function Hub({
               </rect>
             ))}
             {labelLines.map((line, j) => (
-              <text key={`t-${j}`} x={nx} y={startY + j * 15 + 8} textAnchor="middle" dominantBaseline="central" fill="#0D1B3E" fontSize="13" fontWeight="700">
+              <text key={`t-${j}`} x={nx} y={startY + j * 15 + 8} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="13" fontWeight="700" pointerEvents="none">
                 {line}
               </text>
             ))}
             {descLines.map((line, j) => (
-              <text key={`d-${j}`} x={nx} y={startY + labelBlockH + 6 + j * 12 + 6} textAnchor="middle" dominantBaseline="central" fill="#0D1B3E" fontSize="9.5" fontWeight="400" opacity="0.7">
+              <text key={`d-${j}`} x={nx} y={startY + labelBlockH + 6 + j * 12 + 6} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="9.5" fontWeight="400" opacity="0.7" pointerEvents="none">
                 {line}
               </text>
             ))}

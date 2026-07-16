@@ -2,12 +2,8 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ComponentType } from "react";
-import Link from "next/link";
-import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, ArrowRight } from "lucide-react";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, Globe, Share2, Users, MapPin, Scale } from "lucide-react";
 import { AISparkle } from "@/components/ui/AISparkle";
-import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
-import { VIDEO_RESILIENCY_ACT } from "@/lib/constants";
 
 type VideoType = {
   key: string;
@@ -35,13 +31,8 @@ const TYPES: VideoType[] = [
     icon: Megaphone,
     tagline: "Launch day, ready to post.",
     blurb:
-      "Your first impression with voters. Who you are, what you stand for, and why you are running now.",
-    deliver: [
-      "A launch-ready 60-second film",
-      "15- and 30-second cutdowns for every platform",
-      "Vertical, square, and widescreen formats",
-      "State-specific AI disclosure label",
-    ],
+      "The feeling of hitting launch day with a film ready to go. One piece that anchors your website, powers your first social push, and opens the room at your kickoff — so you arrive looking every bit the campaign you are.",
+    deliver: [],
     spark: "#FF3366",
     video: null,
   },
@@ -52,12 +43,7 @@ const TYPES: VideoType[] = [
     tagline: "An ask that actually converts.",
     blurb:
       "Authentic asks built around urgency, personal connection, and a clear call to give before the deadline.",
-    deliver: [
-      "A deadline-driven appeal built to convert",
-      "Donation-page and email-ready cuts",
-      "A/B variants for subject and hook testing",
-      "State-specific AI disclosure label",
-    ],
+    deliver: [],
     spark: "#4D9FFF",
     video: null,
   },
@@ -67,19 +53,10 @@ const TYPES: VideoType[] = [
     icon: FileText,
     tagline: "A complex position, made plain.",
     blurb:
-      "Complex positions in 60 seconds. Clear narration, data visuals, and formatting built to be shared.",
-    deliver: [
-      "Your position explained in 60 seconds",
-      "Clean data visuals and on-screen callouts",
-      "Shareable cuts for every platform",
-      "State-specific AI disclosure label",
-    ],
+      "Build a video library detailing your platform. Actionable, evergreen content that makes complex positions plain — ready to use again and again across your race.",
+    deliver: [],
     spark: "#8E5CF7",
-    video: {
-      src: VIDEO_RESILIENCY_ACT,
-      poster: "/assets/videos/posters/the-resiliency-act.jpg",
-      label: "The Resiliency Act",
-    },
+    video: null,
   },
   {
     key: "gotv",
@@ -88,12 +65,7 @@ const TYPES: VideoType[] = [
     tagline: "A final-weekend turnout push.",
     blurb:
       "High-energy calls to action for the closing stretch, built to convert enthusiasm into turnout.",
-    deliver: [
-      "A closing-stretch turnout film",
-      "Same-day and get-to-the-polls cuts",
-      "Location and deadline personalization",
-      "State-specific AI disclosure label",
-    ],
+    deliver: [],
     spark: "#E8F4F8",
     video: null,
   },
@@ -108,6 +80,19 @@ const TYPES: VideoType[] = [
       "A quick-turn video you drop between your core films to answer an attack, seize a headline, or set the record straight.",
     deliver: [],
     spark: "#FF3366",
+    video: null,
+  },
+  {
+    key: "contrast",
+    title: "Contrast Ad",
+    icon: Scale,
+    variant: "support",
+    statusLabel: "Coming soon",
+    tagline: "You vs. the alternative.",
+    blurb:
+      "A side-by-side that draws the clear line between your record and your opponent's — sharp, factual, and squarely on message.",
+    deliver: [],
+    spark: "#4D9FFF",
     video: null,
   },
   {
@@ -206,14 +191,18 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
         )}
 
         <div className="text-center max-w-[760px] mx-auto mb-12">
-          <SectionLabel text="The Product" />
-          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-            One product. Every video your campaign runs.
+          <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
+            One team. Every video your campaign runs.
           </h2>
           <p className="text-granite text-lg leading-[1.7]">
-            Watch each type in action, or jump to the one you need. Same
-            story-first process, same 48-hour delivery, whatever the moment
-            calls for.
+            We&apos;re a tech-assisted video agency: our team produces each of
+            these for you today, with a self-serve platform on the way. Explore
+            each type below, or jump to the one you need — same story-first
+            process, same 48-hour delivery, whatever the moment calls for.
+          </p>
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-regal-navy/5 px-4 py-2 text-sm font-medium text-regal-navy">
+            <Check className="h-4 w-4 shrink-0 text-verdant" />
+            Every video ships with human editorial review and full ownership. No watermark.
           </p>
         </div>
 
@@ -225,7 +214,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
           {/* Mobile: the top nav has already slid to the bottom by the time
               this section is reached, so the sticky bar only needs to clear the
               announcement ticker. Desktop keeps the full nav-height offset. */}
-          <div className="sticky top-[calc(var(--announce-h,0px)+0.75rem)] z-30 mb-3 grid grid-cols-2 gap-2 rounded-xl bg-dawn-frost/95 py-2 backdrop-blur sm:grid-cols-4 lg:top-[calc(var(--announce-h,0px)+7rem)] lg:self-start lg:z-auto lg:mb-0 lg:flex lg:flex-col lg:gap-3 lg:rounded-none lg:bg-transparent lg:py-0 lg:backdrop-blur-none">
+          <div className="sticky top-[calc(var(--announce-h,0px)+0.75rem)] z-30 mb-3 -mx-4 flex snap-x gap-2 overflow-x-auto bg-dawn-frost/95 px-4 py-2 backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 lg:top-[calc(var(--announce-h,0px)+7rem)] lg:mx-0 lg:mb-0 lg:flex-col lg:gap-3 lg:self-start lg:z-auto lg:snap-none lg:overflow-visible lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
             {TYPES.map(({ key, title, icon: Icon, tagline, variant, statusLabel }, i) => {
               const on = i === active;
               const support = variant === "support";
@@ -233,14 +222,19 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               return (
                 <Fragment key={key}>
                   {firstSupport && (
-                    <p className="col-span-2 mt-1 px-1 text-[10px] font-bold uppercase tracking-wider text-slate sm:col-span-4 lg:col-span-1 lg:mt-3 lg:border-t lg:border-gray-200 lg:pt-3">
-                      Also part of the mix
-                    </p>
+                    <>
+                      {/* Mobile strip: a slim vertical rule separates the core films
+                          from the supporting formats. Desktop column: the label. */}
+                      <span aria-hidden className="mx-1 h-9 w-px shrink-0 self-center bg-gray-200 lg:hidden" />
+                      <p className="hidden px-1 text-[10px] font-bold uppercase tracking-wider text-slate lg:block lg:mt-3 lg:border-t lg:border-gray-200 lg:pt-3">
+                        Coming Soon
+                      </p>
+                    </>
                   )}
                   <button
                     onClick={() => select(i)}
                     aria-pressed={on}
-                    className={`text-left rounded-xl border p-2.5 transition-all lg:p-4 ${
+                    className={`shrink-0 snap-start text-left rounded-xl border p-2 transition-all lg:p-4 ${
                       on
                         ? "bg-regal-navy border-regal-navy shadow-lg"
                         : support
@@ -250,7 +244,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                   >
                     <div className="flex items-center gap-2 lg:gap-3">
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg lg:h-10 lg:w-10 ${
+                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg lg:h-10 lg:w-10 ${
                           on ? "bg-white/10" : "bg-regal-navy/5"
                         }`}
                       >
@@ -262,7 +256,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                         </p>
                         {support && statusLabel ? (
                           <span
-                            className={`mt-0.5 inline-block rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:text-[10px] ${
+                            className={`mt-0.5 hidden rounded-full px-1.5 py-px text-[9px] font-bold uppercase tracking-wider lg:inline-block lg:text-[10px] ${
                               on ? "bg-white/15 text-beacon-white/80" : "bg-regal-navy/5 text-slate"
                             }`}
                           >
@@ -351,48 +345,23 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
                 <SupportDetail typeKey={t.key} />
               ) : (
                 <>
-                  <LogoMarkBulletList items={t.deliver} />
-
-                  {/* per-type capability spotlight */}
+                  {/* per-type experiential spotlight (replaces the old spec bullets) */}
+                  {t.key === "announce" && <AnnouncementSpotlight />}
                   {t.key === "fund" && <MilestoneSpotlight />}
                   {t.key === "policy" && <LibrarySpotlight />}
-
-                  <p className="mt-5 text-sm text-slate">
-                    <Check className="mr-1 inline h-4 w-4 text-verdant" />
-                    Every type ships with a human editorial review and full ownership. No watermark.
-                  </p>
+                  {t.key === "gotv" && <GOTVSpotlight />}
                 </>
               )}
             </div>
           </div>
         </div>
 
-        {/* Campaign arc — teased here; the full animated calendar lives on the
-            Video Production Process page so the home page stays lighter. */}
-        <div className="mt-16 text-center">
-          <SectionLabel text="The Campaign Arc" />
-          <h3 className="mx-auto mt-3 max-w-[640px] font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
-            A campaign is a series of stories, told in new and exciting ways.
-          </h3>
-          <p className="mx-auto mt-3 max-w-[620px] text-granite leading-relaxed">
-            Every video is a chapter — your launch, your asks, the policies you
-            fight for, the candid moments, the closing push. No single film is
-            your campaign. Told together, over a race, they are.
-          </p>
-          <Link
-            href="/video-production-process#campaign-arc"
-            className="mt-5 inline-flex items-center gap-1.5 font-semibold text-freedom-blue hover:underline"
-          >
-            See how they play out across a campaign
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
       </div>
     </section>
   );
 }
 
-/** Explainer stage shown for the two supporting formats (no demo film). */
+/** Explainer stage shown for the supporting formats (no demo film). */
 function SupportStage({ typeKey }: { typeKey: string }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
@@ -421,6 +390,28 @@ function SupportStage({ typeKey }: { typeKey: string }) {
             <rect x="42" y="155" width="120" height="4" rx="2" fill="#FF6B8F" className="ga-draw" />
             <rect x="170" y="155" width="80" height="4" rx="2" fill="#7AB8FF" opacity="0.6" />
           </>
+        ) : typeKey === "contrast" ? (
+          <>
+            {/* two sides, side by side — you vs the alternative */}
+            <rect x="26" y="42" width="120" height="96" rx="10" fill="#4D9FFF" opacity="0.12" stroke="#4D9FFF" strokeWidth="1.5" />
+            <rect x="174" y="42" width="120" height="96" rx="10" fill="#64748b" opacity="0.10" stroke="#64748b" strokeWidth="1.5" />
+            {/* your side — rising bars + up mark */}
+            <g>
+              <rect x="48" y="104" width="15" height="26" rx="2" fill="#4D9FFF" className="ga-draw" />
+              <rect x="70" y="90" width="15" height="40" rx="2" fill="#7AB8FF" className="ga-draw" style={{ animationDelay: "0.2s" } as CSSProperties} />
+              <rect x="92" y="74" width="15" height="56" rx="2" fill="#4D9FFF" className="ga-draw" style={{ animationDelay: "0.4s" } as CSSProperties} />
+            </g>
+            <path d="M60 66 l8 -10 8 10 z" fill="#7AB8FF" className="ga-glow" />
+            {/* their side — short, flat bars */}
+            <g opacity="0.75">
+              <rect x="196" y="116" width="15" height="14" rx="2" fill="#94a3b8" />
+              <rect x="218" y="112" width="15" height="18" rx="2" fill="#94a3b8" />
+              <rect x="240" y="118" width="15" height="12" rx="2" fill="#94a3b8" />
+            </g>
+            {/* center VS badge */}
+            <circle cx="160" cy="90" r="17" fill="#0D1B3E" stroke="#FF3366" strokeWidth="2" />
+            <text x="160" y="94" textAnchor="middle" fontSize="11" fontFamily="sans-serif" fontWeight="bold" fill="#FF6B8F">VS</text>
+          </>
         ) : (
           <>
             {/* a hand-held phone capturing a candid moment */}
@@ -447,7 +438,7 @@ function SupportStage({ typeKey }: { typeKey: string }) {
       </svg>
       <AISparkle
         size={20}
-        color={typeKey === "rapid" ? "#FF3366" : "#8E5CF7"}
+        color={typeKey === "rapid" ? "#FF3366" : typeKey === "contrast" ? "#4D9FFF" : "#8E5CF7"}
         glow
         className="sparkle-twinkle absolute left-[16%] top-[20%]"
         style={{ ["--dur"]: "3s" } as CSSProperties}
@@ -486,6 +477,47 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
       </div>
     );
   }
+  if (typeKey === "contrast") {
+    return (
+      <div className="rounded-xl border border-gray-200 bg-white p-5">
+        <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-regal-navy">
+          <Scale className="h-4 w-4 text-freedom-blue" />
+          A clear, factual side-by-side
+        </p>
+        <p className="mb-4 text-sm leading-relaxed text-granite">
+          Contrast ads draw the line between your record and the alternative &mdash; always
+          factual, always on message, and reviewed by a human before anything ships. A sharp way
+          to frame the choice for voters when the race tightens.
+        </p>
+        {/* subtle graphic: your record vs the alternative */}
+        <div className="mb-4 grid grid-cols-[1fr_auto_1fr] items-stretch gap-3">
+          <div className="rounded-lg bg-freedom-blue/[0.08] p-3 ring-1 ring-freedom-blue/20">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-freedom-blue">Your record</p>
+            <div className="mt-2 flex items-end gap-1.5">
+              {[16, 26, 36].map((h, i) => (
+                <span key={i} className="w-3 rounded-sm bg-freedom-blue/70" style={{ height: h }} />
+              ))}
+            </div>
+          </div>
+          <span className="flex items-center text-xs font-bold text-liberty-crimson">VS</span>
+          <div className="rounded-lg bg-slate/10 p-3 ring-1 ring-slate/20">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate">The alternative</p>
+            <div className="mt-2 flex items-end gap-1.5">
+              {[14, 12, 16].map((h, i) => (
+                <span key={i} className="w-3 rounded-sm bg-slate/40" style={{ height: h }} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
+            <div className="h-full w-1/3 rounded-full multipartisan-gradient" />
+          </div>
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate">Coming soon</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5">
       <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-regal-navy">
@@ -500,6 +532,72 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
       <p className="mt-3 text-xs text-slate">
         On the roadmap: simple trimming and captions so your own clips are quick to post.
       </p>
+    </div>
+  );
+}
+
+function AnnouncementSpotlight() {
+  const rows = [
+    { icon: Globe, label: "Anchors your campaign website" },
+    { icon: Share2, label: "Powers your first social push" },
+    { icon: Users, label: "Opens the room at rallies & fundraisers" },
+  ];
+  return (
+    <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5">
+      <p className="mb-4 text-sm font-semibold text-regal-navy">
+        One launch film, working everywhere at once
+      </p>
+      <div className="flex items-center gap-4">
+        {/* the film */}
+        <div className="shrink-0 text-center">
+          <div className="grid h-16 w-24 place-items-center rounded-lg bg-regal-navy">
+            <Play className="ml-0.5 h-5 w-5 fill-beacon-white text-beacon-white" />
+          </div>
+          <p className="mt-1.5 text-[10px] font-semibold text-slate">Your launch film</p>
+        </div>
+        <span className="font-heading text-xl font-bold text-regal-navy">&rarr;</span>
+        {/* destinations it feeds */}
+        <div className="min-w-0 flex-1 space-y-2">
+          {rows.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2.5 rounded-lg bg-dawn-frost px-3 py-2">
+              <Icon className="h-4 w-4 shrink-0 text-freedom-blue" />
+              <span className="text-xs font-medium text-regal-navy">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GOTVSpotlight() {
+  const channels = [
+    { icon: Share2, label: "Social & text blasts" },
+    { icon: Users, label: "Volunteer group chats" },
+    { icon: MapPin, label: "Door-to-door reminders" },
+    { icon: Vote, label: "Polls-open, day-of push" },
+  ];
+  return (
+    <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5">
+      <p className="mb-4 text-sm font-semibold text-regal-navy">
+        Deploy your closing message everywhere it lands
+      </p>
+      <div className="grid grid-cols-2 gap-2">
+        {channels.map(({ icon: Icon, label }) => (
+          <div key={label} className="flex items-center gap-2 rounded-lg bg-dawn-frost px-3 py-2">
+            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white ring-1 ring-black/5">
+              <Icon className="h-3.5 w-3.5 text-freedom-blue" />
+            </span>
+            <span className="text-xs font-medium leading-tight text-regal-navy">{label}</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-center gap-2">
+        <span className="h-[2px] flex-1 rounded-full bg-gradient-to-r from-liberty-crimson via-bridge-violet to-freedom-blue" />
+        <span className="inline-flex items-center rounded-full bg-regal-navy px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-beacon-white">
+          Election Day
+        </span>
+      </div>
     </div>
   );
 }
@@ -559,6 +657,10 @@ function LibrarySpotlight() {
 function PlaceholderStage({ title, spark }: { title: string; spark: string }) {
   return (
     <div className="relative flex h-full w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
+      {/* coming-soon tag — sample films are in production */}
+      <span className="absolute right-3 top-3 z-10 rounded-full bg-pioneer-gold/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/40">
+        Coming Soon
+      </span>
       {/* film-frame perforations */}
       <div className="absolute inset-y-0 left-0 flex w-6 flex-col justify-around">
         {Array.from({ length: 6 }).map((_, i) => (

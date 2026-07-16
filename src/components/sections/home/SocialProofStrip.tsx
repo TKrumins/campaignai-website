@@ -36,9 +36,15 @@ function QuoteCard({ name, quote, accent }: { name: string; quote: string; accen
 }
 
 /**
- * A single auto-scrolling marquee row. Scrolls right-to-left by default, or
+ * A single auto-scrolling marquee row. Drifts right-to-left by default, or
  * left-to-right when `reverse`, and pauses while hovered. Falls back to a
  * static horizontal scroll under prefers-reduced-motion.
+ *
+ * The track is driven by a CSS transform on a persistent position ref (not the
+ * container's scrollLeft), and hover pauses by flipping a ref — not by tearing
+ * down and restarting the animation. That keeps the position across pause/resume
+ * and takes the row out of the browser's scroll path, so hovering or nudging the
+ * wheel no longer makes it jump.
  */
 function MarqueeRow({
   items,
@@ -49,31 +55,36 @@ function MarqueeRow({
   reverse?: boolean;
   prefersReducedMotion: boolean;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const posRef = useRef(0);
 
   useEffect(() => {
-    if (prefersReducedMotion || isPaused) return;
-    const el = scrollRef.current;
-    if (!el) return;
+    if (prefersReducedMotion) return;
+    const track = trackRef.current;
+    if (!track) return;
 
-    const half = el.scrollWidth / 2;
-    let pos = reverse ? half : 0;
     let animId: number;
     const speed = 0.5; // px per frame
+    // Start a reverse row mid-track so it drifts rightward from the seam
+    // instead of a hard left edge.
+    if (reverse && posRef.current === 0) posRef.current = track.scrollWidth / 2;
 
     function step() {
-      if (!el) return;
-      pos += reverse ? -speed : speed;
-      if (pos >= half) pos = 0;
-      if (pos <= 0) pos = half;
-      el.scrollLeft = pos;
+      if (!track) return;
+      const half = track.scrollWidth / 2; // one copy of the duplicated set
+      if (!pausedRef.current && half > 0) {
+        posRef.current += reverse ? -speed : speed;
+        if (posRef.current >= half) posRef.current -= half;
+        if (posRef.current < 0) posRef.current += half;
+      }
+      track.style.transform = `translate3d(${-posRef.current}px,0,0)`;
       animId = requestAnimationFrame(step);
     }
 
     animId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animId);
-  }, [prefersReducedMotion, isPaused, reverse]);
+  }, [prefersReducedMotion, reverse]);
 
   // Duplicated cards for a seamless loop.
   const cards = [...items, ...items];
@@ -92,12 +103,15 @@ function MarqueeRow({
 
   return (
     <div
-      ref={scrollRef}
       className="overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={() => {
+        pausedRef.current = true;
+      }}
+      onMouseLeave={() => {
+        pausedRef.current = false;
+      }}
     >
-      <div className="flex w-max">
+      <div ref={trackRef} className="flex w-max will-change-transform">
         {cards.map((q, i) => (
           <QuoteCard key={`${q.name}-${i}`} {...q} accent={ACCENTS[i % ACCENTS.length]} />
         ))}

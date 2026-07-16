@@ -2,8 +2,9 @@ import { BadgeCheck, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
-// Teaser only — the full Verified Human story (why it matters, the interactive
-// lookup, how provenance travels, the clearing house) lives on /verified-human.
+// Teaser only. /verified-human is a Coming Soon page for launch; the full built
+// story (why it matters, the interactive lookup, provenance, the clearing house)
+// is preserved dark at /verified-human-preview until Verified Human relaunches.
 export function VerificationSection() {
   return (
     <section className="py-20 md:py-28 bg-regal-navy">
@@ -31,7 +32,7 @@ export function VerificationSection() {
                 href="/verified-human"
                 className="inline-flex items-center gap-1.5 font-semibold text-freedom-blue hover:underline"
               >
-                See how Verified Human works
+                See what&apos;s coming
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>

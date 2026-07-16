@@ -3,6 +3,8 @@ import { ExperienceHero } from "@/components/sections/experiences/ExperienceHero
 import { StoryArcBuilder } from "@/components/sections/experiences/StoryArcBuilder";
 
 export const metadata: Metadata = {
+  // Deferred experience page — reachable by URL but held out of discovery.
+  robots: { index: false, follow: false },
   title: "The Story Arc Builder - CampaignAI",
   description:
     "One video introduces you. A story arc elects you. Tell us your race and your goals, and we'll sketch the arc: which videos, in what order, and how each one sets up the next.",

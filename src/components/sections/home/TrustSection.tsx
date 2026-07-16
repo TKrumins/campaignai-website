@@ -1,7 +1,8 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { PartyPill } from "@/components/ui/PartyPill";
 
 const founders = [
@@ -11,6 +12,7 @@ const founders = [
     title: "SC Forward Party Founding Member.",
     description: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
     party: "Forward",
+    candids: ["/assets/founders/tom/08.jpg", "/assets/founders/tom/09.jpg"],
   },
   {
     photo: "/assets/profile-pictures/Jermaine-Johnson.png",
@@ -18,6 +20,7 @@ const founders = [
     title: "SC State Representative. Gubernatorial Candidate.",
     description: "Deacon. Educator. A true grassroots leader.",
     party: "Democrat",
+    candids: ["/assets/founders/jermaine/04.jpg", "/assets/founders/jermaine/10.jpg"],
   },
   {
     photo: "/assets/profile-pictures/Brandon-Guffey.png",
@@ -25,6 +28,7 @@ const founders = [
     title: "SC State Representative",
     description: "Child safety advocate. Business owner. Father on a mission.",
     party: "Republican",
+    candids: ["/assets/founders/brandon/05.jpg", "/assets/founders/brandon/08.jpg"],
   },
 ];
 
@@ -36,19 +40,24 @@ const advisor = {
 
 export function TrustSection() {
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-white">
+      <AISparkle size={16} color="#FF3366" glow className="sparkle-twinkle absolute left-[6%] top-24" style={{ ["--dur"]: "3.4s" } as CSSProperties} />
+      <AISparkle size={13} color="#4D9FFF" glow className="sparkle-twinkle absolute right-[8%] top-32" style={{ ["--dur"]: "2.8s", animationDelay: "0.6s" } as CSSProperties} />
+
+      <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-4xl mx-auto mb-14">
-            <SectionLabel text="Who We Are" />
-            <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mt-3 mb-5">
+            <span className="mx-auto mb-4 block h-1 w-20 rounded-full multipartisan-gradient" />
+            <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mb-5">
               Republican. Democrat. Independent.
             </h2>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px] mx-auto">
-              CampaignAI was founded by a team of candidates, legislators, and
-              campaign operatives. We all agree that the tools that shape modern
-              campaigns should be accessible to everyone who runs, regardless of
-              party, budget, or connections.
+              We&apos;re not a faceless platform. CampaignAI was founded by
+              candidates, legislators, and campaign operatives &mdash; two of us
+              are on the ballot right now &mdash; and we use it for our own
+              campaigns. We believe the tools that shape modern campaigns should
+              be within reach of everyone who runs, regardless of party, budget,
+              or connections.
             </p>
           </div>
         </ScrollReveal>
@@ -60,7 +69,7 @@ export function TrustSection() {
           </h3>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {founders.map(({ photo, name, title, description, party }, i) => (
+          {founders.map(({ photo, name, title, description, party, candids }, i) => (
             <ScrollReveal key={name} delay={i * 100}>
               <div className="card-hover text-center rounded-2xl bg-white p-6 shadow-md ring-1 ring-black/5 h-full">
                 <div className="relative w-[168px] h-[168px] mx-auto mb-5">
@@ -89,6 +98,14 @@ export function TrustSection() {
                 <p className="text-slate text-sm leading-relaxed">
                   {description}
                 </p>
+                {/* candids from the trail — the real, unpolished side of the team */}
+                <div className="mt-5 grid grid-cols-2 gap-2">
+                  {candids.map((src) => (
+                    <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-black/10">
+                      <Image src={src} alt={`${name} on the trail`} fill sizes="200px" className="object-cover" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </ScrollReveal>
           ))}

@@ -4,6 +4,8 @@ import { DayOnTheTrail } from "@/components/sections/experiences/DayOnTheTrail";
 import { NewsletterEndcap } from "@/components/sections/experiences/NewsletterEndcap";
 
 export const metadata: Metadata = {
+  // Deferred experience page — reachable by URL but held out of discovery.
+  robots: { index: false, follow: false },
   title: "A Day on the Trail - CampaignAI",
   description:
     "Scroll through one candidate's actual day and count the hours modern digital campaigning demands she spend on a screen instead of with voters.",

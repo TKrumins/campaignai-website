@@ -1,15 +1,7 @@
 import { Heart } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import { LogoMarkBulletList } from "@/components/ui/LogoMarkBulletList";
 import { PURCHASE_URL, CALENDLY_DEMO, CTA_PRIMARY, CTA_TEAM } from "@/lib/constants";
-
-const sharedBullets = [
-  "The same production and human editorial review",
-  "15-, 30-, and 60-second versions in every format",
-  "State-specific AI disclosure labels",
-  "Full ownership. No watermark.",
-];
 
 /**
  * Single source of truth for the pricing cards, shared by the homepage
@@ -50,7 +42,7 @@ export function PricingTiers() {
                 flat rate for a finished video, with any add-ons priced on your
                 onboarding call.
               </p>
-              <LogoMarkBulletList className="mb-6 flex-1" items={sharedBullets} />
+              <div className="mb-6 flex-1" />
               <Button variant="patriot" href={PURCHASE_URL} className="w-full">
                 {CTA_PRIMARY}
               </Button>
@@ -101,7 +93,7 @@ export function PricingTiers() {
                 video &mdash; not just the ones with an agency budget. This is
                 the work we care about most.
               </p>
-              <LogoMarkBulletList className="mb-6 flex-1" items={sharedBullets} />
+              <div className="mb-6 flex-1" />
               <Button variant="patriot" href={PURCHASE_URL} className="w-full">
                 {CTA_PRIMARY}
               </Button>
@@ -131,15 +123,7 @@ export function PricingTiers() {
                 movement that needs to be seen. We price mission work case by
                 case, so your budget never decides whether your story gets told.
               </p>
-              <LogoMarkBulletList
-                className="mb-6 flex-1"
-                items={[
-                  "Priced case by case, never by list rate",
-                  "The same production and human review",
-                  "15-, 30-, and 60-second versions in every format",
-                  "Full ownership. No watermark.",
-                ]}
-              />
+              <div className="mb-6 flex-1" />
               <Button variant="navy-outline" href={CALENDLY_DEMO} external className="w-full">
                 {CTA_TEAM}
               </Button>
@@ -157,9 +141,9 @@ export function PricingTiers() {
                 What the starting rate covers
               </p>
               <p className="text-granite text-sm leading-relaxed">
-                One finished, human-reviewed video in 15-, 30-, and 60-second
-                cuts, in every format, with state-specific disclosure labels and
-                full ownership. No watermark, no per-use fees.
+                One finished video in a 15-, 30-, or 60-second cut. Human
+                post-production and review. State-specific disclosure labels and
+                full ownership. No watermark. No per-use fees.
               </p>
             </div>
             <div>
@@ -169,8 +153,8 @@ export function PricingTiers() {
               <p className="text-granite text-sm leading-relaxed">
                 Need custom footage, extra concepts, more videos, additional
                 languages, or rush delivery? We walk through the options and
-                price them on your 30-minute onboarding call, so you approve the
-                full cost before anything goes into production.
+                price them on your onboarding call, so you approve the full cost
+                before anything goes into production.
               </p>
             </div>
           </div>

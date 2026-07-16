@@ -4,17 +4,64 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { AISparkle } from "@/components/ui/AISparkle";
-import { DollarSign, UserX, Lock } from "lucide-react";
+import { DollarSign, UserX, Lock, TrendingUp, Play } from "lucide-react";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 
+// The $10,000 reference moves into this band (no longer the lead line up top),
+// with the honest range spelled out beneath it.
 const stats = [
-  { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle", icon: DollarSign, color: "text-liberty-crimson" },
-  { value: "95%", label: "Of local candidates priced out of professional video", icon: UserX, color: "text-freedom-blue" },
-  { value: "85%", label: "Believe campaign costs keep good people from running", icon: Lock, color: "text-liberty-crimson" },
+  { value: "$10,000+", label: "What a single agency ad can run — and fees range from $3,000 to $100,000+ with the race.", icon: DollarSign, color: "text-liberty-crimson" },
+  { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle", icon: TrendingUp, color: "text-freedom-blue" },
+  { value: "95%", label: "Of local candidates priced out of professional video", icon: UserX, color: "text-liberty-crimson" },
+  { value: "85%", label: "Believe campaign costs keep good people from running", icon: Lock, color: "text-freedom-blue" },
 ];
+
+// One-vs-many: a single big-budget ad set against the library of videos a
+// campaign can make with us instead. We're not the budget option — we're a
+// different way to run a campaign, telling many stories over the race.
+function OneVsManyGraphic() {
+  const tileAccents = [
+    "#FF3366", "#8E5CF7", "#4D9FFF", "#FF3366",
+    "#4D9FFF", "#8E5CF7", "#FF3366", "#4D9FFF",
+  ];
+  return (
+    <div className="mt-7 rounded-2xl border border-gray-200 bg-dawn-frost p-5">
+      <div className="flex items-center gap-4">
+        {/* one big ad */}
+        <div className="shrink-0 text-center">
+          <div className="grid h-[86px] w-[72px] place-items-center rounded-lg bg-slate/10 ring-1 ring-slate/25 sm:w-[84px]">
+            <span className="font-heading text-2xl font-extrabold text-slate">$$$</span>
+          </div>
+          <p className="mt-2 max-w-[84px] text-[11px] font-semibold leading-tight text-slate">
+            One big&nbsp;ad
+          </p>
+        </div>
+
+        <span className="font-heading text-2xl font-bold text-regal-navy">&rarr;</span>
+
+        {/* a whole season of video */}
+        <div className="min-w-0 flex-1">
+          <div className="grid grid-cols-4 gap-1.5">
+            {tileAccents.map((c, i) => (
+              <div
+                key={i}
+                className="relative flex aspect-video items-center justify-center rounded-md ring-1 ring-black/5"
+                style={{ backgroundColor: `${c}1A` }}
+              >
+                <Play className="h-2.5 w-2.5" style={{ color: c }} fill={c} />
+              </div>
+            ))}
+          </div>
+          <p className="mt-2 text-[11px] font-semibold leading-tight text-regal-navy">
+            A whole season of video with CampaignAI
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // Red / White / Blue sparkles around the broken opening — kept to the sides so
 // they never sit over the "$599" reveal or the heading.
@@ -152,7 +199,7 @@ function PaywallGraphic() {
       <p className="mb-5 text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
         Democracy shouldn&apos;t have a paywall.
       </p>
-      <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal that professional campaign video is within reach">
+      <svg viewBox="0 0 400 420" className="w-full drop-shadow-xl" role="img" aria-label="A paywall breaking open to reveal the CampaignAI logo">
         <defs>
           <radialGradient id="holeGlow" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
             <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.98" />
@@ -204,16 +251,17 @@ function PaywallGraphic() {
           )}
         </g>
 
-        {/* reveal: affordability through the opening — a universal message that
-            fits every visitor, not the candidate-only rate (that lives in the
-            pricing section and on /for/candidates). */}
+        {/* reveal: the CampaignAI mark through the opening — the paywall breaks
+            open to reveal us on the other side. */}
         <g style={contentStyle("0.5s")}>
-          <text x={CX} y="196" textAnchor="middle" fill="#0D1B3E" fontFamily="Manrope, sans-serif" fontSize="40" fontWeight="800">
-            Within
-          </text>
-          <text x={CX} y="240" textAnchor="middle" fill="#0D1B3E" fontFamily="Manrope, sans-serif" fontSize="40" fontWeight="800">
-            reach.
-          </text>
+          <image
+            href="/assets/logos/logo-light-background.svg"
+            x={CX - 78}
+            y={CY - 78}
+            width="156"
+            height="156"
+            preserveAspectRatio="xMidYMid meet"
+          />
         </g>
 
         {/* rubble at the base of the broken wall */}
@@ -259,40 +307,21 @@ export function ProblemSection() {
           {/* copy */}
           <ScrollReveal>
             <div>
-              <SectionLabel text="The Problem" />
-              <h2 className="mt-3 font-heading text-4xl font-extrabold tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
-                Great campaign video shouldn&apos;t cost a fortune.
+              <h2 className="font-heading text-4xl font-extrabold tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
+                Don&apos;t spend your whole budget on one ad.
               </h2>
               <p className="mt-5 max-w-md text-lg leading-relaxed text-granite">
-                For decades, a single professional ad could cost $10,000 or
-                more. Campaigns should tell stories over time, not spend heavily
-                on a one-time video.
+                A campaign is a season of stories, not a single spot. Instead of
+                pouring everything into one expensive ad, produce a whole library
+                of videos across your race &mdash; for a fraction of what one
+                agency ad costs.
               </p>
 
-              {/* price contrast */}
-              <div className="mt-7 flex flex-wrap items-center gap-4">
-                <div className="rounded-xl border border-gray-200 bg-dawn-frost px-4 py-3 text-center">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate">One agency ad</p>
-                  <p className="font-heading text-2xl font-extrabold text-slate line-through decoration-liberty-crimson/70">
-                    $10,000+
-                  </p>
-                </div>
-                <span className="font-heading text-2xl font-bold text-regal-navy">&rarr;</span>
-                <div className="rounded-xl p-[2px] patriot-gradient shadow-sm">
-                  <div className="rounded-[10px] bg-white px-4 py-3 text-center">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-regal-navy">
-                      CampaignAI
-                    </p>
-                    <p className="font-heading text-2xl font-extrabold leading-tight text-regal-navy">
-                      A fraction<br className="md:hidden" /> of that
-                    </p>
-                    <p className="mt-0.5 text-[11px] text-slate">Priced for who you serve</p>
-                  </div>
-                </div>
-              </div>
+              <OneVsManyGraphic />
+
               {/* Honest range so a non-candidate visitor isn't anchored on the
                   candidate rate before the pricing section below. */}
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-slate">
+              <p className="mt-6 max-w-md text-sm leading-relaxed text-slate">
                 Candidates start at <span className="font-semibold text-regal-navy">$599</span> this
                 cycle, organizations at <span className="font-semibold text-regal-navy">$1,999</span>,
                 and nonprofits get mission-based pricing.{" "}
@@ -306,11 +335,6 @@ export function ProblemSection() {
                   {CTA_PRIMARY}
                 </Button>
                 <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
-                <p className="mt-4 text-sm">
-                  <Link href="/get-started" className="font-semibold text-freedom-blue hover:underline">
-                    Learn how you can get started &rarr;
-                  </Link>
-                </p>
               </div>
             </div>
           </ScrollReveal>
@@ -323,15 +347,15 @@ export function ProblemSection() {
 
         {/* integrated stat band */}
         <ScrollReveal>
-          <div className="mt-16 grid grid-cols-1 gap-6 rounded-2xl bg-regal-navy px-6 py-8 sm:grid-cols-3 md:px-10">
+          <div className="mt-16 grid grid-cols-1 gap-6 rounded-2xl bg-regal-navy px-6 py-8 sm:grid-cols-2 md:px-10 lg:grid-cols-4">
             {stats.map(({ value, label, icon: Icon, color }, i) => (
               <div key={value} className="relative flex flex-col items-center text-center">
-                {i > 0 && <span className="absolute -left-3 top-2 hidden h-16 w-px bg-white/10 sm:block" />}
+                {i > 0 && <span className="absolute -left-3 top-2 hidden h-16 w-px bg-white/10 lg:block" />}
                 <div className="mb-2 flex items-center gap-2">
                   <Icon className={`h-6 w-6 ${color}`} strokeWidth={1.9} />
                   <AISparkle size={13} color={i % 2 ? "#4D9FFF" : "#FF3366"} glow className="sparkle-twinkle" style={{ ["--dur"]: "3.2s", animationDelay: `${i * 0.4}s` } as CSSProperties} />
                 </div>
-                <p className="font-heading text-4xl font-extrabold text-beacon-white md:text-5xl">{value}</p>
+                <p className="font-heading text-3xl font-extrabold text-beacon-white md:text-4xl">{value}</p>
                 <p className="mt-2 max-w-[220px] text-sm leading-snug text-beacon-white/70">{label}</p>
               </div>
             ))}

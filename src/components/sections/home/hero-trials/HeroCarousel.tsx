@@ -74,7 +74,7 @@ export function HeroCarousel() {
     const t = setTimeout(() => {
       setAnimate(false);
       setIndex(0);
-    }, 720);
+    }, 1020);
     return () => clearTimeout(t);
   }, [index, N]);
 
@@ -105,7 +105,7 @@ export function HeroCarousel() {
 
       <div ref={vpRef} className="overflow-hidden">
         <div
-          className="flex transition-transform duration-700 ease-out motion-reduce:transition-none"
+          className="flex transition-transform duration-[1000ms] ease-out motion-reduce:transition-none"
           style={{
             gap: `${GAP}px`,
             transform: `translateX(${-index * step + introOffset}px)`,
@@ -120,7 +120,7 @@ export function HeroCarousel() {
               <Link
                 key={`${v.id}-${i}`}
                 href="/#our-work"
-                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ease-out motion-reduce:transition-none"
+                className="shrink-0 rounded-xl bg-white/[0.055] shadow-2xl ring-1 ring-white/15 transition-opacity duration-[1000ms] ease-out motion-reduce:transition-none"
                 style={{
                   width: vw ? `${cardW}px` : `${CARD_FRACTION * 100}%`,
                   opacity: isActive ? 1 : 0.32,

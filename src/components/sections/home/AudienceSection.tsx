@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Landmark, Briefcase, Users, Megaphone, Flag, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { Button } from "@/components/ui/Button";
 import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
@@ -13,7 +12,7 @@ const roles = [
   { title: "Candidates", icon: Landmark, intent: "I'm running for office", href: "/for/candidates", accent: "#FF3366" },
   { title: "Consultants", icon: Briefcase, intent: "I advise campaigns", href: "/for/consultants", accent: "#8E5CF7" },
   { title: "Parties & PACs", icon: Users, intent: "I support a slate", href: "/for/parties-and-pacs", accent: "#4D9FFF" },
-  { title: "Nonprofits & Advocacy", icon: Megaphone, intent: "I'm advancing a cause", href: "/for/nonprofits", accent: "#FF3366" },
+  { title: "Nonprofits", icon: Megaphone, intent: "I'm advancing a cause", href: "/for/nonprofits", accent: "#FF3366" },
   { title: "Grassroots", icon: Flag, intent: "I'm organizing people", href: "/for/grassroots", accent: "#8E5CF7" },
 ];
 
@@ -56,8 +55,7 @@ export function AudienceSection() {
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <SectionLabel text="Who We Serve" />
-            <span className="mx-auto mt-3 mb-2 block h-1 w-20 rounded-full multipartisan-gradient" />
+            <span className="mx-auto mb-4 block h-1 w-20 rounded-full multipartisan-gradient" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
               Video built for your race.
             </h2>

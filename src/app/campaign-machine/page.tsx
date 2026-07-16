@@ -4,6 +4,8 @@ import { CampaignMachine } from "@/components/sections/experiences/CampaignMachi
 import { NewsletterEndcap } from "@/components/sections/experiences/NewsletterEndcap";
 
 export const metadata: Metadata = {
+  // Deferred experience page — reachable by URL but held out of discovery.
+  robots: { index: false, follow: false },
   title: "The Campaign Machine - CampaignAI",
   description:
     "A campaign is a machine with a person at the center. Flip the switch and see what AI actually changes, what human review catches, and what happens without guardrails.",

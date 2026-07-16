@@ -1,17 +1,16 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
-import { ShieldCheck, Eye, Lock, Copyright } from "lucide-react";
+import { Leaf, Eye, Lock, Copyright } from "lucide-react";
 
 export const ethicsColumns = [
   {
-    title: "Disclosure, built in",
-    icon: ShieldCheck,
+    title: "Lean by design",
+    icon: Leaf,
     description:
-      "Every video ships with the AI disclosure labels we track for your state, and we keep them current as the rules change across all 50 states.",
+      "We deliberately use the leanest, lowest-fidelity models that still do the job. Less compute per video means a smaller energy footprint and lower cost — power spent only where it genuinely improves your work.",
   },
   {
-    title: "Active Regulatory Monitoring",
+    title: "Active Monitoring",
     icon: Eye,
     description:
       "We watch AI disclosure legislation, FEC guidance, and state-level rules as they move. When the rules change, we update before your next video.",
@@ -46,8 +45,7 @@ export function EthicsSection() {
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="border-l-[6px] border-l-verdant pl-6 md:pl-8 mb-12">
-            <SectionLabel text="Ethics-First" color="verdant" />
-            <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy mt-3 mb-5">
+            <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy mb-5">
               We do the hard ethical work.
             </h2>
             {/* P1 (approved) */}

@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { Play } from "lucide-react";
 import {
@@ -235,14 +234,16 @@ export function ShowcaseSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12">
-            <SectionLabel text="Our Work" color="horizon" />
-            <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mt-3 mb-4">
-              Our public showcase is coming soon.
+            <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mb-4">
+              Showcase
+              <span className="ml-3 inline-flex translate-y-[-6px] items-center rounded-full bg-pioneer-gold/15 px-3 py-1 align-middle text-[11px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/30">
+                Coming Soon
+              </span>
             </h2>
             <p className="font-body font-semibold text-lg text-beacon-white/90 max-w-[720px] mx-auto leading-relaxed">
-              Our founding team uses CampaignAI for our own campaigns, and we&apos;re
-              building a dedicated showcase of the work. For now, here are a couple
-              of the films we&apos;ve made.
+              Our founding team uses CampaignAI for our own campaigns, and a
+              dedicated public showcase of the work is on the way. For now, here
+              are a couple of the films we&apos;ve made.
             </p>
           </div>
         </ScrollReveal>

@@ -5,10 +5,12 @@ export const CALENDLY_PURCHASE =
   "https://calendly.com/campaignai/campaignai-purchase-call";
 export const CALENDLY_DEMO = "https://calendly.com/campaignai/demo";
 
-// Primary purchase flow: the "Get Started" CTA routes to an on-site purchase
-// page (pick plan → book onboarding call → we scope it, then invoice you).
-// Agency-only launch: no self-serve checkout. Invoicing happens after the call.
-export const PURCHASE_URL = "/purchase";
+// Primary purchase flow: the "Get Started" CTA routes to the on-site Get Started
+// page (answer three questions → see your rate → book onboarding call → we scope
+// it, then invoice you). Agency-only launch: no self-serve checkout. Invoicing
+// happens after the call. Consolidated from the old /purchase page (now redirected
+// to /get-started) so there is one canonical path into a sales call.
+export const PURCHASE_URL = "/get-started";
 
 // Plan-tagged booking links. Calendly surfaces utm_* on the scheduled event, in
 // the team's notification email, and on the webhook payload — so whoever takes

@@ -22,15 +22,20 @@ export function Navbar() {
   // transparent bar just lets the reel and copy bleed through it — an opaque
   // navy bar reads far cleaner, and it still slides to the bottom at hero exit.
   const [mobileScrolled, setMobileScrolled] = useState(false);
+  // Desktop homepage: solidify as soon as the first hero content scrolls up to
+  // meet the bar, rather than holding transparent until the whole hero exits.
+  const [desktopScrolled, setDesktopScrolled] = useState(false);
   const pathname = usePathname();
   const { heroExited, moduleInView, navSwitched } = usePatriotViewport();
 
   const hasDarkHero = darkHeroPages.includes(pathname);
-  // On the homepage the hero runs a pinned film sequence; keep the nav
-  // transparent (darken + border deferred) until that whole sequence has
-  // scrolled past — `heroExited` — instead of solidifying on the first few px.
-  // Other dark-hero pages keep the simple scroll threshold.
-  const solidified = pathname === "/" ? heroExited || mobileScrolled : scrolled;
+  // On the homepage the nav starts transparent over the dark hero, then
+  // solidifies to navy the moment content reaches the bar on scroll
+  // (`desktopScrolled` on desktop, `mobileScrolled` on phones) — or once the
+  // whole hero has exited, whichever comes first. Other dark-hero pages keep the
+  // simple scroll threshold.
+  const solidified =
+    pathname === "/" ? heroExited || mobileScrolled || desktopScrolled : scrolled;
   const isTransparent = !solidified && !mobileOpen && hasDarkHero;
 
   // Mobile viewport discipline (5.1): the nav CTA renders until the sticky
@@ -48,6 +53,8 @@ export function Navbar() {
     function handleScroll() {
       setScrolled(window.scrollY > 10);
       setMobileScrolled(window.scrollY > 10 && window.innerWidth < 768);
+      // ~nav height of scroll: the first hero content has risen to touch the bar.
+      setDesktopScrolled(window.scrollY > 64 && window.innerWidth >= 768);
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });

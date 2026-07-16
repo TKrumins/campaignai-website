@@ -4,6 +4,8 @@ import { VotersEyes } from "@/components/sections/experiences/VotersEyes";
 import { NewsletterEndcap } from "@/components/sections/experiences/NewsletterEndcap";
 
 export const metadata: Metadata = {
+  // Deferred experience page — reachable by URL but held out of discovery.
+  robots: { index: false, follow: false },
   title: "Through the Voter's Eyes - CampaignAI",
   description:
     "AI has been part of campaigns for decades. Pick a voter, scrub through an election cycle, and flip each moment to see what technology did and what stayed human.",

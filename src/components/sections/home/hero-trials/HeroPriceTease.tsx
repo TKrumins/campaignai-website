@@ -54,6 +54,9 @@ export function HeroPriceTease() {
           </span>
           <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-beacon-white/35 transition-colors group-hover:text-beacon-white/70" />
         </a>
+        <p className="mt-2 px-2 text-[11px] leading-snug text-beacon-white/40">
+          First 250 customers. See promotion for details.
+        </p>
       </div>
     </div>
   );

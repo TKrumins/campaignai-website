@@ -1,7 +1,6 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 
 const faqs = [
@@ -33,8 +32,7 @@ export function FAQSection() {
       <div className="max-w-[700px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-10">
-            <SectionLabel text="FAQ" />
-            <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy tracking-[-1px] mt-3">
+            <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy tracking-[-1px]">
               Common questions
             </h2>
           </div>

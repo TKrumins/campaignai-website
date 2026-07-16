@@ -3,6 +3,8 @@ import { ExperienceHero } from "@/components/sections/experiences/ExperienceHero
 import { DisclosureLabels } from "@/components/sections/experiences/DisclosureLabels";
 
 export const metadata: Metadata = {
+  // Deferred experience page — reachable by URL but held out of discovery.
+  robots: { index: false, follow: false },
   title: "The Disclosure Label Generator - CampaignAI",
   description:
     "Answer a few questions about how your video or image was made. Get a plain-language label that tells voters what was created with AI and what was captured in real life.",
