@@ -1,5 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Leaf, Eye, Lock, Copyright } from "lucide-react";
 
 export const ethicsColumns = [
@@ -7,7 +8,7 @@ export const ethicsColumns = [
     title: "Lean by design",
     icon: Leaf,
     description:
-      "We deliberately use the leanest, lowest-fidelity models that still do the job. Less compute per video means a smaller energy footprint and lower cost — power spent only where it genuinely improves your work.",
+      "We use the lightest models that still do the job. Less compute per video means smaller energy footprint and lower cost.",
   },
   {
     title: "Active Monitoring",
@@ -41,10 +42,13 @@ export const ethicsDisclaimer =
 
 export function EthicsSection() {
   return (
-    <section className="py-20 md:py-28 bg-dawn-frost">
+    <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="border-l-[6px] border-l-verdant pl-6 md:pl-8 mb-12">
+            <div className="mb-4">
+              <SectionLabel text="Ethics-First" color="verdant" favicon />
+            </div>
             <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy mb-5">
               We do the hard ethical work.
             </h2>
@@ -76,7 +80,7 @@ export function EthicsSection() {
 
         {/* P2 (approved): the refusals block */}
         <ScrollReveal>
-          <div className="rounded-2xl border-2 border-verdant/40 bg-white p-6 md:p-8 mb-12">
+          <div className="rounded-2xl border-2 border-verdant/40 bg-dawn-frost p-6 md:p-8 mb-12">
             <ul className="space-y-3">
               {ethicsRefusals.map((line) => (
                 <li key={line} className="flex items-start gap-3">

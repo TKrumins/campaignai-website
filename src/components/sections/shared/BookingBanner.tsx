@@ -24,6 +24,8 @@ interface BookingBannerProps {
   showScarcity?: boolean;
   /** Render a quiet "Book a demo" secondary action beside the primary CTA. */
   showDemo?: boolean;
+  /** Show the small reassurance line under the CTA buttons. */
+  showMicrocopy?: boolean;
 }
 
 const badges = [
@@ -60,6 +62,7 @@ export function BookingBanner({
   ctaVariant = "crimson",
   showScarcity = true,
   showDemo = true,
+  showMicrocopy = true,
 }: BookingBannerProps) {
   return (
     <section className="py-20 md:py-28 bg-regal-navy">
@@ -107,7 +110,7 @@ export function BookingBanner({
                 </a>
               )}
             </div>
-            <p className="text-white/60 text-sm mt-3">{ctaMicrocopy}</p>
+            {showMicrocopy && <p className="text-white/60 text-sm mt-3">{ctaMicrocopy}</p>}
           </div>
         </ScrollReveal>
 

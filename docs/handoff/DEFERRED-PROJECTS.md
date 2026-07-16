@@ -64,15 +64,25 @@ provenance page, clearing house).
 ## 4. The "For ___" lead-gen pages
 
 Five audience pages: candidates, consultants, parties-and-pacs, nonprofits,
-grassroots (`src/app/for/*`), plus the funnel component suite in
-`src/components/sections/funnel/`.
+grassroots, plus a funnel component suite.
 
-- **State:** **LIVE** and part of the foundation. They are woven into the
-  homepage (audience/problem/storytelling sections, hero price tease) and the
-  footer, so they stay put for launch.
-- **Pending:** Tom has outstanding edits to make to these. Treat them as an
-  updatable module — improvements can land without touching the rest of the
-  foundation.
+- **State:** **FROZEN (2026-07-16).** These need a full pass to be effective, so
+  they were split off as their own project. The pages (`src/app/for/*`), the
+  funnel components (`src/components/sections/funnel/*`), and the dead
+  `CondensedPricingDisplay` were **removed** from the site; `/for` and `/for/*`
+  now **redirect to `/get-started`** (see `vercel.json`), and the routes are out
+  of the sitemap. The home "Video built for your race" section is now a
+  non-linking graphic + Get Started (no per-audience routing), and the footer's
+  "Who We Serve" column is gone.
+- **Recover the old code from git:** everything is intact in history at the
+  commit immediately before the freeze (branch `feat/content-pages`). `git log`
+  for `src/app/for/` / `src/components/sections/funnel/` to find it.
+- **Assets earmarked for this project:** the "democracy has a paywall" reveal
+  graphic is preserved as a standalone component at
+  `src/components/sections/shared/PaywallGraphic.tsx` (unused on the live site) —
+  drop it into the rebuilt pages when the time comes.
+- **How to hone it:** use Claude chat to redesign each of the five funnels
+  (positioning, story, copy) before rebuilding in Claude Code.
 
 ---
 

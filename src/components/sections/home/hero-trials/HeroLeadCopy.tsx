@@ -20,12 +20,12 @@ const WIDEST = "state & local parties.";
 export function HeroLeadCopy() {
   return (
     <div className="relative flex flex-col justify-center">
-      <p className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-beacon-white/60">
+      <p className="mb-5 text-xs font-semibold uppercase tracking-[3px] text-beacon-white/75">
         Campaign-ready video,<br className="sm:hidden" /> at the speed of AI
       </p>
 
       <h1 className="font-heading text-[30px] font-extrabold leading-[1.1] tracking-[-0.5px] text-beacon-white sm:text-[44px] sm:leading-[1.04] sm:tracking-[-1px] lg:text-[54px] lg:tracking-[-1.5px]">
-        Campaign video for
+        Campaign videos for
         <br />
         <span className="phrase-rotator">
           <span className="phrase-sizer patriot-gradient-text-bright leading-[1.15] pb-[0.14em]" aria-hidden>
@@ -56,7 +56,7 @@ export function HeroLeadCopy() {
         </a>
       </div>
 
-      <p className="mt-3 max-w-md text-sm leading-relaxed text-beacon-white/60">
+      <p className="mt-3 max-w-md text-sm leading-relaxed text-beacon-white/80">
         Book your onboarding call today.
         <br />
         We scope your video together, then invoice you.

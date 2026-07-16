@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "How fast do I get my video?",
     answer:
-      "Most videos are delivered within 48 hours of completing the guided production process and submitting to our editors. Complex projects with custom footage may take slightly longer.",
+      "Move through the planning process at your own pace. Once you feel ready, submit for post-production and receive a video for review within 48 hours.",
   },
   {
     question: "Do I need any video or design experience?",
@@ -35,12 +35,12 @@ const faqs = [
   {
     question: "What if I'm not happy with the result?",
     answer:
-      "Every video includes 3 revisions during production and 1 back-and-forth with our editors in post-production. We work with you until the final product represents your campaign.",
+      "Every video comes with a free round of revisions and extras available for purchase. Even better, you set the direction from the start: our intake process makes sure you're confident in exactly where your video is headed before it ever reaches production.",
   },
   {
     question: "Is my campaign data safe?",
     answer:
-      "Yes. We don't sell your data, and no campaign data is sent to language models for training. Collection is opt-in only. Your strategy stays yours.",
+      "We do not sell your data. No campaign data is sent to language models for training. Collection is opt-in only, and each campaign is fully gated.",
   },
 ];
 

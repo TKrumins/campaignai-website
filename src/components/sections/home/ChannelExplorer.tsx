@@ -108,8 +108,6 @@ const CHANNELS: Channel[] = [
     title: "Connected TV (CTV)",
     desc: "Reach cord-cutters on Roku, Hulu, and YouTube TV with broadcast-style ads and precise targeting.",
     art: "ctv",
-    status: "On the roadmap!",
-    statusTone: "soon",
   },
   {
     key: "broadcast",
@@ -121,10 +119,8 @@ const CHANNELS: Channel[] = [
     title: "Broadcast TV",
     desc: "Produced to broadcast quality and ready for the air. Stations set their own clearance rules, and airtime is bought separately.",
     art: "broadcast",
-    status: "Available now",
-    statusTone: "live",
     callout:
-      "We don't currently review our videos to meet every broadcast-clearance requirement. Our focus is digital-first delivery at broadcast quality — so before you air, confirm the station's requirements and check with your campaign's counsel.",
+      "CampaignAI does not review our videos to meet every broadcast-clearance requirement. Our focus is digital-first delivery at broadcast quality. Before you air, confirm your station's requirements and check with your campaign's counsel. You air any video at your own discretion, and CampaignAI is not liable for content shared over broadcast.",
   },
 ];
 

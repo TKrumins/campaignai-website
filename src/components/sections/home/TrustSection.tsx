@@ -4,19 +4,20 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { PartyPill } from "@/components/ui/PartyPill";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const founders = [
   {
     photo: "/assets/profile-pictures/Tom-Krumins.png",
     name: "Tom Krumins",
-    title: "SC Forward Party Founding Member.",
+    title: "SC Forward Party Founding Member",
     description: "Campaign Operative. Movement-Builder. Stand-up Comedian.",
     party: "Forward",
   },
   {
     photo: "/assets/profile-pictures/Jermaine-Johnson.png",
     name: "Jermaine Johnson",
-    title: "SC State Representative. Gubernatorial Candidate.",
+    title: "SC Candidate for Governor",
     description: "Deacon. Educator. A true grassroots leader.",
     party: "Democrat",
   },
@@ -37,24 +38,25 @@ const advisor = {
 
 export function TrustSection() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28 bg-white">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-dawn-frost">
       <AISparkle size={16} color="#FF3366" glow className="sparkle-twinkle absolute left-[6%] top-24" style={{ ["--dur"]: "3.4s" } as CSSProperties} />
       <AISparkle size={13} color="#4D9FFF" glow className="sparkle-twinkle absolute right-[8%] top-32" style={{ ["--dur"]: "2.8s", animationDelay: "0.6s" } as CSSProperties} />
 
       <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-4xl mx-auto mb-14">
-            <span className="mx-auto mb-4 block h-1 w-20 rounded-full multipartisan-gradient" />
+            <div className="mb-4">
+              <SectionLabel text="Who We Are" favicon />
+            </div>
             <h2 className="font-heading font-extrabold text-3xl md:text-[44px] md:leading-tight text-regal-navy tracking-[-1px] mb-5">
               Republican. Democrat. Forwardist.
             </h2>
             <p className="text-granite text-lg leading-[1.7] max-w-[760px] mx-auto">
-              We&apos;re not a faceless platform. CampaignAI was founded by
-              candidates, legislators, and campaign operatives &mdash; two of us
-              are on the ballot right now &mdash; and we use it for our own
-              campaigns. We believe the tools that shape modern campaigns should
-              be within reach of everyone who runs, regardless of party, budget,
-              or connections.
+              CampaignAI was founded by candidates, legislators, and campaign
+              operatives. We built this company because we&apos;re in the arena and
+              we understand the struggles. We believe the tools that shape modern
+              campaigns should be within reach of everyone who runs, regardless of
+              party, budget, or connections.
             </p>
           </div>
         </ScrollReveal>
@@ -108,16 +110,16 @@ export function TrustSection() {
             Strategic Advisors
           </h3>
           <div className="bg-dawn-frost rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
-            <div className="shrink-0 w-[176px] h-[176px] rounded-full bg-regal-navy p-[3px] shadow-sm">
-              <div className="w-full h-full rounded-full overflow-hidden bg-white">
-                <Image
-                  src={advisor.photo}
-                  alt={advisor.name}
-                  width={176}
-                  height={176}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            {/* No added ring — the profile image already carries its own
+                gradient border. */}
+            <div className="shrink-0 w-[176px] h-[176px] rounded-full overflow-hidden shadow-sm">
+              <Image
+                src={advisor.photo}
+                alt={advisor.name}
+                width={176}
+                height={176}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="text-center sm:text-left">
               <h3 className="font-heading font-bold text-lg text-regal-navy">

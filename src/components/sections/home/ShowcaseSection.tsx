@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Play } from "lucide-react";
 import {
   PURCHASE_URL,
@@ -236,6 +237,9 @@ export function ShowcaseSection() {
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12">
+            <div className="mb-4">
+              <SectionLabel text="Our Work" color="horizon" favicon onDark />
+            </div>
             <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mb-4">
               Showcase
             </h2>

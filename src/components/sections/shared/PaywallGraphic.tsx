@@ -2,24 +2,16 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { Button } from "@/components/ui/Button";
 import { AISparkle } from "@/components/ui/AISparkle";
-import { DollarSign, UserX, Lock, TrendingUp } from "lucide-react";
-import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
-import { CampaignArc } from "./CampaignArc";
 
-// The $10,000 reference moves into this band (no longer the lead line up top),
-// with the honest range spelled out beneath it.
-const stats = [
-  { value: "$10,000+", label: "What a single agency ad can run — and fees range from $3,000 to $100,000+ with the race.", icon: DollarSign, color: "text-liberty-crimson" },
-  { value: "$10.8B", label: "Expected spend on the 2026 midterm cycle", icon: TrendingUp, color: "text-freedom-blue" },
-  { value: "95%", label: "Of local candidates priced out of professional video", icon: UserX, color: "text-liberty-crimson" },
-  { value: "85%", label: "Believe campaign costs keep good people from running", icon: Lock, color: "text-freedom-blue" },
-];
+/**
+ * "Democracy has a paywall" reveal: a brick wall breaks open to reveal the
+ * CampaignAI mark on the other side. Preserved here as a standalone, reusable
+ * graphic — it was retired from the home page (2026-07-16) and is earmarked for
+ * the future "For ___" audience-pages project (see docs/handoff/DEFERRED-PROJECTS.md).
+ */
 
-// Red / White / Blue sparkles around the broken opening — kept to the sides so
-// they never sit over the "$599" reveal or the heading.
+// Red / White / Blue sparkles around the broken opening — kept to the sides.
 const SPARKS = [
   { l: 20, t: 33, c: "#FF3366", s: 16 },
   { l: 80, t: 29, c: "#E8F4F8", s: 13 },
@@ -37,8 +29,7 @@ const CY = 205;
 const RX = 98;
 const RY = 118;
 
-// Fallen bricks at the base of the broken wall — lighter than the wall so
-// they read clearly as debris.
+// Fallen bricks at the base of the broken wall.
 const RUBBLE = [
   { x: 48, y: 393, rot: -16, f: "#5b6478" },
   { x: 104, y: 402, rot: 10, f: "#4a5265" },
@@ -97,7 +88,7 @@ function buildBricks(): Brick[] {
   return bricks;
 }
 
-function PaywallGraphic() {
+export function PaywallGraphic() {
   const bricks = useMemo(buildBricks, []);
   const ref = useRef<HTMLDivElement>(null);
   const [broken, setBroken] = useState(false);
@@ -116,7 +107,6 @@ function PaywallGraphic() {
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          // Hold 1.5s so the viewer settles in before the wall breaks.
           timer = window.setTimeout(() => setBroken(true), 1500);
           io.disconnect();
         }
@@ -130,7 +120,6 @@ function PaywallGraphic() {
     };
   }, []);
 
-  // Hold the sparkles until the wall has actually broken.
   useEffect(() => {
     if (!broken) return;
     if (instant) {
@@ -203,8 +192,7 @@ function PaywallGraphic() {
           )}
         </g>
 
-        {/* reveal: the CampaignAI mark through the opening — the paywall breaks
-            open to reveal us on the other side. */}
+        {/* reveal: the CampaignAI mark through the opening */}
         <g style={contentStyle("0.5s")}>
           <image
             href="/assets/logos/logo-transparent-light.png"
@@ -248,64 +236,5 @@ function PaywallGraphic() {
           />
         ))}
     </div>
-  );
-}
-
-export function ProblemSection() {
-  return (
-    <section className="overflow-hidden bg-white py-20 md:py-28">
-      <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
-        {/* Merged lead: the question + the answer on the left, the paywall
-            breaking open on the right. */}
-        <ScrollReveal>
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div className="text-left">
-              <h2 className="font-heading text-4xl font-extrabold leading-[1.05] tracking-[-1.5px] text-regal-navy sm:text-5xl md:text-[52px]">
-                Feel like democracy has a paywall?
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-granite md:text-xl">
-                <span className="font-semibold text-regal-navy">
-                  Don&apos;t spend your whole budget on one ad.
-                </span>{" "}
-                Craft the ads you need at every stage of your campaign.
-              </p>
-              <div className="mt-8">
-                <Button variant="patriot" href={PURCHASE_URL} className="px-8 py-3">
-                  {CTA_PRIMARY}
-                </Button>
-                <p className="mt-2 text-sm text-slate">{CTA_MICROCOPY}</p>
-              </div>
-            </div>
-            <div className="lg:pl-4">
-              <PaywallGraphic />
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Campaign Arc — the season of stories, visualized (graphic only) */}
-        <ScrollReveal delay={100}>
-          <div className="mt-16 md:mt-20">
-            <CampaignArc showHeader={false} />
-          </div>
-        </ScrollReveal>
-
-        {/* integrated stat band */}
-        <ScrollReveal>
-          <div className="mt-16 grid grid-cols-1 gap-6 rounded-2xl bg-regal-navy px-6 py-8 sm:grid-cols-2 md:px-10 lg:grid-cols-4">
-            {stats.map(({ value, label, icon: Icon, color }, i) => (
-              <div key={value} className="relative flex flex-col items-center text-center">
-                {i > 0 && <span className="absolute -left-3 top-2 hidden h-16 w-px bg-white/10 lg:block" />}
-                <div className="mb-2 flex items-center gap-2">
-                  <Icon className={`h-6 w-6 ${color}`} strokeWidth={1.9} />
-                  <AISparkle size={13} color={i % 2 ? "#4D9FFF" : "#FF3366"} glow className="sparkle-twinkle" style={{ ["--dur"]: "3.2s", animationDelay: `${i * 0.4}s` } as CSSProperties} />
-                </div>
-                <p className="font-heading text-3xl font-extrabold text-beacon-white md:text-4xl">{value}</p>
-                <p className="mt-2 max-w-[220px] text-sm leading-snug text-beacon-white/70">{label}</p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
   );
 }

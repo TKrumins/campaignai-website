@@ -168,7 +168,7 @@ export function Hub({
       {/* destination nodes (flash the color of whatever light just arrived) */}
       {nodes.map(({ label, nx, ny, idx }) => {
         const labelLines = label.split("\n");
-        const lineH = 20;
+        const lineH = 21;
         // No sub-text now — the destination name fills the node on its own, so
         // center the (possibly multi-line) label vertically.
         const startY = ny - ((labelLines.length - 1) * lineH) / 2;
@@ -232,7 +232,7 @@ export function Hub({
               </rect>
             ))}
             {labelLines.map((line, j) => (
-              <text key={`t-${j}`} x={nx} y={startY + j * lineH} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="17" fontWeight="700" pointerEvents="none">
+              <text key={`t-${j}`} x={nx} y={startY + j * lineH} textAnchor="middle" dominantBaseline="central" fill={textFill} fontSize="18.5" fontWeight="700" pointerEvents="none">
                 {line}
               </text>
             ))}

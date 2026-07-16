@@ -1,5 +1,6 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { StepAnimation } from "@/components/sections/how-it-works/StepAnimation";
 import { SlidersHorizontal, UserCheck, Send, Sparkles } from "lucide-react";
 
@@ -15,8 +16,6 @@ const phases = [
     title: "You direct every decision",
     description:
       "Your story, your script, your storyboard, your narration and music. You make every creative call. Nothing goes in that you didn't choose.",
-    highlight:
-      "Use as much — or as little — AI as you want. Bring your own footage, voiceover, and photos, and we build the ad around them.",
     chips: ["Story", "Script", "Storyboard", "Voice & music"],
   },
   {
@@ -41,12 +40,15 @@ const phases = [
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 md:py-28 bg-beacon-white">
+    <section className="py-20 md:py-28 bg-white">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="mb-4">
+              <SectionLabel text="How It Works" favicon />
+            </div>
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
-              From your story to a finished ad.
+              Guide your video from start to finish.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
               You stay in the director&apos;s chair the whole way. Here is the
@@ -56,7 +58,7 @@ export function HowItWorksSection() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {phases.map(({ number, icon: Icon, visual, title, description, highlight, chips }, i) => (
+          {phases.map(({ number, icon: Icon, visual, title, description, chips }, i) => (
             <ScrollReveal key={number} delay={i * 100}>
               <div className="relative h-full overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5">
                 <div className="h-1.5 multipartisan-gradient absolute inset-x-0 top-0 z-10" />
@@ -75,12 +77,6 @@ export function HowItWorksSection() {
                     <h3 className="font-heading font-bold text-xl text-regal-navy">{title}</h3>
                   </div>
                   <p className="text-granite text-sm leading-relaxed mb-4">{description}</p>
-                  {highlight && (
-                    <div className="mb-4 flex items-start gap-2 rounded-xl bg-freedom-blue/[0.07] px-3 py-2.5 ring-1 ring-freedom-blue/15">
-                      <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-freedom-blue" />
-                      <p className="text-xs font-medium leading-relaxed text-regal-navy">{highlight}</p>
-                    </div>
-                  )}
                   <div className="flex flex-wrap gap-2">
                     {chips.map((c) => (
                       <span key={c} className="rounded-full bg-regal-navy/5 px-3 py-1 text-xs font-medium text-regal-navy">
@@ -93,6 +89,18 @@ export function HowItWorksSection() {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* AI disclaimer — moved below the three cards so it applies to the
+            whole process, not just step one. */}
+        <ScrollReveal>
+          <div className="mx-auto mt-8 flex max-w-[760px] items-start gap-3 rounded-xl bg-freedom-blue/[0.07] px-5 py-4 ring-1 ring-freedom-blue/15">
+            <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-freedom-blue" />
+            <p className="text-sm font-medium leading-relaxed text-regal-navy">
+              Use as much or as little AI as you want. Bring your own footage,
+              voiceover, and photos, and we build the ad around them.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <ScrollReveal>
           <div className="text-center mt-12">

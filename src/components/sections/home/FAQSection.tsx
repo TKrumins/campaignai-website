@@ -1,13 +1,14 @@
 "use client";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 
 const faqs = [
   {
     question: "How fast do I get my video?",
     answer:
-      "Most videos are delivered within 48 hours of completing the guided production process. Complex projects with custom footage may take slightly longer.",
+      "Move through the planning process at your own pace. Once you feel ready, submit for post-production and receive a video for review within 48 hours.",
   },
   {
     question: "Do I need any video or design experience?",
@@ -17,12 +18,12 @@ const faqs = [
   {
     question: "What if I\u2019m not happy with the result?",
     answer:
-      "Every video includes three revisions during production and one more with our editors in post. We work with you until the final product represents your campaign.",
+      "Every video comes with a free round of revisions and extras available for purchase. Even better, you set the direction from the start: our intake process makes sure you're confident in exactly where your video is headed before it ever reaches production.",
   },
   {
     question: "Is my campaign data safe?",
     answer:
-      "Yes. We don\u2019t sell your data, and no campaign data is sent to language models for training. Collection is opt-in only. Your strategy stays yours.",
+      "We do not sell your data. No campaign data is sent to language models for training. Collection is opt-in only, and each campaign is fully gated.",
   },
 ];
 
@@ -32,6 +33,9 @@ export function FAQSection() {
       <div className="max-w-[700px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-10">
+            <div className="mb-4">
+              <SectionLabel text="FAQ" favicon />
+            </div>
             <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy tracking-[-1px]">
               Common questions
             </h2>

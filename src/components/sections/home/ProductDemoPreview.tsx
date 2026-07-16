@@ -5,6 +5,8 @@ import type { CSSProperties, ComponentType } from "react";
 import { Megaphone, HandCoins, FileText, Vote, Play, Check, Zap, Camera, Lock, Globe, Share2, Users, MapPin, Scale, ChevronsRight } from "lucide-react";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { StatusBadge } from "@/components/ui/StatusBadge";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { CampaignArc } from "./CampaignArc";
 
 type VideoType = {
   key: string;
@@ -101,10 +103,10 @@ const TYPES: VideoType[] = [
     title: "Authentic & Candid",
     icon: Camera,
     variant: "support",
-    statusLabel: "Your own footage",
+    statusLabel: "On the roadmap",
     tagline: "Straight from the trail.",
     blurb:
-      "The raw, from-the-trail clips you film yourself and post straight to social — no studio, no tools. A real part of your story, so we make room for it alongside the polished films.",
+      "The authentic clips you film yourself, straight from the trail. We're building the capacity to bring them into the fold, so those moments don't stay moments. They become part of the larger story you tell across more videos.",
     deliver: [],
     spark: "#8E5CF7",
     video: null,
@@ -195,6 +197,9 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
         )}
 
         <div className="text-center max-w-[760px] mx-auto mb-12">
+          <div className="mb-4">
+            <SectionLabel text="The Product" favicon />
+          </div>
           <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
             Your campaign is bigger than one video. Tell the full story.
           </h2>
@@ -226,13 +231,13 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
           {/* Mobile: the top nav has already slid to the bottom by the time
               this section is reached, so the sticky bar only needs to clear the
               announcement ticker. Desktop keeps the full nav-height offset. */}
-          <div className="sticky top-[calc(var(--announce-h,0px)+0.75rem)] z-30 mb-3 -mx-4 flex snap-x gap-2 overflow-x-auto bg-dawn-frost/95 px-4 py-2 backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 lg:top-[calc(var(--announce-h,0px)+7rem)] lg:mx-0 lg:mb-0 lg:flex-col lg:gap-3 lg:self-start lg:z-auto lg:snap-none lg:overflow-visible lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
+          <div className="sticky top-[calc(var(--announce-h,0px)+0.75rem)] z-30 mb-3 -mx-4 flex snap-x gap-2 overflow-x-auto bg-dawn-frost/95 px-4 py-2 backdrop-blur [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 lg:static lg:mx-0 lg:mb-0 lg:flex-col lg:gap-3 lg:self-start lg:z-auto lg:snap-none lg:overflow-visible lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none">
             {TYPES.map(({ key, title, icon: Icon, tagline, variant, statusLabel }, i) => {
               const on = i === active;
               const support = variant === "support";
-              // The two roadmap formats carry the branded orange status tag; the
-              // "your own footage" candid format stays neutral.
-              const roadmap = key === "rapid" || key === "contrast";
+              // All three supporting formats are roadmap items now, so each
+              // carries the branded orange status tag.
+              const roadmap = support;
               const firstSupport = support && TYPES[i - 1]?.variant !== "support";
               return (
                 <Fragment key={key}>
@@ -351,16 +356,8 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                 <h3 className="font-heading font-bold text-2xl text-regal-navy">{t.title}</h3>
                 {t.variant === "support" && t.statusLabel && (
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider ${
-                      t.key === "rapid" || t.key === "contrast"
-                        ? "bg-alert-amber/15 text-[#C2410C] ring-1 ring-alert-amber/30"
-                        : "bg-bridge-violet/10 text-bridge-violet"
-                    }`}
-                  >
-                    {(t.key === "rapid" || t.key === "contrast") && (
-                      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
-                    )}
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-alert-amber/15 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#C2410C] ring-1 ring-alert-amber/30">
+                    <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
                     {t.statusLabel}
                   </span>
                 )}
@@ -382,6 +379,12 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
           </div>
         </div>
 
+        {/* The Campaign Arc — the many-videos-across-a-race view, relocated
+            here from the retired Problem section (it illustrates exactly why a
+            campaign is bigger than one video). */}
+        <div className="mt-16 md:mt-20">
+          <CampaignArc />
+        </div>
       </div>
     </section>
   );
@@ -391,12 +394,9 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
 function SupportStage({ typeKey }: { typeKey: string }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
-      {/* Rapid Response + Contrast Ad are the two roadmap formats — stamped
-          "Coming Fall 2026". Authentic & Candid is your own footage (available
-          now), so it carries no coming-soon stamp. */}
-      {typeKey !== "candid" && (
-        <StatusBadge label="Coming Fall 2026" tone="dark" className="absolute right-3 top-3 z-10" />
-      )}
+      {/* All three supporting formats (Rapid Response, Contrast Ad, Authentic &
+          Candid) are on the roadmap, stamped "Coming Fall 2026". */}
+      <StatusBadge label="Coming Fall 2026" tone="dark" className="absolute right-3 top-3 z-10" />
       <svg viewBox="0 0 320 180" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
         {typeKey === "rapid" ? (
           <>
@@ -560,16 +560,23 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
     <div className="rounded-xl border border-gray-200 bg-white p-5">
       <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-regal-navy">
         <Camera className="h-4 w-4 text-bridge-violet" />
-        This is footage you already have
+        Bringing your candid moments into the fold
       </p>
-      <p className="text-sm leading-relaxed text-granite">
-        Candid clips aren&apos;t something we produce — they&apos;re yours, filmed on your phone
-        and posted as they happen. We call it out here because it&apos;s a real part of the mix
-        that keeps your polished films feeling human.
+      <p className="mb-4 text-sm leading-relaxed text-granite">
+        The authentic clips you film on the trail are a real part of your story. We&apos;re building
+        the capacity to bring them in alongside your polished films, with simple trimming and
+        captions, so those moments don&apos;t stay moments. They become part of the larger story you
+        tell across more videos.
       </p>
-      <p className="mt-3 text-xs text-slate">
-        On the roadmap: simple trimming and captions so your own clips are quick to post.
-      </p>
+      <div className="flex items-center gap-3">
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-regal-navy/5">
+          <div className="h-full w-1/4 rounded-full multipartisan-gradient" />
+        </div>
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#C2410C]">
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />
+          On the roadmap
+        </span>
+      </div>
     </div>
   );
 }
@@ -724,7 +731,7 @@ function PlaceholderStage({ title, spark }: { title: string; spark: string }) {
         <Play className="ml-1 h-7 w-7 fill-beacon-white text-beacon-white" />
       </span>
       <p className="mt-4 font-heading font-bold text-lg text-beacon-white">{title}</p>
-      <p className="text-sm text-beacon-white/60">Demo film in production</p>
+      <p className="text-sm text-beacon-white/60">Demo films available July 17</p>
     </div>
   );
 }

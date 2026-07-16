@@ -1,4 +1,5 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ChannelExplorer } from "@/components/sections/home/ChannelExplorer";
 
 /**
@@ -12,6 +13,9 @@ export function StorytellingSection() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-[760px] mx-auto mb-8">
+            <div className="mb-4">
+              <SectionLabel text="Take Your Message Everywhere" favicon />
+            </div>
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mb-5">
               Made to be shared, in real life.
             </h2>
