@@ -6,6 +6,7 @@ import { Megaphone, HandCoins, FileText, Vote, Play, Zap, Camera, Lock, Globe, S
 import { AISparkle } from "@/components/ui/AISparkle";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { CoreVideoStage } from "@/components/ui/graphics/CoreVideoStages";
 import { CampaignArc } from "./CampaignArc";
 
 type VideoType = {
@@ -15,7 +16,6 @@ type VideoType = {
   tagline: string;
   blurb: string;
   deliver: string[];
-  spark: string;
   video: { src: string; poster: string; label: string } | null;
   // "core" = one of the four films we produce; "support" = a format that lives
   // alongside the core films but works differently (coming soon, or your own
@@ -36,7 +36,6 @@ const TYPES: VideoType[] = [
     blurb:
       "The feeling of hitting launch day with a film ready to go. One piece that anchors your website, powers your first social push, and opens the room at your kickoff — so you arrive looking every bit the campaign you are.",
     deliver: [],
-    spark: "#FF3366",
     video: null,
   },
   {
@@ -47,7 +46,6 @@ const TYPES: VideoType[] = [
     blurb:
       "Authentic asks built around urgency, personal connection, and a clear call to give before the deadline.",
     deliver: [],
-    spark: "#4D9FFF",
     video: null,
   },
   {
@@ -58,7 +56,6 @@ const TYPES: VideoType[] = [
     blurb:
       "Build a video library detailing your platform. Actionable, evergreen content that makes complex positions plain — ready to use again and again across your race.",
     deliver: [],
-    spark: "#8E5CF7",
     video: null,
   },
   {
@@ -69,7 +66,6 @@ const TYPES: VideoType[] = [
     blurb:
       "High-energy calls to action for the closing stretch, built to convert enthusiasm into turnout.",
     deliver: [],
-    spark: "#E8F4F8",
     video: null,
   },
   {
@@ -82,7 +78,6 @@ const TYPES: VideoType[] = [
     blurb:
       "A quick-turn video you drop between your core films to answer an attack, seize a headline, or set the record straight.",
     deliver: [],
-    spark: "#FF3366",
     video: null,
   },
   {
@@ -95,7 +90,6 @@ const TYPES: VideoType[] = [
     blurb:
       "A side-by-side that draws the clear line between your record and your opponent's — sharp, factual, and squarely on message.",
     deliver: [],
-    spark: "#4D9FFF",
     video: null,
   },
   {
@@ -108,7 +102,6 @@ const TYPES: VideoType[] = [
     blurb:
       "The authentic clips you film yourself, straight from the trail. We're building the capacity to bring them into the fold, so those moments don't stay moments. They become part of the larger story you tell across more videos.",
     deliver: [],
-    spark: "#8E5CF7",
     video: null,
   },
 ];
@@ -349,7 +342,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
               ) : t.variant === "support" ? (
                 <SupportStage typeKey={t.key} />
               ) : (
-                <PlaceholderStage title={t.title} spark={t.spark} />
+                <CoreVideoStage typeKey={t.key} />
               )}
               </div>
               </div>
@@ -697,39 +690,3 @@ function LibrarySpotlight() {
   );
 }
 
-function PlaceholderStage({ title, spark }: { title: string; spark: string }) {
-  return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#0D1B3E_0%,#16234d_100%)]">
-      {/* film-frame perforations */}
-      <div className="absolute inset-y-0 left-0 flex w-6 flex-col justify-around">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <span key={i} className="mx-auto h-3 w-3 rounded-sm bg-white/10" />
-        ))}
-      </div>
-      <div className="absolute inset-y-0 right-0 flex w-6 flex-col justify-around">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <span key={i} className="mx-auto h-3 w-3 rounded-sm bg-white/10" />
-        ))}
-      </div>
-      <AISparkle
-        size={22}
-        color={spark}
-        glow
-        className="sparkle-twinkle absolute left-[22%] top-[24%]"
-        style={{ ["--dur"]: "3s" } as CSSProperties}
-      />
-      <AISparkle
-        size={16}
-        color="#E8F4F8"
-        glow
-        className="sparkle-twinkle absolute right-[26%] bottom-[28%]"
-        style={{ ["--dur"]: "2.4s" } as CSSProperties}
-      />
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20">
-        <Play className="ml-1 h-7 w-7 fill-beacon-white text-beacon-white" />
-      </span>
-      <p className="mt-4 font-heading font-bold text-lg text-beacon-white">{title}</p>
-      <p className="text-sm text-beacon-white/60">Demo films available July 17</p>
-    </div>
-  );
-}
