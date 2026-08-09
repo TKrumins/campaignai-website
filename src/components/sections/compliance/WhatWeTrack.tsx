@@ -1,5 +1,7 @@
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { Map, Landmark, Monitor } from "lucide-react";
 
 const cards = [
@@ -25,8 +27,20 @@ const cards = [
 
 export function WhatWeTrack() {
   return (
-    <section className="py-20 md:py-28 bg-dawn-frost">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-dawn-frost">
+      <AISparkle
+        size={16}
+        gradient="verdant"
+        className="sparkle-twinkle absolute right-[6%] top-14 hidden md:block"
+        style={{ ["--dur" as string]: "4.8s" } as CSSProperties}
+      />
+      <AISparkle
+        size={11}
+        gradient="verdant-deep"
+        className="sparkle-twinkle absolute left-[4%] bottom-16 hidden lg:block"
+        style={{ ["--dur" as string]: "3.9s" } as CSSProperties}
+      />
+      <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mb-12">
             <SectionLabel text="What We Monitor" color="verdant" />

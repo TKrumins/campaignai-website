@@ -979,6 +979,76 @@ body { overflow-x: clip; }
   .ratio-decoy { opacity: 0; }
 }
 
+/* Coming Soon rosette — thuds in like a stamp, then breathes a couple of
+   degrees. Static tilt lives on the base class so reduced motion still reads
+   as a seal pressed on at an angle. */
+.cs-seal {
+  transform: rotate(-9deg);
+  transform-origin: center;
+}
+@keyframes sealStamp {
+  0% { opacity: 0; transform: rotate(-26deg) scale(1.45); }
+  55% { opacity: 1; transform: rotate(-6deg) scale(0.95); }
+  75% { transform: rotate(-11deg) scale(1.03); }
+  100% { opacity: 1; transform: rotate(-9deg) scale(1); }
+}
+@keyframes sealSway {
+  0%, 100% { transform: rotate(-9deg); }
+  50% { transform: rotate(-6deg); }
+}
+@keyframes sealBeads { to { transform: rotate(360deg); } }
+
+/* Compliance "clearance pass" — the four-beat preview of what the regulation
+   tracker will do to a finished video. */
+@keyframes ccScan {
+  0% { transform: translateY(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(150px); opacity: 0; }
+}
+@keyframes ccStampIn {
+  0% { opacity: 0; transform: rotate(-24deg) scale(1.7); }
+  60% { opacity: 1; transform: rotate(-5deg) scale(0.93); }
+  100% { opacity: 1; transform: rotate(-8deg) scale(1); }
+}
+@keyframes ccWatch {
+  0% { transform: scale(0.7); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+@keyframes ccDraw { to { stroke-dashoffset: 0; } }
+@keyframes ccRise {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ccTick {
+  0% { opacity: 0; transform: scale(0.4); }
+  70% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.cc-connector { stroke-dasharray: 110; stroke-dashoffset: 110; }
+.cc-scan-line { opacity: 0; }
+.cc-fx { transform-box: fill-box; transform-origin: center; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .cs-seal {
+    animation:
+      sealStamp 0.75s cubic-bezier(0.2, 0.85, 0.3, 1) both,
+      sealSway 7s ease-in-out 0.75s infinite;
+  }
+  .cs-seal-beads { animation: sealBeads 52s linear infinite; }
+  .cs-seal-spark { --dur: 4.2s; }
+  .cc-connector { animation: ccDraw 0.8s ease-out 0.1s forwards; }
+  .cc-scan-line { animation: ccScan 1.9s ease-in-out infinite; }
+  .cc-stamp { animation: ccStampIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+  .cc-watch { animation: ccWatch 2.8s ease-out infinite; }
+  .cc-rise { animation: ccRise 0.45s ease-out both; }
+  .cc-tick { animation: ccTick 0.4s ease-out both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-connector { stroke-dashoffset: 0; }
+  .cc-scan-line { opacity: 0.5; }
+}
+
 /* Tri-color ribbon divider (C.1: red → Bridge Violet → blue) */
 .ribbon-divider {
   height: 6px;

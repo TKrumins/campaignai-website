@@ -1,11 +1,26 @@
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { PURCHASE_URL, CTA_PRIMARY } from "@/lib/constants";
 
 export function ComplianceCTA() {
   return (
-    <section className="py-20 md:py-28 bg-regal-navy">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-regal-navy">
+      <AISparkle
+        size={18}
+        gradient="patriot-deep"
+        className="sparkle-twinkle absolute left-[10%] top-16 hidden sm:block"
+        style={{ ["--dur" as string]: "4.4s" } as CSSProperties}
+      />
+      <AISparkle
+        size={14}
+        gradient="verdant"
+        glow
+        className="sparkle-twinkle absolute right-[12%] bottom-16 hidden sm:block"
+        style={{ ["--dur" as string]: "5.6s" } as CSSProperties}
+      />
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <ScrollReveal>
           <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-beacon-white tracking-[-1px] mb-5">
             You focus on your race. We&apos;ll handle the rules.

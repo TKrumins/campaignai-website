@@ -86,6 +86,34 @@ export default function RootLayout({
               <stop offset="50%" stopColor="#E8F4F8" />
               <stop offset="100%" stopColor="#4D9FFF" />
             </linearGradient>
+            {/* Sparkle fills — declared once here and referenced by <AISparkle
+                gradient="..." />, the same way the icon gradient works. */}
+            <linearGradient id="sparkle-patriot" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FF3366" />
+              <stop offset="50%" stopColor="#E8F4F8" />
+              <stop offset="100%" stopColor="#4D9FFF" />
+            </linearGradient>
+            <linearGradient id="sparkle-patriot-deep" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FF3366" />
+              <stop offset="50%" stopColor="#8E5CF7" />
+              <stop offset="100%" stopColor="#4D9FFF" />
+            </linearGradient>
+            {/* Three stages of green: deep pine, brand verdant, and a pale mint
+                tip — so scattered sparkles read as a family, not clones. */}
+            <linearGradient id="sparkle-verdant" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0B7A56" />
+              <stop offset="55%" stopColor="#00D084" />
+              <stop offset="100%" stopColor="#A7F3D0" />
+            </linearGradient>
+            <linearGradient id="sparkle-verdant-deep" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#06553C" />
+              <stop offset="100%" stopColor="#2FAE7E" />
+            </linearGradient>
+            {/* Green crossing into brand blue — the compliance-meets-campaign tint. */}
+            <linearGradient id="sparkle-civic" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#00D084" />
+              <stop offset="100%" stopColor="#4D9FFF" />
+            </linearGradient>
           </defs>
         </svg>
         <a

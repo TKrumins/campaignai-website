@@ -1,8 +1,44 @@
+import type { CSSProperties } from "react";
 import { SOCIAL_SUBSTACK } from "@/lib/constants";
+import { AISparkle } from "@/components/ui/AISparkle";
 
 export function ComplianceHero() {
   return (
-    <section className="relative bg-regal-navy min-h-[70vh] flex items-center justify-center pt-24">
+    <section className="relative overflow-hidden bg-regal-navy min-h-[70vh] flex items-center justify-center pt-24">
+      {/* Brand sparkles — staged greens for the compliance thread, one patriot
+          gradient so the section still belongs to the rest of the site. */}
+      <AISparkle
+        size={30}
+        gradient="verdant"
+        glow
+        className="sparkle-twinkle absolute left-[7%] top-[26%]"
+        style={{ ["--dur" as string]: "4.2s" } as CSSProperties}
+      />
+      <AISparkle
+        size={18}
+        gradient="civic"
+        className="sparkle-twinkle absolute left-[14%] bottom-[26%] hidden sm:block"
+        style={{ ["--dur" as string]: "5.4s" } as CSSProperties}
+      />
+      <AISparkle
+        size={34}
+        gradient="patriot"
+        className="sparkle-twinkle absolute right-[8%] top-[32%]"
+        style={{ ["--dur" as string]: "3.6s" } as CSSProperties}
+      />
+      <AISparkle
+        size={20}
+        gradient="verdant-deep"
+        glow
+        className="sparkle-twinkle absolute right-[16%] bottom-[24%] hidden sm:block"
+        style={{ ["--dur" as string]: "6s" } as CSSProperties}
+      />
+      <AISparkle
+        size={13}
+        gradient="patriot-deep"
+        className="sparkle-twinkle absolute left-[24%] top-[18%] hidden lg:block"
+        style={{ ["--dur" as string]: "7.2s" } as CSSProperties}
+      />
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center py-20">
         <span className="inline-block text-verdant text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           Compliance &amp; Regulations
