@@ -25,26 +25,26 @@ const BEATS = [
   {
     key: "read",
     icon: BookOpenCheck,
-    title: "We read the rulebook so you're not starting cold.",
-    copy: "Fifty states, fifty sets of AI disclosure rules, and they keep changing mid-session. We track them and show you what we found — you and your counsel decide what it means for your race.",
+    title: "We read the rulebook so you don't start cold.",
+    copy: "Fifty states, fifty sets of rules, all still moving. We track them; you and your counsel decide what it means for your race.",
   },
   {
     key: "check",
     icon: ScanLine,
     title: "Your actual cut gets reviewed.",
-    copy: "Not a template, not a guess — the video you're about to post, checked against the guidance we have on file for your state.",
+    copy: "Not a template — the video you're about to post, checked against the guidance we hold for your state.",
   },
   {
     key: "label",
     icon: BadgeCheck,
     title: "The disclosure is built in, not bolted on.",
-    copy: "The label lands inside the video where it belongs, formatted to the guidance we have, so it looks like part of the piece instead of a warning sticker.",
+    copy: "The label lands inside the video, formatted to the guidance we have — part of the piece, not a warning sticker.",
   },
   {
     key: "watch",
     icon: Radar,
-    title: "You get a written record — and we keep watching.",
-    copy: "A plain-English summary of what we checked and what we applied, so your counsel's review starts on the third page instead of the first. If the rules move after you post, we flag it.",
+    title: "You get a written record. We keep watching.",
+    copy: "A plain-English summary of what we checked and applied, so your counsel starts on page three, not page one. If rules move after you post, we flag it.",
   },
 ] as const;
 
@@ -344,16 +344,14 @@ export function ComplianceClearance() {
               Your disclosure homework, done before you ask.
             </h2>
             <p className="text-lg leading-relaxed text-granite">
-              Every state writes its own AI disclosure rules, and they keep
-              rewriting them mid-session. Tracking that shouldn&apos;t fall to you
-              &mdash; you have doors to knock. Our regulation tracker isn&apos;t open
-              to the public yet. When it is, every video you make will go through
-              these four steps, so whoever reviews it for you starts with the
-              legwork already done instead of a blank page.
+              Every state writes its own AI disclosure rules, and keeps rewriting
+              them mid-session. Tracking that shouldn&apos;t fall to you &mdash; you
+              have doors to knock. Our tracker isn&apos;t public yet; when it is,
+              every video goes through these four steps first.
             </p>
             <p className="mt-4 text-sm font-semibold text-verdant">
-              It comes with the video, not as a separate bill &mdash; and it&apos;s
-              built to make your counsel&apos;s review faster, not to replace it.
+              It comes with the video, not a separate bill. Built to speed your
+              counsel&apos;s review, not replace it.
             </p>
           </div>
         </ScrollReveal>
@@ -400,7 +398,7 @@ export function ComplianceClearance() {
                 </svg>
 
                 <p className="mt-2 text-center text-xs font-semibold uppercase tracking-wider text-slate/70">
-                  An illustration of our process &mdash; not a legal review
+                  An illustration &mdash; not a legal review
                 </p>
               </div>
             </div>
@@ -451,7 +449,7 @@ export function ComplianceClearance() {
 
               <div className="mt-4 flex items-center justify-between gap-3">
                 <span className="text-xs text-slate/70">
-                  {auto ? "Playing on a loop" : "Paused on your pick"}
+                  {auto ? "On a loop" : "Paused on your pick"}
                 </span>
                 <button
                   type="button"
@@ -472,13 +470,13 @@ export function ComplianceClearance() {
               <span className="font-semibold text-regal-navy">
                 This speeds your review up. It doesn&apos;t stand in for one.
               </span>{" "}
-              CampaignAI builds compliance tools and shares what our research turns up. We
-              don&apos;t provide legal advice, we don&apos;t approve or certify anything, and
-              we can&apos;t guarantee that any video meets every requirement in your
-              jurisdiction. Have your campaign&apos;s legal counsel review before you publish.
+              We build compliance tools and share what our research finds. We don&apos;t give
+              legal advice, approve, or certify anything, and we can&apos;t guarantee any video
+              meets your jurisdiction&apos;s requirements. Have your counsel review before you
+              publish.
             </p>
             <p className="mt-3 text-xs text-slate/80">
-              And this particular feature hasn&apos;t shipped yet &mdash; everything above is a preview.
+              This feature hasn&apos;t shipped yet &mdash; everything above is a preview.
             </p>
           </div>
         </ScrollReveal>
