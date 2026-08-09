@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { BookOpenCheck, ScanLine, BadgeCheck, Radar, RotateCcw } from "lucide-react";
+import { BookOpenCheck, ScanLine, BadgeCheck, Radar, RotateCcw, Info } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
@@ -26,25 +26,25 @@ const BEATS = [
     key: "read",
     icon: BookOpenCheck,
     title: "We read the rulebook so you don't start cold.",
-    copy: "Fifty states, fifty sets of rules, all still moving. We track them; you and your counsel decide what it means for your race.",
+    copy: "Fifty states, fifty sets of rules, all moving. We track them; you and your counsel decide what applies.",
   },
   {
     key: "check",
     icon: ScanLine,
     title: "Your actual cut gets reviewed.",
-    copy: "Not a template — the video you're about to post, checked against the guidance we hold for your state.",
+    copy: "Not a template — the video you're about to post, checked against the guidance we hold.",
   },
   {
     key: "label",
     icon: BadgeCheck,
-    title: "The disclosure is built in, not bolted on.",
-    copy: "The label lands inside the video, formatted to the guidance we have — part of the piece, not a warning sticker.",
+    title: "Built in, not bolted on.",
+    copy: "The label lands inside the video — part of the piece, not a warning sticker.",
   },
   {
     key: "watch",
     icon: Radar,
-    title: "You get a written record. We keep watching.",
-    copy: "A plain-English summary of what we checked and applied, so your counsel starts on page three, not page one. If rules move after you post, we flag it.",
+    title: "A written record — and we keep watching.",
+    copy: "A plain-English summary of what we checked, so your counsel starts on page three, not page one.",
   },
 ] as const;
 
@@ -275,6 +275,7 @@ const SCENES = [SceneRules, SceneScan, SceneLabel, SceneRecord];
 export function ComplianceClearance() {
   const [step, setStep] = useState(0);
   const [auto, setAuto] = useState(true);
+  const [noteOpen, setNoteOpen] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -344,14 +345,12 @@ export function ComplianceClearance() {
               Your disclosure homework, done before you ask.
             </h2>
             <p className="text-lg leading-relaxed text-granite">
-              Every state writes its own AI disclosure rules, and keeps rewriting
-              them mid-session. Tracking that shouldn&apos;t fall to you &mdash; you
-              have doors to knock. Our tracker isn&apos;t public yet; when it is,
-              every video goes through these four steps first.
+              Disclosure rules differ in every state and keep changing &mdash;
+              tracking that shouldn&apos;t fall to you. Our tracker isn&apos;t public
+              yet; when it is, every video takes these four steps first.
             </p>
             <p className="mt-4 text-sm font-semibold text-verdant">
-              It comes with the video, not a separate bill. Built to speed your
-              counsel&apos;s review, not replace it.
+              Comes with the video, not a separate bill.
             </p>
           </div>
         </ScrollReveal>
@@ -464,23 +463,54 @@ export function ComplianceClearance() {
           </ScrollReveal>
         </div>
 
+        {/* The short line stays visible on the page; the full note lives one tap
+            away. Never collapse the caveat entirely — see the compliance copy
+            rule at the top of this file. */}
         <ScrollReveal>
-          <div className="mx-auto mt-12 max-w-[720px] rounded-xl border border-regal-navy/10 bg-dawn-frost px-6 py-5 text-center">
-            <p className="text-sm leading-relaxed text-granite">
-              <span className="font-semibold text-regal-navy">
-                This speeds your review up. It doesn&apos;t stand in for one.
-              </span>{" "}
-              We build compliance tools and share what our research finds. We don&apos;t give
-              legal advice, approve, or certify anything, and we can&apos;t guarantee any video
-              meets your jurisdiction&apos;s requirements. Have your counsel review before you
-              publish.
-            </p>
-            <p className="mt-3 text-xs text-slate/80">
-              This feature hasn&apos;t shipped yet &mdash; everything above is a preview.
-            </p>
+          <div className="relative mx-auto mt-10 max-w-[600px] text-center">
+            <button
+              type="button"
+              onClick={() => setNoteOpen((o) => !o)}
+              aria-expanded={noteOpen}
+              aria-controls="cc-legal-note"
+              className="inline-flex items-start gap-2 rounded-lg px-3 py-2 text-left text-sm text-slate transition-colors hover:text-regal-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-verdant"
+            >
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-verdant" />
+              <span>
+                Tools and research, not legal advice &mdash; your counsel reviews before you
+                publish.{" "}
+                <span className="whitespace-nowrap font-semibold text-verdant underline decoration-dotted underline-offset-2">
+                  {noteOpen ? "Hide note" : "Full note"}
+                </span>
+              </span>
+            </button>
+
+            {noteOpen && (
+              <div
+                id="cc-legal-note"
+                role="note"
+                // Opens upward: the section clips its overflow to contain the
+                // sparkles, and there isn't enough bottom padding to fit it.
+                className="absolute bottom-full left-1/2 z-30 mb-3 w-[min(92vw,460px)] -translate-x-1/2 rounded-xl border border-regal-navy/12 bg-white p-5 text-left shadow-xl"
+              >
+                <p className="text-sm leading-relaxed text-granite">
+                  <span className="font-semibold text-regal-navy">
+                    This speeds your review up. It doesn&apos;t stand in for one.
+                  </span>{" "}
+                  We build compliance tools and share what our research finds. We don&apos;t
+                  give legal advice, approve, or certify anything, and we can&apos;t guarantee
+                  any video meets your jurisdiction&apos;s requirements. Have your counsel
+                  review before you publish.
+                </p>
+                <p className="mt-3 text-xs text-slate/80">
+                  This feature hasn&apos;t shipped yet &mdash; everything above is a preview.
+                </p>
+              </div>
+            )}
           </div>
         </ScrollReveal>
       </div>
     </section>
   );
 }
+
