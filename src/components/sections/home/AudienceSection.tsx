@@ -23,6 +23,7 @@ export function AudienceSection() {
     <section className="relative overflow-hidden py-20 md:py-28 bg-dawn-frost">
       <AISparkle size={16} color="#FF3366" glow className="sparkle-twinkle absolute left-[6%] top-24" style={{ ["--dur"]: "3.4s" } as CSSProperties} />
       <AISparkle size={13} color="#4D9FFF" glow className="sparkle-twinkle absolute right-[8%] top-40" style={{ ["--dur"]: "2.8s", animationDelay: "0.5s" } as CSSProperties} />
+      <AISparkle size={15} color="#8E5CF7" glow className="sparkle-twinkle absolute right-[14%] bottom-20 hidden lg:block" style={{ ["--dur"]: "4.5s" } as CSSProperties} />
 
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>

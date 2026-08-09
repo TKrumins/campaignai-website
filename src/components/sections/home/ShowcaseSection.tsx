@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, type CSSProperties } from "react";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { Button } from "@/components/ui/Button";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -232,8 +233,22 @@ export function ShowcaseSection() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
-    <section id="our-work" className="relative py-20 md:py-28 bg-gradient-to-b from-[#091026] via-regal-navy to-[#091026]">
+    <section id="our-work" className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-[#091026] via-regal-navy to-[#091026]">
       <StatusBadge label="Coming Soon" tone="dark" tilt className="absolute right-4 top-6 z-10 sm:right-8 sm:top-8" />
+      <AISparkle
+        size={16}
+        color="#E8F4F8"
+        glow
+        className="sparkle-twinkle absolute left-[6%] top-28 hidden md:block"
+        style={{ ["--dur"]: "4.4s" } as CSSProperties}
+      />
+      <AISparkle
+        size={13}
+        color="#8E5CF7"
+        glow
+        className="sparkle-twinkle absolute left-[13%] bottom-24 hidden lg:block"
+        style={{ ["--dur"]: "3.3s" } as CSSProperties}
+      />
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12">

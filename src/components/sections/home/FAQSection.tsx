@@ -1,7 +1,9 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 
 const faqs = [
@@ -29,8 +31,21 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-[700px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-white">
+      <AISparkle
+        size={18}
+        color="#8E5CF7"
+        glow
+        className="sparkle-twinkle absolute left-[8%] top-24 hidden md:block"
+        style={{ ["--dur"]: "4.1s" } as CSSProperties}
+      />
+      <AISparkle
+        size={12}
+        color="#B8B8B8"
+        className="sparkle-twinkle absolute right-[9%] bottom-24 hidden lg:block"
+        style={{ ["--dur"]: "5.6s" } as CSSProperties}
+      />
+      <div className="relative max-w-[700px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-10">
             <div className="mb-4">

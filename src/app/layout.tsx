@@ -109,6 +109,12 @@ export default function RootLayout({
               <stop offset="0%" stopColor="#06553C" />
               <stop offset="100%" stopColor="#2FAE7E" />
             </linearGradient>
+            {/* The palest stage — mint into white, for green sections that need
+                a highlight without another hue entering the room. */}
+            <linearGradient id="sparkle-verdant-pale" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#6EE7B7" />
+              <stop offset="100%" stopColor="#FFFFFF" />
+            </linearGradient>
             {/* Green crossing into brand blue — the compliance-meets-campaign tint. */}
             <linearGradient id="sparkle-civic" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#00D084" />

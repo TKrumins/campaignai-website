@@ -41,6 +41,7 @@ export function TrustSection() {
     <section className="relative overflow-hidden py-20 md:py-28 bg-dawn-frost">
       <AISparkle size={16} color="#FF3366" glow className="sparkle-twinkle absolute left-[6%] top-24" style={{ ["--dur"]: "3.4s" } as CSSProperties} />
       <AISparkle size={13} color="#4D9FFF" glow className="sparkle-twinkle absolute right-[8%] top-32" style={{ ["--dur"]: "2.8s", animationDelay: "0.6s" } as CSSProperties} />
+      <AISparkle size={16} color="#8E5CF7" glow className="sparkle-twinkle absolute left-[13%] bottom-24 hidden lg:block" style={{ ["--dur"]: "4.9s" } as CSSProperties} />
 
       <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>

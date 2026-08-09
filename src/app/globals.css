@@ -997,6 +997,13 @@ body { overflow-x: clip; }
   50% { transform: rotate(-6deg); }
 }
 @keyframes sealBeads { to { transform: rotate(360deg); } }
+/* Center mark cycles the three brand inks. It sits on the multi-partisan
+   gradient underneath, which is what reduced motion keeps. */
+@keyframes sealSparkInk {
+  0%, 100% { fill: #FF3366; }
+  33% { fill: #8E5CF7; }
+  66% { fill: #4D9FFF; }
+}
 
 /* Compliance "clearance pass" — the four-beat preview of what the regulation
    tracker will do to a finished video. */
@@ -1016,6 +1023,11 @@ body { overflow-x: clip; }
   100% { transform: scale(1.15); opacity: 0; }
 }
 @keyframes ccDraw { to { stroke-dashoffset: 0; } }
+@keyframes ccRadar { to { transform: rotate(360deg); } }
+@keyframes ccBlip {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
 @keyframes ccRise {
   from { opacity: 0; transform: translateY(9px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1037,7 +1049,10 @@ body { overflow-x: clip; }
   }
   .cs-seal-beads { animation: sealBeads 52s linear infinite; }
   .cs-seal-spark { --dur: 4.2s; }
+  .cs-seal-spark path { animation: sealSparkInk 7.5s ease-in-out infinite; }
   .cc-connector { animation: ccDraw 0.8s ease-out 0.1s forwards; }
+  .cc-radar { animation: ccRadar 4.2s linear infinite; }
+  .cc-blip { animation: ccBlip 2.7s ease-in-out infinite; }
   .cc-scan-line { animation: ccScan 1.9s ease-in-out infinite; }
   .cc-stamp { animation: ccStampIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
   .cc-watch { animation: ccWatch 2.8s ease-out infinite; }

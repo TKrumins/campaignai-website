@@ -9,7 +9,7 @@ export function ComplianceCTA() {
     <section className="relative overflow-hidden py-20 md:py-28 bg-regal-navy">
       <AISparkle
         size={18}
-        gradient="patriot-deep"
+        gradient="verdant-pale"
         className="sparkle-twinkle absolute left-[10%] top-16 hidden sm:block"
         style={{ ["--dur" as string]: "4.4s" } as CSSProperties}
       />

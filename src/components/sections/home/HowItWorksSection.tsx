@@ -1,6 +1,8 @@
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { StepAnimation } from "@/components/sections/how-it-works/StepAnimation";
 import { SlidersHorizontal, UserCheck, Send, Sparkles } from "lucide-react";
 
@@ -40,8 +42,21 @@ const phases = [
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-white">
+      <AISparkle
+        size={16}
+        color="#8E5CF7"
+        glow
+        className="sparkle-twinkle absolute right-[6%] top-24 hidden md:block"
+        style={{ ["--dur"]: "4.7s" } as CSSProperties}
+      />
+      <AISparkle
+        size={11}
+        color="#B8B8B8"
+        className="sparkle-twinkle absolute left-[5%] top-40 hidden lg:block"
+        style={{ ["--dur"]: "6.2s" } as CSSProperties}
+      />
+      <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-3xl mx-auto mb-14">
             <div className="mb-4">

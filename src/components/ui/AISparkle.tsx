@@ -6,6 +6,7 @@ export type SparkleGradient =
   | "patriot-deep"
   | "verdant"
   | "verdant-deep"
+  | "verdant-pale"
   | "civic";
 
 /** Solid color used for the glow when a gradient fill is in play. */
@@ -14,6 +15,7 @@ const GRADIENT_GLOW: Record<SparkleGradient, string> = {
   "patriot-deep": "#8E5CF7",
   verdant: "#00D084",
   "verdant-deep": "#2FAE7E",
+  "verdant-pale": "#6EE7B7",
   civic: "#2FAE7E",
 };
 

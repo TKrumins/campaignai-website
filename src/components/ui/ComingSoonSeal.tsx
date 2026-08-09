@@ -42,6 +42,13 @@ export function ComingSoonSeal({
           <stop offset="50%" stopColor="#8E5CF7" />
           <stop offset="100%" stopColor="#4D9FFF" />
         </linearGradient>
+        {/* The center mark rests on the multi-partisan gradient; when motion is
+            allowed it cycles red → violet → blue on top of it. */}
+        <linearGradient id="cs-seal-spark" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FF3366" />
+          <stop offset="50%" stopColor="#8E5CF7" />
+          <stop offset="100%" stopColor="#4D9FFF" />
+        </linearGradient>
       </defs>
 
       {/* Crossed ribbon tails, behind the disc */}
@@ -83,7 +90,7 @@ export function ComingSoonSeal({
         <g className="sparkle-twinkle cs-seal-spark">
           <path
             d="M12 0 C12.8 6.6 17.4 11.2 24 12 C17.4 12.8 12.8 17.4 12 24 C11.2 17.4 6.6 12.8 0 12 C6.6 11.2 11.2 6.6 12 0 Z"
-            fill="#FF3366"
+            fill="url(#cs-seal-spark)"
           />
         </g>
       </g>

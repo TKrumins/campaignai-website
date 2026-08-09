@@ -5,8 +5,8 @@ import { AISparkle } from "@/components/ui/AISparkle";
 export function ComplianceHero() {
   return (
     <section className="relative overflow-hidden bg-regal-navy min-h-[70vh] flex items-center justify-center pt-24">
-      {/* Brand sparkles — staged greens for the compliance thread, one patriot
-          gradient so the section still belongs to the rest of the site. */}
+      {/* Compliance keeps to one sub-brand: staged greens through to white.
+          No red or blue in here — the green is what marks this thread. */}
       <AISparkle
         size={30}
         gradient="verdant"
@@ -16,26 +16,26 @@ export function ComplianceHero() {
       />
       <AISparkle
         size={18}
-        gradient="civic"
+        gradient="verdant-deep"
         className="sparkle-twinkle absolute left-[14%] bottom-[26%] hidden sm:block"
         style={{ ["--dur" as string]: "5.4s" } as CSSProperties}
       />
       <AISparkle
         size={34}
-        gradient="patriot"
+        gradient="verdant-pale"
         className="sparkle-twinkle absolute right-[8%] top-[32%]"
         style={{ ["--dur" as string]: "3.6s" } as CSSProperties}
       />
       <AISparkle
         size={20}
-        gradient="verdant-deep"
+        gradient="verdant"
         glow
         className="sparkle-twinkle absolute right-[16%] bottom-[24%] hidden sm:block"
         style={{ ["--dur" as string]: "6s" } as CSSProperties}
       />
       <AISparkle
         size={13}
-        gradient="patriot-deep"
+        color="#E8F4F8"
         className="sparkle-twinkle absolute left-[24%] top-[18%] hidden lg:block"
         style={{ ["--dur" as string]: "7.2s" } as CSSProperties}
       />

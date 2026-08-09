@@ -1,11 +1,28 @@
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { PricingTiers } from "@/components/sections/shared/PricingTiers";
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="py-20 md:py-28 bg-white">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="relative overflow-hidden py-20 md:py-28 bg-white">
+      {/* Bridge Violet + white, kept off the tiers themselves — pricing never
+          plays red against blue. See the brand color rules. */}
+      <AISparkle
+        size={17}
+        color="#8E5CF7"
+        glow
+        className="sparkle-twinkle absolute left-[5%] top-20 hidden md:block"
+        style={{ ["--dur"]: "3.8s" } as CSSProperties}
+      />
+      <AISparkle
+        size={12}
+        color="#B8B8B8"
+        className="sparkle-twinkle absolute right-[6%] top-32 hidden lg:block"
+        style={{ ["--dur"]: "5.1s" } as CSSProperties}
+      />
+      <div className="relative max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal>
           <div className="text-center mb-10">

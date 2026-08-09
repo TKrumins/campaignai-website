@@ -1,5 +1,7 @@
+import type { CSSProperties } from "react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AISparkle } from "@/components/ui/AISparkle";
 import { ChannelExplorer } from "@/components/sections/home/ChannelExplorer";
 
 /**
@@ -9,8 +11,15 @@ import { ChannelExplorer } from "@/components/sections/home/ChannelExplorer";
  */
 export function StorytellingSection() {
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-16 md:py-24 bg-white">
+      <AISparkle
+        size={15}
+        color="#8E5CF7"
+        glow
+        className="sparkle-twinkle absolute left-[4%] top-16 hidden lg:block"
+        style={{ ["--dur"]: "5.3s" } as CSSProperties}
+      />
+      <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-[760px] mx-auto mb-8">
             <div className="mb-4">
