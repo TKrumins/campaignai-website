@@ -54,7 +54,7 @@ const TYPES: VideoType[] = [
     icon: FileText,
     tagline: "A complex position, made plain.",
     blurb:
-      "Build a video library detailing your platform. Actionable, evergreen content that makes complex positions plain — ready to use again and again across your race.",
+      "Your platform, one plank at a time. Short, plain-spoken films that turn a complicated position into something a voter gets on the first pass — evergreen pieces you'll reach for again and again, all race long.",
     deliver: [],
     video: null,
   },
