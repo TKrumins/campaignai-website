@@ -5,11 +5,15 @@ import { Check, Radio } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 
 // Illustrative interactive: pick the state you run in, and your finished video
 // shows the disclosure label attached + "cleared to ship" for that state. The
 // per-state text stays general on purpose — this is guidance, not legal advice,
 // and the standing disclaimer says so.
+//
+// Marked "Coming Soon": the public regulation tracker that powers per-state
+// clearance hasn't shipped, so all copy here is forward-looking on purpose.
 const STATES: [string, string][] = [
   ["AL", "Alabama"], ["AK", "Alaska"], ["AZ", "Arizona"], ["AR", "Arkansas"], ["CA", "California"],
   ["CO", "Colorado"], ["CT", "Connecticut"], ["DE", "Delaware"], ["FL", "Florida"], ["GA", "Georgia"],
@@ -35,12 +39,17 @@ export function ComplianceClearance() {
         <ScrollReveal>
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <SectionLabel text="Cleared to ship" color="verdant" />
-            <h2 className="mt-3 mb-4 font-heading text-3xl font-extrabold tracking-[-1px] text-regal-navy md:text-[40px] md:leading-tight">
-              Wherever you&apos;re running, your video ships clean.
+            <div className="mt-4 flex justify-center">
+              <StatusBadge label="Coming Soon" />
+            </div>
+            <h2 className="mt-4 mb-4 font-heading text-3xl font-extrabold tracking-[-1px] text-regal-navy md:text-[40px] md:leading-tight">
+              Wherever you&apos;re running, your video will ship clean.
             </h2>
             <p className="text-lg leading-relaxed text-granite">
-              Pick the state you&apos;re running in. We attach the disclosure label
-              and keep it current, so your video is ready to post.
+              A look at what&apos;s coming: pick the state you&apos;re running in,
+              and we attach the disclosure label and keep it current, so your video
+              is ready to post. Our public regulation tracker isn&apos;t released
+              yet &mdash; until it is, this is a preview, not a live feature.
             </p>
           </div>
         </ScrollReveal>
@@ -79,9 +88,9 @@ export function ComplianceClearance() {
               </div>
               <p key={`cap-${abbr ?? "none"}`} className="vh-settle mt-4 text-center text-sm text-slate">
                 {stateName ? (
-                  <>Your video &mdash; disclosure attached for <span className="font-semibold text-regal-navy">{stateName}</span>, ready to post.</>
+                  <>How it will look &mdash; disclosure attached for <span className="font-semibold text-regal-navy">{stateName}</span>, ready to post.</>
                 ) : (
-                  <>Pick a state to see your video cleared for it.</>
+                  <>Pick a state to preview your video cleared for it.</>
                 )}
               </p>
             </div>
@@ -93,7 +102,7 @@ export function ComplianceClearance() {
               <div className="mb-3 flex items-center gap-2">
                 <Radio className="h-4 w-4 text-verdant" />
                 <span className="text-xs font-bold uppercase tracking-wider text-slate">
-                  All 50 states, D.C. &amp; territories &mdash; tracked and updated
+                  All 50 states, D.C. &amp; territories &mdash; tracked at launch
                 </span>
               </div>
               <div className="grid grid-cols-5 gap-1.5 sm:grid-cols-7">
@@ -118,11 +127,11 @@ export function ComplianceClearance() {
               </div>
               <p className="mt-4 text-sm leading-relaxed text-slate">
                 {stateName ? (
-                  <>We track {stateName}&apos;s disclosure requirements and pending legislation, and
-                  attach a label built to the most current guidance we have &mdash; updated as the
-                  rules change.</>
+                  <>At launch, we&apos;ll track {stateName}&apos;s disclosure requirements and pending
+                  legislation, and attach a label built to the most current guidance we have &mdash;
+                  updated as the rules change.</>
                 ) : (
-                  <>Every video ships with a state-specific disclosure label, built to the most
+                  <>Every video will ship with a state-specific disclosure label, built to the most
                   current guidance we can identify and updated as the laws change.</>
                 )}
               </p>
@@ -132,8 +141,9 @@ export function ComplianceClearance() {
 
         <ScrollReveal>
           <p className="mx-auto mt-12 max-w-[700px] text-center text-sm text-slate/80">
-            Illustrative preview. CampaignAI provides compliance tools and guidance, not legal
-            advice &mdash; when in doubt, consult your campaign&apos;s legal counsel.
+            Illustrative preview of a feature we haven&apos;t released yet. CampaignAI provides
+            compliance tools and guidance, not legal advice &mdash; when in doubt, consult your
+            campaign&apos;s legal counsel.
           </p>
         </ScrollReveal>
       </div>
