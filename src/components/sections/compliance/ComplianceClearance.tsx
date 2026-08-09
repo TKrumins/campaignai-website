@@ -8,39 +8,43 @@ import { AISparkle } from "@/components/ui/AISparkle";
 import { ComingSoonSeal } from "@/components/ui/ComingSoonSeal";
 
 /**
- * The clearance pass — four checks a finished video will make once our
- * regulation tracker ships. Each beat gets its OWN scene, not a running total
- * on one stage: a board of rules, a scan, a lower-third close-up, and a stamp
- * with a watch dial. Nothing here reads real law or real state data; clicking
- * a beat just parks the stage on that scene. The rosette says Coming Soon.
+ * Four steps a finished video goes through once our regulation tracker ships.
+ * Each beat gets its OWN scene, not a running total on one stage: a board of
+ * rules, a scan, a lower-third close-up, and the written record next to a watch
+ * dial. Nothing here reads real law or real state data; clicking a beat just
+ * parks the stage on that scene. The rosette says Coming Soon.
  *
- * Replaced the old 50-state picker, which implied a live lookup we do not have.
+ * COPY RULE FOR THIS WHOLE SECTION: we do legwork, we never clear anyone. No
+ * "cleared", "approved", "compliant", "green light", or anything implying a
+ * legal sign-off — that belongs to the campaign's counsel, and every block of
+ * copy here has to leave room for them. Replaced the old 50-state picker, which
+ * implied a live lookup we do not have.
  */
 
 const BEATS = [
   {
     key: "read",
     icon: BookOpenCheck,
-    title: "We read the rulebook. You never have to.",
-    copy: "Fifty states, fifty sets of AI disclosure rules, and they keep changing mid-session. Keeping up is our job, not one more thing on your list.",
+    title: "We read the rulebook so you're not starting cold.",
+    copy: "Fifty states, fifty sets of AI disclosure rules, and they keep changing mid-session. We track them and show you what we found — you and your counsel decide what it means for your race.",
   },
   {
     key: "check",
     icon: ScanLine,
-    title: "Your actual cut gets checked.",
-    copy: "Not a template, not a guess — the video you're about to post, held up against what your state asks for.",
+    title: "Your actual cut gets reviewed.",
+    copy: "Not a template, not a guess — the video you're about to post, checked against the guidance we have on file for your state.",
   },
   {
     key: "label",
     icon: BadgeCheck,
     title: "The disclosure is built in, not bolted on.",
-    copy: "The label lands inside the video where it belongs, so it looks like part of the piece instead of a warning sticker.",
+    copy: "The label lands inside the video where it belongs, formatted to the guidance we have, so it looks like part of the piece instead of a warning sticker.",
   },
   {
     key: "watch",
     icon: Radar,
-    title: "Green light — and we keep watching.",
-    copy: "You get a plain-English record that you're clear, and we stay on the rules after you post, in case they move.",
+    title: "You get a written record — and we keep watching.",
+    copy: "A plain-English summary of what we checked and what we applied, so your counsel's review starts on the third page instead of the first. If the rules move after you post, we flag it.",
   },
 ] as const;
 
@@ -195,28 +199,44 @@ function SceneLabel() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Scene 4 — stamped, then watched                                     */
+/* Scene 4 — the written record, and the watch that stays on           */
 /* ------------------------------------------------------------------ */
-function SceneStamp() {
+function SceneRecord() {
+  const rows = [96, 124, 152, 180];
+
   return (
     <g className="stage-in">
-      <ellipse cx="164" cy="212" rx="112" ry="5" fill="#0D1B3E" opacity="0.06" />
-      <rect x="44" y="56" width="240" height="135" rx="10" fill="url(#cc-card)" />
-      <rect x="51" y="63" width="226" height="121" rx="7" fill="none" stroke="#E8F4F8" strokeOpacity="0.12" />
-      <circle cx="164" cy="112" r="19" fill="#E8F4F8" fillOpacity="0.85" />
-      <path d="M159 105 L174 112 L159 119 Z" fill="#0D1B3E" />
-      <rect x="58" y="172" width="212" height="3" rx="1.5" fill="#E8F4F8" fillOpacity="0.16" />
-      <rect x="58" y="172" width="150" height="3" rx="1.5" fill="#4D9FFF" />
+      {/* The record is a report, deliberately NOT a certificate or a stamp:
+          it says what we looked at, and hands the judgment to counsel. */}
+      <ellipse cx="152" cy="222" rx="104" ry="5" fill="#0D1B3E" opacity="0.06" />
+      <g className="cc-rise">
+        <rect x="46" y="34" width="212" height="182" rx="8" fill="#FFFFFF" stroke="#0D1B3E" strokeOpacity="0.16" />
+        <path d="M46 42 a8 8 0 0 1 8 -8 h196 a8 8 0 0 1 8 8 v28 h-212 Z" fill="#00D084" />
+        <text x="62" y="59" className="font-heading" fontSize="11" fontWeight="800" letterSpacing="1.1" fill="#FFFFFF">
+          WHAT WE CHECKED
+        </text>
 
-      {/* the stamp thuds onto the finished cut */}
-      <g transform="translate(196 158)">
-        <g className="cc-stamp cc-fx">
-          <rect x="-52" y="-19" width="104" height="38" rx="3" fill="#FFFFFF" fillOpacity="0.97" stroke="#00D084" strokeWidth="2.2" />
-          <rect x="-47" y="-14" width="94" height="28" rx="2" fill="none" stroke="#00D084" strokeOpacity="0.65" strokeWidth="0.9" />
-          <text x="0" y="5" textAnchor="middle" className="font-heading" fontSize="13" fontWeight="800" letterSpacing="2" fill="#0B7A56">
-            CLEARED
-          </text>
-        </g>
+        {rows.map((y, i) => (
+          <g key={y} className="cc-tick cc-fx" style={{ animationDelay: `${0.3 + i * 0.14}s` }}>
+            <circle cx="68" cy={y} r="7" fill="#00D084" fillOpacity="0.16" />
+            <path
+              d={`M64.5 ${y} L67 ${y + 2.6} L71.5 ${y - 3}`}
+              fill="none"
+              stroke="#00D084"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <line x1="84" y1={y - 4} x2="238" y2={y - 4} stroke="#0D1B3E" strokeOpacity="0.2" strokeWidth="3.5" strokeLinecap="round" />
+            <line x1="84" y1={y + 5} x2={i % 2 ? 198 : 216} y2={y + 5} stroke="#0D1B3E" strokeOpacity="0.1" strokeWidth="3" strokeLinecap="round" />
+          </g>
+        ))}
+
+        {/* the line that hands it off */}
+        <line x1="62" y1="200" x2="242" y2="200" stroke="#0D1B3E" strokeOpacity="0.12" />
+        <text x="62" y="211" className="font-heading" fontSize="8.5" fontWeight="700" letterSpacing="0.8" fill="#0D1B3E" fillOpacity="0.45">
+          FOR YOUR COUNSEL&apos;S REVIEW
+        </text>
       </g>
 
       {/* and the watch stays on — dropped below the seal's corner */}
@@ -250,7 +270,7 @@ function SceneStamp() {
   );
 }
 
-const SCENES = [SceneRules, SceneScan, SceneLabel, SceneStamp];
+const SCENES = [SceneRules, SceneScan, SceneLabel, SceneRecord];
 
 export function ComplianceClearance() {
   const [step, setStep] = useState(0);
@@ -319,19 +339,21 @@ export function ComplianceClearance() {
       <div className="relative mx-auto max-w-[1080px] px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto mb-12 max-w-2xl text-center">
-            <SectionLabel text="Cleared to ship" color="verdant" />
+            <SectionLabel text="Ready for review" color="verdant" />
             <h2 className="mt-3 mb-4 font-heading text-3xl font-extrabold tracking-[-1px] text-regal-navy md:text-[40px] md:leading-tight">
-              Hit post without holding your breath.
+              Your disclosure homework, done before you ask.
             </h2>
             <p className="text-lg leading-relaxed text-granite">
               Every state writes its own AI disclosure rules, and they keep
-              rewriting them mid-session. You shouldn&apos;t have to track that
+              rewriting them mid-session. Tracking that shouldn&apos;t fall to you
               &mdash; you have doors to knock. Our regulation tracker isn&apos;t open
-              to the public yet. When it is, every video you make will clear these
-              four checks before it ever reaches a voter.
+              to the public yet. When it is, every video you make will go through
+              these four steps, so whoever reviews it for you starts with the
+              legwork already done instead of a blank page.
             </p>
             <p className="mt-4 text-sm font-semibold text-verdant">
-              No lawyer on retainer. No compliance consultant. It comes with the video, not as a bill on top.
+              It comes with the video, not as a separate bill &mdash; and it&apos;s
+              built to make your counsel&apos;s review faster, not to replace it.
             </p>
           </div>
         </ScrollReveal>
@@ -378,7 +400,7 @@ export function ComplianceClearance() {
                 </svg>
 
                 <p className="mt-2 text-center text-xs font-semibold uppercase tracking-wider text-slate/70">
-                  A sketch of what&apos;s coming &mdash; not a live legal check
+                  An illustration of our process &mdash; not a legal review
                 </p>
               </div>
             </div>
@@ -388,7 +410,7 @@ export function ComplianceClearance() {
           <ScrollReveal delay={100}>
             <div>
               <p className="mb-4 text-xs font-bold uppercase tracking-wider text-slate">
-                Four checks, every video
+                Four steps, every video
               </p>
               <ul className="space-y-2">
                 {BEATS.map((beat, i) => {
@@ -445,11 +467,20 @@ export function ComplianceClearance() {
         </div>
 
         <ScrollReveal>
-          <p className="mx-auto mt-12 max-w-[700px] text-center text-sm text-slate/80">
-            This is a preview of something we haven&apos;t shipped yet. CampaignAI provides
-            compliance tools and guidance, not legal advice &mdash; when it really counts, loop
-            in your campaign&apos;s counsel.
-          </p>
+          <div className="mx-auto mt-12 max-w-[720px] rounded-xl border border-regal-navy/10 bg-dawn-frost px-6 py-5 text-center">
+            <p className="text-sm leading-relaxed text-granite">
+              <span className="font-semibold text-regal-navy">
+                This speeds your review up. It doesn&apos;t stand in for one.
+              </span>{" "}
+              CampaignAI builds compliance tools and shares what our research turns up. We
+              don&apos;t provide legal advice, we don&apos;t approve or certify anything, and
+              we can&apos;t guarantee that any video meets every requirement in your
+              jurisdiction. Have your campaign&apos;s legal counsel review before you publish.
+            </p>
+            <p className="mt-3 text-xs text-slate/80">
+              And this particular feature hasn&apos;t shipped yet &mdash; everything above is a preview.
+            </p>
+          </div>
         </ScrollReveal>
       </div>
     </section>

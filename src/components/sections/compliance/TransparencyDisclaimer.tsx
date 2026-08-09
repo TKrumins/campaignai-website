@@ -16,16 +16,23 @@ export function TransparencyDisclaimer() {
             </div>
             <div className="text-granite text-sm leading-relaxed space-y-4">
               <p>
-                CampaignAI provides compliance tools and guidance, not legal
-                advice. We work diligently to stay ahead of evolving rules across
-                all 50 states and at the federal level, but there may be gaps or
-                delays between when a law is enacted and when our systems
-                reflect it.
+                CampaignAI provides compliance tools, research, and formatting
+                &mdash; not legal advice. We do not approve, certify, or clear any
+                video for release, and nothing we produce is a legal opinion or a
+                guarantee that a video complies with the law in your jurisdiction.
               </p>
               <p>
-                We strongly encourage all campaigns to confirm compliance with
-                applicable federal, state, and local regulations. When in doubt,
-                consult with your campaign&apos;s legal counsel.
+                We work diligently to stay ahead of evolving rules across all 50
+                states and at the federal level, but the law moves fast and there
+                may be gaps or delays between when a rule changes and when our
+                systems reflect it. Responsibility for what a campaign publishes
+                stays with the campaign.
+              </p>
+              <p>
+                Have your campaign&apos;s legal counsel review your video and confirm
+                compliance with applicable federal, state, and local regulations
+                before you publish. Our work is designed to make that review faster
+                and better documented &mdash; not to stand in for it.
               </p>
               <p>
                 If you become aware of a regulatory change that we haven&apos;t

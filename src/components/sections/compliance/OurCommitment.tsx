@@ -21,8 +21,10 @@ export function OurCommitment() {
               <p>
                 We take on the regulatory complexity because we believe the
                 campaigns that can least afford a compliance failure are the same
-                campaigns that can least afford a consultant to prevent one.
-                That&apos;s the gap we fill.
+                campaigns that can least afford a consultant to help prevent one.
+                We can&apos;t be your lawyer, and we won&apos;t pretend to be. What
+                we can do is the legwork that makes a lawyer&apos;s time go further,
+                and hand you a clear record of exactly what we did.
               </p>
               <p>
                 Our team tracks proposed legislation, regulatory updates, FEC

@@ -15,13 +15,13 @@ const cards = [
     title: "Federal Compliance",
     icon: Landmark,
     top: "We track FEC advisories, proposed rulemaking, and federal guidance on AI in political advertising as the regulatory framework takes shape.",
-    bottom: "We monitor congressional hearings, agency comment periods, and enforcement guidance so our platform reflects federal expectations before they become priorities.",
+    bottom: "We monitor congressional hearings, agency comment periods, and enforcement guidance so our research keeps pace as federal expectations take shape.",
   },
   {
     title: "Digital Platforms",
     icon: Monitor,
     top: "Social media platforms are rolling out their own AI content policies, from Meta\u2019s labeling requirements to YouTube\u2019s disclosure mandates and TikTok\u2019s synthetic media rules.",
-    bottom: "We track platform-specific policies so every video you produce meets the requirements of the channels where it runs, without extra work on your end.",
+    bottom: "We track platform-specific policies so we can format your video for the channels where it runs and tell you what each one is asking for.",
   },
 ];
 
@@ -66,6 +66,13 @@ export function WhatWeTrack() {
             </ScrollReveal>
           ))}
         </div>
+
+        <ScrollReveal delay={300}>
+          <p className="text-slate text-sm leading-relaxed mt-8 max-w-[760px]">
+            Monitoring is research, not a legal opinion. We share what we find and how we
+            read it; your counsel decides how it applies to your race.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

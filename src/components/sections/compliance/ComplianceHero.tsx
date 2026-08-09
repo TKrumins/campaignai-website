@@ -44,13 +44,18 @@ export function ComplianceHero() {
           Compliance &amp; Regulations
         </span>
         <h1 className="font-heading font-extrabold text-[32px] sm:text-[48px] md:text-[64px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
-          We do the work. So you don&apos;t have to.
+          We do the legwork. You keep campaigning.
         </h1>
-        <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+        <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-6">
           AI in political advertising is new territory. The rules are different
           in every state, changing every session, and the consequences of getting
-          it wrong fall on you. CampaignAI exists to make sure you never have to
-          worry about that.
+          it wrong fall on you. CampaignAI takes the tracking and the formatting
+          off your plate and hands you a clear record of what we found &mdash; so
+          your review starts from something solid instead of a blank page.
+        </p>
+        <p className="text-beacon-white/60 text-sm max-w-2xl mx-auto mb-10">
+          Tools and research, not legal advice. We never approve or certify a video
+          &mdash; your campaign&apos;s legal counsel always should.
         </p>
         <a
           href={SOCIAL_SUBSTACK}

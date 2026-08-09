@@ -24,8 +24,13 @@ export function RegulatoryLandscape() {
             <p>
               For a campaign focused on voters, doors, and fundraising, staying
               current on every regulatory development across every jurisdiction
-              is an impossible ask. That&apos;s exactly why CampaignAI does it
-              for you.
+              is an impossible ask. That&apos;s exactly why we do the tracking
+              for you &mdash; and why we tell you plainly what we found, so you and
+              your counsel can decide what it means for your race.
+            </p>
+            <p className="text-slate text-base">
+              What follows is research and tooling, not legal advice, and it
+              isn&apos;t a substitute for a lawyer who knows your jurisdiction.
             </p>
           </div>
         </ScrollReveal>

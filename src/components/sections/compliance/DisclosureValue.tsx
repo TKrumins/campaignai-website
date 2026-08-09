@@ -16,7 +16,7 @@ const threats = [
   {
     icon: Newspaper,
     label: "Negative media cycles",
-    description: "One undisclosed ad can become the story. Disclosure takes that risk off the table.",
+    description: "One undisclosed ad can become the story. Disclosing up front makes that story much harder to tell.",
   },
   {
     icon: TrendingUp,
@@ -27,8 +27,8 @@ const threats = [
 
 const benefits = [
   "Builds voter trust before it becomes a requirement",
-  "Eliminates the risk of mid-campaign compliance surprises",
-  "Protects your reputation from opposition research",
+  "Cuts down on mid-campaign compliance surprises",
+  "Gives opposition research less to work with",
   "Keeps every ad ready for the disclosure rules taking shape now",
 ];
 
@@ -43,10 +43,11 @@ export function DisclosureValue() {
               Disclosure isn&apos;t a burden. It&apos;s your strongest shield.
             </h2>
             <p className="text-granite text-lg leading-relaxed">
-              Every CampaignAI video ships with clear, jurisdiction-specific
-              disclosure labels built in. Not because every state requires it
-              yet, but because the campaigns that lead on transparency today
-              are the ones that win trust tomorrow.
+              Every CampaignAI video ships with clear disclosure labels built in,
+              formatted to the guidance our research turns up for your
+              jurisdiction. Not because every state requires it yet, but because
+              the campaigns that lead on transparency today are the ones that win
+              trust tomorrow.
             </p>
           </div>
         </ScrollReveal>
@@ -81,7 +82,7 @@ export function DisclosureValue() {
                 </div>
               </div>
               <p className="font-heading font-bold text-beacon-white text-sm mt-4 uppercase tracking-wider">
-                Protected
+                Prepared
               </p>
             </div>
 
@@ -101,9 +102,11 @@ export function DisclosureValue() {
                 ))}
               </ul>
               <p className="text-beacon-white/50 text-xs mt-6">
-                Every video includes the correct labels for your state. When
-                requirements change, we update the labels, so you never have to
-                track it yourself.
+                Every video ships with the disclosure labels our research indicates
+                your state calls for, and we update them as guidance changes. It
+                gives your counsel a strong starting point &mdash; it isn&apos;t a
+                substitute for their review, and it isn&apos;t a guarantee of
+                compliance.
               </p>
             </div>
           </div>

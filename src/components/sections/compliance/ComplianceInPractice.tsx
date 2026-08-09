@@ -12,11 +12,11 @@ const steps = [
   },
   {
     label: "In post-production",
-    body: "Our editors apply the correct disclosure labels, formatted to meet your state's specifications.",
+    body: "Our editors apply the disclosure labels our research indicates your state calls for, formatted to the specifications we have on file.",
   },
   {
     label: "Before delivery",
-    body: "Every video goes through a compliance check to confirm disclosure labels are present, correctly formatted, and current with the latest regulatory guidance we have on file.",
+    body: "Every video goes through an internal review to confirm the labels are present, formatted as expected, and current with the regulatory guidance we hold. That review is ours — it isn't a legal sign-off, and it doesn't replace your counsel's.",
   },
 ];
 
@@ -30,8 +30,10 @@ export function ComplianceInPractice() {
             Compliance built into every step.
           </h2>
           <p className="text-granite text-lg leading-[1.7] max-w-[760px] mb-10">
-            Compliance isn&apos;t something we bolt on at the end. It&apos;s
-            woven into the production process from the beginning.
+            Compliance work isn&apos;t something we bolt on at the end. It&apos;s
+            woven into the production process from the beginning &mdash; so the
+            review at the end of it is short, and so nothing about it is a
+            surprise to you or your lawyer.
           </p>
         </ScrollReveal>
 
@@ -50,6 +52,14 @@ export function ComplianceInPractice() {
             </ScrollReveal>
           ))}
         </div>
+
+        <ScrollReveal delay={360}>
+          <p className="text-slate text-sm leading-relaxed mt-10 max-w-[760px]">
+            None of these steps is a legal opinion, and none of them clears your video
+            for release. They exist to make the review you do with your own counsel
+            faster, cheaper, and better documented.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

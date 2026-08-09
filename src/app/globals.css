@@ -1013,11 +1013,6 @@ body { overflow-x: clip; }
   88% { opacity: 1; }
   100% { transform: translateY(150px); opacity: 0; }
 }
-@keyframes ccStampIn {
-  0% { opacity: 0; transform: rotate(-24deg) scale(1.7); }
-  60% { opacity: 1; transform: rotate(-5deg) scale(0.93); }
-  100% { opacity: 1; transform: rotate(-8deg) scale(1); }
-}
 @keyframes ccWatch {
   0% { transform: scale(0.7); opacity: 0.7; }
   100% { transform: scale(1.15); opacity: 0; }
@@ -1054,7 +1049,6 @@ body { overflow-x: clip; }
   .cc-radar { animation: ccRadar 4.2s linear infinite; }
   .cc-blip { animation: ccBlip 2.7s ease-in-out infinite; }
   .cc-scan-line { animation: ccScan 1.9s ease-in-out infinite; }
-  .cc-stamp { animation: ccStampIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
   .cc-watch { animation: ccWatch 2.8s ease-out infinite; }
   .cc-rise { animation: ccRise 0.45s ease-out both; }
   .cc-tick { animation: ccTick 0.4s ease-out both; }

@@ -12,7 +12,7 @@ import { ComplianceCTA } from "@/components/sections/compliance/ComplianceCTA";
 export const metadata: Metadata = {
   title: "Compliance & Regulations - CampaignAI",
   description:
-    "How CampaignAI tracks AI disclosure requirements across all 50 states, federal FEC guidance, and builds compliance into every campaign video.",
+    "How CampaignAI tracks AI disclosure requirements across all 50 states and federal FEC guidance, and builds disclosure into every campaign video. Tools and research, not legal advice.",
 };
 
 export default function CompliancePage() {
