@@ -7,7 +7,7 @@ const items = [
   "15-, 30-, and 60-second versions in every format",
   "Optimized for social, email, web, and digital ads",
   "State-specific AI disclosure labels",
-  "3 revisions in production + 1 in post",
+  "One editorial revision — two for organizations at the full rate",
   "72-hour post-production delivery once you submit",
   "Full ownership. No watermark. No licensing fees.",
 ];

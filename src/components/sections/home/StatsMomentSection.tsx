@@ -37,10 +37,10 @@ const stats: {
     color: "text-regal-navy",
   },
   {
-    value: 3,
+    value: 1,
     prefix: "",
-    suffix: "+1",
-    label: "Revisions in production, plus one in post",
+    suffix: "",
+    label: "Editorial revision included — two for organizations",
     color: "text-verdant",
   },
 ];

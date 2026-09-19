@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "What if I'm not satisfied with my video?",
     answer:
-      "We offer 3 revisions during the video development process and 1 back-and-forth with our video editors in post-production. If we can't meet your needs by then, we'll offer a refund and connect you to a video production agency that charges more for dedicated and ongoing support.",
+      "Every video includes an editorial revision with our editors once they have finished it — two for organizations at the full rate. If we can't meet your needs by then, we'll offer a refund and connect you to a video production agency that charges more for dedicated and ongoing support.",
   },
   {
     question: "Is disclosure labeling required?",

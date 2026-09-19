@@ -62,7 +62,7 @@ const steps = [
   {
     number: 7,
     title: "Review and submit",
-    body: "Upload anything else you want to see in the video, look over the whole thing, and submit.\nThis starts the hand-off to post-production — stitching, polish, compliance checks, and quality assurance — and the only step where you hand over the wheel.\n*Video packages start with 1–2 revisions, with additional revisions available for purchase.",
+    body: "Upload anything else you want to see in the video, look over the whole thing, and submit.\nThis starts the hand-off to post-production — stitching, polish, compliance checks, and quality assurance — and the only step where you hand over the wheel.\n*Every video includes one editorial revision, and two for organizations at the full rate. More are available as an add-on.",
   },
 ];
 
@@ -267,8 +267,9 @@ export function ProcessTimeline() {
                     Hand-finished by our editors
                   </h4>
                   <p className="text-granite text-sm leading-relaxed">
-                    Real people on our team take it from here &mdash; 3 revisions
-                    during development and 1 in post &mdash; and deliver your
+                    Real people on our team take it from here &mdash; with an
+                    editorial revision once they&apos;re done, two for
+                    organizations at the full rate &mdash; and deliver your
                     finished video within 72 hours of submission.
                   </p>
                 </div>

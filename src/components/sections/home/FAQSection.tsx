@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "What if I\u2019m not happy with the result?",
     answer:
-      "Every video comes with a free round of revisions and extras available for purchase. Even better, you set the direction from the start: our intake process makes sure you're confident in exactly where your video is headed before it ever reaches production.",
+      "Every video includes an editorial revision once our team finishes it — two for organizations at the full rate, with more available as an add-on. You also set the direction from the start: our intake process makes sure you're confident in exactly where your video is headed before it ever reaches production.",
   },
   {
     question: "Is my campaign data safe?",

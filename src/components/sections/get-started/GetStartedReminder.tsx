@@ -6,7 +6,7 @@ const includes = [
   "Human editorial review and polish",
   "State-specific disclosure labels",
   "Multiple formats for social, email, web, and digital ads",
-  "3 revisions during production + 1 in post-production",
+  "One editorial revision — two for organizations at the full rate",
   "72-hour delivery",
   "Full content ownership. No company watermark.",
 ];
