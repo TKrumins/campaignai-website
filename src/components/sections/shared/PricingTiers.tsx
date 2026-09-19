@@ -33,9 +33,14 @@ export function PricingTiers() {
                   $1,999
                 </span>
               </div>
-              <span className="inline-block rounded-full bg-regal-navy/5 text-regal-navy text-xs font-semibold px-3 py-1 my-4 w-fit">
-                One finished video
-              </span>
+              <div className="flex flex-wrap items-center gap-2 my-4">
+                <span className="inline-block rounded-full bg-regal-navy/5 text-regal-navy text-xs font-semibold px-3 py-1">
+                  One finished video
+                </span>
+                <span className="inline-block rounded-full bg-regal-navy/5 text-regal-navy text-xs font-semibold px-3 py-1">
+                  Two editorial revisions
+                </span>
+              </div>
               <p className="text-granite text-sm leading-relaxed mb-5 min-h-[72px]">
                 <span className="font-bold text-regal-navy">For the modern storyteller.</span>
                 <br />
@@ -88,6 +93,9 @@ export function PricingTiers() {
                 </span>
                 <span className="inline-block rounded-full bg-bridge-violet/10 text-regal-navy text-xs font-semibold px-3 py-1">
                   50% off the standard rate
+                </span>
+                <span className="inline-block rounded-full bg-regal-navy/5 text-regal-navy text-xs font-semibold px-3 py-1">
+                  One editorial revision
                 </span>
               </div>
               <p className="text-granite text-sm leading-relaxed mb-5 min-h-[72px]">

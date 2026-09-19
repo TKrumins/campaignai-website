@@ -37,10 +37,10 @@ const stats: {
     color: "text-regal-navy",
   },
   {
-    value: 1,
+    value: 100,
     prefix: "",
-    suffix: "",
-    label: "Editorial revision included — two for organizations",
+    suffix: "%",
+    label: "of creative decisions made by a human being",
     color: "text-verdant",
   },
 ];
