@@ -38,7 +38,7 @@ const GOALS: { id: string; label: string; line: string }[] = [
 ];
 
 const TIMELINES: { id: string; label: string; note: string }[] = [
-  { id: "this-week", label: "This week", note: "We can move fast — your video is delivered within 48 hours of when you submit." },
+  { id: "this-week", label: "This week", note: "We can move fast — your video is delivered within 72 hours of when you submit." },
   { id: "this-month", label: "This month", note: "Plenty of room to plan at your pace, then submit when you're confident." },
   { id: "exploring", label: "Just exploring", note: "No rush — the call is just to answer your questions and show you around." },
 ];
@@ -146,7 +146,7 @@ export function GetStartedSetup() {
               <li className="flex items-start gap-2.5">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-freedom-blue" strokeWidth={3} />
                 <span className="text-beacon-white/85">
-                  {timeObj ? timeObj.note : "Delivered within 48 hours of when you submit."}
+                  {timeObj ? timeObj.note : "Delivered within 72 hours of when you submit."}
                 </span>
               </li>
               <li className="flex items-start gap-2.5">

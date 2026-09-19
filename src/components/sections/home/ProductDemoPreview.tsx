@@ -197,7 +197,7 @@ export function ProductDemoPreview({ internal = false }: { internal?: boolean })
             Your campaign is bigger than one video. Tell the full story.
           </h2>
           <p className="text-granite text-lg leading-[1.7]">
-            Create the video you need when you need it. Fast intake. 48-hour
+            Create the video you need when you need it. Fast intake. 72-hour
             delivery. Centered around YOU.
           </p>
         </div>

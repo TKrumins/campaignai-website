@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "How fast do I get my video?",
     answer:
-      "Move through the planning process at your own pace. Once you feel ready, submit for post-production and receive a video for review within 48 hours.",
+      "Move through the planning process at your own pace. Once you feel ready, submit for post-production and receive a video for review within 72 hours.",
   },
   {
     question: "Do I need any video or design experience?",

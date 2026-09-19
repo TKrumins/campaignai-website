@@ -8,7 +8,7 @@ const items = [
   "Optimized for social, email, web, and digital ads",
   "State-specific AI disclosure labels",
   "3 revisions in production + 1 in post",
-  "48-hour post-production delivery once you submit",
+  "72-hour post-production delivery once you submit",
   "Full ownership. No watermark. No licensing fees.",
 ];
 

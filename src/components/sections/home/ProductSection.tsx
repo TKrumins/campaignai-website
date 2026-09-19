@@ -55,7 +55,7 @@ export function ProductSection() {
           <div className="text-center max-w-[760px] mx-auto mb-14">
             <SectionLabel text="The Product" />
             <h2 className="font-heading font-extrabold text-4xl md:text-5xl text-regal-navy tracking-[-1px] mt-3 mb-5">
-              Professional campaign video. Delivered in 48 hours.
+              Professional campaign video. Delivered in 72 hours.
             </h2>
             <p className="text-granite text-lg leading-[1.7]">
               Built for real campaigns, not retrofitted for them. Every video makes your voice sharper, your brand clearer, and your voters surer of you.

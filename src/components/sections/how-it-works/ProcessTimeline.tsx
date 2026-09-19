@@ -269,7 +269,7 @@ export function ProcessTimeline() {
                   <p className="text-granite text-sm leading-relaxed">
                     Real people on our team take it from here &mdash; 3 revisions
                     during development and 1 in post &mdash; and deliver your
-                    finished video within 48 hours of submission.
+                    finished video within 72 hours of submission.
                   </p>
                 </div>
 

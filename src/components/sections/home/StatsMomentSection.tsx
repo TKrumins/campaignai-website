@@ -15,7 +15,7 @@ const stats: {
   color: string;
 }[] = [
   {
-    value: 48,
+    value: 72,
     prefix: "",
     suffix: "hr",
     label: "Post-production delivery once you submit",

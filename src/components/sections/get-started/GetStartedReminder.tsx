@@ -7,7 +7,7 @@ const includes = [
   "State-specific disclosure labels",
   "Multiple formats for social, email, web, and digital ads",
   "3 revisions during production + 1 in post-production",
-  "48-hour delivery",
+  "72-hour delivery",
   "Full content ownership. No company watermark.",
 ];
 

@@ -17,7 +17,7 @@ const steps = [
   {
     icon: Send,
     title: "Submit to our human editors",
-    body: "When you're ready, submit. Your video comes back polished within 48 hours.",
+    body: "When you're ready, submit. Your video comes back polished within 72 hours.",
   },
 ];
 

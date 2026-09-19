@@ -48,7 +48,7 @@ export const ETHICS_LINE =
   "We do the hard ethical work, so you can focus on the work only you can do.";
 
 export const DELIVERY_LINE =
-  "Your video is delivered 48 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it at checkout.";
+  "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it at checkout.";
 
 export const EMAIL = "info@campaignai.us";
 

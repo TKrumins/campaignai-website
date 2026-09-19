@@ -10,7 +10,7 @@ export function GetStartedHero() {
           </h1>
           <p className="text-granite text-xl leading-relaxed">
             Professional campaign videos. Human-edited quality. Built-in
-            compliance. Delivered in 48 hours.
+            compliance. Delivered in 72 hours.
           </p>
         </ScrollReveal>
       </div>

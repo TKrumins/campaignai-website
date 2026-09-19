@@ -100,7 +100,7 @@ export function ThreePaths({
                 Keep the control of doing it yourself. Gain the polish of an
                 agency. Plan your video with AI-powered guidance, make every
                 creative decision, and submit when you&apos;re ready. Our human
-                editors return it polished within 48 hours, with state-specific AI
+                editors return it polished within 72 hours, with state-specific AI
                 disclosure labels applied and updated as rules change.
               </p>
               <p className="mt-4 pt-4 border-t border-white/15 font-heading font-bold text-base text-beacon-white">

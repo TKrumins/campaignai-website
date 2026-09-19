@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "CampaignAI",
     title: "CampaignAI - Professional Campaign Video for Political Campaigns",
     description:
-      "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with human-edited quality, built-in compliance through state-specific AI disclosure labels, and 48-hour post-production delivery once you submit.",
+      "Agencies charge $10,000+ per ad. Make one for a 10th the cost. Professional campaign video with human-edited quality, built-in compliance through state-specific AI disclosure labels, and 72-hour post-production delivery once you submit.",
     images: [
       {
         url: "/assets/images/hero-bg.png",

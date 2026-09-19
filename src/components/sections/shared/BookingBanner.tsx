@@ -40,9 +40,9 @@ const badges = [
       "Your campaign's information stays with your campaign. We never share it across campaigns.",
   },
   {
-    label: "48-Hour Post-Production Delivery",
+    label: "72-Hour Post-Production Delivery",
     tooltip:
-      "Once you submit your finished plan, our human editors return your polished video within 48 hours.",
+      "Once you submit your finished plan, our human editors return your polished video within 72 hours.",
   },
   {
     label: "Full Ownership, No Watermark",
@@ -53,7 +53,7 @@ const badges = [
 
 export function BookingBanner({
   headline = "Campaigns move quickly. Start your next video today.",
-  subline = "Choose your plan and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 48 hours, excluding weekends.",
+  subline = "Choose your plan and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 72 hours, excluding weekends.",
   showBadges = true,
   showEthicsLine = true,
   ctaLabel = CTA_PRIMARY,

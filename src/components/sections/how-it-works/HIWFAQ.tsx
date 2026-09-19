@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "How long does it take to get my video?",
     answer:
-      "Most videos come back within 48 hours of the moment you finish the guided process and submit. Complex projects with custom footage can take a little longer.",
+      "Most videos come back within 72 hours of the moment you finish the guided process and submit. Complex projects with custom footage can take a little longer.",
   },
   {
     question: "Do I need any production experience?",

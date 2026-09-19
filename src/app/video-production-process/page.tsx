@@ -12,7 +12,7 @@ import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 export const metadata: Metadata = {
   title: "Video Production Process - CampaignAI",
   description:
-    "From your story to a finished campaign ad, delivered within 48 hours of submission. Learn how CampaignAI helps you produce professional campaign video with built-in compliance: state-specific AI disclosure labels, updated as rules change.",
+    "From your story to a finished campaign ad, delivered within 72 hours of submission. Learn how CampaignAI helps you produce professional campaign video with built-in compliance: state-specific AI disclosure labels, updated as rules change.",
 };
 
 export default function HowItWorksPage() {

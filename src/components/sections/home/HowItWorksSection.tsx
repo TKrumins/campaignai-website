@@ -35,8 +35,8 @@ const phases = [
     visual: 7,
     title: "You download and deploy",
     description:
-      "Your finished ad arrives within 48 hours with disclosure labels built in. Ready for social, email, your website, and digital ads.",
-    chips: ["48-hour delivery", "Disclosure built in"],
+      "Your finished ad arrives within 72 hours with disclosure labels built in. Ready for social, email, your website, and digital ads.",
+    chips: ["72-hour delivery", "Disclosure built in"],
   },
 ];
 
