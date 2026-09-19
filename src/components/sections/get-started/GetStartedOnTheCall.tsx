@@ -31,7 +31,7 @@ export function GetStartedOnTheCall() {
               It&apos;s a scoping call, not a sales pitch.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-granite">
-              Thirty minutes to figure out your video together. Here&apos;s exactly
+              A full hour to figure out your video together. Here&apos;s exactly
               how it goes &mdash; so there are no surprises.
             </p>
           </div>

@@ -37,7 +37,7 @@ export function ComplianceCTA() {
             {CTA_PRIMARY}
           </Button>
           <p className="text-beacon-white/60 text-sm mt-2">
-            Book a 30-minute call to get started.
+            Book a 60-minute call to get started.
           </p>
         </ScrollReveal>
       </div>

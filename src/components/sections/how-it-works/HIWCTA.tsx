@@ -17,7 +17,7 @@ export function HIWCTA() {
             {CTA_PRIMARY}
           </Button>
           <p className="mt-2 text-slate text-sm">
-            Book a 30-minute call to get started.
+            Book a 60-minute call to get started.
           </p>
         </ScrollReveal>
       </div>

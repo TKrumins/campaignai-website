@@ -9,7 +9,7 @@ import { America250Popup } from "@/components/sections/home/hero-trials/America2
 export const metadata: Metadata = {
   title: "Get Started - CampaignAI",
   description:
-    "You're three answers from a plan. Tailor your first campaign video, see the rate that applies to you, and book a 30-minute scoping call — nothing charged upfront. AI-powered, human-finished, with state-specific disclosure labels built in.",
+    "You're three answers from a plan. Tailor your first campaign video, see the rate that applies to you, and book a 60-minute scoping call — nothing charged upfront. AI-powered, human-finished, with state-specific disclosure labels built in.",
 };
 
 export default function GetStartedPage() {

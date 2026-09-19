@@ -285,7 +285,7 @@ export function ShowcaseSection() {
               {CTA_PRIMARY}
             </Button>
             <p className="text-horizon-azure text-sm mt-2">
-              Book a 30-minute call to get started.
+              Book a 60-minute call to get started.
             </p>
           </div>
         </ScrollReveal>

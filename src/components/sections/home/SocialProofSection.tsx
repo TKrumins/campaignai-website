@@ -22,7 +22,7 @@ export function SocialProofSection() {
               {CTA_PRIMARY}
             </Button>
             <p className="text-granite text-sm mt-2">
-              Book a 30-minute call to get started.
+              Book a 60-minute call to get started.
             </p>
           </div>
         </ScrollReveal>

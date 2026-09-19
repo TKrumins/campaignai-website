@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "What does the starting rate include, and what is an add-on?",
     answer:
-      "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 30-minute onboarding call, before anything goes into production.",
+      "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 60-minute onboarding call, before anything goes into production.",
   },
   {
     question: "How fast do I get my video?",

@@ -160,7 +160,7 @@ export function GetStartedSetup() {
                 Book your onboarding call
               </Button>
               <p className="mt-2 text-center text-[11px] text-beacon-white/55 md:text-xs">
-                A 30-min call to scope it. Nothing charged upfront.
+                A 60-min call to scope it. Nothing charged upfront.
               </p>
             </div>
 

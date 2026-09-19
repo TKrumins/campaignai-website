@@ -6,7 +6,7 @@ import { PURCHASE_URL, CTA_PRIMARY, CTA_MICROCOPY } from "@/lib/constants";
 const steps = [
   {
     icon: Phone,
-    title: "Book a 30-minute call",
+    title: "Book a 60-minute call",
     body: "We set you up with access to the CampaignAI platform and walk you through how it works.",
   },
   {
