@@ -24,6 +24,7 @@ content corrections are 2.2.1 rather than 2.3.
 
 | Version | Date | What it was |
 |---|---|---|
+| [2.2.2](v2.2.2-open-items-closed.md) | 2026-09-19 | Closed the 2.2.1 open items; America 250 clock rolls past Election Day |
 | [2.2.1](v2.2.1-content-corrections.md) | 2026-09-19 | Content corrections: turnaround, call length, pricing, revisions |
 | 2.2 | 2026-08-09 | The compliance page — four clearance scenes, organizer-voice copy, no legal guarantees anywhere |
 | 2.1 | 2026-07-23 | Animated graphics for the four core video types on the home page |
