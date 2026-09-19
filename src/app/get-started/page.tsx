@@ -5,6 +5,7 @@ import { GetStartedIncludes } from "@/components/sections/get-started/GetStarted
 import { GetStartedPaths } from "@/components/sections/get-started/GetStartedPaths";
 import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 import { America250Popup } from "@/components/sections/home/hero-trials/America250Popup";
+import { PRICING_VALIDITY } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Get Started - CampaignAI",
@@ -22,6 +23,9 @@ export default function GetStartedPage() {
         <div className="mx-auto flex max-w-[1100px] justify-center">
           <America250Popup />
         </div>
+        <p className="mx-auto mt-4 max-w-[1100px] text-center text-xs text-slate">
+          {PRICING_VALIDITY}
+        </p>
       </section>
       <GetStartedOnTheCall />
       <GetStartedIncludes />

@@ -50,6 +50,11 @@ export const ETHICS_LINE =
 export const DELIVERY_LINE =
   "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it at checkout.";
 
+// Shown on the pricing and get-started pages only — the two surfaces where
+// someone is actually deciding what to pay.
+export const PRICING_VALIDITY =
+  "Pricing effective September 2026. Pricing holds through December 31, 2026.";
+
 export const EMAIL = "info@campaignai.us";
 
 export const A250_HEADLINE = "America 250 Special";

@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { PricingTiers } from "@/components/sections/shared/PricingTiers";
-import { ETHICS_LINE } from "@/lib/constants";
+import { ETHICS_LINE, PRICING_VALIDITY } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Pricing - CampaignAI",
@@ -73,6 +73,9 @@ export default function PricingPage() {
             <p className="text-center text-granite text-base mt-10">
               <span className="text-verdant mr-1.5">&#x2713;</span>
               {ETHICS_LINE}
+            </p>
+            <p className="text-center text-slate text-xs mt-4">
+              {PRICING_VALIDITY}
             </p>
             <p className="text-center text-slate text-xs mt-4">
               Agency production costs range significantly with the size and competitiveness of the race.
