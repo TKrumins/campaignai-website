@@ -20,7 +20,7 @@ import {
  * stored. No savings or scarcity language anywhere.
  */
 
-const CANDIDATE_PER_VIDEO = 599; // 2026 midterm cycle candidate rate
+const CANDIDATE_PER_VIDEO = 999; // 2026 midterm cycle candidate rate
 const STANDARD_PER_VIDEO = 1999;
 
 const RACES = [

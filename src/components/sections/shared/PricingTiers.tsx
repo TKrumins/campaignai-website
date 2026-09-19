@@ -6,7 +6,7 @@ import { PURCHASE_URL, CALENDLY_DEMO, CTA_PRIMARY, CTA_TEAM } from "@/lib/consta
 /**
  * Single source of truth for the pricing cards, shared by the homepage
  * PricingSection, /pricing, and /get-started so all three always match:
- * three side-by-side cards — the $1,999 flat rate, the $599 candidate card
+ * three side-by-side cards — the $1,999 flat rate, the $999 candidate card
  * (deliberately the visual center, carrying the mission emphasis), and
  * Nonprofit Organizations framed by the work rather than a floor price. Navy +
  * Multi-Partisan accents only (no red-vs-blue coding, no verdant); see
@@ -53,7 +53,7 @@ export function PricingTiers() {
           </div>
         </ScrollReveal>
 
-        {/* ── Candidate Campaigns · $599 (mission center + heart) ── */}
+        {/* ── Candidate Campaigns · $999 (mission center + heart) ── */}
         <ScrollReveal delay={160} className="order-1 md:order-none">
           <div className="relative rounded-2xl bg-white shadow-2xl h-full flex flex-col overflow-hidden ring-2 ring-liberty-crimson/25 md:-translate-y-3">
             <div className="h-2 multipartisan-gradient" />
@@ -78,16 +78,16 @@ export function PricingTiers() {
                     $1,999
                   </span>
                   <span className="font-heading font-extrabold text-[54px] text-regal-navy leading-none">
-                    $599
+                    $999
                   </span>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 my-4">
                 <span className="inline-block rounded-full bg-liberty-crimson/10 text-liberty-crimson text-xs font-bold px-3 py-1">
-                  You save $1,400
+                  You save $1,000
                 </span>
                 <span className="inline-block rounded-full bg-bridge-violet/10 text-regal-navy text-xs font-semibold px-3 py-1">
-                  70% off the standard rate
+                  50% off the standard rate
                 </span>
               </div>
               <p className="text-granite text-sm leading-relaxed mb-5 min-h-[72px]">

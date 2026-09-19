@@ -11,7 +11,7 @@ import { BookingBanner } from "@/components/sections/shared/BookingBanner";
 /**
  * Hero comparison page. Three candidate heroes stacked, each with the original
  * eyebrow + rotating headline + "nothing charged upfront" copy and the same
- * pricing transition (starting $1,999, swinging to the $599 candidate rate —
+ * pricing transition (starting $1,999, swinging to the $999 candidate rate —
  * nonprofit/mission pricing left to the section below); only the visual differs.
  * The real Our Work + Pricing sections follow. Excluded from nav/sitemap; noindex.
  */

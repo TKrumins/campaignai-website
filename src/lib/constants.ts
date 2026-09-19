@@ -54,7 +54,8 @@ export const EMAIL = "info@campaignai.us";
 
 export const A250_HEADLINE = "America 250 Special";
 export const A250_OFFER = "Buy two videos, get your first for just $250.";
-export const A250_SCARCITY = "First 250 customers only. Ends Nov 3, 2026.";
+export const A250_SCARCITY =
+  "Available through December 31, 2026. Not available on slate or party-affiliated purchases.";
 // sessionStorage dismissal key (session-scoped per 7-8 doc Section 0.1);
 // a new offer key resets visibility
 export const A250_KEY = "announce-america250";

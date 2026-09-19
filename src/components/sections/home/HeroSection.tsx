@@ -47,7 +47,7 @@ export function HeroSection() {
             America 250 Special: buy two videos, get your first for just $250!
           </p>
           <p className="text-beacon-white/80 text-sm mt-1">
-            Available for first 250 customers. Offer ends Nov 3, 2026.
+            Available through December 31, 2026. Not for slate or party-affiliated purchases.
           </p>
         </div>
 

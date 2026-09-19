@@ -34,7 +34,7 @@ export function America250Popup({
   secondRate = "the full $1,999",
 }: {
   className?: string;
-  /** What the second video is billed at — "$599" on the candidates page. */
+  /** What the second video is billed at — "$999" on the candidates page. */
   secondRate?: string;
 }) {
   return (
@@ -113,7 +113,7 @@ export function America250Popup({
         </Button>
 
         <p className="mt-2 text-[11px] text-beacon-white/60">
-          First 250 customers &middot; Ends Nov 3, 2026
+          Through Dec 31, 2026 &middot; Not for slate or party purchases
         </p>
       </div>
     </div>

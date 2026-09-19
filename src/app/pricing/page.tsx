@@ -8,14 +8,14 @@ import { ETHICS_LINE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Pricing - CampaignAI",
   description:
-    "Professional campaign video starting at $1,999. Candidate campaigns starting at $599. A flat starting rate for one finished video, with add-ons priced on your onboarding call.",
+    "Professional campaign video starting at $1,999. Candidate campaigns starting at $999. A flat starting rate for one finished video, with add-ons priced on your onboarding call.",
 };
 
 const faqs = [
   {
     question: "How much does a video cost?",
     answer:
-      "Professional video starts at $1,999. Candidate campaigns start at $599 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your onboarding call, so you always know the full cost before you commit.",
+      "Professional video starts at $1,999. Candidate campaigns start at $999 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your onboarding call, so you always know the full cost before you commit.",
   },
   {
     question: "What does the starting rate include, and what is an add-on?",

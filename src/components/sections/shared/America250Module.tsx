@@ -75,14 +75,15 @@ export function America250Module({ className = "" }: { className?: string }) {
               {A250_OFFER}
             </p>
             <p className="text-slate text-sm mb-3">
-              Available for the first 250 customers.
+              Open to everyone through December 31, 2026.
             </p>
             <p className="text-granite text-sm mb-6 max-w-[460px] mx-auto leading-relaxed">
               Your second video is billed at your standard rate &mdash;{" "}
-              <span className="font-semibold text-regal-navy">$599</span> for
+              <span className="font-semibold text-regal-navy">$999</span> for
               candidates,{" "}
               <span className="font-semibold text-regal-navy">$1,999</span> for
-              organizations, mission pricing for nonprofits.
+              organizations, mission pricing for nonprofits. Not available on
+              slate or party-affiliated purchases.
             </p>
             <div className="flex justify-center gap-2 sm:gap-3 mb-2">
               <CountdownBox value={countdown.days} label="Days" ready={countdown.ready} />

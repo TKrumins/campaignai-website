@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "How much does a video cost?",
     answer:
-      "Professional video starts at $1,999, and candidate campaigns start at $599 this cycle, from school board to U.S. Senate. Nonprofits and advocacy groups get mission pricing, case by case. Every rate is a flat starting price with add-ons quoted upfront, so you know the full cost before you book.",
+      "Professional video starts at $1,999, and candidate campaigns start at $999 this cycle, from school board to U.S. Senate. Nonprofits and advocacy groups get mission pricing, case by case. Every rate is a flat starting price with add-ons quoted upfront, so you know the full cost before you book.",
   },
   {
     question: "How long does it take to get my video?",

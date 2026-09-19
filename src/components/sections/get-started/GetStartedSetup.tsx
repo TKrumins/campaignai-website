@@ -23,7 +23,7 @@ interface Audience {
 // pricing (never an advertised discount); party/PAC/advocacy and consultants pay
 // the standard rate.
 const AUDIENCES: Audience[] = [
-  { id: "candidate", label: "Candidate campaign", campaign: "candidate-campaign", price: "$599", priceNote: "per video, this cycle" },
+  { id: "candidate", label: "Candidate campaign", campaign: "candidate-campaign", price: "$999", priceNote: "per video, this cycle" },
   { id: "nonprofit", label: "Nonprofit organization", campaign: "nonprofit-mission", price: "Mission pricing", priceNote: "case by case — we'll find the fit" },
   { id: "party", label: "Party, PAC or advocacy", campaign: "professional-video", price: "$1,999", priceNote: "per finished video" },
   { id: "consultant", label: "Consultant or agency", campaign: "professional-video", price: "$1,999", priceNote: "per finished video" },

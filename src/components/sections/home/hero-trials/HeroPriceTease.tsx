@@ -5,7 +5,7 @@ import { CALENDLY_A250 } from "@/lib/constants";
 /**
  * In-hero pricing. Leads on ONE anchor — $1,999 flat / video (add-ons and extra
  * revisions billed on top) — then, beneath a divider, two compact "ways to pay
- * less" lines: the 2026 candidate mission rate ($599) and the America 250 launch
+ * less" lines: the 2026 candidate mission rate ($999) and the America 250 launch
  * offer (buy two, first video $250, second at your rate). America 250 is a
  * modifier on whichever base rate applies, so it stays a single line here; the
  * mechanics live on the pages each line links to. Kept intentionally decoration-
@@ -42,7 +42,7 @@ export function HeroPriceTease() {
             <Flag className="h-4 w-4 shrink-0 text-horizon-azure" />
             <span className="text-sm text-beacon-white/85">
               2026 candidates:{" "}
-              <span className="font-bold text-beacon-white">70% off to $599</span>/video
+              <span className="font-bold text-beacon-white">50% off to $999</span>/video
             </span>
             <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-beacon-white/50 transition-colors group-hover:text-beacon-white/80" />
           </Link>
@@ -60,7 +60,8 @@ export function HeroPriceTease() {
             <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-beacon-white/50 transition-colors group-hover:text-beacon-white/80" />
           </a>
           <p className="mt-2 px-2 text-[11px] leading-snug text-beacon-white/60">
-            America&nbsp;250 is open to the first 250 customers, any plan.
+            America&nbsp;250 runs through Dec 31, 2026. Not for slate or
+            party-affiliated purchases.
           </p>
         </div>
       </div>

@@ -22,7 +22,7 @@ const stats: {
     color: "text-liberty-crimson",
   },
   {
-    value: 599,
+    value: 999,
     prefix: "$",
     suffix: "",
     kicker: "Starting at",
