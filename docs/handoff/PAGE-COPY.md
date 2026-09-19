@@ -8,7 +8,24 @@
 > `src/lib/constants.ts`. When editing copy, prefer changing the constant (one
 > place, many surfaces). Interactive/dynamic strings (growth widget, glossary
 > data, experience permutations) are summarized where fully enumerating them
-> isn't useful. _Last updated: 2026-07-13._
+> isn't useful. _Last updated: 2026-09-19._
+>
+> **Read this before trusting a quote below.**
+>
+> - **Sections 1–9, 11, 12 are live** and were brought current with the
+>   September 2026 content corrections (72-hour turnaround, $999 candidate rate,
+>   60-minute onboarding call, one editorial revision / two for organizations,
+>   the reworked America 250 terms). See
+>   [`../versions/v2.2.1-content-corrections.md`](../versions/v2.2.1-content-corrections.md).
+> - **Section 10 (`/purchase`) is retired** and **section 13 (`/for/*`) is
+>   frozen.** Those routes now redirect to `/get-started`. Their copy is left
+>   exactly as it was when they were pulled, as a record of what was built — so
+>   the prices and promises in those two sections are deliberately out of date.
+>   Do not quote them as current.
+> - **Section 14 (experience pages) is dark** — built, but unlinked and hidden
+>   from search.
+> - This deck predates several home-page sections added after July 2026 and does
+>   not cover all of them. It is a strong reference, not a complete inventory.
 
 ## Shared copy constants (`src/lib/constants.ts`)
 
@@ -19,13 +36,14 @@
 - `ETHICS_LINE` = "We do the hard ethical work, so you can focus on the work only you can do."
 - `A250_HEADLINE` = "America 250 Special"
 - `A250_OFFER` = "Buy two videos, get your first for just $250."
-- `A250_SCARCITY` = "First 250 customers only. Ends Nov 3, 2026."
-- `DELIVERY_LINE` = "Your video is delivered 48 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it at checkout."
+- `A250_SCARCITY` = "Available through December 31, 2026. Not available on slate or party-affiliated purchases."
+- `DELIVERY_LINE` = "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it on your onboarding call."
+- `PRICING_VALIDITY` = "Pricing effective September 2026. Pricing holds through December 31, 2026." _(pricing + get-started only)_
 - `WAITLIST_SHORT` = "Be first in line when it launches."
 - `EXPERIENCE_EYEBROW` = "A CampaignAI Experience"
 - `PRIVACY_MICROCOPY` = "We'll never share your information or use it to train major models."
 - `EMAIL` = "info@campaignai.us"
-- Links: `PURCHASE_URL` = `/purchase`; `CALENDLY_DEMO` = `https://calendly.com/campaignai/demo`; `CALENDLY_PURCHASE` = `https://calendly.com/campaignai/campaignai-purchase-call`; `CALENDLY_PROFESSIONAL`/`CALENDLY_CANDIDATE`/`CALENDLY_A250` = the purchase-call link with `utm_campaign=professional-video`/`candidate-campaign`/`america-250-special`; `SOCIAL_SUBSTACK` = `https://campaignai.substack.com`.
+- Links: `PURCHASE_URL` = `/get-started`; `CALENDLY_DEMO` = `https://calendly.com/campaignai/demo`; `CALENDLY_PURCHASE` = `https://calendly.com/campaignai/campaignai-purchase-call`; `CALENDLY_PROFESSIONAL`/`CALENDLY_CANDIDATE`/`CALENDLY_A250` = the purchase-call link with `utm_campaign=professional-video`/`candidate-campaign`/`america-250-special`; `SOCIAL_SUBSTACK` = `https://campaignai.substack.com`.
 
 ## Contents
 
@@ -58,7 +76,7 @@ _(The home page currently renders `HeroComboB`. The `/preview/home-hero` trials 
 - **Heading:** "Campaign video for" + rotating word: "candidates." / "advocacy groups." / "state & local parties." / "consultants." / "nonprofits." / "grassroots movements."
 - **CTAs:** "Get Started →" → `/purchase`; "See pricing" → `#pricing`
 - **Microcopy:** "Book your onboarding call today." / "We scope your video together, then invoice you." / **"Nothing is charged upfront."**
-- **Hero offer card (America250Popup):** "Limited" / "America 250 Special" / "1776 – 2026" / "Buy two videos, get your first for just $250." / "Your second is billed at your standard rate." / CTA "Claim the Special →" / "First 250 customers · Ends Nov 3, 2026"
+- **Hero offer card (America250Popup):** "Limited" / "America 250 Special" / "1776 – 2026" / "Buy two videos, get your first for just $250." / "Your second is billed at your standard rate." / CTA "Claim the Special →" / "Through Dec 31, 2026 · Not for slate or party purchases"
 
 ### Trust Bar — `TrustBarSection.tsx`
 - **Eyebrow:** "The standards behind every video"
@@ -71,7 +89,7 @@ _(The home page currently renders `HeroComboB`. The `/preview/home-hero` trials 
 - **Ethics line:** `ETHICS_LINE`
 
 ### Product Demo Preview — `ProductDemoPreview.tsx`
-- **Eyebrow:** "The Product" · **Heading:** "One product. Every video your campaign runs." · **Subhead:** "Watch each type in action, or jump to the one you need. Same story-first process, same 48-hour delivery, whatever the moment calls for."
+- **Eyebrow:** "The Product" · **Heading:** "One product. Every video your campaign runs." · **Subhead:** "Watch each type in action, or jump to the one you need. Same story-first process, same 72-hour delivery, whatever the moment calls for."
 - **Video types (title · tagline · blurb · deliverables):**
   1. **Announcement** — "Launch day, ready to post." — "Your first impression with voters. Who you are, what you stand for, and why you are running now." — "A launch-ready 60-second film" / "15- and 30-second cutdowns for every platform" / "Vertical, square, and widescreen formats" / "State-specific AI disclosure label"
   2. **Fundraising Appeal** — "An ask that actually converts." — "Authentic asks built around urgency, personal connection, and a clear call to give before the deadline." — "A deadline-driven appeal built to convert" / "Donation-page and email-ready cuts" / "A/B variants for subject and hook testing" / "State-specific AI disclosure label" — spotlight: "Tie each appeal to the moment that drives giving" (marks: Launch / Q2 deadline / Debate night / GOTV week)
@@ -88,7 +106,7 @@ _(The home page currently renders `HeroComboB`. The `/preview/home-hero` trials 
 - **Eyebrow:** "The Problem" · **Heading:** "Great campaign video shouldn't cost a fortune."
 - **Body:** "For decades, a single professional ad could cost $10,000 or more. Campaigns should tell stories over time, not spend heavily on a one-time video."
 - **Contrast cards:** "One agency ad" / "$10,000+" → "CampaignAI" / "A fraction of that" / "Priced for who you serve"
-- **Range line:** "Candidates start at $599 this cycle, organizations at $1,999, and nonprofits get mission-based pricing. See what applies to you →" (→ `#pricing`)
+- **Range line:** "Candidates start at $999 this cycle, organizations at $1,999, and nonprofits get mission-based pricing. See what applies to you →" (→ `#pricing`)
 - **CTA:** "Get Started →" → `/purchase`; secondary "Learn how you can get started →" → `/get-started`
 - **Graphic:** "Democracy shouldn't have a paywall." / reveal "Within reach."
 - **Stat band:** "$10.8B" — "Expected spend on the 2026 midterm cycle" / "95%" — "Of local candidates priced out of professional video" / "85%" — "Believe campaign costs keep good people from running"
@@ -105,7 +123,7 @@ _(The home page currently renders `HeroComboB`. The `/preview/home-hero` trials 
 ### Showcase / Our Work — `ShowcaseSection.tsx`
 - **Eyebrow:** "Our Work" · **Heading:** "Yes, we use this tool ourselves. Take a look." · **Subhead:** "Our founding team uses CampaignAI for our own missions. Here are several stories we've told about issues that matter to us."
 - **Cards:** "Democratic" / "Policy Explainer" / "Gubernatorial" — "The Resiliency Act" — "Produced by co-founder Jermaine Johnson"; "Republican" / "Policy Explainer" / "State House" — "The Stop Harm from Addictive Social Media (SHASM) Act" — "Produced by co-founder Brandon Guffey"
-- **CTA:** "Get Started →" → `/purchase`; "Book a 30-minute call to get started."
+- **CTA:** "Get Started →" → `/purchase`; "Book a 60-minute call to get started."
 
 ### The Team Behind It (HumanityTeam) — `HumanitySection.tsx`
 - **Eyebrow:** "The Team Behind It" · **Heading:** "We're not a faceless platform. We're on the ballot too." · **Body:** "CampaignAI was built by a small founding team, and two of us are running for office right now. We built the tool we wished we had, and we use it for our own campaigns." · CTA "Meet the team" → `/about`
@@ -116,7 +134,7 @@ _(The home page currently renders `HeroComboB`. The `/preview/home-hero` trials 
 
 ### How It Works — `HowItWorksSection.tsx`
 - **Eyebrow:** "How It Works" · **Heading:** "From your story to a finished ad." · **Subhead:** "You stay in the director's chair the whole way. Here is the shape of it, start to finish."
-- **Phases:** "01 You direct every decision" — "Your story, your script, your storyboard, your narration and music. You make every creative call. Nothing goes in that you didn't choose." (chips: Story, Script, Storyboard, Voice & music) / "02 A human editor polishes every frame" — "Your video goes to our production team. Real editors review, refine, and finalize the whole thing before it ever reaches you." (chip: Human editorial review) / "03 You download and deploy" — "Your finished ad arrives within 48 hours with disclosure labels built in. Ready for social, email, your website, and digital ads." (chips: 48-hour delivery, Disclosure built in)
+- **Phases:** "01 You direct every decision" — "Your story, your script, your storyboard, your narration and music. You make every creative call. Nothing goes in that you didn't choose." (chips: Story, Script, Storyboard, Voice & music) / "02 A human editor polishes every frame" — "Your video goes to our production team. Real editors review, refine, and finalize the whole thing before it ever reaches you." (chip: Human editorial review) / "03 You download and deploy" — "Your finished ad arrives within 72 hours with disclosure labels built in. Ready for social, email, your website, and digital ads." (chips: 72-hour delivery, Disclosure built in)
 - **CTA:** "See the full process →" → `/video-production-process`
 
 ### Who We Serve — `AudienceSection.tsx`
@@ -146,7 +164,7 @@ _(The home page currently renders `HeroComboB`. The `/preview/home-hero` trials 
 
 ### FAQ — `FAQSection.tsx`
 - **Eyebrow:** "FAQ" · **Heading:** "Common questions"
-- "How fast do I get my video?" — "Most videos are delivered within 48 hours of completing the guided production process. Complex projects with custom footage may take slightly longer."
+- "How fast do I get my video?" — "Most videos are delivered within 72 hours of completing the guided production process. Complex projects with custom footage may take slightly longer."
 - "Do I need any video or design experience?" — "None at all. Our guided process walks you through every step, from scripting to visuals to narration. You make the creative decisions; we handle the production."
 - "What if I'm not happy with the result?" — "Every video includes three revisions during production and one more with our editors in post. We work with you until the final product represents your campaign."
 - "Is my campaign data safe?" — "Yes. We don't sell your data, and no campaign data is sent to language models for training. Collection is opt-in only. Your strategy stays yours."
@@ -174,7 +192,7 @@ Route `/video-production-process` · page title "Bring your story to life." Rend
   6. **Direct voice & music** — "Set the direction for your voiceover with starting examples and fine-tuning, or upload your own. Do the same for the score: guide an AI-made track, upload your own recording, or none at all."
   7. **Review and submit** — "Upload anything else you want to see in the video, look over the whole thing, and submit. This starts the hand-off to post-production — stitching, polish, compliance checks, and quality assurance — and the only step where you hand over the wheel." (footnote: "Video packages start with 1–2 revisions, with additional revisions available for purchase.")
 - **Fork:** Heading "Hit submit, and your video goes into production." · Body "Right now, real people on our team take it from there and finish every video by hand. Soon, you'll be able to choose your path — and either way, every creative call stays yours." · Submit label "Submit" / "The one moment you press go"
-  - Path A — *Available now* — "Hand-finished by our editors" — "Real people on our team take it from here — 3 revisions during development and 1 in post — and deliver your finished video within 48 hours of submission."
+  - Path A — *Available now* — "Hand-finished by our editors" — "Real people on our team take it from here — with an editorial revision once they're done, two for organizations at the full rate — and deliver your finished video within 72 hours of submission."
   - Path B — *Coming soon* — "AI post-production" — "Go from approved plan to finished cut faster and more affordably, with AI handling post — you still make every call. Be first in line when it launches." (link "Join the waitlist →" → `/get-started#waitlist`)
 
 ### The Campaign Arc — `home/CampaignArc.tsx`
@@ -196,10 +214,10 @@ Route `/video-production-process` · page title "Bring your story to life." Rend
 
 ### FAQ — `how-it-works/HIWFAQ.tsx`
 - Eyebrow "Questions We Hear" · Heading "This is new and powerful technology. Every campaign has questions!"
-- "How much does a video cost?" — "Professional video starts at $1,999, and candidate campaigns start at $599 this cycle, from school board to U.S. Senate. Nonprofits and advocacy groups get mission pricing, case by case. Every rate is a flat starting price with add-ons quoted upfront, so you know the full cost before you book."
-- "How long does it take to get my video?" — "Most videos come back within 48 hours of the moment you finish the guided process and submit. Complex projects with custom footage can take a little longer."
+- "How much does a video cost?" — "Professional video starts at $1,999, and candidate campaigns start at $999 this cycle, from school board to U.S. Senate. Nonprofits and advocacy groups get mission pricing, case by case. Every rate is a flat starting price with add-ons quoted upfront, so you know the full cost before you book."
+- "How long does it take to get my video?" — "Most videos come back within 72 hours of the moment you finish the guided process and submit. Complex projects with custom footage can take a little longer."
 - "Do I need any production experience?" — "None. What matters is your story. We interview you, build the script and storyboard, and guide every step. Have footage to include, or want to film part yourself? We'll tell you exactly what to shoot and when to send it."
-- "What if I'm not satisfied with my video?" — "We offer 3 revisions during the video development process and 1 back-and-forth with our video editors in post-production. If we can't meet your needs by then, we'll offer a refund and connect you to a video production agency that charges more for dedicated and ongoing support."
+- "What if I'm not satisfied with my video?" — "Every video includes an editorial revision with our editors once they have finished it — two for organizations at the full rate. If we can't meet your needs by then, we'll offer a refund and connect you to a video production agency that charges more for dedicated and ongoing support."
 - "Is disclosure labeling required?" — "Requirements vary by state, but we include disclosure labels on every video regardless. Transparency builds voter trust. All campaigns should confirm compliance with their own state and local regulations."
 - "Can I use the video on any platform?" — "Our videos are optimized for social media, email campaigns, your website, and digital ad platforms. You can select the social media platform you prefer, and we will deliver that sizing."
 - "Do I own the video?" — "Yes. Every video you produce with CampaignAI belongs to you. Full rights, no licensing restrictions. CampaignAI does not add a company watermark. Our process ensures the videos you produce are legally yours, because you make every creative decision along the way."
@@ -302,7 +320,7 @@ Route `/compliance`. Renders: ComplianceHero, ComplianceClearance, RegulatoryLan
 - **[DISCLAIMER] (full):** "CampaignAI provides compliance tools and guidance, not legal advice. We work diligently to stay ahead of evolving rules across all 50 states and at the federal level, but there may be gaps or delays between when a law is enacted and when our systems reflect it." / "We strongly encourage all campaigns to confirm compliance with applicable federal, state, and local regulations. When in doubt, consult with your campaign's legal counsel." / "If you become aware of a regulatory change that we haven't yet reflected, we want to hear about it. Contact us at info@campaignai.us."
 
 ### CTA — `compliance/ComplianceCTA.tsx`
-- Heading "You focus on your race. We'll handle the rules." · Body "Every video includes state-specific disclosure labels, human editorial review, and the most current compliance guidance we can provide." · CTA "Get Started →" → `/purchase` · microcopy "Book a 30-minute call to get started."
+- Heading "You focus on your race. We'll handle the rules." · Body "Every video includes state-specific disclosure labels, human editorial review, and the most current compliance guidance we can provide." · CTA "Get Started →" → `/purchase` · microcopy "Book a 60-minute call to get started."
 
 ---
 
@@ -351,21 +369,21 @@ Route `/pricing`.
 - **Hero:** Label "Pricing" · Heading "Professional campaign video. No agency required." · Body "A flat starting rate for one finished video, with any add-ons priced on your onboarding call, so you always know the full cost before you commit."
 - **Cards:** shared `PricingTiers` (below). Ethics line `ETHICS_LINE`; footnote "Agency production costs range significantly with the size and competitiveness of the race."
 - **FAQ:** Label "FAQ" · Heading "Common questions"
-  - "How much does a video cost?" — "Professional video starts at $1,999. Candidate campaigns start at $599 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your onboarding call, so you always know the full cost before you commit."
-  - "What does the starting rate include, and what is an add-on?" — "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 30-minute onboarding call, before anything goes into production."
-  - "How fast do I get my video?" — "Most videos are delivered within 48 hours of completing the guided production process and submitting to our editors. Complex projects with custom footage may take slightly longer."
+  - "How much does a video cost?" — "Professional video starts at $1,999. Candidate campaigns start at $999 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your onboarding call, so you always know the full cost before you commit."
+  - "What does the starting rate include, and what is an add-on?" — "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 60-minute onboarding call, before anything goes into production."
+  - "How fast do I get my video?" — "Most videos are delivered within 72 hours of completing the guided production process and submitting to our editors. Complex projects with custom footage may take slightly longer."
   - "Do I need any video or design experience?" — "None at all. Our guided process walks you through every step, from scripting to visuals to narration. You make the creative decisions; we handle the production."
-  - "What if I'm not happy with the result?" — "Every video includes 3 revisions during production and 1 back-and-forth with our editors in post-production. We work with you until the final product represents your campaign."
+  - "What if I'm not happy with the result?" — "Every video includes an editorial revision once our team finishes it — two for organizations at the full rate, with more available as an add-on. You also set the direction from the start: our intake process makes sure you're confident in exactly where your video is headed before it ever reaches production."
   - "Is my campaign data safe?" — "Yes. We don't sell your data, and no campaign data is sent to language models for training. Collection is opt-in only. Your strategy stays yours."
 
 ### Shared PricingTiers
 `src/components/sections/shared/PricingTiers.tsx` (used by /pricing, home PricingSection, /get-started).
 
-- **Professional Video** — "A flat rate, starting at" / **$1,999** / "One finished video" / "Full production for the teams producing at scale — consultancies, party committees, PACs, and organizations. One flat rate for a finished video, with any add-ons priced on your onboarding call." / CTA "Get Started →" → `/purchase`
-- **Candidate Campaigns** (featured) — banner "♥ Our mission rate" / tag "2026 cycle" / "Starting at" / ~~$1,999~~ **$599** / chips "You save $1,400" · "70% off the standard rate" / "School board to U.S. Senate. We cut the rate for the 2026 cycle because every campaign deserves a fair shot at professional video — not just the ones with an agency budget. This is the work we care about most." / CTA "Get Started →" → `/purchase`
+- **Professional Video** — "A flat rate, starting at" / **$1,999** / chips "One finished video" · "Two editorial revisions" / "Full production for the teams producing at scale — consultancies, party committees, PACs, and organizations. One flat rate for a finished video, with any add-ons priced on your onboarding call." / CTA "Get Started →" → `/purchase`
+- **Candidate Campaigns** (featured) — banner "♥ Our mission rate" / tag "2026 cycle" / "Starting at" / ~~$1,999~~ **$999** / chips "You save $1,000" · "50% off the standard rate" · "One editorial revision" / "School board to U.S. Senate. We cut the rate for the 2026 cycle because every campaign deserves a fair shot at professional video — not just the ones with an agency budget. This is the work we care about most." / CTA "Get Started →" → `/purchase`
 - **Nonprofit Organizations** — "Priced with your mission in mind" / "Let's talk" / "◆ Mission pricing" / "A community you serve, an issue you can't stay quiet on, a movement that needs to be seen. We price mission work case by case, so your budget never decides whether your story gets told." / CTA "Talk to our team →" → `CALENDLY_DEMO`
 - **Shared bullets** (Professional & Candidate): "The same production and human editorial review" / "15-, 30-, and 60-second versions in every format" / "State-specific AI disclosure labels" / "Full ownership. No watermark." — **Nonprofit bullets:** "Priced case by case, never by list rate" / "The same production and human review" / "15-, 30-, and 60-second versions in every format" / "Full ownership. No watermark."
-- **Clarity panel:** "What the starting rate covers" — "One finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark, no per-use fees." / "Add-ons, priced on your call" — "Need custom footage, extra concepts, more videos, additional languages, or rush delivery? We walk through the options and price them on your 30-minute onboarding call, so you approve the full cost before anything goes into production."
+- **Clarity panel:** "What the starting rate covers" — "One finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark, no per-use fees." / "Add-ons, priced on your call" — "Need custom footage, extra concepts, more videos, additional languages, or rush delivery? We walk through the options and price them on your 60-minute onboarding call, so you approve the full cost before anything goes into production."
 
 ---
 
@@ -385,7 +403,7 @@ Route `/purchase` · title "Get started."
 
 Route `/get-started`. Renders: GetStartedSetup, GetStartedOnTheCall, GetStartedIncludes, GetStartedPaths, BookingBanner.
 - **Setup (interactive):** Heading "Let's make your first video." · Subtitle "Three quick answers and you've got a plan. Nothing here is binding." · legends "Who's this for?" / "What should your first video do?" / "When do you need it?"
-  - Audiences + rate: Candidate campaign → $599 "per video, this cycle" · Nonprofit organization → Mission pricing "case by case — we'll find the fit" · Party, PAC or advocacy → $1,999 "per finished video" · Consultant or agency → $1,999 "per finished video"
+  - Audiences + rate: Candidate campaign → $999 "per video, this cycle" · Nonprofit organization → Mission pricing "case by case — we'll find the fit" · Party, PAC or advocacy → $1,999 "per finished video" · Consultant or agency → $1,999 "per finished video"
   - Goals: Introduce you / Explain an issue / Raise money / Get out the vote / Respond to the moment (each maps to a summary line)
   - Timelines: This week / This month / Just exploring (each maps to a note)
   - Footnote "Nothing you pick here leaves your browser until you book a call." · CTA "Book your onboarding call →" (dynamic Calendly) · microcopy "A 30-min call to scope it. Nothing charged upfront." · waitlist "Prefer to do it yourself later? Join the waitlist" → `#waitlist` · "Want the full breakdown first? See all pricing →" → `/pricing`
@@ -395,14 +413,14 @@ Route `/get-started`. Renders: GetStartedSetup, GetStartedOnTheCall, GetStartedI
 
 ### Shared: GetStartedIncludes / BookingBanner / WaitlistForm
 
-**GetStartedIncludes** (`get-started/GetStartedIncludes.tsx`; also on all `/for/*`): "Every video includes:" — "Polished, finished video ads, not templates" / "Human editorial review on every video" / "15-, 30-, and 60-second versions in every format" / "Optimized for social, email, web, and digital ads" / "State-specific AI disclosure labels" / "3 revisions in production + 1 in post" / "48-hour post-production delivery once you submit" / "Full ownership. No watermark. No licensing fees."
+**GetStartedIncludes** (`get-started/GetStartedIncludes.tsx`; also on all `/for/*`): "Every video includes:" — "Polished, finished video ads, not templates" / "Human editorial review on every video" / "15-, 30-, and 60-second versions in every format" / "Optimized for social, email, web, and digital ads" / "State-specific AI disclosure labels" / "One editorial revision — two for organizations at the full rate" / "72-hour post-production delivery once you submit" / "Full ownership. No watermark. No licensing fees."
 
 **BookingBanner** (`shared/BookingBanner.tsx`):
 - Default headline "Campaigns move quickly. Start your next video today."
-- Default subline "Choose your plan and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 48 hours, excluding weekends."
-- Scarcity line (when shown) "America 250 Special: first 250 customers only. Ends Nov 3, 2026."
+- Default subline "Choose your plan and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 72 hours, excluding weekends."
+- Scarcity line (when shown) "America 250 Special: available through December 31, 2026. Not available on slate or party-affiliated purchases."
 - Primary CTA "Get Started →" → `/purchase`; secondary "Book a demo →" → `CALENDLY_DEMO`; microcopy `CTA_MICROCOPY`
-- Badges: "FEC & State Compliance Aware" / "Privacy-First" / "48-Hour Post-Production Delivery" — "Once you submit your finished plan, our human editors return your polished video within 48 hours." / "Full Ownership, No Watermark" — "Every video is yours. Full rights, no licensing fees, no company watermark." · ethics line `ETHICS_LINE`
+- Badges: "FEC & State Compliance Aware" / "Privacy-First" / "72-Hour Post-Production Delivery" — "Once you submit your finished plan, our human editors return your polished video within 72 hours." / "Full Ownership, No Watermark" — "Every video is yours. Full rights, no licensing fees, no company watermark." · ethics line `ETHICS_LINE`
 
 **WaitlistForm** (`forms/WaitlistForm.tsx`): fields Name/Email; submit "Join the waitlist →" (loading "Submitting..."); footnote `PRIVACY_MICROCOPY`; error "Something went wrong. Please try again."; success "You're on the list." / "We'll let you know the moment you can create videos end to end on your own — plus the occasional product update along the way."
 
@@ -497,7 +515,7 @@ Shared `ExperienceHero` eyebrow: "A CampaignAI Experience."
 
 ## /story-arc-builder — "The Story Arc Builder"
 - H1 "One video introduces you. A story arc elects you." · Subtitle "Tell us your race and your goals. We'll sketch the arc: which videos, in what order, and how each one sets up the next."
-- Interactive: pick race + goals → 4-chapter arc (Announcement → Issue explainers → Testimonial → GOTV) + optional add-ons (Rapid response / Closing argument); pricing line "$599/chapter candidate, $1,999 standard." Purchase endcap "Start with chapter one." (CTA "Get Started →"; waitlist secondary). No newsletter endcap. Note: "Nothing you enter here leaves your browser."
+- Interactive: pick race + goals → 4-chapter arc (Announcement → Issue explainers → Testimonial → GOTV) + optional add-ons (Rapid response / Closing argument); pricing line "$999/chapter candidate, $1,999 standard." Purchase endcap "Start with chapter one." (CTA "Get Started →"; waitlist secondary). No newsletter endcap. Note: "Nothing you enter here leaves your browser."
 
 ## /disclosure-labels — "The Disclosure Label Generator"
 - H1 "Make an AI disclosure label for your content." · Subtitle "Answer a few questions about how your video or image was made. Get a plain-language label that tells voters what was created with AI and what was captured in real life."
