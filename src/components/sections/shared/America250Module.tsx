@@ -69,7 +69,7 @@ export function America250Module({ className = "" }: { className?: string }) {
         <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy mb-2">
           {countdown.isElectionDay ? "It's Election Day." : A250_HEADLINE}
         </h3>
-        {!countdown.isElectionDay && (
+        {countdown.offerLive && (
           <>
             <p className="font-heading font-bold text-lg text-liberty-crimson mb-1">
               {A250_OFFER}
@@ -92,7 +92,9 @@ export function America250Module({ className = "" }: { className?: string }) {
               <CountdownBox value={countdown.seconds} label="Seconds" ready={countdown.ready} />
             </div>
             <p className="text-slate text-xs mb-6">
-              Until Election Day &middot; November 3, 2026
+              {countdown.phase === "election"
+                ? "Until Election Day · November 3, 2026"
+                : "Left on the Special · ends December 31, 2026"}
             </p>
           </>
         )}

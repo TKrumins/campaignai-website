@@ -48,7 +48,7 @@ export const ETHICS_LINE =
   "We do the hard ethical work, so you can focus on the work only you can do.";
 
 export const DELIVERY_LINE =
-  "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it at checkout.";
+  "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it on your onboarding call.";
 
 // Shown on the pricing and get-started pages only — the two surfaces where
 // someone is actually deciding what to pay.
@@ -67,6 +67,11 @@ export const A250_KEY = "announce-america250";
 
 // 12:01am ET; DST ends Nov 1
 export const ELECTION_TARGET = "2026-11-03T00:01:00-05:00";
+// Midnight at the close of Election Day — the clock stops saying "It's Election
+// Day" here and starts counting the days left on the Special instead.
+export const ELECTION_DAY_END = "2026-11-04T00:00:00-05:00";
+// The America 250 Special runs six weeks past the election.
+export const A250_END = "2026-12-31T23:59:59-05:00";
 
 export const PRIVACY_MICROCOPY =
   "We'll never share your information or use it to train major models.";

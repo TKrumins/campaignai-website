@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,6 +31,14 @@ export function AnnouncementBar() {
   // so it keeps the full copy. The countdown and the "See pricing" link stay on every page.
   const isHome = usePathname() === "/";
 
+  // Once the Special is over the bar has nothing to announce, so it collapses
+  // itself down the same path a visitor's dismissal takes — which zeroes the
+  // reserved height too, rather than leaving an empty strip.
+  const offerOver = countdown.ready && !countdown.offerLive;
+  useEffect(() => {
+    if (offerOver) document.documentElement.dataset.a250 = "dismissed";
+  }, [offerOver]);
+
   function dismiss() {
     try {
       sessionStorage.setItem(A250_KEY, "dismissed");
@@ -53,9 +62,16 @@ export function AnnouncementBar() {
               className="shrink-0 rounded-[1px]"
             />
             <strong className="font-heading whitespace-nowrap">
-              {countdown.isElectionDay ? "It's Election Day." : "Election Day is coming."}
+              {countdown.phase === "election-day"
+                ? "It's Election Day."
+                : countdown.phase === "election"
+                  ? "Election Day is coming."
+                  : "America 250 ends December 31."}
             </strong>
-            {!countdown.isElectionDay && (
+            {/* Election Day itself is a moment, not a countdown — the clock
+                steps aside for it and returns the next day against the
+                Special's own deadline. */}
+            {countdown.offerLive && countdown.phase !== "election-day" && (
               <span className="flex items-center gap-1.5 whitespace-nowrap">
                 <Segment value={countdown.days} unit="days" ready={countdown.ready} />
                 <Segment value={countdown.hours} unit="hrs" ready={countdown.ready} />
@@ -64,7 +80,7 @@ export function AnnouncementBar() {
               </span>
             )}
           </span>
-          {!countdown.isElectionDay && (
+          {countdown.offerLive && (
             <span className="min-w-0 truncate">
               {!isHome && (
                 <>
