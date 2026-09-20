@@ -40,30 +40,37 @@ only a README. `LegalPage.tsx` already reads an "Effective date:" line out of
 the top of a Markdown file, so dropping real documents in should be a
 content-only change with no rebuild.
 
-### 2. A rundown of paused and flagged projects
+### 2. A rundown of paused and flagged projects — **DONE 2026-09-20**
 
-Tom asked for every project shelved or flagged to return to, so the site can be
-honed for going to market. The shelf list is in
-[`../handoff/DEFERRED-PROJECTS.md`](../handoff/DEFERRED-PROJECTS.md) — the
-political calendar site, the five interactive experience pages, Verified Human,
-the five frozen audience funnels, and the compliance page.
+[`../handoff/DEFERRED-PROJECTS.md`](../handoff/DEFERRED-PROJECTS.md) has been
+rewritten from scratch, with every entry checked against the code rather than
+carried forward from the stale July version. Thirteen projects in four states,
+plus corrections where the old file was wrong.
 
-**That file was last updated 2026-07-16 and is known to be behind.** The
-compliance page in particular had real work done in August. Verify against the
-code before reporting, rather than trusting it.
+What the pass turned up that was not previously on any list: the Regulations
+Tracker and the showcase library are both built and dark; the self-serve
+platform is promised on Get Started with a live waitlist and no product behind
+it; the political calendar's brief and seed data are **not committed to git**;
+and the Vercel bandwidth worry is a non-issue because the site is served by
+GitHub Pages, not Vercel.
 
-### 3. The approved stat line needs a home
+### 3. The approved stat line needs a home — **DONE 2026-09-20**
 
-"100% of creative decisions made by a human being" is approved copy sitting in
-`StatsMomentSection`, which is not rendered anywhere. It needs a live placement.
-Two candidates, Tom to pick: the trust bar near the top of the home page (it
-already carries a "Human-Reviewed" badge), or the "every video includes" list.
+"100% of creative decisions made by a human being" is now live on the **trust
+bar** on the home page, Tom's pick. It sits under the five standards badges,
+above the ethics line, with the "100%" leading at a larger size. Verified in the
+finished build: it renders on the home page and nowhere else.
 
-### 4. Seven dead components want deleting
+### 4. Seven dead components want deleting — **CLOSED 2026-09-20, differently**
 
-`StatsMomentSection`, `HeroSection`, `SocialProofSection`, `HumanitySection`,
-`ProductSection`, `GetStartedForm`, `StepClip`. Nothing imports any of them.
-Worth its own pass, after checking nothing is planned for them.
+There were six, not seven — `StepClip` is live, it runs the hidden Meaningful
+Disclosure page. And the six are not clutter: each is an earlier iteration of a
+section that is on the site today, and all six were retired before the 2.0
+launch.
+
+Tom's call: **record the history rather than delete it.** Written up in
+[`SUPERSEDED-COMPONENTS.md`](SUPERSEDED-COMPONENTS.md), tagged by the version
+that retired each one. Deletion stays available but is nobody's priority.
 
 ---
 
@@ -71,9 +78,10 @@ Worth its own pass, after checking nothing is planned for them.
 
 These predate this branch and are still open:
 
-- **Vercel Pro before autumn 2026.** The Hobby plan includes 100 GB/month of
-  video transfer. Going over does not bill — it disables video delivery for 30
-  days and the homepage films stop playing. It is now autumn.
+- ~~**Vercel Pro before autumn 2026.**~~ **Closed 2026-09-20 — non-issue.** The
+  site is a static export served by GitHub Pages from `main`, not by Vercel, so
+  there is no Vercel bandwidth meter on the live site to exhaust. `vercel.json`
+  is a leftover that only ever affected preview builds. No upgrade needed.
 - **The Word document of the whole website** is staged and has never been
   generated. Source and generator are both ready in `docs/handoff/`.
 - **Post-launch items Tom owes:** preferred-vendor names for the Channels page,

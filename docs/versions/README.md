@@ -38,6 +38,15 @@ Versions 1.x through 2.2 are recorded here from the build history rather than
 written at the time. They are deliberately coarse — enough to place each stage,
 not a reconstruction. Entries from 2.2.1 onward are written as the work happens.
 
+## Appendices
+
+Reference documents that sit alongside the log rather than in it:
+
+- [**Superseded components**](SUPERSEDED-COMPONENTS.md) — the six parts of the
+  site that were replaced by something better and left in the files. Which
+  version retired each one, and what took its place. All six are 1.x, retired
+  before the 2.0 launch.
+
 ## What belongs in an entry
 
 Each entry answers four questions:
