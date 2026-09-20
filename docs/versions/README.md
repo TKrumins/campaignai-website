@@ -1,5 +1,8 @@
 # Website version log
 
+> **Currently mid-flight.** See [`IN-PROGRESS.md`](IN-PROGRESS.md) for what is
+> on the working branch, what is queued next, and why nothing has been pushed.
+
 A running record of what changed on the CampaignAI website, in plain English,
 one entry per tranche of work.
 
