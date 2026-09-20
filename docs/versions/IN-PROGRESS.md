@@ -2,6 +2,22 @@
 
 **Last updated:** 2026-09-20
 
+## Read this first, then stop
+
+**Version 2.3 is built, reviewed, pushed as a branch, and NOT LIVE.**
+
+- Branch: `content/v2.3-regulations`, pushed to GitHub 2026-09-20. Four commits.
+- `main` is at the 2.2.2 deploy. **campaignai.us does not have any 2.3 work on
+  it.**
+- Tom reviewed both pages locally and approved the work. He asked for the branch
+  to be pushed. **He has not given a go-ahead to merge or deploy**, and the
+  standing rule requires that to be asked for explicitly, every time.
+
+To ship it: fast-forward `main` to the branch and push. The deploy runs itself
+from `main`. Ask first.
+
+---
+
 ## Where things stand
 
 **Versions 2.2.1 and 2.2.2 are LIVE.** Merged to `main` and deployed to
@@ -47,7 +63,17 @@ each time. Permission to ship 2.2.1/2.2.2 was permission for that, once.
 
 ## What is queued next
 
-### 1. The compliance page language pass — IN FLIGHT
+### DONE on the 2.3 branch, awaiting a deploy decision
+
+Both of the items below are finished. A third piece landed after them: a visual
+pass across the compliance page, at Tom's direction — five animated marks
+added, and the copy trimmed hard so the graphics carry what the prose was
+doing. Named platforms were removed from the research cards, because naming
+them dated the page and committed us to keeping the examples current.
+
+Full detail in [2.3](v2.3-regulations-tracker.md).
+
+### 1. The compliance page language pass — DONE
 
 Tom's brief, 2026-09-20: stress-test the wording so the page describes **our
 approach** rather than anything legally enforceable. Add an "as of" date. Say
@@ -57,7 +83,7 @@ is fully ready and defensible.
 Tom is notifying counsel separately. The page's facts still need a professional
 accuracy review — this pass narrows the exposure, it does not close it.
 
-### 2. The Regulations Tracker pitch page — IN FLIGHT
+### 2. The Regulations Tracker pitch page — DONE
 
 Tom's call: rather than quietly hiding the half-finished page, build it out
 into a real **Coming Soon pitch page** with animated branded graphics and
