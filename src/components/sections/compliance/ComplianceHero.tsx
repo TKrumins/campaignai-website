@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { SOCIAL_SUBSTACK } from "@/lib/constants";
+import { SOCIAL_SUBSTACK, COMPLIANCE_AS_OF } from "@/lib/constants";
 import { AISparkle } from "@/components/ui/AISparkle";
 
 export function ComplianceHero() {
@@ -53,9 +53,15 @@ export function ComplianceHero() {
           off your plate and hands you a clear record of what we found &mdash; so
           your review starts from something solid instead of a blank page.
         </p>
+        {/* The "as of" date sits here, not only in the formal note at the foot
+            of the page, because this is the line people actually read. An
+            undated claim about what the rules are ages silently into a wrong
+            one. Update COMPLIANCE_AS_OF when the research is genuinely
+            refreshed. */}
         <p className="text-beacon-white/60 text-sm max-w-2xl mx-auto mb-10">
           Tools and research, not legal advice. We never approve or certify a video
-          &mdash; your campaign&apos;s legal counsel always should.
+          &mdash; your campaign&apos;s legal counsel always should. This page
+          describes our approach as of {COMPLIANCE_AS_OF}.
         </p>
         <a
           href={SOCIAL_SUBSTACK}

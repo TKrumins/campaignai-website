@@ -55,6 +55,15 @@ export const DELIVERY_LINE =
 export const PRICING_VALIDITY =
   "Pricing effective September 2026. Pricing holds through December 31, 2026.";
 
+// The compliance page's "as of" date. Regulation in this area changes
+// frequently and the AI-specific law is unsettled and actively litigated, so an
+// undated claim about what the rules are quietly ages into a wrong one. Dating
+// it turns a silent assertion into a checkable one.
+//
+// UPDATE THIS whenever the compliance research is genuinely refreshed — not on
+// every deploy, or it becomes a lie of a different kind.
+export const COMPLIANCE_AS_OF = "September 2026";
+
 export const EMAIL = "info@campaignai.us";
 
 export const A250_HEADLINE = "America 250 Special";

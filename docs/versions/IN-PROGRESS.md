@@ -4,86 +4,94 @@
 
 ## Where things stand
 
-Everything below lives on the branch **`content/v2.2.1-corrections`**.
+**Versions 2.2.1 and 2.2.2 are LIVE.** Merged to `main` and deployed to
+campaignai.us on 2026-09-20 with Tom's explicit go-ahead.
 
-- 10 commits, working tree clean
-- **Local only.** Never pushed. No remote tracking branch exists for it.
-- `main` is unchanged at `d24d0f3`. **campaignai.us is untouched** and still
-  serves the pre-September site.
+Verified on the public site after deploy: no "$599", no "48 hours", no "first
+250 customers", no "30-minute" anywhere. The candidate rate reads $999, delivery
+reads 72 hours, the onboarding call reads 60 minutes, and the human-decision
+stat is on the home page trust bar.
 
-Two versions are finished and verified on this branch but are **not live**:
+The branch `content/v2.2.1-corrections` has been fully merged. **Further work
+starts fresh from `main`** — Tom's call, so the shipped work is not held hostage
+to the next tranche.
 
-- [2.2.1](v2.2.1-content-corrections.md) — the content corrections
-- [2.2.2](v2.2.2-open-items-closed.md) — the open items from 2.2.1, closed
+## The standing rule has not changed
 
-## Do not push
+Nothing is pushed, merged or deployed without Tom's explicit say-so, asked for
+each time. Permission to ship 2.2.1/2.2.2 was permission for that, once.
 
-Tom's instruction, 2026-09-20: **this branch gets built out more fully before
-anything is pushed or merged.** It is not a "finish and ship" branch yet — more
-work is going onto it first.
+---
 
-Standing rule regardless: nothing is pushed, merged or deployed without Tom's
-explicit say-so, asked for each time.
+## What shipped in this deploy
+
+- **2.2.1** — the content corrections. Turnaround 72 hours, onboarding call 60
+  minutes, candidate rate $999, America 250 opened to everyone through December
+  31, one editorial revision (two for organizations), and a new pricing validity
+  line.
+- **2.2.2** — the open items from 2.2.1, closed. The America 250 clock rolls
+  past Election Day into a December 31 countdown, revision counts on the pricing
+  cards, and the delivery line points at the onboarding call rather than a
+  checkout that does not exist.
+- **The human-decision stat** — "100% of creative decisions made by a human
+  being" now lives on the home page trust bar, under the standards badges.
+- **The paused-projects shelf** — `../handoff/DEFERRED-PROJECTS.md` rewritten
+  from scratch against the code. Thirteen projects, four states.
+- **[Superseded components](SUPERSEDED-COMPONENTS.md)** — the six replaced
+  components recorded rather than deleted, tagged by the version that retired
+  each one.
+- **The political calendar brief and seed data** — finally under version
+  control. They had never been committed.
 
 ---
 
 ## What is queued next
 
-### 1. Policy documents into the footer
+### 1. The compliance page language pass — IN FLIGHT
 
-Tom is supplying several policy documents to add to the footer. Not yet
-received.
+Tom's brief, 2026-09-20: stress-test the wording so the page describes **our
+approach** rather than anything legally enforceable. Add an "as of" date. Say
+plainly that a Regulations Tracker is being prepared and will not ship until it
+is fully ready and defensible.
 
-Relevant background: the four legal pages (`/privacy`, `/terms`, `/eula`,
-`/ai-disclosure`) have been interim stubs since July. `src/content/legal/` holds
-only a README. `LegalPage.tsx` already reads an "Effective date:" line out of
-the top of a Markdown file, so dropping real documents in should be a
-content-only change with no rebuild.
+Tom is notifying counsel separately. The page's facts still need a professional
+accuracy review — this pass narrows the exposure, it does not close it.
 
-### 2. A rundown of paused and flagged projects — **DONE 2026-09-20**
+### 2. The Regulations Tracker pitch page — IN FLIGHT
 
-[`../handoff/DEFERRED-PROJECTS.md`](../handoff/DEFERRED-PROJECTS.md) has been
-rewritten from scratch, with every entry checked against the code rather than
-carried forward from the stale July version. Thirteen projects in four states,
-plus corrections where the old file was wrong.
+Tom's call: rather than quietly hiding the half-finished page, build it out
+into a real **Coming Soon pitch page** with animated branded graphics and
+waitlist capture, and launch it properly.
 
-What the pass turned up that was not previously on any list: the Regulations
-Tracker and the showcase library are both built and dark; the self-serve
-platform is promised on Get Started with a live waitlist and no product behind
-it; the political calendar's brief and seed data are **not committed to git**;
-and the Vercel bandwidth worry is a non-issue because the site is served by
-GitHub Pages, not Vercel.
+That resolves the indexing inconsistency the right way round — the page stops
+being half-hidden because it becomes something worth finding.
 
-### 3. The approved stat line needs a home — **DONE 2026-09-20**
+**Correction worth recording:** the Regulations Tracker page was never password
+protected. The password-gated page is the hidden Meaningful Disclosure page,
+which is a different thing entirely.
 
-"100% of creative decisions made by a human being" is now live on the **trust
-bar** on the home page, Tom's pick. It sits under the five standards badges,
-above the ethics line, with the "100%" leading at a larger size. Verified in the
-finished build: it renders on the home page and nowhere else.
+### 3. Policy documents into the footer
 
-### 4. Seven dead components want deleting — **CLOSED 2026-09-20, differently**
+Still waiting on Tom. The four legal routes render honest interim pages and
+`src/content/legal/` holds only a README. When documents land it is content
+only, no rebuild.
 
-There were six, not seven — `StepClip` is live, it runs the hidden Meaningful
-Disclosure page. And the six are not clutter: each is an earlier iteration of a
-section that is on the site today, and all six were retired before the 2.0
-launch.
-
-Tom's call: **record the history rather than delete it.** Written up in
-[`SUPERSEDED-COMPONENTS.md`](SUPERSEDED-COMPONENTS.md), tagged by the version
-that retired each one. Deletion stays available but is nobody's priority.
+Deliberate, not an oversight: the footer lists only Privacy Policy and Terms of
+Use. EULA and AI Disclosure are omitted because the self-serve platform has not
+launched and the agency signs a user agreement person by person.
 
 ---
 
-## Carried over from before September
+## Carried over
 
-These predate this branch and are still open:
-
-- ~~**Vercel Pro before autumn 2026.**~~ **Closed 2026-09-20 — non-issue.** The
-  site is a static export served by GitHub Pages from `main`, not by Vercel, so
-  there is no Vercel bandwidth meter on the live site to exhaust. `vercel.json`
-  is a leftover that only ever affected preview builds. No upgrade needed.
 - **The Word document of the whole website** is staged and has never been
   generated. Source and generator are both ready in `docs/handoff/`.
-- **Post-launch items Tom owes:** preferred-vendor names for the Channels page,
-  real client media to replace placeholders. The Channels "Works well with"
-  section also still needs an overhaul.
+- **Post-launch items Tom owes:** preferred-vendor names for the Channels page
+  and real client media to replace placeholders. The Channels "Works well with"
+  section needs an overhaul, not just names. Real client video also unblocks the
+  hidden showcase library.
+- **The compliance page's accuracy review with counsel.** Tom is notifying
+  counsel. The state-by-state rules have never been checked by a lawyer.
+- ~~**Vercel Pro before autumn 2026.**~~ **Closed — non-issue.** The site is a
+  static export served by GitHub Pages from `main`, not by Vercel, so there is
+  no Vercel bandwidth meter on the live site to exhaust.

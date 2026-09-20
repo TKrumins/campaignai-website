@@ -4,24 +4,30 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { Map, Landmark, Monitor } from "lucide-react";
 
+// COPY RULE, alongside the one in ComplianceClearance: these cards describe how
+// we work, not a coverage guarantee. "We monitor all 50 states" is a promise we
+// would have to keep in every state on every day. "Our research reaches across"
+// says the same thing about our approach without asserting completeness we
+// cannot verify. Keep the distinction — it is the whole point of the Sept 2026
+// language pass.
 const cards = [
   {
-    title: "50-State Tracking",
+    title: "50-State Research",
     icon: Map,
-    top: "We monitor AI disclosure legislation, campaign advertising rules, and political communication regulations across all 50 states, D.C., and territories.",
-    bottom: "Our team reviews pending bills, newly signed laws, attorney general guidance, and enforcement actions. When rules change, we update so your next video reflects the current guidance we have.",
+    top: "Our research reaches across all 50 states, D.C., and territories, following AI disclosure legislation, campaign advertising rules, and political communication regulations.",
+    bottom: "We read pending bills, newly signed laws, attorney general guidance and enforcement actions, and we revise what we hold as we learn. Depth varies by state, and no research programme catches everything the moment it happens.",
   },
   {
-    title: "Federal Compliance",
+    title: "Federal Guidance",
     icon: Landmark,
-    top: "We track FEC advisories, proposed rulemaking, and federal guidance on AI in political advertising as the regulatory framework takes shape.",
-    bottom: "We monitor congressional hearings, agency comment periods, and enforcement guidance so our research keeps pace as federal expectations take shape.",
+    top: "We follow FEC advisories, proposed rulemaking, and federal guidance on AI in political advertising as the regulatory framework takes shape.",
+    bottom: "We read congressional hearings, agency comment periods and enforcement guidance, so our research moves as federal expectations do. Much of this is genuinely unsettled, and we say so rather than paper over it.",
   },
   {
     title: "Digital Platforms",
     icon: Monitor,
     top: "Social media platforms are rolling out their own AI content policies, from Meta\u2019s labeling requirements to YouTube\u2019s disclosure mandates and TikTok\u2019s synthetic media rules.",
-    bottom: "We track platform-specific policies so we can format your video for the channels where it runs and tell you what each one is asking for.",
+    bottom: "We follow platform policies so we can format your video for the channels where it runs and tell you what each one is asking for. Platforms change these rules on their own schedule, often without notice.",
   },
 ];
 

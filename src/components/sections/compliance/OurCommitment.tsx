@@ -27,10 +27,12 @@ export function OurCommitment() {
                 and hand you a clear record of exactly what we did.
               </p>
               <p>
-                Our team tracks proposed legislation, regulatory updates, FEC
-                guidance, and enforcement actions continuously. When the
-                landscape changes, we update our systems. You keep telling your
-                story.
+                So we read the proposed legislation, the regulatory updates, the
+                FEC guidance and the enforcement actions, and we revise what we
+                hold as the landscape moves. We will not always be first to
+                catch a change, and we would rather tell you that now than
+                imply otherwise. What we can promise is effort and a written
+                record of it &mdash; never a verdict.
               </p>
             </div>
           </div>

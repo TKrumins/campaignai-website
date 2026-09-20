@@ -136,14 +136,29 @@ export function Footer() {
                   Compliance
                 </Link>
               </li>
+              {/* Regulations Tracker launched 2026-09-20 as a Coming Soon pitch
+                  page with a waitlist. It sits under Trust & Values rather than
+                  Legal, because it is something we are building, not a policy
+                  document — and the Legal column is deliberately only what a
+                  company website needs today. */}
+              <li>
+                <Link
+                  href="/regulations"
+                  className="text-beacon-white/60 hover:text-beacon-white transition-colors text-sm"
+                >
+                  Regulations Tracker
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Legal — only what a company website needs today. The self-serve
               platform hasn't launched and the agency signs a User Agreement
-              person-by-person, so the EULA + AI Disclosure (and the Regulatory
-              Tracker) are intentionally omitted for now — NO "coming soon" badges.
-              Add them here when Tom's full, counsel-reviewed set lands. */}
+              person-by-person, so the EULA + AI Disclosure are intentionally
+              omitted for now — NO "coming soon" badges. Add them here when Tom's
+              full, counsel-reviewed set lands.
+              (The Regulations Tracker moved to Trust & Values on 2026-09-20 when
+              it launched as a pitch page — it is a product, not a policy.) */}
           <div className="md:pt-1">
             <h3 className="font-heading font-bold text-sm uppercase tracking-wider mb-4">
               Legal

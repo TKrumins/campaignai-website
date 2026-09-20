@@ -1,4 +1,5 @@
 import { Info } from "lucide-react";
+import { COMPLIANCE_AS_OF } from "@/lib/constants";
 
 export function TransparencyDisclaimer() {
   return (
@@ -22,11 +23,21 @@ export function TransparencyDisclaimer() {
                 guarantee that a video complies with the law in your jurisdiction.
               </p>
               <p>
-                We work diligently to stay ahead of evolving rules across all 50
-                states and at the federal level, but the law moves fast and there
-                may be gaps or delays between when a rule changes and when our
-                systems reflect it. Responsibility for what a campaign publishes
-                stays with the campaign.
+                What this page describes is our approach, as of{" "}
+                {COMPLIANCE_AS_OF} &mdash; how we think about this work and how we
+                go about it. It is not a service guarantee and not a statement of
+                what the law requires in your race. This area of law changes
+                frequently, and the parts of it dealing with AI and synthetic
+                media are unsettled and actively being litigated. Expect gaps and
+                delays between a rule changing and our research reflecting it.
+                Responsibility for what a campaign publishes stays with the
+                campaign.
+              </p>
+              <p>
+                We are also building a dedicated regulations tracker. It is not
+                released, and we will not release it until it is complete enough
+                and documented enough to stand behind. We would rather ship it
+                late than have a campaign rely on it early.
               </p>
               <p>
                 Have your campaign&apos;s legal counsel review your video and confirm

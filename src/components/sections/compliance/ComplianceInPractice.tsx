@@ -1,14 +1,18 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
+// COPY RULE: these describe what we DO at each step, never what the outcome is
+// guaranteed to be. "Flag the requirements that apply" asserts we got the law
+// right; "surface what our research points to" describes the work. Keep every
+// step framed as our action, with the limit named in the same breath.
 const steps = [
   {
     label: "When you start your video",
-    body: "We identify your state and jurisdiction and flag the disclosure requirements that apply to your race.",
+    body: "We identify your state and jurisdiction and surface what our research points to for a race like yours.",
   },
   {
     label: "During script and storyboard",
-    body: "Our tools flag content choices that could trigger additional regulatory scrutiny, so you can make informed decisions before production.",
+    body: "Our tools flag content choices that could draw additional regulatory scrutiny, so you can make informed decisions before production rather than discoveries after it.",
   },
   {
     label: "In post-production",
@@ -16,7 +20,7 @@ const steps = [
   },
   {
     label: "Before delivery",
-    body: "Every video goes through an internal review to confirm the labels are present, formatted as expected, and current with the regulatory guidance we hold. That review is ours — it isn't a legal sign-off, and it doesn't replace your counsel's.",
+    body: "Your video goes through an internal review: we check that the labels are present, formatted as we expect, and consistent with the research we hold. That check is ours and it is not a legal sign-off — it does not replace your counsel's review, and it is not a finding that your video complies with anything.",
   },
 ];
 
