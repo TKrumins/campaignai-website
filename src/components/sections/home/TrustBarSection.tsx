@@ -60,8 +60,19 @@ export function TrustBarSection() {
             ))}
           </div>
 
+          {/* The human-decision stat. Approved copy that had no live home until
+              now — its original stat band was retired before the 2.0 launch (see
+              docs/versions/SUPERSEDED-COMPONENTS.md). It sits here rather than in
+              the home page's other stat band, which is all problem framing and
+              would be undercut by a reassurance number. The "100%" carries the
+              line, so it leads at a larger size. */}
+          <p className="text-center text-beacon-white font-semibold text-lg md:text-xl mt-8">
+            <span className="text-verdant font-extrabold text-xl md:text-2xl">100%</span>
+            {" "}of creative decisions made by a human being
+          </p>
+
           {/* Ethics-as-feature line (2.3) */}
-          <p className="text-center text-beacon-white font-medium text-base mt-7">
+          <p className="text-center text-beacon-white/80 font-medium text-base mt-3">
             <span className="text-verdant mr-1.5">&#x2713;</span>
             {ETHICS_LINE}
           </p>
