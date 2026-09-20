@@ -1,35 +1,40 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Shield, TrendingUp, Newspaper, Users, Scale, CheckCircle } from "lucide-react";
+import { TrendingUp, Newspaper, Users, Scale, CheckCircle } from "lucide-react";
+import { MarkShield } from "@/components/ui/graphics/ComplianceMarks";
 
+// Trimmed to one line each. These are the four ways it goes wrong, and the
+// shorter they are the harder they land. Crimson stays here on purpose — it is
+// the only place on this page where the colour is doing semantic work, marking
+// the threat the verdant shield below answers.
 const threats = [
   {
     icon: Scale,
-    label: "Regulatory changes",
-    description: "New laws can take effect mid-cycle. Disclosure-ready campaigns don't scramble.",
+    label: "Rules change mid-cycle",
+    description: "Disclosure-ready campaigns don't scramble.",
   },
   {
     icon: Users,
-    label: "Public backlash",
-    description: "Undisclosed AI can become the opponent's talking point. Disclosing first keeps the story yours.",
+    label: "It becomes their talking point",
+    description: "Disclose first and the story stays yours.",
   },
   {
     icon: Newspaper,
-    label: "Negative media cycles",
-    description: "One undisclosed ad can become the story. Disclosing up front makes that story much harder to tell.",
+    label: "One ad becomes the story",
+    description: "Hard to write that story about a campaign that said so up front.",
   },
   {
     icon: TrendingUp,
-    label: "Platform enforcement",
-    description: "Social platforms are flagging and removing unlabeled AI content. Stay ahead of takedowns.",
+    label: "Platforms act on their own",
+    description: "Labelled content doesn't get caught in it.",
   },
 ];
 
 const benefits = [
-  "Builds voter trust before it becomes a requirement",
-  "Cuts down on mid-campaign compliance surprises",
-  "Gives opposition research less to work with",
-  "Keeps every ad ready for the disclosure rules taking shape now",
+  "Trust built before anyone requires it",
+  "Fewer surprises in the middle of a cycle",
+  "Less for opposition research to work with",
+  "Ready for rules that haven't landed yet",
 ];
 
 export function DisclosureValue() {
@@ -42,12 +47,15 @@ export function DisclosureValue() {
             <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-regal-navy tracking-[-1px] mt-3 mb-5">
               Disclosure isn&apos;t a burden. It&apos;s your strongest shield.
             </h2>
+            {/* The value pitch, kept to one idea: disclosure is leverage, not a
+                tax. Deliberately does not enumerate what ships or what any
+                state requires — that would be a specification, and this page is
+                a direction. */}
             <p className="text-granite text-lg leading-relaxed">
-              Every CampaignAI video ships with clear disclosure labels built in,
-              formatted to the guidance our research turns up for your
-              jurisdiction. Not because every state requires it yet, but because
-              the campaigns that lead on transparency today are the ones that win
-              trust tomorrow.
+              Disclosure built in from the start costs you nothing you were
+              keeping. What it buys you is the harder thing to get back: the
+              campaigns that lead on transparency now are the ones still trusted
+              when the rules catch up.
             </p>
           </div>
         </ScrollReveal>
@@ -74,14 +82,14 @@ export function DisclosureValue() {
         {/* Shield graphic + benefits */}
         <ScrollReveal delay={400}>
           <div className="bg-regal-navy rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10">
-            {/* Shield graphic */}
+            {/* The shield draws itself closed, a check forms inside, and a ring
+                pulses out past it. It replaced a static icon in the patriot
+                gradient — this section is the page's actual argument, and it
+                should feel like cover closing over you rather than a rule being
+                enforced on you. Verdant, like the rest of the compliance thread. */}
             <div className="shrink-0 flex flex-col items-center">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full patriot-gradient p-[3px]">
-                <div className="w-full h-full rounded-full bg-regal-navy flex items-center justify-center">
-                  <Shield className="w-12 h-12 md:w-16 md:h-16 text-verdant" />
-                </div>
-              </div>
-              <p className="font-heading font-bold text-beacon-white text-sm mt-4 uppercase tracking-wider">
+              <MarkShield />
+              <p className="font-heading font-bold text-beacon-white text-sm mt-3 uppercase tracking-wider">
                 Prepared
               </p>
             </div>
@@ -102,11 +110,8 @@ export function DisclosureValue() {
                 ))}
               </ul>
               <p className="text-beacon-white/50 text-xs mt-6">
-                Every video ships with the disclosure labels our research indicates
-                your state calls for, and we update them as guidance changes. It
-                gives your counsel a strong starting point &mdash; it isn&apos;t a
-                substitute for their review, and it isn&apos;t a guarantee of
-                compliance.
+                A starting point for your counsel, not a substitute for their
+                review &mdash; and never a guarantee of compliance.
               </p>
             </div>
           </div>

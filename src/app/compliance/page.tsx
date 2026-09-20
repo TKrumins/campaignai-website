@@ -8,6 +8,7 @@ import { ComplianceInPractice } from "@/components/sections/compliance/Complianc
 import { OurCommitment } from "@/components/sections/compliance/OurCommitment";
 import { TransparencyDisclaimer } from "@/components/sections/compliance/TransparencyDisclaimer";
 import { ComplianceCTA } from "@/components/sections/compliance/ComplianceCTA";
+import { ComplianceMarkStyles } from "@/components/ui/graphics/ComplianceMarks";
 
 export const metadata: Metadata = {
   title: "Compliance & Regulations - CampaignAI",
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function CompliancePage() {
   return (
     <>
+      <ComplianceMarkStyles />
       <ComplianceHero />
       <ComplianceClearance />
       <RegulatoryLandscape />

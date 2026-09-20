@@ -34,10 +34,8 @@ export function ComplianceInPractice() {
             Compliance built into every step.
           </h2>
           <p className="text-granite text-lg leading-[1.7] max-w-[760px] mb-10">
-            Compliance work isn&apos;t something we bolt on at the end. It&apos;s
-            woven into the production process from the beginning &mdash; so the
-            review at the end of it is short, and so nothing about it is a
-            surprise to you or your lawyer.
+            Not bolted on at the end. Woven in from the start, so the review at
+            the end is short and nothing in it surprises your lawyer.
           </p>
         </ScrollReveal>
 

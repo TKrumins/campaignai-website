@@ -46,12 +46,13 @@ export function ComplianceHero() {
         <h1 className="font-heading font-extrabold text-[32px] sm:text-[48px] md:text-[64px] leading-[1.1] tracking-[-1.5px] text-beacon-white mb-6">
           We do the legwork. You keep campaigning.
         </h1>
+        {/* Kept deliberately short and unspecific: this page shows the
+            direction we are pursuing, it does not publish a specification. */}
         <p className="text-beacon-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-6">
-          AI in political advertising is new territory. The rules are different
-          in every state, changing every session, and the consequences of getting
-          it wrong fall on you. CampaignAI takes the tracking and the formatting
-          off your plate and hands you a clear record of what we found &mdash; so
-          your review starts from something solid instead of a blank page.
+          AI in political advertising is new territory, and the consequences of
+          getting it wrong fall on you. We take the tracking off your plate and
+          hand you a record of what we found &mdash; so your review starts from
+          something, not from a blank page.
         </p>
         {/* The "as of" date sits here, not only in the formal note at the foot
             of the page, because this is the line people actually read. An

@@ -3,6 +3,11 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AISparkle } from "@/components/ui/AISparkle";
 import { Map, Landmark, Monitor } from "lucide-react";
+import {
+  MarkStates,
+  MarkFederal,
+  MarkPlatforms,
+} from "@/components/ui/graphics/ComplianceMarks";
 
 // COPY RULE, alongside the one in ComplianceClearance: these cards describe how
 // we work, not a coverage guarantee. "We monitor all 50 states" is a promise we
@@ -10,24 +15,31 @@ import { Map, Landmark, Monitor } from "lucide-react";
 // says the same thing about our approach without asserting completeness we
 // cannot verify. Keep the distinction — it is the whole point of the Sept 2026
 // language pass.
+// Trimmed hard in the Sept 2026 pass, and each card now leads with a mark that
+// carries its idea. Naming specific platforms or specific rules would date the
+// page and commit us to keeping those examples current \u2014 so the copy stays at
+// the level of what we do, and the marks do the illustrating.
 const cards = [
   {
     title: "50-State Research",
     icon: Map,
-    top: "Our research reaches across all 50 states, D.C., and territories, following AI disclosure legislation, campaign advertising rules, and political communication regulations.",
-    bottom: "We read pending bills, newly signed laws, attorney general guidance and enforcement actions, and we revise what we hold as we learn. Depth varies by state, and no research programme catches everything the moment it happens.",
+    mark: MarkStates,
+    top: "Our research reaches across all 50 states, D.C. and the territories, following the rules that govern AI in campaign advertising.",
+    bottom: "Depth varies by state, and no research programme catches everything the moment it happens.",
   },
   {
     title: "Federal Guidance",
     icon: Landmark,
-    top: "We follow FEC advisories, proposed rulemaking, and federal guidance on AI in political advertising as the regulatory framework takes shape.",
-    bottom: "We read congressional hearings, agency comment periods and enforcement guidance, so our research moves as federal expectations do. Much of this is genuinely unsettled, and we say so rather than paper over it.",
+    mark: MarkFederal,
+    top: "We follow federal guidance on AI in political advertising as the framework takes shape.",
+    bottom: "Much of this is genuinely unsettled. We say so rather than paper over it.",
   },
   {
     title: "Digital Platforms",
     icon: Monitor,
-    top: "Social media platforms are rolling out their own AI content policies, from Meta\u2019s labeling requirements to YouTube\u2019s disclosure mandates and TikTok\u2019s synthetic media rules.",
-    bottom: "We follow platform policies so we can format your video for the channels where it runs and tell you what each one is asking for. Platforms change these rules on their own schedule, often without notice.",
+    mark: MarkPlatforms,
+    top: "Platforms are writing their own AI content policies, and they enforce them themselves.",
+    bottom: "We follow them so we can format for the channels you run on. They change on their own schedule, often without notice.",
   },
 ];
 
@@ -57,17 +69,19 @@ export function WhatWeTrack() {
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cards.map(({ title, icon: Icon, top, bottom }, i) => (
+          {cards.map(({ title, mark: Mark, top, bottom }, i) => (
             <ScrollReveal key={title} delay={i * 100}>
               <div className="bg-white rounded-xl border-t-4 border-t-verdant shadow-sm p-7 h-full">
-                <div className="w-11 h-11 rounded-lg bg-verdant/10 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-verdant" />
+                {/* The animated mark replaces the static lucide icon — it says
+                    the card's idea before the copy has to. */}
+                <div className="w-14 h-14 rounded-xl bg-regal-navy flex items-center justify-center mb-5">
+                  <Mark />
                 </div>
                 <h3 className="font-heading font-bold text-xl text-regal-navy mb-3">
                   {title}
                 </h3>
                 <p className="text-granite text-sm leading-relaxed mb-3">{top}</p>
-                <p className="text-granite text-sm leading-relaxed">{bottom}</p>
+                <p className="text-slate text-sm leading-relaxed">{bottom}</p>
               </div>
             </ScrollReveal>
           ))}

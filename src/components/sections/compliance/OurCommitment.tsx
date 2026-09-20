@@ -13,18 +13,15 @@ export function OurCommitment() {
             <div className="text-granite text-lg leading-[1.7] space-y-5 max-w-[760px]">
               <p>
                 CampaignAI was founded by people who have run campaigns and
-                served in office. We know a compliance failure isn&apos;t just
-                legal risk, it&apos;s political risk. An opponent pointing to a
-                missing disclosure label can turn a production mistake into a
-                news cycle.
+                served in office. A compliance failure isn&apos;t only legal
+                risk &mdash; it&apos;s political risk. A missing label can turn a
+                production mistake into a news cycle.
               </p>
               <p>
-                We take on the regulatory complexity because we believe the
-                campaigns that can least afford a compliance failure are the same
-                campaigns that can least afford a consultant to help prevent one.
-                We can&apos;t be your lawyer, and we won&apos;t pretend to be. What
-                we can do is the legwork that makes a lawyer&apos;s time go further,
-                and hand you a clear record of exactly what we did.
+                We take this on because the campaigns that can least afford a
+                failure are the same ones that can least afford a consultant to
+                prevent it. We can&apos;t be your lawyer and won&apos;t pretend
+                to be. We can make your lawyer&apos;s time go further.
               </p>
               <p>
                 So we read the proposed legislation, the regulatory updates, the
