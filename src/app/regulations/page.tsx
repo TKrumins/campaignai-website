@@ -8,6 +8,14 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { EmailCapture } from "@/components/forms/EmailCapture";
 import RegulationsTrackerGraphic from "@/components/ui/graphics/RegulationsTrackerGraphic";
+import {
+  RegulationsMarkStyles,
+  MarkPlainLanguage,
+  MarkSourced,
+  MarkThreeLayers,
+  MarkHonestGaps,
+  MarkHeldBack,
+} from "@/components/ui/graphics/RegulationsMarks";
 import { COMPLIANCE_AS_OF } from "@/lib/constants";
 
 /**
@@ -36,18 +44,22 @@ export const metadata: Metadata = {
 
 const pillars = [
   {
+    mark: MarkPlainLanguage,
     title: "State by state, in plain language",
     body: "Every state writes its own rules, and they are written for lawyers. We are building a version a campaign manager can read between door knocks — what the rule is, what it means for a video, and what it does not cover.",
   },
   {
+    mark: MarkSourced,
     title: "Sourced, dated, and shown",
     body: "Every entry carries its citation, the date it took effect, and the date we last looked at it. If you cannot see where a rule came from and when we checked it, you cannot rely on it — so we are building it to show its working.",
   },
   {
+    mark: MarkThreeLayers,
     title: "Federal and platform rules alongside",
     body: "State law is only part of it. FEC guidance sits on top, and the platforms run their own labelling policies underneath. The tracker is being built to hold all three, because a video has to satisfy all three.",
   },
   {
+    mark: MarkHonestGaps,
     title: "Honest about the gaps",
     body: "Coverage will be uneven, especially where AI-specific law is new or being litigated. The tracker is designed to say “we do not know yet” where that is the truth, rather than quietly leaving a space blank.",
   },
@@ -56,6 +68,8 @@ const pillars = [
 export default function RegulationsPage() {
   return (
     <>
+      <RegulationsMarkStyles />
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-regal-navy pt-28 pb-16 md:pb-20">
         <AISparkle
@@ -126,17 +140,28 @@ export default function RegulationsPage() {
             </p>
           </ScrollReveal>
 
+          {/* Each card leads with its own mark, stating the pillar's point in
+              one move before the words do. Marks sit on a navy chip because
+              they are drawn in verdant on dark, like the hero graphic. */}
           <div className="grid gap-6 sm:grid-cols-2">
-            {pillars.map((p, i) => (
-              <ScrollReveal key={p.title} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-verdant/25 bg-dawn-frost p-6 md:p-7">
-                  <h3 className="mb-3 font-heading text-lg font-bold text-regal-navy">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-granite">{p.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+            {pillars.map((p, i) => {
+              const Mark = p.mark;
+              return (
+                <ScrollReveal key={p.title} delay={i * 80}>
+                  <div className="flex h-full gap-4 rounded-2xl border border-verdant/25 bg-dawn-frost p-5 sm:gap-5 sm:p-6 md:p-7">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-regal-navy sm:h-16 sm:w-16">
+                      <Mark />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 font-heading text-lg font-bold text-regal-navy">
+                        {p.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-granite">{p.body}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -168,6 +193,13 @@ export default function RegulationsPage() {
                   it. We would rather ship it late than have someone rely on it
                   early.
                 </p>
+
+                {/* The bar advances, nudges at the line, and stops. It never
+                    crosses — an animation that resolved would contradict the
+                    paragraph above it. */}
+                <div className="rounded-xl bg-regal-navy px-5 py-4">
+                  <MarkHeldBack />
+                </div>
                 <p>
                   When it does arrive, it will still be research rather than legal
                   advice, and it will still tell you to take it to your counsel.
