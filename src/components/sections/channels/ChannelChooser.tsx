@@ -182,7 +182,10 @@ export function ChannelChooser() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-[280px_minmax(0,1fr)]">
+        {/* grid-cols-1 (minmax(0,1fr)) matters on phones: without it the single
+            auto column sizes to the widest chip in the picker, and the whole
+            panel renders four screens wide with its text clipped away. */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-[280px_minmax(0,1fr)]">
           {/* Channel picker — pinned to the top on mobile (horizontal scroll),
               a sticky vertical list on desktop, so the options stay reachable. */}
           <div className="sticky top-[68px] z-20 -mx-4 bg-white/95 px-4 py-2 backdrop-blur md:top-24 md:mx-0 md:self-start md:bg-transparent md:px-0 md:py-0 md:backdrop-blur-none">
