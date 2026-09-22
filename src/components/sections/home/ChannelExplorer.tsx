@@ -5,6 +5,8 @@ import type { CSSProperties, ComponentType } from "react";
 import { Share2, Globe, Mail, Users, HandCoins, Presentation, Tv, Antenna, AlertTriangle, MousePointerClick } from "lucide-react";
 import { Hub } from "@/components/ui/DistributionHub";
 import { AISparkle } from "@/components/ui/AISparkle";
+import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
+import { BROADCAST_DISCLAIMER, BROADCAST_STATUS } from "@/lib/constants";
 
 /**
  * The interactive "everywhere" hub for the home page. The shared DistributionHub
@@ -27,7 +29,7 @@ type Channel = {
   desc: string;
   art: "screen" | "ctv" | "broadcast";
   status?: string;
-  statusTone?: "live" | "soon";
+  statusTone?: "live" | "soon" | "unavailable";
   callout?: string;
 };
 
@@ -112,15 +114,16 @@ const CHANNELS: Channel[] = [
   {
     key: "broadcast",
     label: "Broadcast\nTV",
-    hubDesc: "Produced to\nbroadcast quality",
+    hubDesc: "Made to broadcast\nquality — not offered",
     angle: 315,
     icon: Antenna,
     accent: "#7AB8FF",
     title: "Broadcast TV",
-    desc: "Produced to broadcast quality and ready for the air. Stations set their own clearance rules, and airtime is bought separately.",
+    desc: "Your video is made to broadcast quality — but broadcast is the one destination here we don't serve. We don't prepare videos for the air, and we don't buy or place airtime.",
     art: "broadcast",
-    callout:
-      "CampaignAI does not review our videos to meet every broadcast-clearance requirement. Our focus is digital-first delivery at broadcast quality. Before you air, confirm your station's requirements and check with your campaign's counsel. You air any video at your own discretion, and CampaignAI is not liable for content shared over broadcast.",
+    status: BROADCAST_STATUS,
+    statusTone: "unavailable",
+    callout: BROADCAST_DISCLAIMER,
   },
 ];
 
@@ -232,24 +235,28 @@ export function ChannelExplorer() {
                     <channel.icon className="h-5 w-5" />
                   </span>
                   <h3 className="font-heading text-lg font-bold leading-tight text-regal-navy">{channel.title}</h3>
-                  {channel.status && (
-                    <span
-                      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${
-                        channel.statusTone === "live"
-                          ? "bg-freedom-blue/12 text-freedom-blue"
-                          : "bg-alert-amber/15 text-[#C2410C] ring-1 ring-alert-amber/30"
-                      }`}
-                    >
-                      {channel.statusTone !== "live" && <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />}
-                      {channel.status}
-                    </span>
+                  {channel.status && channel.statusTone === "unavailable" ? (
+                    <AvailabilityBadge label={channel.status} tooltip={BROADCAST_DISCLAIMER} placement="below" />
+                  ) : (
+                    channel.status && (
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${
+                          channel.statusTone === "live"
+                            ? "bg-freedom-blue/12 text-freedom-blue"
+                            : "bg-alert-amber/15 text-[#C2410C] ring-1 ring-alert-amber/30"
+                        }`}
+                      >
+                        {channel.statusTone !== "live" && <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-alert-amber" />}
+                        {channel.status}
+                      </span>
+                    )
                   )}
                 </div>
                 <p className="text-sm leading-relaxed text-granite">{channel.desc}</p>
 
                 {channel.callout && (
-                  <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-liberty-crimson/25 bg-liberty-crimson/[0.05] p-3.5">
-                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-liberty-crimson" />
+                  <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-alert-amber/35 bg-alert-amber/[0.07] p-3.5">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-alert-amber" />
                     <p className="text-xs leading-relaxed text-regal-navy">{channel.callout}</p>
                   </div>
                 )}

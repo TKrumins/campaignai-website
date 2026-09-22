@@ -1,6 +1,8 @@
 import type { CSSProperties } from "react";
 import { Tv, Antenna } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
+import { BROADCAST_DISCLAIMER, BROADCAST_STATUS } from "@/lib/constants";
 
 /**
  * The "and onto the television screen" beat that completes the distribution
@@ -127,13 +129,19 @@ export function TelevisionReach() {
                 </span>
                 <div>
                   <h3 className="font-heading font-bold text-lg text-regal-navy leading-tight">Broadcast TV</h3>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-freedom-blue">Available now</span>
+                  <AvailabilityBadge
+                    label={BROADCAST_STATUS}
+                    tooltip={BROADCAST_DISCLAIMER}
+                    placement="below"
+                    className="mt-1"
+                  />
                 </div>
               </div>
               <p className="text-granite text-sm leading-relaxed">
-                Produced to broadcast quality, ready for the air. Stations set their
-                own clearance and legal-review rules, and airtime is bought separately
-                &mdash; confirm requirements and check with counsel before you air.
+                Your video is made to broadcast quality &mdash; but broadcast is the one
+                destination here we don&apos;t serve. We don&apos;t prepare videos against
+                station clearance rules or broadcast regulations, and we don&apos;t buy or
+                place airtime. Talk with your station and your counsel before anything airs.
               </p>
             </div>
           </div>

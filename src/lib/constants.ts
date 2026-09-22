@@ -64,6 +64,21 @@ export const PRICING_VALIDITY =
 // every deploy, or it becomes a lie of a different kind.
 export const COMPLIANCE_AS_OF = "September 2026";
 
+// Broadcast television. We produce at broadcast quality, but we do not prepare
+// videos for broadcast: nothing is checked against station clearance rules or
+// broadcast regulation, and we neither buy nor place airtime. Broadcast is
+// therefore listed as NOT AVAILABLE NOW wherever it appears, with the same
+// disclaimer attached, so the three surfaces that mention television can never
+// drift apart on what we do and don't offer.
+export const BROADCAST_STATUS = "NOT AVAILABLE NOW";
+export const BROADCAST_DISCLAIMER =
+  "Good news: your video is made to broadcast-quality standards. What we don't do is prepare it for broadcast — we don't check videos against station clearance rules or broadcast regulations, and we don't buy or place airtime. If television is part of your plan, talk it through with your station and your campaign's counsel first. Airing a video is your call, and CampaignAI is not liable for its use on broadcast.";
+
+// /channels is a playbook, not a media-buying service. Said plainly wherever
+// the channel guidance appears.
+export const CHANNELS_PLACEMENT_NOTE =
+  "Everything here is a recommendation for where to share the video you own. CampaignAI does not place videos or buy ads — the posting and any ad buys are yours to run.";
+
 export const EMAIL = "info@campaignai.us";
 
 export const A250_HEADLINE = "America 250 Special";

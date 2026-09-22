@@ -21,6 +21,9 @@ export function ChannelsHero() {
           the story &mdash; we&apos;ll show you where it lands hardest, how to cut it
           for each place, and what&apos;s coming next as your reach grows.
         </p>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-beacon-white/60">
+          Recommendations, not placement: you own the video and decide where it runs.
+        </p>
       </div>
     </section>
   );

@@ -15,6 +15,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
+import { BROADCAST_DISCLAIMER, BROADCAST_STATUS, CHANNELS_PLACEMENT_NOTE } from "@/lib/constants";
 
 interface Channel {
   id: string;
@@ -22,7 +24,9 @@ interface Channel {
   icon: LucideIcon;
   accent: string;
   soon?: boolean;
-  status?: string; // small status pill in the detail panel (e.g. "Available now")
+  /** Not something we offer. Carries the disclaimer with it, everywhere. */
+  unavailable?: boolean;
+  status?: string; // small status pill in the detail panel (e.g. "Coming soon")
   why: string;
   length: string;
   format: string;
@@ -141,16 +145,18 @@ const CHANNELS: Channel[] = [
     label: "Broadcast TV",
     icon: Antenna,
     accent: "#7AB8FF",
-    status: "Available now",
-    why: "Traditional television still commands attention and a sense of credibility that's hard to buy anywhere else. Your video is produced to broadcast quality, ready for the air when you are.",
-    length: "15 or 30 sec",
-    format: "Produced to broadcast quality; airtime bought separately",
+    unavailable: true,
+    status: BROADCAST_STATUS,
+    why: "Traditional television still commands attention and a sense of credibility that's hard to buy anywhere else. It is also the one destination on this page we don't serve: your video is made to broadcast quality, but we don't prepare it for broadcast.",
+    length: "15 or 30 sec, if a station accepts it",
+    format: "Produced to broadcast quality — not prepared for broadcast",
     tips: [
-      "Your video is produced to broadcast-quality standards.",
-      "Airtime and placement are bought separately from the video itself.",
+      "Broadcast quality is about how the video looks and sounds. Broadcast clearance is a separate process, and it isn't one we run.",
+      "We don't check videos against station clearance rules or broadcast regulations.",
+      "We don't buy or place airtime, and we don't submit videos to stations.",
     ],
-    pair: "Confirm station requirements before you buy airtime.",
-    note: "Broadcast quality isn't the same as broadcast clearance. Stations and networks set their own timing, technical, and legal-review requirements — we recommend confirming each station's rules and checking with your counsel before you air.",
+    pair: "Your station and your campaign's counsel, before anything airs.",
+    note: BROADCAST_DISCLAIMER,
   },
 ];
 
@@ -169,7 +175,10 @@ export function ChannelChooser() {
           </h2>
           <p className="text-lg leading-relaxed text-granite">
             One finished video works everywhere &mdash; but it works best when it&apos;s
-            cut and placed for each spot. Here&apos;s how we&apos;d run it.
+            cut for each spot. Here&apos;s how we&apos;d run it.
+          </p>
+          <p className="mx-auto mt-5 max-w-xl rounded-xl bg-dawn-frost px-4 py-3 text-sm leading-relaxed text-granite ring-1 ring-gray-200">
+            {CHANNELS_PLACEMENT_NOTE}
           </p>
         </div>
 
@@ -204,6 +213,15 @@ export function ChannelChooser() {
                         Soon
                       </span>
                     )}
+                    {c.unavailable && (
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                          on ? "bg-alert-amber/25 text-alert-amber" : "bg-alert-amber/15 text-[#8A4B00]"
+                        }`}
+                      >
+                        Not available
+                      </span>
+                    )}
                   </button>
                 );
               })}
@@ -218,10 +236,19 @@ export function ChannelChooser() {
               </span>
               <div>
                 <h3 className="font-heading text-2xl font-extrabold text-regal-navy">{active.label}</h3>
-                {active.status && (
-                  <span className={`text-xs font-bold uppercase tracking-wider ${active.soon ? "text-pioneer-gold" : "text-freedom-blue"}`}>
-                    {active.status}
-                  </span>
+                {active.unavailable ? (
+                  <AvailabilityBadge
+                    label={active.status ?? BROADCAST_STATUS}
+                    tooltip={BROADCAST_DISCLAIMER}
+                    placement="below"
+                    className="mt-1"
+                  />
+                ) : (
+                  active.status && (
+                    <span className={`text-xs font-bold uppercase tracking-wider ${active.soon ? "text-pioneer-gold" : "text-freedom-blue"}`}>
+                      {active.status}
+                    </span>
+                  )
                 )}
               </div>
             </div>
@@ -246,12 +273,16 @@ export function ChannelChooser() {
               ))}
             </ul>
 
-            {/* Broadcast clearance note (folded in from the old "Onto the screen" section) */}
+            {/* The broadcast disclaimer, spelled out in the panel as well as in
+                the badge — a tooltip is a convenience, not the only place a
+                visitor can find out what we don't do. */}
             {active.note && (
-              <div className="mt-5 rounded-xl bg-white p-4 ring-1 ring-horizon-azure/25">
+              <div className={`mt-5 rounded-xl bg-white p-4 ring-1 ${active.unavailable ? "ring-alert-amber/40" : "ring-horizon-azure/25"}`}>
                 <div className="mb-1.5 flex items-center gap-2">
-                  <Info className="h-4 w-4 text-horizon-azure" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate">One thing to know</span>
+                  <Info className={`h-4 w-4 ${active.unavailable ? "text-alert-amber" : "text-horizon-azure"}`} />
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate">
+                    {active.unavailable ? "What we do and don't do here" : "One thing to know"}
+                  </span>
                 </div>
                 <p className="text-sm leading-relaxed text-granite">{active.note}</p>
               </div>
