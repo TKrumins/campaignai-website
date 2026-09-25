@@ -165,7 +165,7 @@ export function PricingTiers() {
               </p>
               <p className="text-granite text-sm leading-relaxed">
                 Need extra revisions, multiple cuts, additional languages, or
-                rush delivery? We walk through the options on your onboarding
+                rush delivery? We walk through the options on your getting-started
                 call. You approve the full cost before anything goes into
                 production.
               </p>

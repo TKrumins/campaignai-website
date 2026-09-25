@@ -53,7 +53,7 @@ const badges = [
 
 export function BookingBanner({
   headline = "Campaigns move quickly. Start your next video today.",
-  subline = "Choose your plan and book your onboarding call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 72 hours, excluding weekends.",
+  subline = "Choose your plan and book your getting-started call. Plan your video at your pace, submit when you're ready, and our editors send it back polished within 72 hours, excluding weekends.",
   showBadges = true,
   showEthicsLine = true,
   ctaLabel = CTA_PRIMARY,

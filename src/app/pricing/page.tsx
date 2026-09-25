@@ -8,19 +8,19 @@ import { ETHICS_LINE, PRICING_VALIDITY } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Pricing - CampaignAI",
   description:
-    "Professional campaign video starting at $1,999. Candidate campaigns starting at $999. A flat starting rate for one finished video, with add-ons priced on your onboarding call.",
+    "Professional campaign video starting at $1,999. Candidate campaigns starting at $999. A flat starting rate for one finished video, with add-ons priced on your getting-started call.",
 };
 
 const faqs = [
   {
     question: "How much does a video cost?",
     answer:
-      "Professional video starts at $1,999. Candidate campaigns start at $999 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your onboarding call, so you always know the full cost before you commit.",
+      "Professional video starts at $1,999. Candidate campaigns start at $999 as our 2026 midterm cycle mission rate, from school board to U.S. Senate. Nonprofits and advocacy organizations receive mission pricing on a case-by-case basis. Every price is a flat starting rate for one finished video, and any add-ons are priced on your getting-started call, so you always know the full cost before you commit.",
   },
   {
     question: "What does the starting rate include, and what is an add-on?",
     answer:
-      "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 60-minute onboarding call, before anything goes into production.",
+      "The starting rate covers one finished, human-reviewed video in 15-, 30-, and 60-second cuts, in every format, with state-specific disclosure labels and full ownership. No watermark and no per-use fees. Add-ons are anything beyond that single finished video: custom footage, additional concepts, more videos, extra languages, or rush delivery. We walk through the options and price them on your 60-minute getting-started call, before anything goes into production.",
   },
   {
     question: "How fast do I get my video?",
@@ -57,7 +57,7 @@ export default function PricingPage() {
             </h1>
             <p className="text-granite text-lg leading-relaxed max-w-[620px] mx-auto">
               A flat starting rate for one finished video, with any add-ons
-              priced on your onboarding call, so you always know the full cost
+              priced on your getting-started call, so you always know the full cost
               before you commit.
             </p>
           </ScrollReveal>

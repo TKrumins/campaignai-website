@@ -157,7 +157,7 @@ export function GetStartedSetup() {
 
             <div className="mt-3 md:mt-6">
               <Button variant="patriot" href={bookHref} external className="w-full justify-center px-6 py-2.5 md:py-3">
-                Book your onboarding call
+                Book your getting-started call
               </Button>
               <p className="mt-2 text-center text-[11px] text-beacon-white/55 md:text-xs">
                 A 60-min call to scope it. Nothing charged upfront.

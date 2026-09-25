@@ -12,7 +12,7 @@ const pillars = [
   {
     title: "Community Discussions & Polls",
     description:
-      "This is not a one-way broadcast. We run regular discussions and polls on our Substack where candidates, operatives, researchers, and voters weigh in on the questions shaping the future of campaign technology.",
+      "This is not a one-way broadcast. We run regular discussions and polls on our Substack where candidates, operatives, researchers, and voters weigh in on how campaigns use AI today.",
     topics:
       "Should AI-generated campaign content be banned? Where do voters draw the line on synthetic media? What regulations actually work? We ask, you answer, and the responses shape how we build.",
   },

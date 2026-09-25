@@ -15,7 +15,7 @@ export function CostSavingsCallout({ variant = "light" }: CostSavingsCalloutProp
         <span>Make one for a 10th the cost.</span>
       </p>
       <p className={`mt-3 text-sm ${body} max-w-lg mx-auto`}>
-        Skip the agency contract, or deliver more for every client.
+        Skip the agency contract, or deliver more for every campaign.
         Professional quality without the professional price tag.
       </p>
     </div>

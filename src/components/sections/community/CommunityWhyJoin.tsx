@@ -49,7 +49,7 @@ const GROUPS: Group[] = [
     hero: "You keep campaigns ahead of the curve. We keep you ahead of the tools.",
     benefits: [
       "Field-tested tactics and what's genuinely moving numbers.",
-      "The ethics and compliance shifts your clients will ask about — before they ask.",
+      "The ethics and compliance shifts your campaigns will ask about — before they ask.",
       "A back-channel with others solving the same problems in real time.",
     ],
   },

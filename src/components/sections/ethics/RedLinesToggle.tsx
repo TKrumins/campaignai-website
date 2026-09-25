@@ -69,7 +69,7 @@ export function RedLinesToggle() {
 
       <p className="mt-5 text-center text-sm text-slate">
         {isLines
-          ? "Hard limits — the same in every state, for every client."
+          ? "Hard limits — the same in every state, for every campaign."
           : "The technology does the heavy lifting. The judgment is always yours."}
       </p>
     </div>

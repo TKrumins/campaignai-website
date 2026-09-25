@@ -45,9 +45,9 @@ const faqs = [
   },
   {
     question:
-      "I'm a consultant. How does CampaignAI work for my clients?",
+      "I'm a consultant. How does CampaignAI work for the campaigns I serve?",
     answer:
-      "CampaignAI is built to supercharge what you already do. Produce more ads, at higher quality, for less. Your clients get better output and you deliver more effectively. Volume pricing is available for consultancies and organizations supporting multiple campaigns.",
+      "CampaignAI is built to supercharge what you already do. Produce more ads, at higher quality, for less. Your campaigns get better output and you deliver more effectively. Volume pricing is available for consultancies and organizations supporting multiple campaigns.",
   },
   {
     question: "What do you do with my data?",

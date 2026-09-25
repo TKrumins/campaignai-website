@@ -37,7 +37,7 @@ export const VIDEO_SHASM_ACT = `${BLOB_MEDIA}/videos/the-shasm-act.mp4`;
 
 export const CTA_PRIMARY = "Get Started →";
 export const CTA_MICROCOPY =
-  "Pick your plan and book your onboarding call. We scope your video together, then invoice you — nothing is charged upfront.";
+  "Pick your plan and book your getting-started call. We scope your video together, then invoice you — nothing is charged upfront.";
 export const CTA_TEAM = "Talk to our team →";
 
 export const WAITLIST_LONG =
@@ -48,7 +48,7 @@ export const ETHICS_LINE =
   "We do the hard ethical work, so you can focus on the work only you can do.";
 
 export const DELIVERY_LINE =
-  "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it on your onboarding call.";
+  "Your video is delivered 72 hours after you submit, excluding weekends. Need a weekend turnaround? We can arrange it on your getting-started call.";
 
 // Shown on the pricing and get-started pages only — the two surfaces where
 // someone is actually deciding what to pay.

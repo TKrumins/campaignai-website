@@ -57,7 +57,7 @@ export function HeroLeadCopy() {
       </div>
 
       <p className="mt-3 max-w-md text-sm leading-relaxed text-beacon-white/80">
-        Book your onboarding call today.
+        Book your getting-started call today.
         <br />
         We scope your video together, then invoice you.
         <br />

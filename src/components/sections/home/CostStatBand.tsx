@@ -33,7 +33,7 @@ export function CostStatBand() {
         </ScrollReveal>
         <ScrollReveal delay={120}>
           <h2 className="mx-auto mt-10 max-w-[820px] text-center font-heading text-2xl font-extrabold tracking-[-0.5px] text-regal-navy md:text-3xl">
-            <span className="block">Democracy has a paywall.</span>
+            <span className="block">Democracy shouldn&apos;t have a paywall.</span>
             <span className="block">Don&apos;t let the high costs stop your campaign.</span>
           </h2>
         </ScrollReveal>

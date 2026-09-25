@@ -173,7 +173,7 @@ const categories: Category[] = [
       {
         icon: Bot,
         title: "AI Campaign Agents",
-        description: "Autonomous systems that research, draft, schedule, and optimize campaign operations end-to-end.",
+        description: "Autonomous systems that research, draft, schedule, and optimize campaign operations from start to finish.",
       },
       {
         icon: MessageSquare,

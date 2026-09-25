@@ -15,7 +15,7 @@ export function GetStartedForm() {
                   Join the waitlist.
                 </h2>
                 <p className="text-granite text-sm">
-                  We&apos;re onboarding campaigns in the order they join. Once
+                  We&apos;re getting campaigns started in the order they join. Once
                   you&apos;re on the list, our team works with you to find
                   pricing that matches your race, your scale, and your budget.
                 </p>

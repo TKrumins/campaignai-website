@@ -98,7 +98,7 @@ export function ShowcaseLibrary() {
         {/* Growing-library note */}
         <div className="mt-10 flex items-center justify-center gap-2.5 text-sm text-slate">
           <Clapperboard className="h-4 w-4 text-freedom-blue" />
-          New client work is added here as it&apos;s cleared to share.
+          New campaign work is added here as it&apos;s cleared to share.
         </div>
       </div>
     </section>
