@@ -24,7 +24,7 @@ export default function AiInCampaignsPage() {
       {/* Hero */}
       <section data-hero className="pt-40 pb-14 bg-regal-navy">
         <div className="max-w-[820px] mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-5">
+          <span className="inline-block text-beacon-white text-sm font-semibold uppercase tracking-[1.5px] mb-5">
             The Living Glossary
           </span>
           <h1 className="font-heading font-extrabold text-4xl md:text-[52px] md:leading-[1.1] text-beacon-white tracking-[-1px] mb-5">

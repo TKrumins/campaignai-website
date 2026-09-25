@@ -14,7 +14,7 @@ export function VerificationSection() {
           <ScrollReveal>
             <div>
               <div className="flex items-center gap-3 flex-wrap">
-                <SectionLabel text="Verified Human" />
+                <SectionLabel text="Verified Human" onDark />
                 <span className="inline-flex items-center rounded-full bg-pioneer-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/30">
                   Coming Soon
                 </span>

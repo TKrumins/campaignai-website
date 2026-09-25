@@ -65,7 +65,9 @@ const socialIcons = [
 
 export function Footer() {
   return (
-    <footer className="bg-regal-navy text-beacon-white border-t-4 border-t-freedom-blue">
+    <footer className="bg-regal-navy text-beacon-white">
+      {/* Top rule: multi-partisan gradient strip (brand Rule 1; borders cannot take a gradient). */}
+      <div className="h-1 multipartisan-gradient" aria-hidden />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Link columns — two columns on mobile (Brand spans both), four on desktop:
             Brand · Site · Trust & Values · Legal */}

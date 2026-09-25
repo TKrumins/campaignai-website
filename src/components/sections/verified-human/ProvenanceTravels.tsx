@@ -26,7 +26,7 @@ export function ProvenanceTravels() {
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <SectionLabel text="How the proof travels" color="crimson" />
+            <SectionLabel text="How the proof travels" />
             <h2 className="mt-3 mb-5 font-heading text-3xl font-extrabold tracking-[-1px] text-regal-navy md:text-[40px] md:leading-tight">
               Proof that travels with the file.
             </h2>

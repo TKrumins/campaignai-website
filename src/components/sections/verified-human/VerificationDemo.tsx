@@ -105,7 +105,7 @@ export function VerificationDemo() {
     <section className="py-20 md:py-28 bg-regal-navy">
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <SectionLabel text="See it in action" color="horizon" />
+          <SectionLabel text="See it in action" onDark />
           <h2 className="font-heading font-extrabold text-3xl md:text-[40px] md:leading-tight text-beacon-white tracking-[-0.5px] mt-3 mb-4">
             Look up a video. See what it can prove.
           </h2>

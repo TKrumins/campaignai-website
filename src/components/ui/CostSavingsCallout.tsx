@@ -12,7 +12,7 @@ export function CostSavingsCallout({ variant = "light" }: CostSavingsCalloutProp
       <p className={`font-heading font-bold text-xl md:text-2xl ${heading}`}>
         Agencies and consultants charge $10,000+ per ad.
         <br />
-        <span className="text-liberty-crimson">Make one for a 10th the cost.</span>
+        <span>Make one for a 10th the cost.</span>
       </p>
       <p className={`mt-3 text-sm ${body} max-w-lg mx-auto`}>
         Skip the agency contract, or deliver more for every client.

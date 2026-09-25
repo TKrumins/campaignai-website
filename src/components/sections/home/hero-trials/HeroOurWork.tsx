@@ -47,7 +47,7 @@ export function HeroOurWork() {
   const [active, setActive] = useState<string | null>(null);
   return (
     <div className="relative">
-      <p className="mb-4 text-xs font-semibold uppercase tracking-[3px] text-horizon-azure">
+      <p className="mb-4 text-xs font-semibold uppercase tracking-[3px] text-beacon-white">
         Yes — we use this ourselves
       </p>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

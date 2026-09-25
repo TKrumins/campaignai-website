@@ -118,7 +118,7 @@ export function GetStartedSetup() {
           {/* The starting-point card — compact on mobile so the whole picker fits one screen */}
           <div className="relative rounded-2xl bg-regal-navy p-4 text-beacon-white shadow-xl ring-1 ring-white/10 sm:p-6 md:rounded-3xl md:p-7 md:sticky md:top-28">
             <AISparkle size={13} color="#7AB8FF" glow className="sparkle-twinkle absolute right-4 top-4" style={{ ["--dur"]: "2.8s" } as CSSProperties} />
-            <p className="text-[10px] font-bold uppercase tracking-widest text-horizon-azure md:text-[11px]">Your starting point</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-beacon-white md:text-[11px]">Your starting point</p>
 
             {/* Price */}
             <div className="mt-2 flex items-baseline gap-2 border-b border-white/10 pb-3 md:mt-3 md:block md:pb-4">

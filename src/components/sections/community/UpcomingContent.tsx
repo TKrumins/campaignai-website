@@ -58,7 +58,7 @@ export function UpcomingContent() {
         {/* Cross-link to the Living Glossary */}
         <ScrollReveal delay={200}>
           <div className="mt-12 rounded-2xl bg-regal-navy p-8 md:p-10 text-center">
-            <span className="inline-block text-freedom-blue text-xs font-bold uppercase tracking-widest mb-3">
+            <span className="inline-block text-beacon-white text-xs font-bold uppercase tracking-widest mb-3">
               The Living Glossary
             </span>
             <h3 className="font-heading font-extrabold text-2xl md:text-3xl text-beacon-white tracking-[-0.5px] mb-3">

@@ -36,7 +36,7 @@ export function OurCommitment() {
         </ScrollReveal>
 
         <ScrollReveal delay={100}>
-          <p className="font-heading font-bold text-2xl text-freedom-blue text-center mt-10">
+          <p className="font-heading font-bold text-2xl text-regal-navy text-center mt-10">
             &ldquo;{ETHICS_LINE}&rdquo;
           </p>
         </ScrollReveal>

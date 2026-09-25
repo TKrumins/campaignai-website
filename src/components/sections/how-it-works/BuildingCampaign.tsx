@@ -41,7 +41,7 @@ export function BuildingCampaign() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <p className="font-heading font-bold text-2xl text-freedom-blue text-center mt-10">
+          <p className="font-heading font-bold text-2xl text-regal-navy text-center mt-10">
             &ldquo;We&apos;ll handle the production. You tell the story.&rdquo;
           </p>
         </ScrollReveal>

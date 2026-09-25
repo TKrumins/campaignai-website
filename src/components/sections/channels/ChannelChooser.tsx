@@ -248,7 +248,7 @@ export function ChannelChooser() {
                   />
                 ) : (
                   active.status && (
-                    <span className={`text-xs font-bold uppercase tracking-wider ${active.soon ? "text-pioneer-gold" : "text-freedom-blue"}`}>
+                    <span className={`text-xs font-bold uppercase tracking-wider ${active.soon ? "text-pioneer-gold" : "text-regal-navy"}`}>
                       {active.status}
                     </span>
                   )

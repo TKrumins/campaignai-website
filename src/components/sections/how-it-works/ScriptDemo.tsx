@@ -85,7 +85,7 @@ export function ScriptDemo() {
               </p>
             </div>
             <div className="rounded-2xl bg-white ring-1 ring-freedom-blue/25 shadow-sm p-6 flex flex-col">
-              <p className="text-xs font-bold uppercase tracking-wider text-freedom-blue mb-3">
+              <p className="text-xs font-bold uppercase tracking-wider text-regal-navy mb-3">
                 CampaignAI
               </p>
               <div className="flex flex-wrap gap-2">
@@ -154,7 +154,7 @@ export function ScriptDemo() {
                     ] as const
                   ).map(([label, text]) => (
                     <div key={label} className="rounded-xl border border-freedom-blue/25 bg-white p-4">
-                      <p className="text-freedom-blue text-xs font-bold uppercase tracking-wider mb-1">
+                      <p className="text-regal-navy text-xs font-bold uppercase tracking-wider mb-1">
                         {label}
                       </p>
                       <p className="text-granite text-sm leading-relaxed">{text}</p>

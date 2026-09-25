@@ -71,7 +71,7 @@ export function America250Module({ className = "" }: { className?: string }) {
         </h3>
         {countdown.offerLive && (
           <>
-            <p className="font-heading font-bold text-lg text-liberty-crimson mb-1">
+            <p className="font-heading font-bold text-lg text-regal-navy mb-1">
               {A250_OFFER}
             </p>
             <p className="text-slate text-sm mb-3">

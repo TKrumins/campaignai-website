@@ -20,7 +20,7 @@ export default function ShowcasePage() {
         <AISparkle size={12} color="#4D9FFF" glow className="sparkle-twinkle absolute right-[16%] bottom-[18%] z-0" style={{ ["--dur"]: "3.3s", animationDelay: "300ms" } as CSSProperties} />
 
         <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 text-center">
-          <span className="mb-5 inline-block text-sm font-semibold uppercase tracking-[1.5px] text-horizon-azure">The Work</span>
+          <span className="mb-5 inline-block text-sm font-semibold uppercase tracking-[1.5px] text-beacon-white">The Work</span>
           <h1 className="font-heading text-[32px] font-extrabold leading-[1.08] tracking-[-1.5px] text-beacon-white sm:text-[44px] md:text-[56px]">
             Every campaign deserves to{" "}
             <span className="patriot-gradient-text-bright">own its narrative.</span>

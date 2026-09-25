@@ -12,7 +12,7 @@ export function VerifiedHumanHero() {
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 py-20 text-center">
         <div className="mb-6 flex items-center justify-center gap-3">
-          <span className="text-sm font-semibold uppercase tracking-[1.5px] text-horizon-azure">Verified Human</span>
+          <span className="text-sm font-semibold uppercase tracking-[1.5px] text-beacon-white">Verified Human</span>
           <span className="inline-flex items-center rounded-full bg-pioneer-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-pioneer-gold ring-1 ring-pioneer-gold/30">
             Coming Soon
           </span>

@@ -253,7 +253,7 @@ export function ShowcaseSection() {
         <ScrollReveal>
           <div className="text-center mb-12">
             <div className="mb-4">
-              <SectionLabel text="Our Work" color="horizon" favicon onDark />
+              <SectionLabel text="Our Work" favicon onDark />
             </div>
             <h2 className="font-heading font-extrabold text-3xl sm:text-[40px] md:text-[48px] md:leading-tight text-beacon-white tracking-[-1.5px] mb-4">
               Showcase

@@ -47,7 +47,7 @@ export function WhatItMeans() {
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-freedom-blue/15">
                   <Check className="h-4 w-4 text-freedom-blue" strokeWidth={3} />
                 </span>
-                <span className="font-heading text-lg font-bold text-freedom-blue">The one that matters</span>
+                <span className="font-heading text-lg font-bold text-regal-navy">The one that matters</span>
               </div>
               <p className="font-heading text-xl font-bold text-regal-navy">&ldquo;A real campaign made and approved this.&rdquo;</p>
               <p className="mt-3 text-granite leading-relaxed">

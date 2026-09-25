@@ -204,13 +204,6 @@ const categories: Category[] = [
   },
 ];
 
-const categoryAccentBorders: Record<string, string> = {
-  "Generative AI": "border-l-liberty-crimson",
-  "Data & Analytics": "border-l-freedom-blue",
-  "Algorithmic Targeting & Amplification": "border-l-pioneer-gold",
-  "Deepfakes & Cloning": "border-l-critical-scarlet",
-  "Agents & Automation": "border-l-bridge-violet",
-};
 
 const categoryIconColors: Record<string, string> = {
   "Generative AI": "text-liberty-crimson",
@@ -305,8 +298,10 @@ export function AILandscape() {
                 {caps.map(({ icon: Icon, title, description }, i) => (
                   <ScrollReveal key={title} delay={i * 50}>
                     <div
-                      className={`group rounded-xl border border-gray-100 border-l-[3px] ${categoryAccentBorders[name]} bg-white p-5 h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]`}
+                      className={`group relative overflow-hidden rounded-xl border border-gray-100 bg-white p-5 h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]`}
                     >
+                      {/* Left accent: multi-partisan gradient strip for every category (brand Rule 1). */}
+                      <div className="absolute inset-y-0 left-0 w-[3px] multipartisan-gradient-y" aria-hidden />
                       <div className="flex items-start gap-4">
                         <div className="shrink-0 w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center">
                           <Icon className={`w-5 h-5 ${categoryIconColors[name]}`} strokeWidth={1.75} />

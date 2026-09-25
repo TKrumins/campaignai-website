@@ -518,7 +518,7 @@ function SupportDetail({ typeKey }: { typeKey: string }) {
         {/* subtle graphic: your record vs the alternative */}
         <div className="mb-4 grid grid-cols-[1fr_auto_1fr] items-stretch gap-3">
           <div className="rounded-lg bg-freedom-blue/[0.08] p-3 ring-1 ring-freedom-blue/20">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-freedom-blue">Your record</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-regal-navy">Your record</p>
             <div className="mt-2 flex items-end gap-1.5">
               {[16, 26, 36].map((h, i) => (
                 <span key={i} className="w-3 rounded-sm bg-freedom-blue/70" style={{ height: h }} />

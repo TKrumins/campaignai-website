@@ -58,6 +58,11 @@
   background: linear-gradient(90deg, #FF3366 0%, #8E5CF7 50%, #4D9FFF 100%);
 }
 
+/* Same gradient running top → bottom, for vertical (left/side) accent strips. */
+@utility multipartisan-gradient-y {
+  background: linear-gradient(180deg, #FF3366 0%, #8E5CF7 50%, #4D9FFF 100%);
+}
+
 /* Patriot gradient on Lucide icons — reference SVG defs in layout */
 .patriot-icon svg {
   stroke: url(#patriot-icon-gradient);

@@ -41,7 +41,7 @@ export function GetStartedPaths() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-freedom-blue opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-freedom-blue" />
                 </span>
-                <span className="text-freedom-blue text-xs font-bold uppercase tracking-widest">
+                <span className="text-beacon-white text-xs font-bold uppercase tracking-widest">
                   Available now
                 </span>
               </div>

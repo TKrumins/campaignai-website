@@ -40,7 +40,7 @@ export function ClearingHouse() {
       <div className="relative z-10 mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <SectionLabel text="Where this goes" color="horizon" />
+            <SectionLabel text="Where this goes" onDark />
             <h2 className="mt-3 mb-5 font-heading text-3xl font-extrabold tracking-[-1px] text-beacon-white md:text-[40px] md:leading-tight">
               Starts with your videos. Grows to every video.
             </h2>

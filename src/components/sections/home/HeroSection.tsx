@@ -43,7 +43,7 @@ export function HeroSection() {
             backgroundColor: "rgba(255,51,102,.08)",
           }}
         >
-          <p className="font-heading font-bold text-[15px] md:text-base" style={{ color: "#FF3366" }}>
+          <p className="font-heading font-bold text-[15px] md:text-base text-beacon-white">
             America 250 Special: buy two videos, get your first for just $250!
           </p>
           <p className="text-beacon-white/80 text-sm mt-1">

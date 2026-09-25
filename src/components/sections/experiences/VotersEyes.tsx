@@ -660,7 +660,7 @@ export function VotersEyes() {
             </div>
 
             <div className="rounded-2xl bg-regal-navy p-6 text-beacon-white">
-              <p className="text-horizon-azure text-xs font-bold uppercase tracking-wider mb-2">
+              <p className="text-beacon-white text-xs font-bold uppercase tracking-wider mb-2">
                 The thing to notice
               </p>
               <p className="text-beacon-white/90 text-sm leading-relaxed mb-3">

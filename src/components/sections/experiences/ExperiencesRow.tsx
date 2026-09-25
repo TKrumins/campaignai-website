@@ -47,7 +47,7 @@ export function ExperiencesRow({ routes, heading, subhead, tone = "frost" }: Exp
       <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center max-w-[620px] mx-auto mb-10">
-            <span className="inline-block text-freedom-blue text-xs font-semibold uppercase tracking-[1.5px] mb-3">
+            <span className="inline-block text-regal-navy text-xs font-semibold uppercase tracking-[1.5px] mb-3">
               {EXPERIENCE_EYEBROW}
             </span>
             <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-regal-navy tracking-[-0.5px]">

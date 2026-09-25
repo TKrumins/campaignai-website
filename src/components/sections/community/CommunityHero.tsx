@@ -5,7 +5,7 @@ export function CommunityHero() {
       className="relative bg-regal-navy pt-40 pb-16"
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <span className="inline-block text-freedom-blue text-sm font-semibold uppercase tracking-[1.5px] mb-6">
+        <span className="inline-block text-beacon-white text-sm font-semibold uppercase tracking-[1.5px] mb-6">
           Substack Community
         </span>
 

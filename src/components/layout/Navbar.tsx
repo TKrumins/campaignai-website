@@ -69,12 +69,12 @@ export function Navbar() {
     ? pathname === "/"
       ? "bg-gradient-to-b from-regal-navy/90 via-regal-navy/45 to-transparent"
       : "bg-transparent"
-    : "bg-regal-navy border-b-2 border-b-freedom-blue";
+    : "bg-regal-navy";
 
   function getLinkClasses(href: string) {
     const isActive = pathname === href;
     return isActive
-      ? "text-beacon-white border-b-2 border-freedom-blue pb-0.5"
+      ? "relative text-beacon-white pb-0.5 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:multipartisan-gradient"
       : "text-beacon-white/70 hover:text-beacon-white";
   }
 
@@ -88,7 +88,7 @@ export function Navbar() {
   return (
     <nav
       data-navbar
-      className={`fixed left-0 right-0 z-50 transition-[transform,background-color,border-color] duration-700 ease-in-out ${
+      className={`fixed left-0 right-0 z-50 transition-[transform,background-color] duration-700 ease-in-out ${
         bottomNavActive ? "max-md:-translate-y-full" : ""
       } ${navBg}`}
       style={{ top: "var(--announce-h, 0px)" }}
@@ -249,6 +249,16 @@ export function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Bottom rule: multi-partisan gradient strip (brand Rule 1; borders cannot
+          take a gradient). Hangs just below the bar, where the old 2px border sat,
+          and fades in with the bar when it solidifies. */}
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute inset-x-0 top-full h-0.5 multipartisan-gradient transition-opacity duration-700 ease-in-out ${
+          isTransparent ? "opacity-0" : "opacity-100"
+        }`}
+      />
     </nav>
   );
 }
