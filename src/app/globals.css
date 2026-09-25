@@ -11,6 +11,8 @@
   --color-victory-rose: #FF6B8F;
   --color-horizon-azure: #7AB8FF;
   --color-dawn-frost: #F5FAFC;
+  --color-unity-violet: #8A63D2;
+  --color-freedom-blue-aa: #2B6FD6; /* Freedom Blue for text/links on white (4.8:1) */
 
   /* Neutral Grays — Foundation Series */
   --color-granite: #2C2C2C;
@@ -23,11 +25,13 @@
   /* Accent Colors — Impact Collection */
   --color-pioneer-gold: #FFB800;
   --color-verdant: #00D084;
+  --color-verdant-future: #00D084; /* brand token name; alias of verdant */
   --color-alert-amber: #FF9500;
   --color-critical-scarlet: #E62E2E;
 
   /* Fonts */
   --font-heading: "Manrope", sans-serif;
+  --font-display: "Manrope", sans-serif; /* brand token name; alias of font-heading */
   --font-body: "Inter", sans-serif;
 }
 
